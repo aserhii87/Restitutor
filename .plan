@@ -10,7 +10,7 @@
 [x] Expand "Proclaim Right Of Reprisal" to all defensive wars
 [x] A new war cannot be declared between provinces that are already fighting on opposing sides of an ongoing war.
 [x] Allies, defense pact partners, and eligible client/patron partners cannot join a war coalition against a province (leader attacker/defender) with which they have an active truce.
-[x] NPCs will raise their conscription after being attacked slower than before (from 5% per attack to 1% per attack)
+[x] NPCs will raise their conscription after being attacked less aggressively than before (from 5% per attack to 2% per attack)
 
 ## QoL
 

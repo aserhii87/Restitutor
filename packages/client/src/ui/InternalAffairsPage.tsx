@@ -98,6 +98,7 @@ export function InternalAffairsPage(): React.ReactNode {
    const toleratedReligionSlots = getToleratedReligion(G.save.state.playerProvince, G.save);
    const toleratedCultures = Array.from(state.toleratedCultures);
    const toleratedCultureSlots = getToleratedCulture(G.save.state.playerProvince, G.save);
+   const greatWorks = Array.from(getProvinceGreatWorks(G.save.state.playerProvince, G.save));
    return (
       <SidebarComp title={<SidebarHeader title={$t(L.InternalAffairs)} />}>
          <div className="h1">{$t(L.GoverningAndStability)}</div>
@@ -236,11 +237,11 @@ export function InternalAffairsPage(): React.ReactNode {
          ))}
          <div className="h1">{$t(L.ProvincialGreatWorks)}</div>
          <div className="m10">
-            {Array.from(getProvinceGreatWorks(G.save.state.playerProvince, G.save)).map((gw) => (
+            {greatWorks.map((gw) => (
                <GreatWorkComponent key={gw} greatWork={gw} />
             ))}
          </div>
-         <div className="divider" />
+         {greatWorks.length > 0 && <div className="divider" />}
          <div className="m10">
             <button className="btn w100" onClick={() => showPanel(GreatWorksSingletonModal, {})}>
                {$t(L.ShowAllGreatWorks)}
