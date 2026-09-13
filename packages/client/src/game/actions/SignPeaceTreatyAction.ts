@@ -15,7 +15,7 @@ import { addModifier } from "../logic/ModifierLogic";
 import { addProvinceStat, ensureProvinceCapitals } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { showGameEventModal } from "../logic/TickProvince";
-import { getTruceDuration, type IWar, isEligibleForMandate, WarFlag } from "../logic/WarLogic";
+import { getPlunderedUpgrade, getTruceDuration, type IWar, isEligibleForMandate, WarFlag } from "../logic/WarLogic";
 import { finalizeCondition, type IGameAction } from "./GameAction";
 
 export function SignPeaceTreatyAction(war: IWar, province: Province, save: SaveGame): IGameAction {
@@ -39,9 +39,9 @@ export function SignPeaceTreatyAction(war: IWar, province: Province, save: SaveG
             if (data) {
                data.province = war.attacker;
                if (hasFlag(war.flag, WarFlag.Plunder)) {
-                  data.infrastructure = Math.max(1, data.infrastructure - 1);
-                  data.production = Math.max(1, data.production - 1);
-                  data.population = Math.max(1, data.population - 1);
+                  data.infrastructure -= getPlunderedUpgrade(data.infrastructure);
+                  data.production -= getPlunderedUpgrade(data.production);
+                  data.population -= getPlunderedUpgrade(data.population);
                }
             }
          }

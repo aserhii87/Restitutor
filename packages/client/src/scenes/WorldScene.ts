@@ -592,6 +592,9 @@ export class WorldScene extends Scene {
       color?: number;
       size?: number;
    }): void {
+      if (G.speed > 30) {
+         return;
+      }
       const position = MapGrid.gridToPosition(tileToPoint(tile));
       const bounds = this.viewport.visibleWorldRect();
       if (

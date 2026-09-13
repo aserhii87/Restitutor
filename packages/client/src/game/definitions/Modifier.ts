@@ -33,6 +33,14 @@ export const Modifiers = {
       name: () => $t(L.MonthlyMilitaryPoint),
       desc: () => "",
    },
+   MonthlyRevenue: {
+      name: () => $t(L.MonthlyRevenue),
+      desc: () => "",
+   },
+   MonthlyExpense: {
+      name: () => $t(L.MonthlyExpense),
+      desc: () => "",
+   },
    WarPower: {
       name: () => $t(L.WarPower),
       desc: () => $t(L.WarPowerMeasuresHowWellOurProvincePerformsInWars),
