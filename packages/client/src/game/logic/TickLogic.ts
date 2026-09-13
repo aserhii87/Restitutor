@@ -198,7 +198,7 @@ export function tickWar(war: IWar, save: SaveGame): void {
          if (forceAttack > 0) {
             setProvinceStat(
                "actualConscription",
-               getProvinceStat("actualConscription", war.attacker, save) * 0.9,
+               getProvinceStat("actualConscription", war.attacker, save) * 0.95,
                war.attacker,
                save,
             );
