@@ -1581,8 +1581,6 @@ export const ZH_CN = {
    WeAreInTheFollowingWarCoalitions$1: "我们隶属于以下参战阵营：$1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "我们同时参与多场进行中的战争——军力降低。",
    WeAreNotAClientOfAnotherProvince: "我们不是其他行省的附庸",
-   WeAreNotAlreadyAtWarWithThem: "我们尚未与其开战",
-   WeAreNotAtWarWithThem: "我们未与其交战",
    WeAreNotInATruceWithThem: "我们与其无停战协议",
    WeAreNotInTheSameWarCoalition: "我们不在同一参战阵营",
    WeAreNotRuledByBishopsLivingOrDead: "我们并非由主教（在世或已故）统治",

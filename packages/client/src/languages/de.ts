@@ -1590,8 +1590,6 @@ export const DE = {
    WeAreInTheFollowingWarCoalitions$1: "Wir sind Mitglied folgender Kriegskoalitionen: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Wir sind an mehreren laufenden Kriegen beteiligt – unsere Kriegsmacht ist verringert.",
    WeAreNotAClientOfAnotherProvince: "Wir sind kein Klientelstaat einer anderen Provinz",
-   WeAreNotAlreadyAtWarWithThem: "Wir befinden uns nicht bereits im Krieg mit ihnen",
-   WeAreNotAtWarWithThem: "Wir befinden uns nicht im Krieg mit ihnen",
    WeAreNotInATruceWithThem: "Wir haben keinen Waffenstillstand mit ihnen",
    WeAreNotInTheSameWarCoalition: "Wir sind nicht in derselben Kriegskoalition",
    WeAreNotRuledByBishopsLivingOrDead: "Wir werden von keinem Bischof beherrscht, ob lebend oder tot",

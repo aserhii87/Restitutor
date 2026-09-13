@@ -113,13 +113,6 @@ export function requireMinimumAttitude(from: Province, to: Province, attitude: n
    };
 }
 
-export function requirePeaceBetween(ourProvince: Province, theirProvince: Province, save: SaveGame): ICondition {
-   return {
-      name: $t(L.$1IsNotAtWarWith$2, getProvinceName(ourProvince, save), getProvinceName(theirProvince, save)),
-      value: getWarsBetween(ourProvince, theirProvince, save).length === 0,
-   };
-}
-
 export function requireNoTreatyBetween(
    treaties: Exclude<Treaty, "Client">[],
    fromProvince: Province,

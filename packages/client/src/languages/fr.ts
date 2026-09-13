@@ -1589,8 +1589,6 @@ export const FR = {
    WeAreInTheFollowingWarCoalitions$1: "Nous sommes dans les coalitions de guerre suivantes : $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Nous sommes impliqués dans plusieurs guerres en cours — notre <i>Puissance de guerre</i> est réduite.",
    WeAreNotAClientOfAnotherProvince: "Nous ne sommes pas le client d'une autre province",
-   WeAreNotAlreadyAtWarWithThem: "Nous ne sommes pas déjà en guerre avec eux",
-   WeAreNotAtWarWithThem: "Nous ne sommes pas en guerre avec eux",
    WeAreNotInATruceWithThem: "Nous ne sommes pas en trêve avec eux",
    WeAreNotInTheSameWarCoalition: "Nous ne sommes pas dans la même coalition de guerre",
    WeAreNotRuledByBishopsLivingOrDead: "Nous ne sommes pas gouvernés par des évêques, vivants ou morts",

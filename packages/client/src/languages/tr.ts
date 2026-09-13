@@ -1587,8 +1587,6 @@ export const TR = {
    WeAreInTheFollowingWarCoalitions$1: "We are in the following war coalitions: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "We are involved in multiple ongoing wars - Our war power is reduced.",
    WeAreNotAClientOfAnotherProvince: "We are not a client of another province",
-   WeAreNotAlreadyAtWarWithThem: "We are not already at war with them",
-   WeAreNotAtWarWithThem: "We are not at war with them",
    WeAreNotInATruceWithThem: "We are not in a truce with them",
    WeAreNotInTheSameWarCoalition: "We are not in the same war coalition",
    WeAreNotRuledByBishopsLivingOrDead: "We are not ruled by bishops, living or dead",

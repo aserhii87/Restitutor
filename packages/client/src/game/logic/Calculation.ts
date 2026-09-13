@@ -70,6 +70,23 @@ export function defineConditionChecks<Args extends unknown[]>(
    return evaluate as EvaluationGetter<[...Args, save: SaveGame], IConditionBreakdown>;
 }
 
+export function toConditions(checks: ConditionChecks): ICondition[] {
+   const conditions: ICondition[] = [];
+   let step = checks.next();
+   try {
+      while (!step.done) {
+         const item = new ConditionExplanation(step.value);
+         conditions.push(item);
+         step = checks.next(item);
+      }
+      return conditions;
+   } finally {
+      if (!step.done) {
+         checks.return();
+      }
+   }
+}
+
 export class ValueExplanation implements IValueBreakdownItem {
    name = "";
    desc?: string;

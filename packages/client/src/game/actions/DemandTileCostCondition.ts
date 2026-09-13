@@ -4,10 +4,12 @@ import type { Province } from "../definitions/Province";
 import { getBorderingProvinces } from "../definitions/Tile";
 import { getTileName } from "../definitions/TileName";
 import type { SaveGame } from "../GameState";
+import { toConditions } from "../logic/Calculation";
 import { getRelation, isWithinDiplomaticRange } from "../logic/DiplomacyLogic";
 import { isGreatPowerCondition, isNorGreatPowerCondition } from "../logic/ProvinceLogic";
 import { timedActionConditions } from "../logic/TimedActionLogic";
-import { getTruceMonthsLeft, getWarForTile, getWarsBetween } from "../logic/WarLogic";
+import { requirePeaceBetweenChecks } from "../logic/TreatyLogic";
+import { getTruceMonthsLeft, getWarForTile } from "../logic/WarLogic";
 import { finalizeCondition, type ICondition, type IGameCostCondition } from "./GameAction";
 
 export function DemandTileCostCondition(
@@ -31,10 +33,7 @@ export function DemandTileCostCondition(
             name: $t(L.WeHaventGuaranteedTheirDefense),
             value: getRelation(ourProvince, theirProvince, save)?.guaranteeDefense === undefined,
          },
-         {
-            name: $t(L.WeAreNotAlreadyAtWarWithThem),
-            value: getWarsBetween(ourProvince, theirProvince, save).length === 0,
-         },
+         ...toConditions(requirePeaceBetweenChecks(ourProvince, theirProvince, save)),
          {
             name: $t(L.WeAreNotInATruceWithThem),
             value: getTruceMonthsLeft(ourProvince, theirProvince, save) <= 0,

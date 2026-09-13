@@ -1587,8 +1587,6 @@ export const RU = {
    WeAreInTheFollowingWarCoalitions$1: "Мы состоим в следующих военных коалициях: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Мы участвуем в нескольких текущих войнах — наша военная мощь снижена.",
    WeAreNotAClientOfAnotherProvince: "Мы не являемся клиентом другой провинции",
-   WeAreNotAlreadyAtWarWithThem: "Мы ещё не в состоянии войны с ними",
-   WeAreNotAtWarWithThem: "Мы не в состоянии войны с ними",
    WeAreNotInATruceWithThem: "У нас нет перемирия с ними",
    WeAreNotInTheSameWarCoalition: "Мы не в одной военной коалиции",
    WeAreNotRuledByBishopsLivingOrDead: "Нами не правят епископы, живые или мёртвые",
