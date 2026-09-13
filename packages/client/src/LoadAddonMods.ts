@@ -39,7 +39,7 @@ import { GameStateUpdated } from "./game/Events";
 import { GameEvents } from "./game/events/GameEvents";
 import { showError, showInfo, showSuccess, showWarning } from "./game/logic/AlertLogic";
 import { isSteam, SteamClient } from "./rpc/SteamClient";
-import { showPanel } from "./ui/common/ShowPanel";
+import { showModalImmediately, showPanel } from "./ui/common/ShowPanel";
 import { SidebarComp, SidebarHeader, SidebarImageHeader } from "./ui/common/SidebarComp";
 import { hideSidebar } from "./ui/common/SidebarManager";
 import { colorNumber, colorNumberReverse } from "./ui/components/ColorNumber";
@@ -51,7 +51,7 @@ import { IconCatalog } from "./ui/IconCatalog";
 import { G } from "./utils/Global";
 import { refreshOnTypedEvent, refreshOnTypedEventWhen, useTypedEvent } from "./utils/Hook";
 import { $t, L } from "./utils/i18n";
-import { hideModal, ModalComp, ModalImageHeader, ModalTitleBar } from "./utils/ModalManager";
+import { hideModal, hideModalImmediately, ModalComp, ModalImageHeader, ModalTitleBar } from "./utils/ModalManager";
 
 const definitions = {
    Buildings,
@@ -98,7 +98,9 @@ const UI = {
       Transition,
    },
    showPanel,
+   showModalImmediately,
    hideModal,
+   hideModalImmediately,
    hideSidebar,
    ModalComp,
    ModalTitleBar,

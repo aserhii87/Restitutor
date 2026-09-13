@@ -149,7 +149,7 @@ export function addDebugFunctions(): void {
    };
    // @ts-expect-error
    globalThis.invaderConqueredWarGoal = () => {
-      showPanel(InvaderConqueredWarGoalModal, { war: warOnUs });
+      showPanel(InvaderConqueredWarGoalModal, { war: warOnUs, peaceTreatyOption: "Demilitarization" });
    };
    // @ts-expect-error
    globalThis.warEnded = () => {

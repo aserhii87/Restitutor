@@ -12,6 +12,7 @@
 [x] A new war cannot be declared between provinces that are already fighting on opposing sides of an ongoing war.
 [x] Allies, defense pact partners, and eligible client/patron partners cannot join a war coalition against a province (leader attacker/defender) with which they have an active truce.
 [x] NPCs will raise their conscription after being attacked less aggressively than before (from 5% per attack to 2% per attack).
+[x] Peace treaties now include one additional term: War Reparations, Forced Disarmament, Demilitarization, Forced Concessions, Public Humiliation, or Devastation; victories that grant Mandate instead offer Devastation, Triumphal Unity, or Victorious Prestige.
 [x] Add a confirmation dialog when lowering target conscription and army maintenance (can be skipped).
 
 ## Map Visual

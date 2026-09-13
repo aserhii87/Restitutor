@@ -22,6 +22,7 @@ import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getMercenaryCost, getWarPower } from "../game/logic/ArmyLogic";
 import { monthToDate } from "../game/logic/GameDateTime";
+import { getAvailablePeaceTreatyOptions } from "../game/logic/PeaceTreatyLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
 import { getTimedActionTimeLeft } from "../game/logic/TimedActionLogic";
 import {
@@ -40,13 +41,14 @@ import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
-import { hideModal, ModalComp, ModalTitleBar } from "../utils/ModalManager";
+import { hideModal, hideModalImmediately, ModalComp, ModalTitleBar } from "../utils/ModalManager";
 import { ActionButton } from "./ActionButton";
 import { BreakdownComp } from "./BreakdownComp";
-import { showPanel } from "./common/ShowPanel";
+import { showModalImmediately, showPanel } from "./common/ShowPanel";
 import { colorNumber } from "./components/ColorNumber";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
+import { PeaceTreatyModal } from "./PeaceTreatyModal";
 import { PeaceTreatyTooltip } from "./PeaceTreatyTooltip";
 import { TilePage } from "./TilePage";
 import { Grid2, Grid3 } from "./UIConstant";
@@ -292,12 +294,18 @@ function SignPeaceTreatyButton({ war, province }: { war: IWar; province: Provinc
       <ActionButton
          id="WarModal_SignPeaceTreaty"
          className="py2 primary"
-         action={() => SignPeaceTreatyAction(war, province, G.save)}
+         action={() => ({
+            condition: SignPeaceTreatyAction(war, province, getAvailablePeaceTreatyOptions(war, G.save)[0], G.save)
+               .condition,
+            execute: () => {
+               hideModalImmediately();
+               showModalImmediately(PeaceTreatyModal, { war, province });
+            },
+         })}
          tooltip={(element) => (
             <>
-               <div className="h2">{$t(L.SignPeaceTreaty)}</div>
-               <PeaceTreatyTooltip war={war} />
                {element}
+               <PeaceTreatyTooltip war={war} />
             </>
          )}
       >

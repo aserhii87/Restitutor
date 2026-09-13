@@ -595,8 +595,8 @@ export function getWarCoalitions(provinces: Province[], save: SaveGame): IWar[] 
    });
 }
 
-export function getPlunderedUpgrade(upgrade: number): number {
-   return clamp(Math.floor(upgrade * 0.2), 1, upgrade - 1);
+export function getPlunderedUpgrade(upgrade: number, reduction: number): number {
+   return clamp(Math.floor(upgrade * reduction), 1, upgrade - 1);
 }
 
 export function getWarPlunder(war: IWar, save: SaveGame): { tiles: IValueBreakdown; warScore: IValueBreakdown } {
@@ -609,21 +609,21 @@ export function getWarPlunder(war: IWar, save: SaveGame): { tiles: IValueBreakdo
             tilesResult.add.push({
                name: getTileName(tile, save),
                desc: $t(L.Infrastructure),
-               value: -getPlunderedUpgrade(data.infrastructure),
+               value: -getPlunderedUpgrade(data.infrastructure, 0.2),
             });
          }
          if (data.production > 1) {
             tilesResult.add.push({
                name: getTileName(tile, save),
                desc: $t(L.Production),
-               value: -getPlunderedUpgrade(data.production),
+               value: -getPlunderedUpgrade(data.production, 0.2),
             });
          }
          if (data.population > 1) {
             tilesResult.add.push({
                name: getTileName(tile, save),
                desc: $t(L.Population),
-               value: -getPlunderedUpgrade(data.population),
+               value: -getPlunderedUpgrade(data.population, 0.2),
             });
          }
       }

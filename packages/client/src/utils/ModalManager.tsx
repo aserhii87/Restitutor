@@ -1,7 +1,7 @@
 import { type MantineSize, Overlay, ScrollArea, Transition } from "@mantine/core";
 import { cls } from "@project/shared/src/utils/Helper";
 import { createRef, useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { CloseModal, ShowModal } from "../game/Events";
+import { CloseModal, CloseModalImmediately, ShowModal } from "../game/Events";
 import type { ImageWithCredit } from "../game/events/ImageWithCredit";
 import type { ShowModalEvent } from "../ui/common/PanelTypes";
 import { FloatingTip } from "../ui/components/FloatingTip";
@@ -51,6 +51,10 @@ export function ModalManager(): React.ReactNode {
       setModals((prevModals) => prevModals.filter((modal) => modal !== closedModal));
    }, []);
 
+   useTypedEvent(CloseModalImmediately, () => {
+      setModals((prevModals) => prevModals.slice(0, -1));
+   });
+
    useTypedEvent(ShowModal, (modal) => {
       setModals((prevModals) => {
          if (
@@ -65,7 +69,12 @@ export function ModalManager(): React.ReactNode {
 
    return modals.map((modal, index) => {
       return (
-         <Modal key={index} isTop={index === modals.length - 1} onClosed={() => onClosed(modal)}>
+         <Modal
+            key={modal.id}
+            isTop={index === modals.length - 1}
+            immediate={modal.immediate}
+            onClosed={() => onClosed(modal)}
+         >
             {modal.content}
          </Modal>
       );
@@ -75,13 +84,15 @@ export function ModalManager(): React.ReactNode {
 function Modal({
    children,
    isTop,
+   immediate = false,
    onClosed,
 }: React.PropsWithChildren<{
    children: React.ReactNode;
    isTop: boolean;
+   immediate?: boolean;
    onClosed: () => void;
 }>): React.ReactNode {
-   const [mounted, setMounted] = useState(false);
+   const [mounted, setMounted] = useState(immediate);
    useEffect(() => {
       setMounted(true);
       if (!isTop) {
@@ -154,6 +165,10 @@ export function ModalTitleBar({
 
 export function hideModal() {
    CloseModal.emit();
+}
+
+export function hideModalImmediately() {
+   CloseModalImmediately.emit();
 }
 
 document.addEventListener("mousedown", (event) => {

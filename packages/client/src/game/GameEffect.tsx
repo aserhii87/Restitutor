@@ -94,7 +94,7 @@ export function getGameEffectDesc(effect: IGameEffect, province: Province, save:
          {effect.modifiers &&
             mapOf(effect.modifiers, (modifier, data) => <div key={modifier}>{modifierToString(modifier, data)}</div>)}
          {effect.provinceModifiers?.map((modifier) => (
-            <div key={modifier.modifier}>
+            <div key={`${modifier.province}-${modifier.modifier}`}>
                {getProvinceName(modifier.province, save)}: {modifierToString(modifier.modifier, modifier)}
             </div>
          ))}

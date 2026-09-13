@@ -410,7 +410,6 @@ function _getProvinceIncome(
          value: getProvinceIncome(clientProvince, save).revenue.value * 0.1,
       });
    });
-   attachModifiers("MonthlyRevenue", revenue, province, save);
 
    expense.add.push({ name: $t(L.TileMaintenance), value: -tileMaintenanceCost });
    expense.add.push({ name: $t(L.BuildingMaintenance), value: -buildingMaintenanceCost });
@@ -433,7 +432,6 @@ function _getProvinceIncome(
          value: -revenue.value * 0.1,
       });
    });
-   attachModifiers("MonthlyExpense", expense, province, save);
 
    return {
       revenue: revenue,

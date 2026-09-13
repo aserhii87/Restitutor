@@ -71,6 +71,7 @@ import {
 } from "./DiplomacyLogic";
 import { getGameDate } from "./GameDateTime";
 import { getToleratedCulture, getToleratedReligion } from "./InternalAffairsLogic";
+import { getAvailablePeaceTreatyOptions } from "./PeaceTreatyLogic";
 import {
    ensureProductionCapacity,
    getProvinceProductionCapacity,
@@ -471,7 +472,8 @@ function doRaid(province: Province, save: SaveGame): void {
    for (const currentWar of save.state.wars.filter((war) => war.attacker === province)) {
       if (currentWar.actualWarScore >= currentWar.requiredWarScore) {
          logAI(`${province} ends raid on ${currentWar.defender} after victory`);
-         tryDoHeadless(SignPeaceTreatyAction(currentWar, province, save), "SignPeaceTreaty", province, save);
+         const option = randOne(getAvailablePeaceTreatyOptions(currentWar, save));
+         tryDoHeadless(SignPeaceTreatyAction(currentWar, province, option, save), "SignPeaceTreaty", province, save);
          continue;
       }
       if (currentWar.log.length > MaxRaidMonths) {
@@ -538,7 +540,8 @@ function doWar(province: Province, save: SaveGame): void {
       }
       if (currentWar.actualWarScore >= currentWar.requiredWarScore) {
          logAI(`${province} signs peace treaty with ${currentWar.defender}`);
-         tryDoHeadless(SignPeaceTreatyAction(currentWar, province, save), "SignPeaceTreaty", province, save);
+         const option = randOne(getAvailablePeaceTreatyOptions(currentWar, save));
+         tryDoHeadless(SignPeaceTreatyAction(currentWar, province, option, save), "SignPeaceTreaty", province, save);
          continue;
       }
       if (getAverageUnrest(province, save) > AIWarMaxUnrest) {
