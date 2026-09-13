@@ -1588,7 +1588,6 @@ export const ES = {
    WeAreInTheFollowingWarCoalitions$1: "Estamos en las siguientes coaliciones bélicas: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Estamos involucrados en varias guerras en curso; nuestro poder bélico se reduce.",
    WeAreNotAClientOfAnotherProvince: "No somos clientes de otra provincia",
-   WeAreNotInATruceWithThem: "No estamos en tregua con ellos",
    WeAreNotInTheSameWarCoalition: "No estamos en la misma coalición bélica",
    WeAreNotRuledByBishopsLivingOrDead: "No estamos gobernados por obispos, vivos o muertos",
    WeAreTheLeadAttackerOfTheWar: "Somos el atacante principal de la guerra",
@@ -1615,7 +1614,6 @@ export const ES = {
    WeHaveNoTreatyWithThem: "No tenemos ningún tratado con ellos",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "No hemos seleccionado territorios que ya estén en guerra",
    WeHaventAlreadyDeterredTheirAggression: "Aún no hemos disuadido su agresión",
-   WeHaventAttackedThemYet: "Aún no los hemos atacado",
    WeHaventGuaranteedTheirDefense: "No hemos garantizado su defensa",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "Hemos seleccionado al menos un territorio como objetivo bélico",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "Tenemos muy pocos rivales. Hagamos clic para seleccionar más rivales.",
@@ -3726,4 +3724,5 @@ export const ES = {
    TimedActionExecuteBattlePlanDesc$1: "Gastar $1 punto de habilidad del general para obtener una puntuación de guerra equivalente a la suma de los niveles de habilidad de infantería, unidades a distancia y caballería de nuestro general.",
    MakeWarSpeechDesc$1$2: "Pronunciar un discurso de guerra nos otorga el $1 de la puntuación de guerra necesaria (redondeado hacia abajo, con un mínimo de $2) y solo puede hacerse durante el primer año de la guerra.",
    DecimateOurArmyDesc$1$2$3: "Diezmar nuestro ejército reduce nuestro ejército permanente en $1 y nos otorga el $2 de la puntuación de guerra necesaria (redondeado hacia abajo, con un mínimo de $3).",
+   NoTruceBetween$1And$2: "No hay tregua entre $1 y $2",
 };

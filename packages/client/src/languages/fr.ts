@@ -1588,7 +1588,6 @@ export const FR = {
    WeAreInTheFollowingWarCoalitions$1: "Nous sommes dans les coalitions de guerre suivantes : $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Nous sommes impliqués dans plusieurs guerres en cours — notre <i>Puissance de guerre</i> est réduite.",
    WeAreNotAClientOfAnotherProvince: "Nous ne sommes pas le client d'une autre province",
-   WeAreNotInATruceWithThem: "Nous ne sommes pas en trêve avec eux",
    WeAreNotInTheSameWarCoalition: "Nous ne sommes pas dans la même coalition de guerre",
    WeAreNotRuledByBishopsLivingOrDead: "Nous ne sommes pas gouvernés par des évêques, vivants ou morts",
    WeAreTheLeadAttackerOfTheWar: "Nous sommes l'attaquant principal de la guerre",
@@ -1615,7 +1614,6 @@ export const FR = {
    WeHaveNoTreatyWithThem: "Nous n'avons aucun traité avec eux",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "Nous n'avons sélectionné aucune case déjà impliquée dans une guerre",
    WeHaventAlreadyDeterredTheirAggression: "Nous n'avons pas déjà dissuadé leur agression",
-   WeHaventAttackedThemYet: "Nous ne les avons pas encore attaqués",
    WeHaventGuaranteedTheirDefense: "Nous n'avons pas garanti leur défense",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "Nous avons sélectionné au moins une case comme objectif de guerre",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "Nous avons trop peu de rivaux. Cliquez pour en sélectionner davantage.",
@@ -3719,4 +3717,5 @@ export const FR = {
    TimedActionExecuteBattlePlanDesc$1: "Spend $1 general skill point to gain war score equal to the sum of our general's infantry, ranged, and cavalry skill levels.",
    MakeWarSpeechDesc$1$2: "Making a war speech grants us $1 of the required war score (rounded down, minimum $2) and can only be done within the first year of the war.",
    DecimateOurArmyDesc$1$2$3: "Decimating our army reduces our standing army by $1 and grants us $2 of the required war score (rounded down, minimum $3).",
+   NoTruceBetween$1And$2: "No truce between $1 and $2",
 };

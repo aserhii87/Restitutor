@@ -1586,7 +1586,6 @@ export const EN = {
    WeAreInTheFollowingWarCoalitions$1: "We are in the following war coalitions: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "We are involved in multiple ongoing wars - Our war power is reduced.",
    WeAreNotAClientOfAnotherProvince: "We are not a client of another province",
-   WeAreNotInATruceWithThem: "We are not in a truce with them",
    WeAreNotInTheSameWarCoalition: "We are not in the same war coalition",
    WeAreNotRuledByBishopsLivingOrDead: "We are not ruled by bishops, living or dead",
    WeAreTheLeadAttackerOfTheWar: "We are the lead attacker of the war",
@@ -1613,7 +1612,6 @@ export const EN = {
    WeHaveNoTreatyWithThem: "We have no treaty with them",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "We have not selected any tiles that are already in a war",
    WeHaventAlreadyDeterredTheirAggression: "We haven't already deterred their aggression",
-   WeHaventAttackedThemYet: "We haven't attacked them yet",
    WeHaventGuaranteedTheirDefense: "We haven't guaranteed their defense",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "We have selected at least one tile as war goal",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "We have too few rivals. Click to select more rivals.",
@@ -3684,4 +3682,5 @@ export const EN = {
    TimedActionExecuteBattlePlanDesc$1: "Spend $1 general skill point to gain war score equal to the sum of our general's infantry, ranged, and cavalry skill levels.",
    MakeWarSpeechDesc$1$2: "Making a war speech grants us $1 of the required war score (rounded down, minimum $2) and can only be done within the first year of the war.",
    DecimateOurArmyDesc$1$2$3: "Decimating our army reduces our standing army by $1 and grants us $2 of the required war score (rounded down, minimum $3).",
+   NoTruceBetween$1And$2: "No truce between $1 and $2",
 };

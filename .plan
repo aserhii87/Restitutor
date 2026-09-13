@@ -8,8 +8,9 @@
 [x] Forceful attack: We lose 5% of our standing army (reduced from 10%) when our attack is repelled.
 [x] Execute a Battle Plan: Spend 1 general skill point to gain war score equal to total general skill levels. Requires an appointed general and has a 1-year cooldown.
 [x] Expand "Proclaim Right Of Reprisal" to all defensive wars
-[ ] Disable declaring  war if there's an ongoing war
-[ ] Prevent allies from joining war if there's a truce
+[x] A new war cannot be declared between provinces that are already fighting on opposing sides of an ongoing war.
+[x] Allies, defense pact partners, and eligible client/patron partners cannot join a war coalition against a province (leader attacker/defender) with which they have an active truce.
+[x] NPCs will raise their conscription after being attacked slower than before (from 5% per attack to 1% per attack)
 
 ## QoL
 

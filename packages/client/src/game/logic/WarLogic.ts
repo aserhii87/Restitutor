@@ -17,6 +17,7 @@ import { getTileName } from "../definitions/TileName";
 import type { SaveGame } from "../GameState";
 import { MapGrid } from "../MapGrid";
 import { type ArmyUnitPowers, ArmyUnits, getArmyUnitPowers, getWarPower, type IWarPowerBreakdown } from "./ArmyLogic";
+import { type ConditionChecks, toConditions } from "./Calculation";
 import {
    getAttitudeTowards,
    getDiplomaticDistance,
@@ -93,19 +94,40 @@ function getCoDefenders(attacker: Province, defender: Province, save: SaveGame):
       const treaty = relation.treaty?.type;
       switch (treaty) {
          case "Alliance":
-            result.set(coDefender, finalizeCondition([{ name: $t(L.TheyAreDefendersAlly), value: true }]));
+            result.set(
+               coDefender,
+               finalizeCondition([
+                  { name: $t(L.TheyAreDefendersAlly), value: true },
+                  ...toConditions(requireNoTruceBetweenChecks(attacker, coDefender, save)),
+               ]),
+            );
             break;
          case "DefensePact":
             result.set(
                coDefender,
-               finalizeCondition([{ name: $t(L.TheyHaveADefensePactWithTheDefender), value: true }]),
+               finalizeCondition([
+                  { name: $t(L.TheyHaveADefensePactWithTheDefender), value: true },
+                  ...toConditions(requireNoTruceBetweenChecks(attacker, coDefender, save)),
+               ]),
             );
             break;
          case "Client":
-            result.set(coDefender, finalizeCondition([{ name: $t(L.TheyAreDefendersPatron), value: true }]));
+            result.set(
+               coDefender,
+               finalizeCondition([
+                  { name: $t(L.TheyAreDefendersPatron), value: true },
+                  ...toConditions(requireNoTruceBetweenChecks(attacker, coDefender, save)),
+               ]),
+            );
             break;
          case "Patron":
-            result.set(coDefender, finalizeCondition([{ name: $t(L.TheyAreDefendersClient), value: true }]));
+            result.set(
+               coDefender,
+               finalizeCondition([
+                  { name: $t(L.TheyAreDefendersClient), value: true },
+                  ...toConditions(requireNoTruceBetweenChecks(attacker, coDefender, save)),
+               ]),
+            );
             break;
          case undefined:
             break;
@@ -146,7 +168,7 @@ function getCoAttackers(attacker: Province, defender: Province, save: SaveGame):
                   { name: $t(L.TheyAreAttackersAlly), value: true },
                   {
                      name: $t(L.TheyAreNotADefenderOrCoDefender),
-                     value: coAttacker !== defender && !coDefenders.has(coAttacker),
+                     value: coAttacker !== defender && !(coDefenders.get(coAttacker)?.value ?? false),
                   },
                   {
                      name: $t(L.TheirAttitudeTowardsUsIsHigherThanTheDefenders),
@@ -157,6 +179,7 @@ function getCoAttackers(attacker: Province, defender: Province, save: SaveGame):
                         formatNumber(attackerTowardsDefender.value),
                      ),
                   },
+                  ...toConditions(requireNoTruceBetweenChecks(defender, coAttacker, save)),
                ]),
             );
             break;
@@ -168,8 +191,9 @@ function getCoAttackers(attacker: Province, defender: Province, save: SaveGame):
                   { name: $t(L.TheyAreAttackersClient), value: true },
                   {
                      name: $t(L.TheyAreNotADefenderOrCoDefender),
-                     value: coAttacker !== defender && !coDefenders.has(coAttacker),
+                     value: coAttacker !== defender && !(coDefenders.get(coAttacker)?.value ?? false),
                   },
+                  ...toConditions(requireNoTruceBetweenChecks(defender, coAttacker, save)),
                ]),
             );
             break;
@@ -334,6 +358,18 @@ export function getTruceMonthsLeft(fromProvince: Province, toProvince: Province,
    }
    const truceUntil = Math.max(fromTo.truceUntil, toFrom.truceUntil);
    return clamp(truceUntil - save.state.month, 0, Number.POSITIVE_INFINITY);
+}
+
+export function* requireNoTruceBetweenChecks(
+   ourProvince: Province,
+   theirProvince: Province,
+   save: SaveGame,
+): ConditionChecks {
+   const truceMonthsLeft = getTruceMonthsLeft(ourProvince, theirProvince, save);
+   (yield truceMonthsLeft === 0)?.describe(
+      $t(L.NoTruceBetween$1And$2, getProvinceName(ourProvince, save), getProvinceName(theirProvince, save)),
+      { desc: truceMonthsLeft > 0 ? $t(L.TruceWillEndIn$1Months, truceMonthsLeft) : undefined },
+   );
 }
 
 export function nullifyTruce(fromProvince: Province, toProvince: Province, save: SaveGame): void {

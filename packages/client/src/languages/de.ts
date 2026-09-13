@@ -1589,7 +1589,6 @@ export const DE = {
    WeAreInTheFollowingWarCoalitions$1: "Wir sind Mitglied folgender Kriegskoalitionen: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Wir sind an mehreren laufenden Kriegen beteiligt – unsere Kriegsmacht ist verringert.",
    WeAreNotAClientOfAnotherProvince: "Wir sind kein Klientelstaat einer anderen Provinz",
-   WeAreNotInATruceWithThem: "Wir haben keinen Waffenstillstand mit ihnen",
    WeAreNotInTheSameWarCoalition: "Wir sind nicht in derselben Kriegskoalition",
    WeAreNotRuledByBishopsLivingOrDead: "Wir werden von keinem Bischof beherrscht, ob lebend oder tot",
    WeAreTheLeadAttackerOfTheWar: "Wir sind der Hauptangreifer des Krieges",
@@ -1616,7 +1615,6 @@ export const DE = {
    WeHaveNoTreatyWithThem: "Wir haben keinen Vertrag mit ihnen",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "Wir haben keine Gebiete ausgewählt, die bereits umkämpft sind",
    WeHaventAlreadyDeterredTheirAggression: "Wir haben ihre Aggression noch nicht abgeschreckt",
-   WeHaventAttackedThemYet: "Wir haben sie noch nicht angegriffen",
    WeHaventGuaranteedTheirDefense: "Wir haben ihre Verteidigung noch nicht garantiert",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "Wir haben mindestens ein Gebiet als Kriegsziel ausgewählt",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "Wir haben zu wenige Rivalen. Klicken, um weitere Rivalen auszuwählen.",
@@ -3730,4 +3728,5 @@ export const DE = {
    TimedActionExecuteBattlePlanDesc$1: "$1 Fähigkeitspunkt des Generals ausgeben, um Kriegswertung in Höhe der Summe der Infanterie-, Fernkampf- und Kavalleriefähigkeiten unseres Generals zu erhalten.",
    MakeWarSpeechDesc$1$2: "Eine Kriegsrede gewährt uns $1 der benötigten Kriegswertung (abgerundet, mindestens $2) und kann nur im ersten Kriegsjahr gehalten werden.",
    DecimateOurArmyDesc$1$2$3: "Die Dezimierung unserer Armee verringert unser stehendes Heer um $1 und gewährt uns $2 der benötigten Kriegswertung (abgerundet, mindestens $3).",
+   NoTruceBetween$1And$2: "Kein Waffenstillstand zwischen $1 und $2",
 };

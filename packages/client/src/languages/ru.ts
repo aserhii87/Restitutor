@@ -1586,7 +1586,6 @@ export const RU = {
    WeAreInTheFollowingWarCoalitions$1: "Мы состоим в следующих военных коалициях: $1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "Мы участвуем в нескольких текущих войнах — наша военная мощь снижена.",
    WeAreNotAClientOfAnotherProvince: "Мы не являемся клиентом другой провинции",
-   WeAreNotInATruceWithThem: "У нас нет перемирия с ними",
    WeAreNotInTheSameWarCoalition: "Мы не в одной военной коалиции",
    WeAreNotRuledByBishopsLivingOrDead: "Нами не правят епископы, живые или мёртвые",
    WeAreTheLeadAttackerOfTheWar: "Мы — главный атакующий в этой войне",
@@ -1613,7 +1612,6 @@ export const RU = {
    WeHaveNoTreatyWithThem: "У нас нет с ними договора",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "Мы не выбрали владения, которые уже участвуют в войне",
    WeHaventAlreadyDeterredTheirAggression: "Мы ещё не сдерживали их агрессию",
-   WeHaventAttackedThemYet: "Мы ещё не нападали на них",
    WeHaventGuaranteedTheirDefense: "Мы ещё не гарантировали их оборону",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "Мы выбрали как минимум одно владение как цель войны",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "У нас слишком мало соперников. Нажмите для выбора дополнительных соперников.",
@@ -3677,4 +3675,5 @@ export const RU = {
    TimedActionExecuteBattlePlanDesc$1: "Потратить $1 очко навыка генерала, чтобы увеличить счёт войны на сумму навыков пехоты, стрелков и кавалерии нашего генерала.",
    MakeWarSpeechDesc$1$2: "Произнесение военной речи даёт нам $1 от требуемого счёта войны (с округлением вниз, минимум $2) и доступно только в течение первого года войны.",
    DecimateOurArmyDesc$1$2$3: "Децимация нашей армии сокращает постоянную армию на $1 и даёт нам $2 от требуемого счёта войны (с округлением вниз, минимум $3).",
+   NoTruceBetween$1And$2: "Между $1 и $2 нет перемирия",
 };

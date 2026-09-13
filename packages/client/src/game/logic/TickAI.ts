@@ -277,7 +277,7 @@ export function tickAI(save: SaveGame): void {
                MaxConscription,
             );
             const targetConscription = clamp(
-               DefaultConscription + getProvinceStat("defendCount", province, save) * MinConscription,
+               DefaultConscription + getProvinceStat("defendCount", province, save),
                MinConscription,
                maxTargetConscription,
             );

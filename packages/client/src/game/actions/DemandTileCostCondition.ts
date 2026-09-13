@@ -9,7 +9,7 @@ import { getRelation, isWithinDiplomaticRange } from "../logic/DiplomacyLogic";
 import { isGreatPowerCondition, isNorGreatPowerCondition } from "../logic/ProvinceLogic";
 import { timedActionConditions } from "../logic/TimedActionLogic";
 import { requirePeaceBetweenChecks } from "../logic/TreatyLogic";
-import { getTruceMonthsLeft, getWarForTile } from "../logic/WarLogic";
+import { getWarForTile, requireNoTruceBetweenChecks } from "../logic/WarLogic";
 import { finalizeCondition, type ICondition, type IGameCostCondition } from "./GameAction";
 
 export function DemandTileCostCondition(
@@ -33,11 +33,10 @@ export function DemandTileCostCondition(
             name: $t(L.WeHaventGuaranteedTheirDefense),
             value: getRelation(ourProvince, theirProvince, save)?.guaranteeDefense === undefined,
          },
-         ...toConditions(requirePeaceBetweenChecks(ourProvince, theirProvince, save)),
-         {
-            name: $t(L.WeAreNotInATruceWithThem),
-            value: getTruceMonthsLeft(ourProvince, theirProvince, save) <= 0,
-         },
+         ...toConditions(
+            requirePeaceBetweenChecks(ourProvince, theirProvince, save),
+            requireNoTruceBetweenChecks(ourProvince, theirProvince, save),
+         ),
          ...additionalConditions,
       ]),
    };

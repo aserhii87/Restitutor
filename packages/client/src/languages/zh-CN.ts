@@ -1580,7 +1580,6 @@ export const ZH_CN = {
    WeAreInTheFollowingWarCoalitions$1: "我们隶属于以下参战阵营：$1",
    WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced: "我们同时参与多场进行中的战争——军力降低。",
    WeAreNotAClientOfAnotherProvince: "我们不是其他行省的附庸",
-   WeAreNotInATruceWithThem: "我们与其无停战协议",
    WeAreNotInTheSameWarCoalition: "我们不在同一参战阵营",
    WeAreNotRuledByBishopsLivingOrDead: "我们并非由主教（在世或已故）统治",
    WeAreTheLeadAttackerOfTheWar: "我们是该战争的主导进攻方",
@@ -1607,7 +1606,6 @@ export const ZH_CN = {
    WeHaveNoTreatyWithThem: "我们与其无条约",
    WeHaveNotSelectedAnyTilesThatAreAlreadyInAWar: "我们未选择任何已在战争中的地块",
    WeHaventAlreadyDeterredTheirAggression: "我们尚未对其发动威慑",
-   WeHaventAttackedThemYet: "我们尚未进攻他们",
    WeHaventGuaranteedTheirDefense: "我们尚未保障其防御",
    WeHaveSelectedAtLeastOneTileAsWarGoal: "我们已至少选择一块地块作为战争目标",
    WeHaveTooFewRivalsClickToSelectMoreRivals: "我们的宿敌过少。点击选择更多宿敌。",
@@ -3646,4 +3644,5 @@ export const ZH_CN = {
    TimedActionExecuteBattlePlanDesc$1: "消耗 $1 将军技能点，获得等同于我方将军步兵、远程和骑兵技能等级总和的战争分数。",
    MakeWarSpeechDesc$1$2: "发表战争演说可获得所需战争分数的 $1（向下取整，最低 $2 点），且仅可在战争第一年内进行。",
    DecimateOurArmyDesc$1$2$3: "实行什一军法会使我们的常备军减少 $1，并获得所需战争分数的 $2（向下取整，最低 $3 点）。",
+   NoTruceBetween$1And$2: "$1 与 $2 之间没有停战协议",
 };
