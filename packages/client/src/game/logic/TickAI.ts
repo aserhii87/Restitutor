@@ -382,16 +382,16 @@ function doArmyComposition(province: Province, save: SaveGame): void {
    if (!state) {
       return;
    }
-   const { infantry, ranged, cavalry } = getArmyComposition(province, save);
-   if (state.loans.length > 0 || getProvinceIncome(province, save).income <= 0) {
-      setArmyComposition(Math.max(0, ranged - 1), Math.max(0, cavalry - 1), province, save);
+   if (getTimedActionCooldownLeft("AdjustArmyComposition", province, save) > 0) {
       return;
    }
+   const { infantry, ranged, cavalry } = getArmyComposition(province, save);
+   const reduce = state.loans.length > 0 || getProvinceIncome(province, save).income <= 0;
    const defendCount = getProvinceStat("defendCount", province, save);
    const increase = Math.round(Math.min(1, infantry / 2));
    setArmyComposition(
-      clamp(ranged + increase, 0, defendCount * 2),
-      clamp(cavalry + increase, 0, defendCount),
+      reduce ? Math.max(0, ranged - 1) : clamp(ranged + increase, 0, defendCount * 2),
+      reduce ? Math.max(0, cavalry - 1) : clamp(cavalry + increase, 0, defendCount),
       province,
       save,
    );

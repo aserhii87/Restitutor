@@ -56,7 +56,7 @@ export function BarbarianRaidModal(): React.ReactNode {
                      .filter((war) => war.casusBelli === "BarbarianRaid")
                      .sort((a, b) => a.attacker.localeCompare(b.attacker))
                      .map((raid) => {
-                        const warPower = getWarPower(raid.attacker, G.save);
+                        const warPower = getWarPower({}, raid.attacker, G.save);
                         const attitude = getAttitudeTowards(raid.attacker, G.save.state.playerProvince, G.save);
                         return (
                            <tr key={raid.attacker}>

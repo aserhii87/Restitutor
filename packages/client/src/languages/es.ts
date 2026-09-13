@@ -3725,4 +3725,8 @@ export const ES = {
    MakeWarSpeechDesc$1$2: "Pronunciar un discurso de guerra nos otorga el $1 de la puntuación de guerra necesaria (redondeado hacia abajo, con un mínimo de $2) y solo puede hacerse durante el primer año de la guerra.",
    DecimateOurArmyDesc$1$2$3: "Diezmar nuestro ejército reduce nuestro ejército permanente en $1 y nos otorga el $2 de la puntuación de guerra necesaria (redondeado hacia abajo, con un mínimo de $3).",
    NoTruceBetween$1And$2: "No hay tregua entre $1 y $2",
+   Adjust: "Ajustar",
+   Apply: "Aplicar",
+   AdjustArmyComposition: "Ajustar la composición del ejército",
+   ArmyCompositionHasChanged: "La composición del ejército ha cambiado",
 };

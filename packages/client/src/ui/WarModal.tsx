@@ -257,7 +257,7 @@ export function WarModal({ war }: { war: IWar }): React.ReactNode {
                {getCurrentWars(G.save.state.playerProvince, G.save).length > 1 && (
                   <>
                      <div className="divider" />
-                     <WarPowerTooltip breakdown={getWarPower(G.save.state.playerProvince, G.save)}>
+                     <WarPowerTooltip breakdown={getWarPower({}, G.save.state.playerProvince, G.save)}>
                         <div className="m10 text-italic text-red text-sm">
                            {$t(L.WeAreInvolvedInMultipleOngoingWarsOurWarPowerIsReduced)}
                         </div>

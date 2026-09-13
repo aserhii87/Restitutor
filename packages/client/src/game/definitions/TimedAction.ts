@@ -159,6 +159,11 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12,
    };
+   AdjustArmyComposition: ITimedAction = {
+      name: () => $t(L.AdjustArmyComposition),
+      duration: 0,
+      cooldown: 12,
+   };
    RecruitAGeneral: ITimedAction = {
       name: () => $t(L.RecruitAGeneral),
       desc: () => $t(L.RecruitingAGeneralCostsGoldEveryMonthAGeneralHasABaseSkillOf$1, "1/1/1"),

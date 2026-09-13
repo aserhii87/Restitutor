@@ -381,7 +381,7 @@ function _getProvinceIncome(
          });
       }
    }
-   const armyMaintenanceCost = getArmyMaintenanceCost(province, save).value;
+   const armyMaintenanceCost = getArmyMaintenanceCost({}, province, save).value;
    let advisorCost = 0;
    forEach(state.advisors, (_, data) => {
       if (data.selected) {
@@ -639,7 +639,7 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
    }
    targetWarPower = 2 * (targetWarPower / neighboringProvinces.size) * config.tiles.length;
 
-   const currentWarPower = getWarPower(province, save).total.value;
+   const currentWarPower = getWarPower({}, province, save).total.value;
    addModifier({
       modifier: "WarPower",
       name: source,

@@ -89,7 +89,7 @@ function WarPowerColComp({
             <WarPowerRow name={getProvinceName(leader, G.save)} className="mx10 my5" breakdown={leaderWarPower} />
             {followers.size > 0 && <div className="divider" />}
             {Array.from(followers).map(([province, condition]) => {
-               const warPower = side.powers.get(province) ?? getWarPower(province, G.save, side.enemy);
+               const warPower = side.powers.get(province) ?? getWarPower({ enemy: side.enemy }, province, G.save);
                return (
                   <WarPowerTooltip
                      key={province}

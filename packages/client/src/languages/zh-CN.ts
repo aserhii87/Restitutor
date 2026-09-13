@@ -3645,4 +3645,8 @@ export const ZH_CN = {
    MakeWarSpeechDesc$1$2: "发表战争演说可获得所需战争分数的 $1（向下取整，最低 $2 点），且仅可在战争第一年内进行。",
    DecimateOurArmyDesc$1$2$3: "实行什一军法会使我们的常备军减少 $1，并获得所需战争分数的 $2（向下取整，最低 $3 点）。",
    NoTruceBetween$1And$2: "$1 与 $2 之间没有停战协议",
+   Adjust: "调整",
+   Apply: "应用",
+   AdjustArmyComposition: "调整军队构成",
+   ArmyCompositionHasChanged: "军队构成已改变",
 };

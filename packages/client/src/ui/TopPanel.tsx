@@ -102,7 +102,7 @@ export function TopLeftPanel(): React.ReactNode {
    if (!state) {
       return null;
    }
-   const warPower = getWarPower(G.save.state.playerProvince, G.save);
+   const warPower = getWarPower({}, G.save.state.playerProvince, G.save);
    const prestige = getProvincePrestige(G.save.state.playerProvince, G.save);
    const administrativePoint = getProvinceGovernmentPoint("administrative", G.save.state.playerProvince, G.save);
    const diplomaticPoint = getProvinceGovernmentPoint("diplomatic", G.save.state.playerProvince, G.save);

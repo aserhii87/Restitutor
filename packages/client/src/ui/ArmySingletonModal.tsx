@@ -43,7 +43,7 @@ import {
 import { getProvinceStat } from "../game/logic/ProvinceLogic";
 import { getProvinceResource, provinceResourceOf } from "../game/logic/ResourceLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
-import { getTimedActionTimeLeft } from "../game/logic/TimedActionLogic";
+import { getTimedActionTimeLeft, timedActionConditions } from "../game/logic/TimedActionLogic";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
@@ -61,9 +61,15 @@ import { WarPowerRow } from "./WarPowerTooltip";
 
 export function ArmySingletonModal(): React.ReactNode {
    refreshOnTypedEvent(GameStateUpdated);
-   const { infantry, ranged, cavalry } = getArmyComposition(G.save.state.playerProvince, G.save);
+   const [draft, setDraft] = useState<{
+      ranged: number;
+      cavalry: number;
+   }>();
+   const { ranged, cavalry } = draft ?? getArmyComposition(G.save.state.playerProvince, G.save);
+   const infantry = 100 - ranged - cavalry;
    const manpower = getProvinceManpower(G.save.state.playerProvince, G.save);
-   const maintenanceCost = getArmyMaintenanceCost(G.save.state.playerProvince, G.save);
+   const composition = { infantry, ranged, cavalry };
+   const maintenanceCost = getArmyMaintenanceCost({ composition }, G.save.state.playerProvince, G.save);
    const actualConscription = getProvinceStat("actualConscription", G.save.state.playerProvince, G.save);
    const targetConscription = getProvinceStat("targetConscription", G.save.state.playerProvince, G.save);
    const armyMorale = getProvinceStat("armyMorale", G.save.state.playerProvince, G.save);
@@ -108,7 +114,56 @@ export function ArmySingletonModal(): React.ReactNode {
                </>
             )}
          </div>
-         <div className="h1">{$t(L.ArmyComposition)}</div>
+         <div className="h1 row g5">
+            <div className="f1">{$t(L.ArmyComposition)}</div>
+            {draft ? (
+               <>
+                  <ActionButton
+                     className="text-sm"
+                     action={() => {
+                        const current = getArmyComposition(G.save.state.playerProvince, G.save);
+                        return {
+                           condition: finalizeCondition([
+                              ...timedActionConditions(
+                                 { action: "AdjustArmyComposition" },
+                                 G.save.state.playerProvince,
+                                 G.save,
+                              ),
+                              {
+                                 name: $t(L.ArmyCompositionHasChanged),
+                                 value: draft.ranged !== current.ranged || draft.cavalry !== current.cavalry,
+                              },
+                           ]),
+                           execute: () => {
+                              setArmyComposition(draft.ranged, draft.cavalry, G.save.state.playerProvince, G.save);
+                              setDraft(undefined);
+                           },
+                        };
+                     }}
+                  >
+                     {$t(L.Apply)}
+                  </ActionButton>
+                  <button className="btn text-sm" onClick={() => setDraft(undefined)}>
+                     {$t(L.Cancel)}
+                  </button>
+               </>
+            ) : (
+               <ActionButton
+                  className="text-sm"
+                  action={() => ({
+                     condition: finalizeCondition(
+                        timedActionConditions({ action: "AdjustArmyComposition" }, G.save.state.playerProvince, G.save),
+                     ),
+                     execute: () => setDraft(getArmyComposition(G.save.state.playerProvince, G.save)),
+                  })}
+               >
+                  <div className="row g5">
+                     <div className="mi xs">tune</div>
+                     <div>{$t(L.Adjust)}</div>
+                  </div>
+               </ActionButton>
+            )}
+         </div>
          <div className="row g0 my5 text-sm">
             <div className="f1">
                <div className="mx10 my5 row">
@@ -137,7 +192,14 @@ export function ArmySingletonModal(): React.ReactNode {
                   )}
                />
                <div className="mx10 my5">
-                  <Slider styles={{ thumb: { display: "none" } }} value={infantry} />
+                  <Slider
+                     styles={{ thumb: { display: "none" } }}
+                     value={infantry}
+                     disabled
+                     min={0}
+                     max={100}
+                     step={1}
+                  />
                </div>
             </div>
             <div className="divider vertical" />
@@ -168,7 +230,18 @@ export function ArmySingletonModal(): React.ReactNode {
                   )}
                />
                <div className="mx10 my5">
-                  <ArmyCompositionSlider unit="ranged" value={ranged} />
+                  <Slider
+                     min={0}
+                     max={100}
+                     step={1}
+                     value={ranged}
+                     disabled={!draft}
+                     onChange={(value) =>
+                        setDraft((current) =>
+                           current ? { ranged: value, cavalry: Math.min(current.cavalry, 100 - value) } : current,
+                        )
+                     }
+                  />
                </div>
             </div>
             <div className="divider vertical" />
@@ -199,7 +272,18 @@ export function ArmySingletonModal(): React.ReactNode {
                   )}
                />
                <div className="mx10 my5">
-                  <ArmyCompositionSlider unit="cavalry" value={cavalry} />
+                  <Slider
+                     min={0}
+                     max={100}
+                     step={1}
+                     value={cavalry}
+                     disabled={!draft}
+                     onChange={(value) =>
+                        setDraft((current) =>
+                           current ? { cavalry: value, ranged: Math.min(current.ranged, 100 - value) } : current,
+                        )
+                     }
+                  />
                </div>
             </div>
          </div>
@@ -312,29 +396,9 @@ export function ArmySingletonModal(): React.ReactNode {
          <WarPowerRow
             className="mx10 my5 text-display text-lg"
             name={$t(L.WarPower)}
-            breakdown={getWarPower(G.save.state.playerProvince, G.save)}
+            breakdown={getWarPower({ composition }, G.save.state.playerProvince, G.save)}
          />
       </ModalComp>
-   );
-}
-
-function ArmyCompositionSlider({ unit, value }: { unit: "ranged" | "cavalry"; value: number }): React.ReactNode {
-   return (
-      <Slider
-         min={0}
-         max={100}
-         step={1}
-         value={value}
-         onChange={(nextValue) => {
-            const province = G.save.state.playerProvince;
-            const composition = getArmyComposition(province, G.save);
-            const other = unit === "ranged" ? "cavalry" : "ranged";
-            composition[unit] = nextValue;
-            composition[other] = Math.min(composition[other], 100 - nextValue);
-            setArmyComposition(composition.ranged, composition.cavalry, province, G.save);
-            GameStateUpdated.emit();
-         }}
-      />
    );
 }
 

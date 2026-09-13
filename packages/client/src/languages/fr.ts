@@ -3718,4 +3718,8 @@ export const FR = {
    MakeWarSpeechDesc$1$2: "Making a war speech grants us $1 of the required war score (rounded down, minimum $2) and can only be done within the first year of the war.",
    DecimateOurArmyDesc$1$2$3: "Decimating our army reduces our standing army by $1 and grants us $2 of the required war score (rounded down, minimum $3).",
    NoTruceBetween$1And$2: "No truce between $1 and $2",
+   Adjust: "Adjust",
+   Apply: "Apply",
+   AdjustArmyComposition: "Adjust Army Composition",
+   ArmyCompositionHasChanged: "Army composition has changed",
 };

@@ -20,7 +20,7 @@ import {
 } from "./ProvinceLogic";
 import { provinceResourceOf } from "./ResourceLogic";
 import { getTileManpower } from "./TileLogic";
-import { endTimedActionAndResetCooldown, getTimedActionTimeLeft } from "./TimedActionLogic";
+import { endTimedActionAndResetCooldown, getTimedActionTimeLeft, startTimedAction } from "./TimedActionLogic";
 import { getProvinceTrades } from "./TradeLogic";
 import { getCurrentWars, MonthlyExtraArmyMaintenancePct } from "./WarLogic";
 
@@ -51,8 +51,13 @@ export function getArmyComposition(province: Province, save: SaveGame): ArmyComp
 export function setArmyComposition(ranged: number, cavalry: number, province: Province, save: SaveGame): void {
    ranged = clamp(ranged, 0, 100);
    cavalry = clamp(cavalry, 0, 100 - ranged);
+   const current = getArmyComposition(province, save);
+   if (ranged === current.ranged && cavalry === current.cavalry) {
+      return;
+   }
    setProvinceStat("rangedUnit", ranged, province, save);
    setProvinceStat("cavalryUnit", cavalry, province, save);
+   startTimedAction("AdjustArmyComposition", province, save);
 }
 
 const ArmyUnitPowerConfig = {
@@ -94,7 +99,12 @@ const CavalryMaintenanceCost = 0.03;
 
 export const GeneralArmyMaintenancePct = 0.1;
 
-export function getArmyMaintenanceCost(province: Province, save: SaveGame): IValueBreakdown {
+export function getArmyMaintenanceCost(
+   { composition }: { composition?: ArmyComposition },
+   province: Province,
+   save: SaveGame,
+): IValueBreakdown {
+   composition = composition ?? getArmyComposition(province, save);
    const maintenance = getProvinceStat("armyMaintenance", province, save);
    const breakdown: IValueBreakdown = makeValueBreakdown({
       reverse: true,
@@ -102,7 +112,7 @@ export function getArmyMaintenanceCost(province: Province, save: SaveGame): IVal
    });
    const manpower = getProvinceManpower(province, save);
    const conscription = getProvinceStat("actualConscription", province, save) / 100;
-   const { ranged: rangedUnit, cavalry: cavalryUnit, infantry: infantryUnit } = getArmyComposition(province, save);
+   const { ranged: rangedUnit, cavalry: cavalryUnit, infantry: infantryUnit } = composition;
    const infantryCost = manpower.value * conscription * InfantryMaintenanceCost * infantryUnit * 0.01;
    breakdown.add.push({
       name: $t(L.InfantryCost),
@@ -187,13 +197,17 @@ export interface IWarPowerBreakdown {
    total: IValueBreakdown;
 }
 
-export function getWarPower(province: Province, save: SaveGame, enemy?: ArmyUnitPowers): IWarPowerBreakdown {
+export function getWarPower(
+   { composition, enemy }: { composition?: ArmyComposition; enemy?: ArmyUnitPowers },
+   province: Province,
+   save: SaveGame,
+): IWarPowerBreakdown {
+   composition = composition ?? getArmyComposition(province, save);
    const result = makeValueBreakdown({
       multiplyBase: { name: $t(L.CurrentMorale), value: getProvinceStat("armyMorale", province, save) / 100 },
    });
    const totalArmy =
       (getProvinceManpower(province, save).value * getProvinceStat("actualConscription", province, save)) / 100;
-   const composition = getArmyComposition(province, save);
    const { ranged: rangedUnit, cavalry: cavalryUnit } = composition;
    const unitPowers = {
       infantry: getUnitWarPower("infantry", province, save).value,
@@ -325,7 +339,7 @@ export function getWarPower(province: Province, save: SaveGame, enemy?: ArmyUnit
 }
 
 export function getArmyUnitPowers(province: Province, save: SaveGame): ArmyUnitPowers {
-   const power = getWarPower(province, save);
+   const power = getWarPower({}, province, save);
    const unitTotal = power.infantry.value + power.ranged.value + power.cavalry.value;
    const scale = unitTotal > 0 ? power.total.value / unitTotal : 0;
    return {
@@ -391,7 +405,7 @@ export function getWarPowerPerTile(province: Province, save: SaveGame): number {
    if (tileCount === 0) {
       return 0;
    }
-   return getWarPower(province, save).total.value / tileCount;
+   return getWarPower({}, province, save).total.value / tileCount;
 }
 
 export function setProvinceArmyMaintenance(value: number, province: Province, save: SaveGame): void {

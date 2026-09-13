@@ -571,10 +571,10 @@ export function getWarPowerComparison(
    const defenderUnits = getCoalitionUnitPowers(defender, coDefenders, save);
    const makeSide = (leader: Province, followers: Map<Province, IConditionBreakdown>, enemy: ArmyUnitPowers) => {
       const powers = new Map<Province, IWarPowerBreakdown>();
-      powers.set(leader, getWarPower(leader, save, enemy));
+      powers.set(leader, getWarPower({ enemy }, leader, save));
       for (const [province, condition] of followers) {
          if (condition.value && province !== leader) {
-            powers.set(province, getWarPower(province, save, enemy));
+            powers.set(province, getWarPower({ enemy }, province, save));
          }
       }
       const value = Array.from(powers.values()).reduce((total, power) => total + power.total.value, 0);

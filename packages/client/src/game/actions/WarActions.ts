@@ -162,7 +162,7 @@ export function ForceAttackAction(war: IWar, province: Province, save: SaveGame)
 export function DecimateOurArmyAction(war: IWar, province: Province, save: SaveGame): IGameAction {
    const warScore = getWarActionWarScore(war);
    return {
-      cost: { gold: getArmyMaintenanceCost(province, save).value * warScore },
+      cost: { gold: getArmyMaintenanceCost({}, province, save).value * warScore },
       condition: finalizeCondition([
          ...timedActionConditions({ action: "DecimateOurArmy" }, province, save),
          { name: $t(L.WeAreTheLeadAttackerOfTheWar), value: war.attacker === province },

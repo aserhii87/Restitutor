@@ -32,7 +32,7 @@ export function ProvinceListSingletonModal(): React.ReactNode {
       tiles: getProvinceTileCount(province, G.save),
       income: getProvinceIncome(province, G.save).income,
       stability: getProvinceStability(province, G.save),
-      warPower: getWarPower(province, G.save),
+      warPower: getWarPower({}, province, G.save),
    }));
    return (
       <ModalComp

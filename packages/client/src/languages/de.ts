@@ -3729,4 +3729,8 @@ export const DE = {
    MakeWarSpeechDesc$1$2: "Eine Kriegsrede gewährt uns $1 der benötigten Kriegswertung (abgerundet, mindestens $2) und kann nur im ersten Kriegsjahr gehalten werden.",
    DecimateOurArmyDesc$1$2$3: "Die Dezimierung unserer Armee verringert unser stehendes Heer um $1 und gewährt uns $2 der benötigten Kriegswertung (abgerundet, mindestens $3).",
    NoTruceBetween$1And$2: "Kein Waffenstillstand zwischen $1 und $2",
+   Adjust: "Anpassen",
+   Apply: "Übernehmen",
+   AdjustArmyComposition: "Armeezusammensetzung anpassen",
+   ArmyCompositionHasChanged: "Die Armeezusammensetzung wurde geändert",
 };
