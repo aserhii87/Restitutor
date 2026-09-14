@@ -16,6 +16,7 @@ export function ConfirmModal({
       label: React.ReactNode;
       onClick: () => void;
       class?: string;
+      id?: string;
    };
 }): React.ReactNode {
    return (
@@ -31,7 +32,7 @@ export function ConfirmModal({
             >
                {$t(L.Cancel)}
             </button>
-            <button className={cls("btn f1", confirm.class)} onClick={confirm.onClick}>
+            <button className={cls("btn f1", confirm.class)} onClick={confirm.onClick} id={confirm.id}>
                {confirm.label}
             </button>
          </div>

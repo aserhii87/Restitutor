@@ -107,7 +107,7 @@ export const Tutorial: ITutorial[] = [
          }
          return [0, 1];
       },
-      selectors: [provinceSel("Belgica"), "#DiplomacyPage_Infiltrate_Belgica"],
+      selectors: [provinceSel("Belgica"), "#TilePage_Diplomacy_Belgica", "#DiplomacyPage_Infiltrate_Belgica"],
    },
    {
       id: "Unpause",
@@ -168,8 +168,8 @@ export const Tutorial: ITutorial[] = [
             modifier: "WarPower",
             name: $t(L.Tutorial),
             type: "multiply",
-            value: -0.3,
-            duration: 12 * 2,
+            value: -0.5,
+            duration: 12 * 3,
             province: "Belgica",
             save,
          });
@@ -197,7 +197,11 @@ export const Tutorial: ITutorial[] = [
          }
          return [0, 1];
       },
-      selectors: ["#LeftPanel_OngoingWar_0.animate-bounce-right", "#WarModal_SignPeaceTreaty"],
+      selectors: [
+         "#LeftPanel_OngoingWar_0.animate-bounce-right",
+         "#WarModal_SignPeaceTreaty",
+         "#PeaceTreatyModal_SignPeaceTreaty",
+      ],
    },
    {
       id: "MakeCore",
@@ -236,7 +240,7 @@ export const Tutorial: ITutorial[] = [
          }
          return [0, 1];
       },
-      selectors: ["#TopPanel_WarPower", "#ArmyModal_ArmyMaintenance"],
+      selectors: ["#TopPanel_WarPower", "#ArmyModal_ArmyMaintenance", "#ArmyModal_LowerArmyMaintenanceConfirm"],
    },
    {
       id: "UpgradeGeneralSkill",

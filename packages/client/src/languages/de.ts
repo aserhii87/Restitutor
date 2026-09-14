@@ -98,7 +98,7 @@ export const DE = {
    AvailableProductionCapacity: "Verfügbare Produktionskapazität",
    AWeakenedBelgica: "Ein geschwächtes Belgica",
    AWeakenedBelgicaDesc: "Belgica taumelt unter dem Gewicht unseres unerbittlichen Vormarschs; seine Verteidigung ist zerschlagen und sein Kampfgeist gebrochen. Ganz Gallien blickt nun auf eine verheißungsvolle Gelegenheit.",
-   A$1MonthTruceShallBeEnactedBetween$2And$3: "Zwischen $2 und $3 wird ein $1-monatiger Waffenstillstand geschlossen.",
+   A$1MonthTruceShallBeEnactedBetween$2And$3: "Zwischen <Province>$2</Province> und <Province>$3</Province> wird ein $1-monatiger Waffenstillstand geschlossen.",
    Bankruptcy: "Bankrott",
    BarTheGatesToAllRefugees: "Die Tore vor allen Flüchtlingen verschließen",
    BaseCost: "Grundkosten",
@@ -1692,7 +1692,7 @@ export const DE = {
    $1DoesntHaveAnActive$2With$3: "$1 hat kein aktives $2 mit $3",
    $1Event: "$1 (Ereignis)",
    $1GetsA$2CasusBelliAgainst$3For$4Months: "$1 erhält für $4 Monate den Casus Belli <i>$2</i> gegen $3.",
-   $1GetsA$2CasusBelliAgainst$3For$4Years: "$1 erhält für $4 Jahre den Casus Belli <i>$2</i> gegen $3.",
+   $1GetsA$2CasusBelliAgainst$3For$4Years: "<Province>$1</Province> erhält für $4 Jahre den Casus Belli <i>$2</i> gegen <Province>$3</Province>.",
    $1Gets$2PrestigeFor$3Months: "$1 erhält für $3 Monate $2 Prestige.",
    $1Gold: "$1 Gold",
    $1GoldPerArmySize: "$1 Gold pro Armeeumfang",
@@ -1751,7 +1751,7 @@ export const DE = {
    $1sAttitude: "Haltung von $1",
    $1sAttitudeTowards$2IsDecreasedBy$3For$4Months: "Die Haltung von $1 gegenüber $2 wird für $4 Monate um $3 verringert.",
    $1sGovernorIsAtLeast$2YearsOld: "Der Statthalter von $1 ist mindestens $2 Jahre alt",
-   $1ShallCede$2To$3: "$1 soll <i>$2</i> an $3 abtreten",
+   $1ShallCede$2To$3: "<Province>$1</Province> soll $2 an <Province>$3</Province> abtreten",
    $1SharedRivals: "$1 gemeinsame Rivalen",
    $1SharesALandBorderWith$2: "$1 teilt eine Landgrenze mit $2",
    SignedAPeaceTreatyWithCededTilesTruce$1$2$3$4$5$6: "<Province>$1</Province> schloss einen Friedensvertrag mit <Province>$2</Province>. <Province>$3</Province> trat $4 an <Province>$5</Province> ab, und ein $6-monatiger Waffenstillstand wurde geschlossen.",
@@ -2799,7 +2799,7 @@ export const DE = {
       "Die Kriegsmacht wird unter anderem durch Größe und Unterhalt des stehenden Heeres bestimmt. Dessen Größe richtet sich nach der <i>Einberufung</i>. Folgen wir den Anweisungen auf dem Bildschirm und erhöhen wir die Zieleinberufung von $1 auf $2. Die tatsächliche Einberufung steigt <i>mit der Zeit</i>, bis sie das Ziel erreicht.",
    TutorialInfiltrate$1: "$1 infiltrieren",
    TutorialInfiltrateDesc$1$2:
-      "Wir verfügen über $1 Diplomaten. Sie können Verträge schließen, Beziehungen verbessern oder andere Provinzen infiltrieren. Klicken wir mit der rechten Maustaste <i>auf der Karte</i> auf <Province>$2</Province>, öffnen wir so das Diplomatiefenster und folgen den Anweisungen zur Infiltration.",
+      "Wir verfügen über $1 Diplomaten. Sie können Verträge schließen, Beziehungen verbessern oder andere Provinzen infiltrieren. Klicken wir auf der Karte auf ein beliebiges Gebiet von <Province>$2</Province> und anschließend auf die Schaltfläche <i>Diplomatie</i>, um das Diplomatiefenster zu öffnen. Wir können das Fenster auch direkt mit einem <i>Rechtsklick</i> auf das Gebiet öffnen. Folgen wir den Anweisungen auf dem Bildschirm, um die Provinz zu infiltrieren.",
    TutorialReachDiplomaticPointsDesc$1: "Eine Kriegserklärung kostet $1 <icon>Diplomatic</icon>Diplomatiepunkte. Neben dem monatlichen Einkommen an Regierungspunkten können wir Regierungspunkte auch durch Ereignisse erhalten. Ereignisse können unsere Provinz erheblich beeinflussen, wählen wir also mit Bedacht.",
    TutorialDeclareWarOn$1: "$1 den Krieg erklären",
    TutorialDeclareWarDesc$1$2:
@@ -3179,7 +3179,7 @@ export const DE = {
    TutorialIncreaseGameSpeedDesc$1$2$3:
       "Jeden Monat werden $1 Angriffe versucht, und das Endergebnis richtet sich nach der Mehrheit ihrer Ausgänge. Bei Erfolg erhalten wir $2 Kriegswertung, andernfalls verlieren wir denselben Betrag.<br>Folgen wir während des Krieges den Anweisungen auf dem Bildschirm und erhöhen wir die Spielgeschwindigkeit auf $3.",
    TutorialSignPeaceTreatyAfterVictoryDesc$1:
-      "Sobald wir die erforderliche Kriegswertung erreicht haben, wird das Symbol für den laufenden Krieg rechts springen. Klicken wir darauf und folgen wir den Anweisungen auf dem Bildschirm, um einen Friedensvertrag zu schließen, der uns die Besetzung von <Tile>$1</Tile> erlaubt.<br>Erwägen wir, das Spiel zu pausieren oder die Geschwindigkeit zu senken, damit wir uns Zeit lassen können.",
+      "Sobald wir die erforderliche Kriegswertung erreicht haben, wird das Symbol für den laufenden Krieg rechts springen. Klicken wir darauf und folgen wir den Anweisungen auf dem Bildschirm, um einen Friedensvertrag zu schließen, der uns die Besetzung von <Tile>$1</Tile> erlaubt. Wir können außerdem eine zusätzliche Friedensbedingung aus den verfügbaren Optionen wählen.<br>Erwägen wir, das Spiel zu pausieren oder die Geschwindigkeit zu senken, damit wir uns Zeit lassen können.",
    AdoptASocialClassAgenda: "Eine Agenda der Gesellschaftsklassen annehmen",
    TutorialSocialClassAgendaDesc:
       "Unsere Provinz hat mehrere Gesellschaftsklassen, die unterschiedliche Agenden unterstützen oder ablehnen. Folgen wir den Anweisungen auf dem Bildschirm und nehmen wir eine Agenda an – der Einfluss der unterstützenden Klassen steigt, während die Loyalität der ablehnenden Klassen sinkt.<br>Achten wir darauf, dass keine Gesellschaftsklasse zu einflussreich oder illoyal wird, da dies negative Folgen hat.",
@@ -3537,7 +3537,7 @@ export const DE = {
    MandatesCanBeAcquiredFrom: "Mandate können auf folgende Weise erlangt werden:",
    RestorationBonus: "Wiederherstellungsbonus",
    EliminatingAPolityInAPeaceTreaty: "Ein Staatswesen in einem Friedensvertrag beseitigen",
-   $1WillCeaseToExistWhichWillGrant$2$3Mandate: "$1 wird aufhören zu bestehen, wodurch $2 $3 Mandat erhält.",
+   $1WillCeaseToExistWhichWillGrant$2$3Mandate: "<Province>$1</Province> wird aufhören zu bestehen, wodurch <Province>$2</Province> $3 Mandat erhält.",
    Events: "Ereignisse",
    AnnexingAClient: "Annexion eines Klientelstaats",
    TimedActionAnnexClientDesc$1: "Bei der Annexion eines Klientelstaats werden sofort alle seine Gebiete annektiert und wir erhalten $1 Mandat.",

@@ -89,6 +89,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             <div className="row my5">
                <div className="f1">{$t(L.Province)}</div>
                <button
+                  id={`TilePage_Diplomacy_${tileData.province}`}
                   onClick={() => showPanel(DiplomacyPage, { province: tileData.province })}
                   className="btn text-sm"
                >

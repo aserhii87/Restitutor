@@ -473,6 +473,7 @@ function TargetConscriptionSlider(): React.ReactNode {
                   ),
                   onCancel: () => setPreview(undefined),
                   confirm: {
+                     id: "ArmyModal_LowerTargetConscriptionConfirm",
                      label: $t(L.Confirm),
                      onClick: () => {
                         if (G.save === save && G.save.state.playerProvince === province && skipConfirmation) {
@@ -580,6 +581,7 @@ function ArmyMaintenanceSlider(): React.ReactNode {
                   ),
                   onCancel: () => setPreview(undefined),
                   confirm: {
+                     id: "ArmyModal_LowerArmyMaintenanceConfirm",
                      label: $t(L.Confirm),
                      onClick: () => {
                         if (G.save === save && G.save.state.playerProvince === province && skipConfirmation) {

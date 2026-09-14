@@ -98,7 +98,7 @@ export const EN = {
    AvailableProductionCapacity: "Available Production Capacity",
    AWeakenedBelgica: "A Weakened Belgica",
    AWeakenedBelgicaDesc: "Belgica staggers beneath the weight of our relentless advance, its defenses shattered and spirit broken. The eyes of Gaul now turn toward ripe opportunity.",
-   A$1MonthTruceShallBeEnactedBetween$2And$3: "A $1-month truce shall be enacted between $2 and $3.",
+   A$1MonthTruceShallBeEnactedBetween$2And$3: "A $1-month truce shall be enacted between <Province>$2</Province> and <Province>$3</Province>.",
    Bankruptcy: "Bankruptcy",
    BarTheGatesToAllRefugees: "Bar the gates to all refugees",
    BaseCost: "Base cost",
@@ -1689,7 +1689,7 @@ export const EN = {
    $1DoesntHaveAnActive$2With$3: "$1 doesn't have an active $2 with $3",
    $1Event: "$1 (Event)",
    $1GetsA$2CasusBelliAgainst$3For$4Months: "$1 gets a <i>$2</i> casus belli against $3 for $4 months.",
-   $1GetsA$2CasusBelliAgainst$3For$4Years: "$1 gets a <i>$2</i> casus belli against $3 for $4 years.",
+   $1GetsA$2CasusBelliAgainst$3For$4Years: "<Province>$1</Province> gets a <i>$2</i> casus belli against <Province>$3</Province> for $4 years.",
    $1Gets$2PrestigeFor$3Months: "$1 gets $2 Prestige for $3 months.",
    $1Gold: "$1 Gold",
    $1GoldPerArmySize: "$1 gold per army size",
@@ -1748,7 +1748,7 @@ export const EN = {
    $1sAttitude: "$1's Attitude",
    $1sAttitudeTowards$2IsDecreasedBy$3For$4Months: "$1's attitude towards $2 is decreased by $3 for $4 months.",
    $1sGovernorIsAtLeast$2YearsOld: "$1's governor is at least $2 years old",
-   $1ShallCede$2To$3: "$1 shall cede <i>$2</i> to $3",
+   $1ShallCede$2To$3: "<Province>$1</Province> shall cede $2 to <Province>$3</Province>",
    $1SharedRivals: "$1 shared rivals",
    $1SharesALandBorderWith$2: "$1 shares a land border with $2",
    SignedAPeaceTreatyWithCededTilesTruce$1$2$3$4$5$6: "<Province>$1</Province> signed a peace treaty with <Province>$2</Province>. <Province>$3</Province> ceded $4 to <Province>$5</Province> and a $6-month truce was enacted.",
@@ -2771,7 +2771,8 @@ export const EN = {
    TutorialIncreaseTargetConscriptionDesc$1$2:
       "War Power is determined by factors such as standing army size and maintenance. Standing army size is determined by <i>conscription</i>. Follow the on-screen instructions to increase target conscription from $1 to $2. The actual conscription will increase <i>over time</i> until it reaches the target.",
    TutorialInfiltrate$1: "Infiltrate $1",
-   TutorialInfiltrateDesc$1$2: "We have $1 diplomats - they can sign treaties, improve relations, or infiltrate other provinces. Right click <Province>$2</Province> <i>on the map</i> to open the Diplomacy Panel and follow the on-screen instructions to infiltrate it.",
+   TutorialInfiltrateDesc$1$2:
+      "We have $1 diplomats—they can sign treaties, improve relations, or infiltrate other provinces. Click any tile belonging to <Province>$2</Province> on the map, then click the <i>Diplomacy</i> button to open the Diplomacy Panel. We can also <i>right-click</i> the tile to open the panel directly. Follow the on-screen instructions to infiltrate the province.",
    TutorialReachDiplomaticPointsDesc$1: "Declaring war costs $1 <icon>Diplomatic</icon>Diplomatic Points. In addition to monthly government point income, we can also gain government points from events. Events can have a significant impact on our province, so choose wisely.",
    TutorialDeclareWarOn$1: "Declare war on $1",
    TutorialDeclareWarDesc$1$2:
@@ -3140,7 +3141,7 @@ export const EN = {
    TutorialIncreaseGameSpeedDesc$1$2$3:
       "Every month, $1 attacks are attempted, and the final result is determined by the majority of their outcomes. If successful, we gain $2 war score; otherwise, we lose the same amount.<br>While the war is ongoing, follow the on-screen instructions to increase the game speed to $3.",
    TutorialSignPeaceTreatyAfterVictoryDesc$1:
-      "Once we reach the required war score, the ongoing war icon on the right will bounce. Click it and follow the on-screen instructions to sign a peace treaty that allows us to occupy <Tile>$1</Tile>.<br>Consider pausing or lowering the game speed so that we can take our time.",
+      "Once we reach the required war score, the ongoing war icon on the right will bounce. Click it and follow the on-screen instructions to sign a peace treaty that allows us to occupy <Tile>$1</Tile>. We can also choose an additional peace treaty term from the available options.<br>Consider pausing or lowering the game speed so that we can take our time.",
    AdoptASocialClassAgenda: "Adopt a social class agenda",
    TutorialSocialClassAgendaDesc:
       "Our province has several social classes, each of which supports and opposes different agendas. Follow the on-screen instructions to adopt an agenda—the supporting classes' influence will increase, while the opposing classes' loyalty will decrease.<br>Be careful not to let a social class become too influential or disloyal, as this will lead to negative consequences.",
@@ -3491,7 +3492,7 @@ export const EN = {
    MandatesCanBeAcquiredFrom: "Mandates can be acquired from:",
    RestorationBonus: "Restoration Bonus",
    EliminatingAPolityInAPeaceTreaty: "Eliminating a polity in a peace treaty",
-   $1WillCeaseToExistWhichWillGrant$2$3Mandate: "$1 will cease to exist, which will grant $2 $3 Mandate.",
+   $1WillCeaseToExistWhichWillGrant$2$3Mandate: "<Province>$1</Province> will cease to exist, which will grant <Province>$2</Province> $3 Mandate.",
    Events: "Events",
    AnnexingAClient: "Annexing a client",
    TimedActionAnnexClientDesc$1: "Annexing a client immediately annexes all their tiles and grants us $1 Mandate.",
