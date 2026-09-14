@@ -3712,4 +3712,5 @@ export const EN = {
    NoUpcomingDisasters: "No upcoming disasters.",
    LoomingDisasters: "Looming Disasters",
    TheFollowingDisastersAreLooming: "The following disasters are looming:",
+   $1DoesNotCurrentlyExistOnTheMap: "$1 does not currently exist on the map.",
 };

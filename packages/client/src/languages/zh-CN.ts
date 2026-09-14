@@ -3673,4 +3673,5 @@ export const ZH_CN = {
    NoUpcomingDisasters: "暂无即将发生的灾难。",
    LoomingDisasters: "迫近的灾难",
    TheFollowingDisastersAreLooming: "以下灾难正在迫近：",
+   $1DoesNotCurrentlyExistOnTheMap: "$1目前不在地图上。",
 };

@@ -3705,4 +3705,5 @@ export const RU = {
    NoUpcomingDisasters: "Предстоящих бедствий нет.",
    LoomingDisasters: "Надвигающиеся бедствия",
    TheFollowingDisastersAreLooming: "Надвигаются следующие бедствия:",
+   $1DoesNotCurrentlyExistOnTheMap: "$1 в настоящее время отсутствует на карте.",
 };
