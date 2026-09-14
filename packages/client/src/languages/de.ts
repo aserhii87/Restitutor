@@ -3758,4 +3758,5 @@ export const DE = {
    LoomingDisasters: "Drohende Katastrophen",
    TheFollowingDisastersAreLooming: "Die folgenden Katastrophen drohen:",
    $1DoesNotCurrentlyExistOnTheMap: "$1 existiert derzeit nicht auf der Karte.",
+   BuildingBasilica: "Basilika",
 };

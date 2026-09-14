@@ -3674,4 +3674,5 @@ export const ZH_CN = {
    LoomingDisasters: "迫近的灾难",
    TheFollowingDisastersAreLooming: "以下灾难正在迫近：",
    $1DoesNotCurrentlyExistOnTheMap: "$1目前不在地图上。",
+   BuildingBasilica: "巴西利卡",
 };

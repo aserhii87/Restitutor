@@ -242,6 +242,7 @@ export class TechDefinitions {
    I1: ITechDefinition = {
       requires: ["H1", "H2"],
       name: () => $t(L.TechCivicEducation),
+      buildings: ["Basilica"],
       modifiers: {
          ProductionCapacity: { type: "add", value: 5 },
          MakeCoreCost: { type: "multiply", value: -0.2 },

@@ -44,7 +44,7 @@
 ## Governing Cost/Capacity Balancing
 
 - Reduce governing cost from distance from capital from 10% per tile to 5% per tile.
-
+- Add Basilica: unlocked by Civic Education, reduces Tile Governing Cost by 40%. Costs 400 gold to build and 2 gold in maintenance.
 
 ## Map Visual
 
