@@ -1,9 +1,9 @@
-import { cls, entriesOf, forEach, formatNumber } from "@project/shared/src/utils/Helper";
+import { cls, entriesOf, forEach, formatNumber, hasFlag } from "@project/shared/src/utils/Helper";
 import { UpgradeGeneralSkillAction } from "../game/actions/ArmyGeneralAction";
 import { canDoAction } from "../game/actions/GameAction";
 import { CanTradeCostCondition } from "../game/actions/TradeActions";
 import { Goods } from "../game/definitions/Goods";
-import { type Province, TreatyNames } from "../game/definitions/Province";
+import { type Province, ProvinceFlags, TreatyNames } from "../game/definitions/Province";
 import { SocialClass } from "../game/definitions/SocialClass";
 import { Tech } from "../game/definitions/Tech";
 import { getTileName } from "../game/definitions/TileName";
@@ -301,6 +301,10 @@ const PledgeSupportToConsulCandidates: ITodo = {
    icon: (save) => IconCatalog.Senate,
    className: (save) => "yellow",
    tooltip: (save) => {
+      const state = save.state.provinces[save.state.playerProvince];
+      if (!state || hasFlag(state.flags, ProvinceFlags.AutomaticallyPledgeSupport)) {
+         return null;
+      }
       const votes = save.state.senate.votes.get(save.state.playerProvince)?.size ?? 0;
       if (votes < 2) {
          return <div className="m10">{$t(L.PledgeSupportConsulElectionTooltip)}</div>;
