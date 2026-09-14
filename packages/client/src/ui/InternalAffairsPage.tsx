@@ -1,6 +1,5 @@
 import { Menu, Progress, ScrollArea, Switch } from "@mantine/core";
 import {
-   clamp,
    cls,
    compareBool,
    entriesOf,
@@ -13,6 +12,7 @@ import {
    toggleFlag,
 } from "@project/shared/src/utils/Helper";
 import { Fragment } from "react/jsx-runtime";
+import { AdjustAutonomyAction, SettleUnrestAction } from "../game/actions/AdjustAutonomyAction";
 import { ConvertToChristianityAction } from "../game/actions/ConvertToChristianityAction";
 import { Culture } from "../game/definitions/Culture";
 import { Modifiers, modifierValueToString } from "../game/definitions/Modifier";
@@ -41,6 +41,7 @@ import {
 } from "../game/logic/ProvinceLogic";
 import { getProvinceResource } from "../game/logic/ResourceLogic";
 import { getTileUnrest, isCapital } from "../game/logic/TileLogic";
+import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
 import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -172,7 +173,16 @@ export function InternalAffairsPage(): React.ReactNode {
          </FloatingTip>
          <div className="divider" />
          <div className="m10">
-            <FloatingTip label={() => html($t(L.SettleUnrestAutomaticallyEveryMonth$1, "0"))}>
+            <FloatingTip
+               fixedWidth
+               className="p0"
+               label={() => (
+                  <>
+                     <div className="m10">{$t(L.AutomaticallySettlePositiveUnrestDesc)}</div>
+                     <TimedActionDescComp action="AdjustAutonomy" />
+                  </>
+               )}
+            >
                <div className="row my5">
                   <div className="f1">{$t(L.AutomaticallySettleUnrest)}</div>
                   <Switch
@@ -511,29 +521,34 @@ export function InternalAffairsPage(): React.ReactNode {
                   <div className="row mx10 my5">
                      <div className="f1">{$t(L.Autonomy)}</div>
                      <div className="row g5">
-                        <FloatingTip label={() => $t(L.SetTileAutonomyTo$1, "0")}>
-                           <button
-                              className="btn text-xs"
-                              onClick={() => {
-                                 tileData.autonomy = 0;
-                                 GameStateUpdated.emit();
-                              }}
-                           >
-                              {$t(L.Reset)}
-                           </button>
-                        </FloatingTip>
-                        <FloatingTip label={() => $t(L.SettlingUnrestAdjustsAutonomySoThatTileUnrestIsAtMost$1, "0")}>
-                           <button
-                              className="btn text-xs"
-                              onClick={() => {
-                                 const unrest = getTileUnrest(tile, G.save).value;
-                                 tileData.autonomy = clamp(tileData.autonomy + Math.ceil(unrest), 0, 100);
-                                 GameStateUpdated.emit();
-                              }}
-                           >
-                              {$t(L.Settle)}
-                           </button>
-                        </FloatingTip>
+                        <ActionButton
+                           className="text-xs"
+                           action={() => AdjustAutonomyAction(tile, 0, G.save.state.playerProvince, G.save)}
+                           tooltip={(element) => (
+                              <>
+                                 <div className="m10">{$t(L.SetTileAutonomyTo$1, "0")}</div>
+                                 <TimedActionDescComp action="AdjustAutonomy" />
+                                 {element}
+                              </>
+                           )}
+                        >
+                           {$t(L.Reset)}
+                        </ActionButton>
+                        <ActionButton
+                           className="text-xs"
+                           action={() => SettleUnrestAction(tile, G.save.state.playerProvince, G.save)}
+                           tooltip={(element) => (
+                              <>
+                                 <div className="m10">
+                                    {$t(L.SettlingUnrestAdjustsAutonomySoThatTileUnrestIsAtMost$1, "0")}
+                                 </div>
+                                 <TimedActionDescComp action="AdjustAutonomy" />
+                                 {element}
+                              </>
+                           )}
+                        >
+                           {$t(L.Settle)}
+                        </ActionButton>
                      </div>
                      <div>{tileData.autonomy}</div>
                   </div>

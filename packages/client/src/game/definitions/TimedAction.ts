@@ -159,6 +159,12 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12,
    };
+   AdjustAutonomy: ITimedAction = {
+      name: () => $t(L.AdjustAutonomy),
+      desc: () => $t(L.TimedActionAdjustAutonomyDesc$1$2$3$4, "1%", "1%", "1", "0.5%"),
+      duration: 0,
+      cooldown: 6,
+   };
    AdjustArmyComposition: ITimedAction = {
       name: () => $t(L.AdjustArmyComposition),
       duration: 0,

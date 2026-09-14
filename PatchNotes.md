@@ -15,6 +15,13 @@
 [x] Peace treaties now include one additional term: War Reparations, Forced Disarmament, Demilitarization, Forced Concessions, Public Humiliation, or Devastation; victories that grant Mandate instead offer Devastation, Triumphal Unity, or Victorious Prestige.
 [x] Add a confirmation dialog when lowering target conscription and army maintenance (can be skipped).
 
+## Autonomy Rework
+
+[x] Each 1% autonomy now also reduces Governing Cost and Tile Defense by 0.5%.
+[x] Autonomy changes now share a province-wide 6-month cooldown, including Reset, Settle Unrest, and automation. Unchanged values do not trigger the cooldown.
+[x] Automatic settlement checks monthly when off cooldown and settles only the highest-unrest tile with positive unrest whose autonomy can change. It does nothing if no tile qualifies.
+[x] Autonomy sliders in UI are adjusted to accommodate the cooldown change.
+
 ## Map Visual
 
 [x] Tiles contested in a war now shows the war progress. Every month the war result (Success, Repelled, Stalled) will show up on that tile.

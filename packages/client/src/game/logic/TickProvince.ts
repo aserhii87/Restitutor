@@ -38,6 +38,7 @@ import { applyGameEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import { showWarning } from "./AlertLogic";
 import { ArmyMoraleMonthlyIncrease } from "./ArmyLogic";
+import { automaticallySettleUnrest } from "./AutonomyLogic";
 import { calculateTilesConnectedToCapital } from "./CacheLogic";
 import { cleanUpProvince } from "./CleanupProvince";
 import { getImproveRelationsRate, getInfiltrationRate, getRelations, MaxImprovedRelations } from "./DiplomacyLogic";
@@ -324,9 +325,6 @@ export function tickProvince(province: Province, save: SaveGame): void {
          });
 
          const unrest = getTileUnrest(tile, save).value;
-         if (hasFlag(state.flags, ProvinceFlags.AutomaticallySettleUnrest)) {
-            data.autonomy = clamp(data.autonomy + Math.ceil(unrest), 0, 100);
-         }
          const oldRebellion = data.rebellion;
          if (oldRebellion < 10 && Math.random() < Math.abs(unrest) / 100) {
             data.rebellion = clamp(data.rebellion + Math.sign(unrest), 0, 10);
@@ -339,6 +337,10 @@ export function tickProvince(province: Province, save: SaveGame): void {
             RefreshTiles.emit({ tiles: [tile], options: { indicator: true } });
          }
       }
+   }
+
+   if (hasFlag(state.flags, ProvinceFlags.AutomaticallySettleUnrest)) {
+      automaticallySettleUnrest(province, save);
    }
 
    tickProduction(province, save);

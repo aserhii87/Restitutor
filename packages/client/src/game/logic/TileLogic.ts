@@ -64,6 +64,9 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
       value: data.infrastructure + data.production + data.population,
    });
    attachTileModifiers(data.modifiers.GoverningCapacity, breakdown);
+   if (data.autonomy > 0) {
+      breakdown.multiply.push({ name: $t(L.Autonomy), value: -data.autonomy * 0.005 });
+   }
    if (data.buildings.has("Courthouse")) {
       breakdown.multiply.push({ name: Buildings.Courthouse.name(), value: -0.2 });
    }
@@ -199,6 +202,9 @@ export function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.Defense, breakdown);
    attachModifiers("Defense", breakdown, data.province, save);
+   if (data.autonomy > 0) {
+      breakdown.multiply.push({ name: $t(L.Autonomy), value: -data.autonomy * 0.005 });
+   }
    if (data.buildings.has("Castra")) {
       breakdown.multiply.push({ name: Buildings.Castra.name(), value: 0.2 });
    }
