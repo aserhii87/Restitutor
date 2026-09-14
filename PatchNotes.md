@@ -50,3 +50,6 @@
 
 - Tiles contested in a war now shows the war progress. Every month the war result (Success, Repelled, Stalled) will show up on that tile.
 - When hover over a tile contested in a war, a tooltip of that war shows up.
+
+# Other Changes
+- Extend the Administrative branch of the legacy upgrade tree.
