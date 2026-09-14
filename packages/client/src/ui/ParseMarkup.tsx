@@ -48,7 +48,7 @@ const parserOptions: HTMLReactParserOptions = {
       ) {
          const tile = safeParseInt(node.children[0].data);
          const tileData = G.save.state.tiles.get(tile);
-         if (tileData) {
+         if (tileData || getTileName(tile, G.save)) {
             return (
                <span
                   className="text-link"
@@ -58,7 +58,9 @@ const parserOptions: HTMLReactParserOptions = {
                         ?.lookAt(tile, { time: 0.2 })
                         .then((scene) => {
                            scene.drawSelectors(new Set([tile]));
-                           scene.drawProvinceOutline(tileData.province);
+                           if (tileData) {
+                              scene.drawProvinceOutline(tileData.province);
+                           }
                         });
                   }}
                >

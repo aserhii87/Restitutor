@@ -3749,4 +3749,12 @@ export const DE = {
    AdjustAutonomy: "Autonomie anpassen",
    TimedActionAdjustAutonomyDesc$1$2$3$4: "Je $1 Autonomie werden Grundsteuer, Gebietsproduktion und Mannstärke um $2, Unruhe um $3 sowie Verwaltungskosten und Gebietsverteidigung um $4 verringert. Alle Autonomieänderungen in der Provinz teilen sich dieselbe Abklingzeit.",
    AutomaticallySettlePositiveUnrestDesc: "Jeden Monat, in dem diese Aktion keiner Abklingzeit unterliegt, wird die Unruhe im Gebiet mit der höchsten positiven Unruhe beigelegt, dessen Autonomie geändert werden kann. Gibt es kein geeignetes Gebiet, geschieht nichts.",
+   Disasters: "Katastrophen",
+   In$1Years: "in $1 Jahren",
+   ANewBarbarianPolity$1FormsAndTakesOverTheFollowingTiles$2: "Ein neues barbarisches Staatswesen, <Province>$1</Province>, entsteht und übernimmt die folgenden Gebiete: $2.",
+   HeresySpreadAreas$1$2$3: "$1 breitet sich in den folgenden Provinzen aus: $2 — sowie auf $3 der verbleibenden christlichen Gebiete.",
+   ShowAll: "Alle anzeigen",
+   NoUpcomingDisasters: "Keine bevorstehenden Katastrophen.",
+   LoomingDisasters: "Drohende Katastrophen",
+   TheFollowingDisastersAreLooming: "Die folgenden Katastrophen drohen:",
 };

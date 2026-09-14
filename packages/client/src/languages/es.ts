@@ -3746,4 +3746,12 @@ export const ES = {
    AdjustAutonomy: "Ajustar la autonomía",
    TimedActionAdjustAutonomyDesc$1$2$3$4: "Cada $1 de autonomía reduce el impuesto territorial, el rendimiento territorial y la mano de obra en $2; el malestar, en $3; y el coste de gobierno y la defensa territorial, en $4. Todos los cambios de autonomía de la provincia comparten el mismo tiempo de espera.",
    AutomaticallySettlePositiveUnrestDesc: "Cada mes, cuando esta acción no está en espera, se resuelve el malestar del territorio con mayor malestar positivo cuya autonomía pueda cambiar. Si ningún territorio cumple los requisitos, no ocurre nada.",
+   Disasters: "Desastres",
+   In$1Years: "en $1 años",
+   ANewBarbarianPolity$1FormsAndTakesOverTheFollowingTiles$2: "Se forma una nueva entidad política bárbara, <Province>$1</Province>, y se apodera de los siguientes territorios: $2.",
+   HeresySpreadAreas$1$2$3: "$1 se extiende a las siguientes provincias: $2, así como al $3 de los territorios cristianos restantes.",
+   ShowAll: "Mostrar todo",
+   NoUpcomingDisasters: "No hay desastres próximos.",
+   LoomingDisasters: "Desastres inminentes",
+   TheFollowingDisastersAreLooming: "Se avecinan los siguientes desastres:",
 };

@@ -3665,4 +3665,12 @@ export const ZH_CN = {
    AdjustAutonomy: "调整自治度",
    TimedActionAdjustAutonomyDesc$1$2$3$4: "自治度每提高 $1，土地税、地块产出和人力就降低 $2，动荡降低 $3，治理花费和地块防御降低 $4。行省内的所有自治度调整共享同一冷却时间。",
    AutomaticallySettlePositiveUnrestDesc: "每月当此行动不处于冷却时，将在自治度可调整且动荡为正的地块中，选择动荡最高的地块平定动荡。若没有符合条件的地块，则不采取行动。",
+   Disasters: "灾难",
+   In$1Years: "$1年后",
+   ANewBarbarianPolity$1FormsAndTakesOverTheFollowingTiles$2: "新的蛮族政权<Province>$1</Province>形成并占领以下地块：$2。",
+   HeresySpreadAreas$1$2$3: "$1传播至以下行省：$2，并蔓延至其余基督宗教地块的$3。",
+   ShowAll: "显示全部",
+   NoUpcomingDisasters: "暂无即将发生的灾难。",
+   LoomingDisasters: "迫近的灾难",
+   TheFollowingDisastersAreLooming: "以下灾难正在迫近：",
 };

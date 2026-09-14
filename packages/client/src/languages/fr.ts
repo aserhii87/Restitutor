@@ -3738,4 +3738,12 @@ export const FR = {
    AdjustAutonomy: "Adjust Autonomy",
    TimedActionAdjustAutonomyDesc$1$2$3$4: "Each $1 of autonomy reduces Land Tax, Tile Output, and Manpower by $2; Unrest by $3; and Governing Cost and Tile Defense by $4. All autonomy changes in the province share a cooldown.",
    AutomaticallySettlePositiveUnrestDesc: "Each month when this action is off cooldown, unrest is settled on the tile with the highest positive unrest whose autonomy can change. Nothing happens if no tile qualifies.",
+   Disasters: "Disasters",
+   In$1Years: "in $1 years",
+   ANewBarbarianPolity$1FormsAndTakesOverTheFollowingTiles$2: "A new barbarian polity, <Province>$1</Province>, forms and takes over the following tiles: $2.",
+   HeresySpreadAreas$1$2$3: "$1 spreads to the following provinces: $2, as well as $3 of the remaining Christian tiles.",
+   ShowAll: "Show All",
+   NoUpcomingDisasters: "No upcoming disasters.",
+   LoomingDisasters: "Looming Disasters",
+   TheFollowingDisastersAreLooming: "The following disasters are looming:",
 };

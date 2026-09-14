@@ -8,10 +8,13 @@ import { SocialClass } from "../game/definitions/SocialClass";
 import { Tech } from "../game/definitions/Tech";
 import { getTileName } from "../game/definitions/TileName";
 import { TimedActions } from "../game/definitions/TimedAction";
+import { getLoomingDisasters } from "../game/events/DisasterLogic";
+import { GameEvents } from "../game/events/GameEvents";
 import type { SaveGame } from "../game/GameState";
 import { getCurrentGeneral } from "../game/logic/ArmyLogic";
 import { getCurrentRelations, getDiplomats, getRelations } from "../game/logic/DiplomacyLogic";
 import { getOngoingEcumenicalCouncil } from "../game/logic/EcumenicalCouncilLogic";
+import { formatYear, getGameDate } from "../game/logic/GameDateTime";
 import { getEligibleForMarriage } from "../game/logic/GovernorLogic";
 import { getLegacyUpgradeCost } from "../game/logic/LegacyUpgradeLogic";
 import { getProvinceProductionCapacity, getProvinceUsedProductionCapacity } from "../game/logic/ProductionLogic";
@@ -39,6 +42,7 @@ import { showPanel } from "./common/ShowPanel";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
 import { DiplomacyPage } from "./DiplomacyPage";
+import { DisasterPage } from "./DisasterPage";
 import { EcumenicalCouncilPage } from "./EcumenicalCouncilPage";
 import { FamilyTreeSingletonModal } from "./FamilyTreeSingletonModal";
 import { GameEventModal } from "./GameEventModal";
@@ -184,6 +188,38 @@ const Rebellions: ITodo = {
    },
    onClick: (save) => {
       showPanel(InternalAffairsPage, {});
+   },
+};
+
+const LoomingDisasters: ITodo = {
+   name: () => $t(L.LoomingDisasters),
+   icon: () => IconCatalog.Disaster,
+   className: () => "red",
+   tooltip: (save) => {
+      const disasters = getLoomingDisasters(save);
+      if (disasters.length === 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            <div>{$t(L.TheFollowingDisastersAreLooming)}</div>
+            <ul>
+               {disasters.map((disaster) => {
+                  const yearsLeft = disaster.year - getGameDate(save.state.tick).getFullYear();
+                  return (
+                     <li key={disaster.event}>
+                        {GameEvents[disaster.event].name()} ({formatYear(disaster.year)},{" "}
+                        {$t(L.In$1Years, formatNumber(yearsLeft))})
+                     </li>
+                  );
+               })}
+            </ul>
+            <div>{$t(L.ClickToViewDetails)}</div>
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(DisasterPage, {});
    },
 };
 
@@ -721,10 +757,11 @@ const PendingGameEvent: ITodo = {
 };
 
 const _Todos = {
-   Rebellions,
-   SocialClassDissent,
    ProvinceBankrupt,
+   Rebellions,
+   LoomingDisasters,
    BarbarianRaid,
+   SocialClassDissent,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

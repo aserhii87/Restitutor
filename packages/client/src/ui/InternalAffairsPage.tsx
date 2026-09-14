@@ -21,6 +21,7 @@ import { getProvinceUpgradeDesc, hasProvinceUpgrade, ProvinceUpgrades } from "..
 import { Religion } from "../game/definitions/Religion";
 import { getTileName } from "../game/definitions/TileName";
 import { GameStateUpdated } from "../game/Events";
+import { getUpcomingDisasters } from "../game/events/DisasterLogic";
 import {
    getChristianityYearly,
    getCulturalCohesion,
@@ -57,6 +58,8 @@ import { SidebarComp, SidebarHeader } from "./common/SidebarComp";
 import { colorNumber, colorNumberReverse } from "./components/ColorNumber";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
+import { DisasterCard } from "./DisasterCard";
+import { DisasterPage } from "./DisasterPage";
 import { GreatWorkComponent } from "./GreatWorkComponent";
 import { GreatWorksSingletonModal } from "./GreatWorksSingletonModal";
 import { MakeCoreButton } from "./MakeCoreButton";
@@ -100,6 +103,7 @@ export function InternalAffairsPage(): React.ReactNode {
    const toleratedCultures = Array.from(state.toleratedCultures);
    const toleratedCultureSlots = getToleratedCulture(G.save.state.playerProvince, G.save);
    const greatWorks = Array.from(getProvinceGreatWorks(G.save.state.playerProvince, G.save));
+   const nextDisaster = getUpcomingDisasters(G.save)[0];
    return (
       <SidebarComp title={<SidebarHeader title={$t(L.InternalAffairs)} />}>
          <div className="h1">{$t(L.GoverningAndStability)}</div>
@@ -235,6 +239,19 @@ export function InternalAffairsPage(): React.ReactNode {
             <TimedActionButton timedAction="RecruitTalents" />
             <TimedActionButton timedAction="RenewVestments" />
          </div>
+         {nextDisaster && (
+            <>
+               <div className="h1 row">
+                  <div className="f1">{$t(L.Disasters)}</div>
+                  <button className="btn text-sm" onClick={() => showPanel(DisasterPage, {})}>
+                     {$t(L.ShowAll)}
+                  </button>
+               </div>
+               <div className="m10">
+                  <DisasterCard disaster={nextDisaster} />
+               </div>
+            </>
+         )}
          <div className="h1">{$t(L.ProvincialSpirits)}</div>
          {Province[G.save.state.playerProvince].upgrades.map((upgrade, idx) => (
             <Fragment key={upgrade}>
