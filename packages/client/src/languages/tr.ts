@@ -3699,4 +3699,5 @@ export const TR = {
    PeaceTreatyBetween$1And$2: "Peace Treaty Between $1 and $2",
    AdditionalTerms: "Additional Terms",
    PeaceTreaty: "Peace Treaty",
+   MartialAscendancy: "Martial Ascendancy",
 };

@@ -108,8 +108,8 @@ export const PeaceTreatyOptions = {
                {
                   modifier: "Stability",
                   type: "add",
-                  value: 5,
-                  duration: Math.max(12, war.log.length * 2),
+                  value: 10,
+                  duration: Math.max(12, war.log.length),
                   province: war.attacker,
                },
             ],
@@ -124,8 +124,24 @@ export const PeaceTreatyOptions = {
                {
                   modifier: "Prestige",
                   type: "multiply",
-                  value: 0.05,
-                  duration: Math.max(12, war.log.length * 2),
+                  value: 0.1,
+                  duration: Math.max(12, war.log.length),
+                  province: war.attacker,
+               },
+            ],
+         };
+      },
+   },
+   MartialAscendancy: {
+      name: () => $t(L.MartialAscendancy),
+      modifiers: (war: IWar, save: SaveGame) => {
+         return {
+            provinceModifiers: [
+               {
+                  modifier: "WarPower",
+                  type: "multiply",
+                  value: 0.1,
+                  duration: Math.max(12, war.log.length),
                   province: war.attacker,
                },
             ],
@@ -138,14 +154,14 @@ export type PeaceTreatyOption = keyof typeof PeaceTreatyOptions;
 
 export function getAvailablePeaceTreatyOptions(war: IWar, save: SaveGame): PeaceTreatyOption[] {
    const options: PeaceTreatyOption[] = isEligibleForMandate(war, save)
-      ? ["Devastation", "TriumphalUnity", "VictoriousPrestige"]
+      ? ["Devastation", "TriumphalUnity", "VictoriousPrestige", "MartialAscendancy"]
       : [
            "WarReparations",
+           "Devastation",
            "ForcedDisarmament",
            "Demilitarization",
            "ForcedConcessions",
            "PublicHumiliation",
-           "Devastation",
         ];
    return options.filter((option) => {
       if (option !== "Devastation") {

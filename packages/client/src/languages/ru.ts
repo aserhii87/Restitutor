@@ -3693,4 +3693,5 @@ export const RU = {
    PeaceTreatyBetween$1And$2: "Мирный договор между $1 и $2",
    AdditionalTerms: "Дополнительные условия",
    PeaceTreaty: "Мирный договор",
+   MartialAscendancy: "Военное превосходство",
 };

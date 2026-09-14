@@ -3661,4 +3661,5 @@ export const ZH_CN = {
    PeaceTreatyBetween$1And$2: "$1 与 $2 之间的和平条约",
    AdditionalTerms: "附加条款",
    PeaceTreaty: "和平条约",
+   MartialAscendancy: "军威鼎盛",
 };

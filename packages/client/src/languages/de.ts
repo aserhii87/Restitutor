@@ -3745,4 +3745,5 @@ export const DE = {
    PeaceTreatyBetween$1And$2: "Friedensvertrag zwischen $1 und $2",
    AdditionalTerms: "Zusätzliche Bedingungen",
    PeaceTreaty: "Friedensvertrag",
+   MartialAscendancy: "Militärische Überlegenheit",
 };
