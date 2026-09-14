@@ -95,8 +95,8 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
    const distanceFromCapital = getDistanceFromCapital(tile, save);
    breakdown.multiply.push({
       name: $t(L.DistanceFromCapital),
-      desc: $t(L.$1TilesFromCapital$2PerTile, formatNumber(distanceFromCapital), "10%"),
-      value: distanceFromCapital * 0.1,
+      desc: $t(L.$1TilesFromCapital$2PerTile, formatNumber(distanceFromCapital), "5%"),
+      value: distanceFromCapital * 0.05,
    });
    if (isCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.IsCurrentCapital), value: -0.9 });

@@ -41,6 +41,11 @@
 - Disaster previews show the event year, description, and affected areas: tiles taken over by new barbarian polities, or provinces and tiles affected by heresies. Tile links let you locate affected areas on the map.
 - Disasters within 10 years are highlighted in red and trigger a "Looming Disasters" todo icon on the right.
 
+## Governing Cost/Capacity Balancing
+
+- Reduce governing cost from distance from capital from 10% per tile to 5% per tile.
+
+
 ## Map Visual
 
 - Tiles contested in a war now shows the war progress. Every month the war result (Success, Repelled, Stalled) will show up on that tile.
