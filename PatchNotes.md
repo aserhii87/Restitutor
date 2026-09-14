@@ -1,4 +1,4 @@
-### War 2.0
+## War 2.0
 
 ### Army Compositions and Counters
 
@@ -51,5 +51,5 @@
 - Tiles contested in a war now shows the war progress. Every month the war result (Success, Repelled, Stalled) will show up on that tile.
 - When hover over a tile contested in a war, a tooltip of that war shows up.
 
-# Other Changes
+## Other Changes
 - Extend the Administrative branch of the legacy upgrade tree.
