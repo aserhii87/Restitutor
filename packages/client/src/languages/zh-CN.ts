@@ -3656,7 +3656,7 @@ export const ZH_CN = {
    Devastation: "蹂躏",
    VictoriousPrestige: "凯旋威望",
    $1TileUpgradesOnEachAnnexedTileMinimumReduction$2: "每块已吞并地块的地块升级：$1（最低降低 $2 级）",
-   PeaceTreatyBetween$1And$2: "$1 与 $2 之间的和平条约",
+   $1$2PeaceTreaty: "$1-$2 和平条约",
    AdditionalTerms: "附加条款",
    PeaceTreaty: "和平条约",
    MartialAscendancy: "军威鼎盛",

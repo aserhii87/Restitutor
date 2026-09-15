@@ -3694,7 +3694,7 @@ export const TR = {
    Devastation: "Devastation",
    VictoriousPrestige: "Victorious Prestige",
    $1TileUpgradesOnEachAnnexedTileMinimumReduction$2: "$1 Tile Upgrades on each annexed tile (minimum reduction: $2)",
-   PeaceTreatyBetween$1And$2: "Peace Treaty Between $1 and $2",
+   $1$2PeaceTreaty: "Peace Treaty Between $1 and $2",
    AdditionalTerms: "Additional Terms",
    PeaceTreaty: "Peace Treaty",
    MartialAscendancy: "Martial Ascendancy",

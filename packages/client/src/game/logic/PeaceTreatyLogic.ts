@@ -188,7 +188,7 @@ export function applyPeaceTreatyOption(option: PeaceTreatyOption, war: IWar, sav
    }
    applyGameEffect(
       PeaceTreatyOptions[option].modifiers(war, save),
-      $t(L.PeaceTreatyBetween$1And$2, getProvinceName(war.attacker, save), getProvinceName(war.defender, save)),
+      $t(L.$1$2PeaceTreaty, getProvinceName(war.attacker, save), getProvinceName(war.defender, save)),
       war.attacker,
       save,
    );

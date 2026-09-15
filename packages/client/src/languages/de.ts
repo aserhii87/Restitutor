@@ -3740,7 +3740,7 @@ export const DE = {
    Devastation: "Verwüstung",
    VictoriousPrestige: "Siegesprestige",
    $1TileUpgradesOnEachAnnexedTileMinimumReduction$2: "Gebietsaufwertungen jedes annektierten Gebiets: $1 (Mindestverringerung: $2)",
-   PeaceTreatyBetween$1And$2: "Friedensvertrag zwischen $1 und $2",
+   $1$2PeaceTreaty: "$1-$2-Friedensvertrag",
    AdditionalTerms: "Zusätzliche Bedingungen",
    PeaceTreaty: "Friedensvertrag",
    MartialAscendancy: "Militärische Überlegenheit",

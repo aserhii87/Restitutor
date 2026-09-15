@@ -3688,7 +3688,7 @@ export const RU = {
    Devastation: "Разорение",
    VictoriousPrestige: "Престиж победителя",
    $1TileUpgradesOnEachAnnexedTileMinimumReduction$2: "Улучшения каждого аннексированного владения: $1 (минимальное снижение: $2)",
-   PeaceTreatyBetween$1And$2: "Мирный договор между $1 и $2",
+   $1$2PeaceTreaty: "$1-$2: мирный договор",
    AdditionalTerms: "Дополнительные условия",
    PeaceTreaty: "Мирный договор",
    MartialAscendancy: "Военное превосходство",

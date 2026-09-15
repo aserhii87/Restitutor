@@ -22,6 +22,7 @@ export function ChronicleModal({ years }: { years: [number, number] }): React.Re
          title={
             <>
                <ModalImageHeader
+                  dismiss
                   image={HeaderImages.Chronicle}
                   title={$t(L.ChronicleOf$1Ad, startYear === endYear ? startYear : `${startYear} ~ ${endYear}`)}
                >

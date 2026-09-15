@@ -6,7 +6,7 @@ import { HeaderImages } from "./HeaderImages";
 
 export function MobilePurchaseSingletonModal(): React.ReactNode {
    return (
-      <ModalComp title={<ModalImageHeader image={HeaderImages.Rebirth} title={$t(L.FullGamePurchased)} />}>
+      <ModalComp title={<ModalImageHeader image={HeaderImages.Rebirth} title={$t(L.FullGamePurchased)} dismiss />}>
          <div className="m10">
             <div className="my10">{$t(L.FullGamePurchasedDesc)}</div>
             <button

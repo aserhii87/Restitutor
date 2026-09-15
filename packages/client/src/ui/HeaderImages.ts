@@ -1,6 +1,7 @@
 import BarbarianRaid from "../assets/images/headers/BarbarianRaid.webp";
 import Chronicle from "../assets/images/headers/ChronicleHeader.webp";
 import EcumenicalCouncil from "../assets/images/headers/EcumenicalCouncil.webp";
+import Peace from "../assets/images/headers/Peace.webp";
 import Rebirth from "../assets/images/headers/Rebirth.webp";
 import Senate from "../assets/images/headers/Senate.webp";
 import Treasury from "../assets/images/headers/Treasury.webp";
@@ -16,4 +17,8 @@ export const HeaderImages = {
    Chronicle: { url: Chronicle, credit: "Das Forum Romanum, J. Bühlmann (1901)" },
    Rebirth: { url: Rebirth, credit: "Le triomphe de la Ville de Paris, François-Edouard Picot (1842)" },
    Treasury: { url: Treasury, credit: "Ancient Rome, Giovanni Paolo Panini (1757)" },
+   Peace: {
+      url: Peace,
+      credit: "Vercingetorix surrenders to Julius Caesar, Alphonse Marie de Neuville (French, 1835-1885)",
+   },
 } as const satisfies Record<string, ImageWithCredit>;

@@ -41,14 +41,14 @@ import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
-import { hideModal, hideModalImmediately, ModalComp, ModalTitleBar } from "../utils/ModalManager";
+import { hideModal, ModalComp, ModalTitleBar } from "../utils/ModalManager";
 import { ActionButton } from "./ActionButton";
 import { BreakdownComp } from "./BreakdownComp";
-import { showModalImmediately, showPanel } from "./common/ShowPanel";
+import { showPanel } from "./common/ShowPanel";
 import { colorNumber } from "./components/ColorNumber";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
-import { PeaceTreatyModal } from "./PeaceTreatyModal";
+import { PeaceTreatyPage } from "./PeaceTreatyModal";
 import { PeaceTreatyTooltip } from "./PeaceTreatyTooltip";
 import { TilePage } from "./TilePage";
 import { Grid2, Grid3 } from "./UIConstant";
@@ -298,8 +298,8 @@ function SignPeaceTreatyButton({ war, province }: { war: IWar; province: Provinc
             condition: SignPeaceTreatyAction(war, province, getAvailablePeaceTreatyOptions(war, G.save)[0], G.save)
                .condition,
             execute: () => {
-               hideModalImmediately();
-               showModalImmediately(PeaceTreatyModal, { war, province });
+               hideModal();
+               showPanel(PeaceTreatyPage, { war, province });
             },
          })}
          tooltip={(element) => (

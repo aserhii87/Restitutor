@@ -36,7 +36,7 @@ export function BarbarianRaidModal(): React.ReactNode {
          size="lg"
          title={
             <>
-               <ModalImageHeader image={HeaderImages.BarbarianRaid} title={$t(L.BarbarianRaids)} />
+               <ModalImageHeader image={HeaderImages.BarbarianRaid} title={$t(L.BarbarianRaids)} dismiss />
                <div className="divider" />
             </>
          }

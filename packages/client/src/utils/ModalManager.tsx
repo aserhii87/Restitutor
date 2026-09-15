@@ -181,9 +181,11 @@ export function ModalImageHeader({
    image,
    title,
    children,
+   dismiss,
 }: React.PropsWithChildren<{
    image: ImageWithCredit;
    title: React.ReactNode;
+   dismiss?: boolean;
 }>): React.ReactNode {
    return (
       <div className="text-shadow" style={{ position: "relative" }}>
@@ -203,13 +205,15 @@ export function ModalImageHeader({
             </div>
          </FloatingTip>
          {children}
-         <div
-            className={`mi pointer text-white ${CloseButtonClass}`}
-            onClick={hideModal}
-            style={{ position: "absolute", top: "0.3125rem", right: "0.3125rem" }}
-         >
-            close
-         </div>
+         {dismiss && (
+            <div
+               className={`mi pointer text-white ${CloseButtonClass}`}
+               onClick={hideModal}
+               style={{ position: "absolute", top: "0.3125rem", right: "0.3125rem" }}
+            >
+               close
+            </div>
+         )}
          <img className="display-block w100" src={image.url} />
       </div>
    );

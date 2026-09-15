@@ -3737,7 +3737,7 @@ export const ES = {
    Devastation: "Devastación",
    VictoriousPrestige: "Prestigio victorioso",
    $1TileUpgradesOnEachAnnexedTileMinimumReduction$2: "Mejoras territoriales de cada territorio anexionado: $1 (reducción mínima: $2)",
-   PeaceTreatyBetween$1And$2: "Tratado de paz entre $1 y $2",
+   $1$2PeaceTreaty: "Tratado de paz $1-$2",
    AdditionalTerms: "Condiciones adicionales",
    PeaceTreaty: "Tratado de paz",
    MartialAscendancy: "Supremacía marcial",
