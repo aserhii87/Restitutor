@@ -1,5 +1,15 @@
 import { Popover, ScrollArea, Switch } from "@mantine/core";
-import { cls, entriesOf, formatDelta, formatNumber, formatPercent, keysOf } from "@project/shared/src/utils/Helper";
+import {
+   clearFlag,
+   cls,
+   entriesOf,
+   formatDelta,
+   formatNumber,
+   formatPercent,
+   hasFlag,
+   keysOf,
+   setFlag,
+} from "@project/shared/src/utils/Helper";
 import { useEffect, useState } from "react";
 import { canDoAction } from "../game/actions/GameAction";
 import { TradeWithAction } from "../game/actions/TradeActions";
@@ -7,7 +17,8 @@ import { Goods } from "../game/definitions/Goods";
 import { Modifiers } from "../game/definitions/Modifier";
 import type { Province, TradeOffer } from "../game/definitions/Province";
 import { TimedActions } from "../game/definitions/TimedAction";
-import { GameStateUpdated } from "../game/Events";
+import { GameOptionUpdated, GameStateUpdated } from "../game/Events";
+import { GameOptionFlag } from "../game/GameOption";
 import { getRelation } from "../game/logic/DiplomacyLogic";
 import { getProvinceName } from "../game/logic/ProvinceLogic";
 import { getProvinceResource } from "../game/logic/ResourceLogic";
@@ -30,17 +41,23 @@ import { html } from "./components/RenderHTMLComp";
 
 const savedFilters = {
    selectedProvinces: new Set<Province>(),
-   showAvailable: false,
    selectedWeOffer: new Set<Goods | "gold">(),
    selectedTheyOffer: new Set<Goods | "gold">(),
 };
 
 export function TradeSingletonModal({ provinces }: { provinces: Set<Province> }): React.ReactNode {
    refreshOnTypedEvent(GameStateUpdated);
+   refreshOnTypedEvent(GameOptionUpdated);
    const [selectedProvinces, setSelectedProvinces] = useState(
       () => new Set(provinces.size > 0 ? provinces : savedFilters.selectedProvinces),
    );
-   const [showAvailable, setShowAvailable] = useState(() => (provinces.size > 0 ? false : savedFilters.showAvailable));
+   const showAvailable = hasFlag(G.save.options.flag, GameOptionFlag.OnlyShowAvailableTrades);
+   const setShowAvailable = (value: boolean) => {
+      G.save.options.flag = value
+         ? setFlag(G.save.options.flag, GameOptionFlag.OnlyShowAvailableTrades)
+         : clearFlag(G.save.options.flag, GameOptionFlag.OnlyShowAvailableTrades);
+      GameOptionUpdated.emit();
+   };
    const [selectedWeOffer, setSelectedWeOffer] = useState(
       () => new Set(provinces.size > 0 ? [] : savedFilters.selectedWeOffer),
    );
@@ -49,10 +66,9 @@ export function TradeSingletonModal({ provinces }: { provinces: Set<Province> })
    );
    useEffect(() => {
       savedFilters.selectedProvinces = selectedProvinces;
-      savedFilters.showAvailable = showAvailable;
       savedFilters.selectedWeOffer = selectedWeOffer;
       savedFilters.selectedTheyOffer = selectedTheyOffer;
-   }, [selectedProvinces, showAvailable, selectedWeOffer, selectedTheyOffer]);
+   }, [selectedProvinces, selectedWeOffer, selectedTheyOffer]);
    const hasActiveFilters =
       selectedProvinces.size > 0 || selectedWeOffer.size > 0 || selectedTheyOffer.size > 0 || showAvailable;
    const state = G.save.state.provinces[G.save.state.playerProvince];
