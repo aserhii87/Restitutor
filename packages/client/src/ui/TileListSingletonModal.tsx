@@ -1,5 +1,6 @@
+import { Loader } from "@mantine/core";
 import { entriesOf, type Tile } from "@project/shared/src/utils/Helper";
-import { memo } from "react";
+import { memo, useLayoutEffect, useState } from "react";
 import { type Building, Buildings } from "../game/definitions/Building";
 import { Terrains } from "../game/definitions/Terrain";
 import { getTileName } from "../game/definitions/TileName";
@@ -10,7 +11,7 @@ import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent, refreshOnTypedEventWhen } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
-import { hideModal, ModalComp, ModalTitleBar } from "../utils/ModalManager";
+import { hideModal, ModalComp, ModalTitleBar, useModalTransitionPhase } from "../utils/ModalManager";
 import { BuildingConstructionButton, DemolishBuildingButton } from "./BuildingConstructionButton";
 import { showPanel } from "./common/ShowPanel";
 import { FloatingTip } from "./components/FloatingTip";
@@ -22,24 +23,47 @@ const BuildingConstructionButtonStyle = { width: 30, height: 30, padding: 0 };
 const UpgradeButtonStyle = { minWidth: 40 };
 const BuildingEntries = entriesOf(Buildings);
 export function TileListSingletonModal(): React.ReactNode {
-   refreshOnTypedEvent(GameStateUpdated);
+   const phase = useModalTransitionPhase();
+   const [tableMounted, setTableMounted] = useState(false);
+   useLayoutEffect(() => {
+      if (phase !== "opened" || tableMounted) {
+         return;
+      }
+      // Give the fully opened shell a paint opportunity before mounting the table.
+      let frame = requestAnimationFrame(() => {
+         frame = requestAnimationFrame(() => setTableMounted(true));
+      });
+      return () => cancelAnimationFrame(frame);
+   }, [phase, tableMounted]);
+
    return (
       <ModalComp size="xl" scrollbars="xy" title={<ModalTitleBar title={$t(L.TilesAndUpgrades)} dismiss />}>
-         <div className="m10">
-            <table className="data-table">
-               <thead>
-                  <TileListHeader />
-               </thead>
-               <tbody>
-                  {getProvinceTilesCached(G.save.state.playerProvince).map((tile) => (
-                     <TileListRow key={tile} tile={tile} />
-                  ))}
-               </tbody>
-            </table>
-         </div>
+         {tableMounted ? (
+            <TileListTable />
+         ) : (
+            <div className="cc" style={{ height: "50vh" }}>
+               <Loader size="xl" color="dark.5" />
+            </div>
+         )}
       </ModalComp>
    );
 }
+
+const TileListTable = memo(function TileListTable() {
+   refreshOnTypedEvent(GameStateUpdated);
+   return (
+      <table className="data-table">
+         <thead style={{ position: "sticky", top: 0, zIndex: 1 }}>
+            <TileListHeader />
+         </thead>
+         <tbody>
+            {getProvinceTilesCached(G.save.state.playerProvince).map((tile) => (
+               <TileListRow key={tile} tile={tile} />
+            ))}
+         </tbody>
+      </table>
+   );
+});
 
 const TileListHeader = memo(function TileListHeader() {
    return (

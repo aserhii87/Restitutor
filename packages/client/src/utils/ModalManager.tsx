@@ -1,6 +1,6 @@
 import { type MantineSize, Overlay, ScrollArea, Transition } from "@mantine/core";
 import { cls } from "@project/shared/src/utils/Helper";
-import { createRef, useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { createContext, createRef, useCallback, useContext, useEffect, useLayoutEffect, useState } from "react";
 import { CloseModal, CloseModalImmediately, ShowModal } from "../game/Events";
 import type { ImageWithCredit } from "../game/events/ImageWithCredit";
 import type { ShowModalEvent } from "../ui/common/PanelTypes";
@@ -11,6 +11,13 @@ import { $t, L } from "./i18n";
 
 const topModalRef = createRef<HTMLDivElement>();
 let modalOpen = false;
+
+type ModalTransitionPhase = "opening" | "opened" | "closing";
+const ModalTransitionContext = createContext<ModalTransitionPhase>("opened");
+
+export function useModalTransitionPhase(): ModalTransitionPhase {
+   return useContext(ModalTransitionContext);
+}
 
 export function hasOpenModal(): boolean {
    return modalOpen;
@@ -93,12 +100,16 @@ function Modal({
    onClosed: () => void;
 }>): React.ReactNode {
    const [mounted, setMounted] = useState(immediate);
+   const [phase, setPhase] = useState<ModalTransitionPhase>(immediate ? "opened" : "opening");
    useEffect(() => {
       setMounted(true);
+   }, []);
+   useEffect(() => {
       if (!isTop) {
          return;
       }
       const onClose = () => {
+         setPhase("closing");
          setMounted(false);
       };
       CloseModal.on(onClose);
@@ -107,11 +118,17 @@ function Modal({
       };
    }, [isTop]);
    return (
-      <Transition mounted={mounted} transition="fade" onExited={onClosed}>
+      <Transition
+         mounted={mounted}
+         transition="fade"
+         onEntered={() => setPhase((current) => (current === "closing" ? current : "opened"))}
+         onExit={() => setPhase("closing")}
+         onExited={onClosed}
+      >
          {(style) => {
             return (
                <Overlay ref={isTop ? topModalRef : undefined} style={style} className="modal-overlay">
-                  {children}
+                  <ModalTransitionContext.Provider value={phase}>{children}</ModalTransitionContext.Provider>
                </Overlay>
             );
          }}

@@ -4,10 +4,23 @@ import { useMergedRef } from "@mantine/hooks";
 import { cls } from "@project/shared/src/utils/Helper";
 import { cloneElement, memo, useCallback, useEffect, useRef, useState } from "react";
 
-export function useFloatingTooltip<T extends HTMLElement = any>({ position }: { position: Placement }) {
-   const [opened, setOpened] = useState(false);
-   const boundaryRef = useRef<T>(null);
-   const cursorRef = useRef({ x: 0, y: 0 });
+function FloatingTipOverlay({
+   position,
+   boundaryRef,
+   cursorRef,
+   label,
+   fixedWidth,
+   style,
+   className,
+}: {
+   position: Placement;
+   boundaryRef: React.RefObject<HTMLElement | null>;
+   cursorRef: React.RefObject<{ x: number; y: number }>;
+   label: () => React.ReactNode;
+   fixedWidth?: boolean;
+   style?: React.CSSProperties;
+   className?: string;
+}) {
    const placementRef = useRef(position);
    const animationFrameRef = useRef<number | null>(null);
    const [positionReference] = useState(() => ({
@@ -27,18 +40,10 @@ export function useFloatingTooltip<T extends HTMLElement = any>({ position }: { 
       },
    }));
 
-   const { x, y, elements, refs, update, placement } = useFloating({
+   const { x, y, elements, refs, update, placement, isPositioned } = useFloating({
+      open: true,
       placement: position,
-      middleware: [
-         offset(40),
-         shift({ padding: 20 }),
-         autoPlacement(),
-         // flip({
-         //    crossAxis: "alignment",
-         //    fallbackAxisSideDirection: "end",
-         //    padding: 10,
-         // }),
-      ],
+      middleware: [offset(40), shift({ padding: 20 }), autoPlacement()],
    });
 
    const { setPositionReference } = refs;
@@ -62,17 +67,17 @@ export function useFloatingTooltip<T extends HTMLElement = any>({ position }: { 
    }, [refs.floating, update]);
 
    const handleMouseMove = useCallback(
-      ({ clientX, clientY }: MouseEvent | React.MouseEvent<T, MouseEvent>) => {
+      ({ clientX, clientY }: MouseEvent) => {
          cursorRef.current.x = clientX;
          cursorRef.current.y = clientY;
          scheduleUpdate();
       },
-      [scheduleUpdate],
+      [cursorRef, scheduleUpdate],
    );
 
    useEffect(() => {
       const boundary = boundaryRef.current;
-      if (!opened || !elements.floating || !boundary) {
+      if (!elements.floating || !boundary) {
          return;
       }
 
@@ -92,9 +97,27 @@ export function useFloatingTooltip<T extends HTMLElement = any>({ position }: { 
             animationFrameRef.current = null;
          }
       };
-   }, [elements.floating, handleMouseMove, opened, scheduleUpdate]);
+   }, [boundaryRef, elements.floating, handleMouseMove, scheduleUpdate]);
 
-   return { handleMouseMove, x, y, opened, setOpened, boundaryRef, floating: refs.setFloating };
+   return (
+      <Portal reuseTargetNode>
+         <div
+            className={cls("floating-tip panel", className)}
+            style={{
+               ...style,
+               top: 0,
+               left: 0,
+               transform: `translate(${Math.round(x ?? 0)}px, ${Math.round(y ?? 0)}px)`,
+               visibility: isPositioned ? style?.visibility : "hidden",
+               width: fixedWidth ? "18.75rem" : style?.width,
+               maxWidth: fixedWidth ? "18.75rem" : style?.maxWidth,
+            }}
+            ref={refs.setFloating}
+         >
+            <FloatingTipContent label={label} />
+         </div>
+      </Portal>
+   );
 }
 
 const FloatingTipContent = memo(({ label }: { label: () => React.ReactNode }) => <>{label()}</>);
@@ -112,7 +135,9 @@ export const FloatingTip = factory<
       };
    }>
 >(({ label, children, disabled, fixedWidth, style, className, position = "bottom", ref }) => {
-   const { handleMouseMove, x, y, opened, boundaryRef, floating, setOpened } = useFloatingTooltip({ position });
+   const [opened, setOpened] = useState(false);
+   const boundaryRef = useRef<HTMLElement>(null);
+   const cursorRef = useRef({ x: 0, y: 0 });
 
    if (!isElement(children)) {
       throw new Error(
@@ -125,7 +150,8 @@ export const FloatingTip = factory<
 
    const onMouseEnter = (event: React.MouseEvent<unknown, MouseEvent>) => {
       _childrenProps.onMouseEnter?.(event);
-      handleMouseMove(event);
+      cursorRef.current.x = event.clientX;
+      cursorRef.current.y = event.clientY;
       setOpened(true);
    };
 
@@ -134,33 +160,20 @@ export const FloatingTip = factory<
       setOpened(false);
    };
 
-   useEffect(() => {
-      return () => {
-         setOpened(false);
-      };
-   }, [setOpened]);
-
    const shouldShow = !disabled && opened;
 
    return (
       <>
          {shouldShow && (
-            <Portal reuseTargetNode>
-               <div
-                  className={cls("floating-tip panel", className)}
-                  style={{
-                     ...style,
-                     top: 0,
-                     left: 0,
-                     transform: `translate(${Math.round(x ?? 0)}px, ${Math.round(y ?? 0)}px)`,
-                     width: fixedWidth ? "18.75rem" : style?.width,
-                     maxWidth: fixedWidth ? "18.75rem" : style?.maxWidth,
-                  }}
-                  ref={floating}
-               >
-                  <FloatingTipContent label={label} />
-               </div>
-            </Portal>
+            <FloatingTipOverlay
+               position={position}
+               boundaryRef={boundaryRef}
+               cursorRef={cursorRef}
+               label={label}
+               fixedWidth={fixedWidth}
+               style={style}
+               className={className}
+            />
          )}
 
          {cloneElement(children, {
