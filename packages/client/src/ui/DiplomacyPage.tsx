@@ -388,10 +388,77 @@ export function DiplomacyPage({ province }: { province: Province }): React.React
                      ))}
                   </>
                )}
+               {isMe && <DiplomaticAttitudes province={province} />}
             </div>
             <DiplomacyActions province={province} />
          </div>
       </SidebarComp>
+   );
+}
+
+function DiplomaticAttitudes({ province }: { province: Province }): React.ReactNode {
+   const provinces = keysOf(G.save.state.provinces)
+      .filter((p) => p !== province)
+      .sort((a, b) => getProvinceName(a, G.save).localeCompare(getProvinceName(b, G.save)));
+   return (
+      <div className="m10">
+         <table className="data-table">
+            <thead style={{ position: "sticky", top: 0 }}>
+               <tr>
+                  <th>{$t(L.ProvincesAttitude)}</th>
+                  <th>
+                     <FloatingTip label={() => $t(L.AttitudeTowardsUs)}>
+                        <div className="mi sm">reply_all</div>
+                     </FloatingTip>
+                  </th>
+                  <th>
+                     <FloatingTip label={() => $t(L.OurAttitudeTowardsThem)}>
+                        <div className="mi sm">forward</div>
+                     </FloatingTip>
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               {provinces.map((p) => {
+                  const theirAttitude = getAttitudeTowards(p, province, G.save);
+                  const ourAttitude = getAttitudeTowards(province, p, G.save);
+                  return (
+                     <tr key={p}>
+                        <td>{getProvinceName(p, G.save)}</td>
+                        <td>
+                           <BreakdownTooltip
+                              breakdown={theirAttitude}
+                              formatFunc={colorNumber}
+                              tooltip={(element) => (
+                                 <>
+                                    <div className="h2">{$t(L.$1sAttitudeTowardsUs, getProvinceName(p, G.save))}</div>
+                                    {element}
+                                 </>
+                              )}
+                           >
+                              <div>{colorNumber(theirAttitude.value)}</div>
+                           </BreakdownTooltip>
+                        </td>
+                        <td>
+                           <BreakdownTooltip
+                              breakdown={ourAttitude}
+                              formatFunc={colorNumber}
+                              tooltip={(element) => (
+                                 <>
+                                    <div className="h2">{$t(L.OurAttitudeTowards$1, getProvinceName(p, G.save))}</div>
+                                    {element}
+                                 </>
+                              )}
+                           >
+                              <div>{colorNumber(ourAttitude.value)}</div>
+                           </BreakdownTooltip>
+                        </td>
+                     </tr>
+                  );
+               })}
+            </tbody>
+         </table>
+      </div>
    );
 }
 

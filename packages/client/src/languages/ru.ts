@@ -3712,4 +3712,7 @@ export const RU = {
    SaveAndReload: "Сохранить и перезагрузить",
    PurchaseFullGame: "Купить полную версию игры",
    RestorePurchase: "Восстановить покупку",
+   OurAttitudeTowardsThem: "Наше отношение к ним",
+   ProvincesAttitude: "Отношение провинции",
+   OurAttitudeTowards$1: "Наше отношение к провинции $1",
 };

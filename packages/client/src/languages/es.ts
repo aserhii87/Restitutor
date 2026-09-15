@@ -3761,4 +3761,7 @@ export const ES = {
    SaveAndReload: "Guardar y recargar",
    PurchaseFullGame: "Comprar el juego completo",
    RestorePurchase: "Restaurar compra",
+   OurAttitudeTowardsThem: "Nuestra actitud hacia ellos",
+   ProvincesAttitude: "Actitud de la provincia",
+   OurAttitudeTowards$1: "Nuestra actitud hacia $1",
 };

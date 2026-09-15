@@ -3764,4 +3764,7 @@ export const DE = {
    SaveAndReload: "Speichern und neu laden",
    PurchaseFullGame: "Vollständiges Spiel kaufen",
    RestorePurchase: "Kauf wiederherstellen",
+   OurAttitudeTowardsThem: "Unsere Haltung ihnen gegenüber",
+   ProvincesAttitude: "Haltung der Provinz",
+   OurAttitudeTowards$1: "Unsere Haltung gegenüber $1",
 };

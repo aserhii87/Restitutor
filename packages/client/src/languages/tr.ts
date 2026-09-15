@@ -3718,4 +3718,7 @@ export const TR = {
    SaveAndReload: "Save and Reload",
    PurchaseFullGame: "Purchase Full Game",
    RestorePurchase: "Restore Purchase",
+   OurAttitudeTowardsThem: "Our Attitude Towards Them",
+   ProvincesAttitude: "Province's Attitude",
+   OurAttitudeTowards$1: "Our Attitude Towards $1",
 };

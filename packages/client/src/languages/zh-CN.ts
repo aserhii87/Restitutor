@@ -3680,4 +3680,7 @@ export const ZH_CN = {
    SaveAndReload: "保存并重新加载",
    PurchaseFullGame: "购买完整游戏",
    RestorePurchase: "恢复购买",
+   OurAttitudeTowardsThem: "我们对他们的态度",
+   ProvincesAttitude: "行省态度",
+   OurAttitudeTowards$1: "我们对$1的态度",
 };
