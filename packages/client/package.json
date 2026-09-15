@@ -30,6 +30,7 @@
       "@project/shared": "workspace:*",
       "@sentry/browser": "^9.27.0",
       "@xyflow/react": "^12.11.6",
+      "capacitor-plugin-cdv-purchase": "^13.18.0",
       "fast-equals": "^6.0.3",
       "html-react-parser": "^6.1.1",
       "lz-string": "^1.5.0",

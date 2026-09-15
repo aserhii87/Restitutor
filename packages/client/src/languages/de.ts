@@ -3759,4 +3759,9 @@ export const DE = {
    TheFollowingDisastersAreLooming: "Die folgenden Katastrophen drohen:",
    $1DoesNotCurrentlyExistOnTheMap: "$1 existiert derzeit nicht auf der Karte.",
    BuildingBasilica: "Basilika",
+   FullGamePurchased: "Vollständiges Spiel gekauft",
+   FullGamePurchasedDesc: "Vielen Dank für die Unterstützung der Entwicklung von Restitutor: Empire Restored durch den Kauf des vollständigen Spiels! Das Spiel neu laden, um alle Inhalte freizuschalten.",
+   SaveAndReload: "Speichern und neu laden",
+   PurchaseFullGame: "Vollständiges Spiel kaufen",
+   RestorePurchase: "Kauf wiederherstellen",
 };

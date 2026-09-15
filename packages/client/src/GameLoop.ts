@@ -1,6 +1,7 @@
 import { hasFlag } from "@project/shared/src/utils/Helper";
 import { GameOptionUpdated, GameStateUpdated } from "./game/Events";
 import { GameOptionFlag } from "./game/GameOption";
+import { saveGame } from "./game/LoadSave";
 import { tickLogic } from "./game/logic/TickLogic";
 import { initShortcut } from "./game/Shortcut";
 import { TechTreeScene } from "./scenes/TechTreeScene";
@@ -31,6 +32,12 @@ export function startGameLoop(): void {
    window.addEventListener("blur", () => {
       if (hasFlag(G.save.options.flag, GameOptionFlag.PauseOnBlur)) {
          setSpeed(0);
+      }
+   });
+   window.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+         console.log("Saving game when the app is backgrounded");
+         saveGame(G.save);
       }
    });
    initShortcut();

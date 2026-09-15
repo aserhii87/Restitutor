@@ -8,6 +8,8 @@ import { SentryDSN, SupportedSaveVersion } from "./game/definitions/Constant";
 import { subscribeToModifierUpdate } from "./game/definitions/ModifierUpdate";
 import { GameStateFlags, initNewPlayerSaveGame, initSaveGame, SaveGame } from "./game/GameState";
 import { loadGame, resetGame, saveAndBackupGame } from "./game/LoadSave";
+import { initMobile } from "./game/Mobile";
+import { isMobilePlatform } from "./game/NativeUtils";
 import { RomeMap } from "./game/RomeMap";
 import { showBootstrapModal } from "./game/ShowBootstrapModal";
 import { getVersion } from "./game/Version";
@@ -125,10 +127,14 @@ export async function bootstrap(): Promise<void> {
       initSaveGame(G.save);
       initNewPlayerSaveGame(G.save);
       G.save.state.flags = setFlag(G.save.state.flags, GameStateFlags.ShowTutorial);
+      if (isMobilePlatform()) {
+         G.save.options.uiScale = 0.7;
+      }
    }
 
    document.documentElement.style.setProperty("font-size", `${G.save.options.uiScale}rem`);
    setLanguage(G.save.options.language);
+   initMobile();
    loadSounds();
    initMusic();
    addDebugFunctions();

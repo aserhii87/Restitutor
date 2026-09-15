@@ -9,6 +9,7 @@ import { EcumenicalCouncilPage } from "../ui/EcumenicalCouncilPage";
 import { GreatWorkCompletedModal } from "../ui/GreatWorkCompletedModal";
 import { InvaderConqueredWarGoalModal } from "../ui/InvaderConqueredWarGoalModal";
 import { InvaderSueForWhitePeaceModal } from "../ui/InvaderSueForWhitePeaceModal";
+import { MobilePurchaseSingletonModal } from "../ui/MobilePurchaseSingletonModal";
 import { RestorationBonusModal } from "../ui/RestorationBonusModal";
 import { WarEndedModal } from "../ui/WarEndedModal";
 import { G, isDev } from "../utils/Global";
@@ -85,6 +86,11 @@ export function addDebugFunctions(): void {
    // @ts-expect-error
    globalThis.showRestorationBonus = () => {
       showPanel(RestorationBonusModal, {});
+   };
+
+   // @ts-expect-error
+   globalThis.showMobilePurchase = () => {
+      showPanel(MobilePurchaseSingletonModal, {});
    };
 
    // @ts-expect-error

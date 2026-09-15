@@ -7,6 +7,9 @@ import { defineConfig, type Plugin, type ResolvedConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
    return {
+      server: {
+         host: true,
+      },
       base: "",
       plugins: [react(), assetpackPlugin()],
       test: {

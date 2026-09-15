@@ -3675,4 +3675,9 @@ export const ZH_CN = {
    TheFollowingDisastersAreLooming: "以下灾难正在迫近：",
    $1DoesNotCurrentlyExistOnTheMap: "$1目前不在地图上。",
    BuildingBasilica: "巴西利卡",
+   FullGamePurchased: "已购买完整游戏",
+   FullGamePurchasedDesc: "感谢购买完整游戏，支持 Restitutor: Empire Restored 的开发！重新加载游戏即可解锁全部内容。",
+   SaveAndReload: "保存并重新加载",
+   PurchaseFullGame: "购买完整游戏",
+   RestorePurchase: "恢复购买",
 };

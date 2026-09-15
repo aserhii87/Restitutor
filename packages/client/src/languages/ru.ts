@@ -3707,4 +3707,9 @@ export const RU = {
    TheFollowingDisastersAreLooming: "Надвигаются следующие бедствия:",
    $1DoesNotCurrentlyExistOnTheMap: "$1 в настоящее время отсутствует на карте.",
    BuildingBasilica: "Базилика",
+   FullGamePurchased: "Полная версия игры куплена",
+   FullGamePurchasedDesc: "Спасибо за поддержку разработки Restitutor: Empire Restored покупкой полной версии игры! Перезагрузите игру, чтобы разблокировать весь контент.",
+   SaveAndReload: "Сохранить и перезагрузить",
+   PurchaseFullGame: "Купить полную версию игры",
+   RestorePurchase: "Восстановить покупку",
 };

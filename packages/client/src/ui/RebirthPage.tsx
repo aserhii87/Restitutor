@@ -10,8 +10,11 @@ import { GameEvents } from "../game/events/GameEvents";
 import { GameOptionFlag } from "../game/GameOption";
 import { getOriginalTileCount } from "../game/GameState";
 import { saveGame } from "../game/LoadSave";
+import { showError } from "../game/logic/AlertLogic";
 import { getLegacyPointsNextRun, rebirth } from "../game/logic/LegacyUpgradeLogic";
 import { getProvinceName, getProvinceOriginalGreatWorks } from "../game/logic/ProvinceLogic";
+import { isMobilePurchased, purchaseMobile, restorePurchaseMobile } from "../game/Mobile";
+import { isMobilePlatform } from "../game/NativeUtils";
 import { RomeMap } from "../game/RomeMap";
 import { WorldScene } from "../scenes/WorldScene";
 import { G, GameFlags } from "../utils/Global";
@@ -33,6 +36,41 @@ export function RebirthPage(): React.ReactNode {
       <SidebarComp title={<SidebarImageHeader image={HeaderImages.Rebirth} title={$t(L.Rebirth)} />}>
          <div className="h1">{$t(L.LegacyPointsForNextRun)}</div>
          <BreakdownComp breakdown={legacyPointsNextRun} />
+         {isMobilePlatform() && !isMobilePurchased() && (
+            <>
+               <div className="h1">{$t(L.PurchaseFullGame)}</div>
+               <div className="col m10 g5">
+                  <button
+                     className="btn w100 py2 primary"
+                     onClick={async () => {
+                        try {
+                           await purchaseMobile();
+                        } catch (error) {
+                           showError(String(error));
+                           console.error(error);
+                        }
+                     }}
+                  >
+                     {$t(L.PurchaseFullGame)}
+                  </button>
+                  <button
+                     className="btn w100 py2"
+                     onClick={async () => {
+                        try {
+                           await restorePurchaseMobile();
+                           await saveGame(G.save);
+                           window.location.reload();
+                        } catch (error) {
+                           showError(String(error));
+                           console.error(error);
+                        }
+                     }}
+                  >
+                     {$t(L.RestorePurchase)}
+                  </button>
+               </div>
+            </>
+         )}
          <div className="h1">{$t(L.NextRunProvince)}</div>
          <FloatingTip label={() => $t(L.CurrentlyUnderDevelopmentMoreProvincesWillBeAddedSoon)}>
             <div className="mx10 my5">

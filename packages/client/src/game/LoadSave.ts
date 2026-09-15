@@ -1,14 +1,13 @@
 import { dateToYYYYMMDD } from "@project/shared/src/utils/Helper";
 import { jsonDecode, jsonEncode } from "@project/shared/src/utils/Serialization";
 import { compressToUint8Array, decompressFromUint8Array } from "lz-string";
-import { isSteam, SteamClient } from "../rpc/SteamClient";
-import { idbDel, idbGet, idbSet } from "../utils/BrowserStorage";
 import { BackupCount, BackupFrequency, SaveKey } from "./definitions/Constant";
 import type { SaveGame } from "./GameState";
 import { getGameDate } from "./logic/GameDateTime";
+import { deleteFile, readFile, writeFile } from "./NativeUtils";
 
 export async function loadGame(): Promise<SaveGame> {
-   const json = isSteam() ? await SteamClient.fileRead(SaveKey) : await idbGet<string>(SaveKey);
+   const json = await readFile(SaveKey);
    if (!json) {
       throw new Error("Save not found");
    }
@@ -16,12 +15,11 @@ export async function loadGame(): Promise<SaveGame> {
 }
 
 export async function saveGame(save: SaveGame): Promise<void> {
-   const serialized = jsonEncode(save);
-   if (isSteam()) {
-      await SteamClient.fileWrite(SaveKey, serialized);
-   } else {
-      await idbSet(SaveKey, serialized);
+   if (resetRequested) {
+      return;
    }
+   const serialized = jsonEncode(save);
+   await writeFile(SaveKey, serialized);
 }
 
 let counter = 0;
@@ -29,19 +27,18 @@ let lastBackupTime = Date.now();
 
 export async function saveAndBackupGame(save: SaveGame): Promise<void> {
    await saveGame(save);
-   if (isSteam() && Date.now() - lastBackupTime > BackupFrequency) {
-      await SteamClient.fileWrite(`${SaveKey}_${(counter % BackupCount) + 1}`, jsonEncode(save));
+   if (Date.now() - lastBackupTime > BackupFrequency) {
+      await writeFile(`${SaveKey}_${(counter % BackupCount) + 1}`, jsonEncode(save));
       ++counter;
       lastBackupTime = Date.now();
    }
 }
 
+let resetRequested = false;
+
 export async function resetGame(): Promise<void> {
-   if (isSteam()) {
-      await SteamClient.fileDelete(SaveKey);
-   } else {
-      await idbDel(SaveKey);
-   }
+   resetRequested = true;
+   await deleteFile(SaveKey);
 }
 
 export async function loadFromFile(): Promise<SaveGame> {

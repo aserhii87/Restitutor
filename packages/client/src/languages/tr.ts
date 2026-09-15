@@ -3713,4 +3713,9 @@ export const TR = {
    TheFollowingDisastersAreLooming: "The following disasters are looming:",
    $1DoesNotCurrentlyExistOnTheMap: "$1 does not currently exist on the map.",
    BuildingBasilica: "Basilica",
+   FullGamePurchased: "Full Game Purchased",
+   FullGamePurchasedDesc: "Thank you for supporting the development of Restitutor: Empire Restored by purchasing the full game! Reload the game to unlock all content.",
+   SaveAndReload: "Save and Reload",
+   PurchaseFullGame: "Purchase Full Game",
+   RestorePurchase: "Restore Purchase",
 };

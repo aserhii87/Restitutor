@@ -2,6 +2,8 @@ import { clearFlag, setFlag } from "@project/shared/src/utils/Helper";
 import { RetailSteamId } from "./game/definitions/Constant.ts";
 import { type Province, Provinces } from "./game/definitions/Province";
 import { GameOptionFlag } from "./game/GameOption";
+import { isMobilePurchased } from "./game/Mobile.ts";
+import { isMobilePlatform } from "./game/NativeUtils.ts";
 import { isSteam, SteamClient } from "./rpc/SteamClient";
 import { TechTreeScene } from "./scenes/TechTreeScene";
 import { WorldScene } from "./scenes/WorldScene";
@@ -36,6 +38,12 @@ export function loadGameScene() {
             G.flags = clearFlag(G.flags, GameFlags.Demo);
          }
       });
+   }
+
+   if (isMobilePlatform()) {
+      if (isMobilePurchased()) {
+         G.flags = clearFlag(G.flags, GameFlags.Demo);
+      }
    }
 
    if (G.params.has("legacy")) {
