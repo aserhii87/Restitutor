@@ -2,7 +2,7 @@ import { ScrollArea } from "@mantine/core";
 import type { ImageWithCredit } from "../../game/events/ImageWithCredit";
 import { $t, L } from "../../utils/i18n";
 import { FloatingTip } from "../components/FloatingTip";
-import { CloseButtonClass, SidebarMargin, SidebarTopMargin, SidebarWidth } from "../UIConstant";
+import { CloseButtonClass, SidebarLeftMargin, SidebarMargin, SidebarTopMargin, SidebarWidth } from "../UIConstant";
 import { hideSidebar } from "./SidebarManager";
 
 export function SidebarComp({
@@ -20,7 +20,7 @@ export function SidebarComp({
          className="panel"
          style={{
             width,
-            margin: `${SidebarTopMargin} 0 ${SidebarMargin} ${SidebarMargin}`,
+            margin: `${SidebarTopMargin} 0 ${SidebarMargin} ${SidebarLeftMargin}`,
             height: `calc(100vh - calc(${SidebarTopMargin} + ${SidebarMargin}))`,
             display: "flex",
             flexDirection: "column",

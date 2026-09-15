@@ -21,6 +21,7 @@ export const SidebarWidth = "25rem";
 export const SidebarWiderWidth = "33rem";
 export const SidebarTopMargin = `${Number.parseFloat(ResourcePanelHeight) + 2 * Number.parseFloat(ResourcePanelMargin)}rem`;
 export const SidebarMargin = "0.625rem";
+export const SidebarLeftMargin = `calc(${SidebarMargin} + var(--safe-area-inset-left, env(safe-area-inset-left, 0px)))`;
 
 export const HeaderHeight = "2.25rem";
 document.documentElement.style.setProperty("--header-height", HeaderHeight);
