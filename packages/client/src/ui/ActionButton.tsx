@@ -32,11 +32,12 @@ export function ActionButton({
    action: () => IGameAction;
 }>): React.ReactNode {
    refreshOnTypedEvent(GameStateUpdated);
-   const { cost, condition, effect } = action();
+   const { cost, condition, effect, skipCost } = action();
    const isConditionMet = condition === undefined || condition.value === true;
    const hasEnoughResources =
       cost === undefined || hasEnoughProvinceResources(cost, G.save.state.playerProvince, G.save);
    const isDebug = useDebugKey();
+   const resourceFunction = skipCost ? hasEnoughProvinceResources : trySpendProvinceResources;
    return (
       <button
          id={id}
@@ -49,7 +50,7 @@ export function ActionButton({
             if (
                isDebug ||
                ((condition === undefined || condition.value === true) &&
-                  (cost === undefined || trySpendProvinceResources(cost, G.save.state.playerProvince, G.save)))
+                  (cost === undefined || resourceFunction(cost, G.save.state.playerProvince, G.save)))
             ) {
                execute({ headless: false });
                if (effect) {

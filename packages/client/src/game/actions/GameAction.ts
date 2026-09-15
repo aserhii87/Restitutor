@@ -17,6 +17,7 @@ export interface IGameEffectWithName extends IGameEffect {
 export interface IGameAction extends IGameCostCondition {
    execute: (options: { headless: boolean }) => void;
    effect?: IGameEffectWithName;
+   skipCost?: boolean;
 }
 
 export interface ICondition {

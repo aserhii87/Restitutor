@@ -718,6 +718,7 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
                className="btn py2"
                action={() => ({
                   ...DemandTileCostCondition(G.save.state.playerProvince, province, [], G.save),
+                  skipCost: true,
                   execute: () => showPanel(DemandTileModal, { province }),
                })}
             >

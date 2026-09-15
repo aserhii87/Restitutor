@@ -53,3 +53,5 @@
 
 ## Other Changes
 - Extend the Administrative branch of the legacy upgrade tree.
+- Fix a bug where demanding a tile deduct double the diplomacy points
+- TODO: Show attitudes in Diplomacy panel
