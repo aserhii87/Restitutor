@@ -6,7 +6,7 @@ include ':capacitor-filesystem'
 project(':capacitor-filesystem').projectDir = new File('../../../node_modules/.pnpm/@capacitor+filesystem@8.1.3_@capacitor+core@8.5.2/node_modules/@capacitor/filesystem/android')
 
 include ':capawesome-capacitor-live-update'
-project(':capawesome-capacitor-live-update').projectDir = new File('../../../node_modules/.pnpm/@capawesome+capacitor-live-update@8.4.2_@capacitor+core@8.5.2/node_modules/@capawesome/capacitor-live-update/android')
+project(':capawesome-capacitor-live-update').projectDir = new File('../../../node_modules/.pnpm/@capawesome+capacitor-live-_7a1ae831cad9398fc934af218960e87a/node_modules/@capawesome/capacitor-live-update/android')
 
 include ':capacitor-plugin-cdv-purchase'
 project(':capacitor-plugin-cdv-purchase').projectDir = new File('../../../node_modules/.pnpm/capacitor-plugin-cdv-purchase@13.18.0_@capacitor+core@8.5.2/node_modules/capacitor-plugin-cdv-purchase/android')

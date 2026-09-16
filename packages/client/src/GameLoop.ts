@@ -36,7 +36,6 @@ export function startGameLoop(): void {
    });
    window.addEventListener("visibilitychange", () => {
       if (document.hidden) {
-         console.log("Saving game when the app is backgrounded");
          saveGame(G.save);
       }
    });
