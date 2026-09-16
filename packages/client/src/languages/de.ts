@@ -3776,4 +3776,18 @@ export const DE = {
    $1TilesFromNearestCapital$2PerTile: "$1 Felder von der nächsten Hauptstadt entfernt, $2 pro Feld",
    TimedActionEstablishRegionalCapitalDesc: "Die Einrichtung einer Regionalhauptstadt senkt die entfernungsabhängigen Verwaltungs- und Unterhaltskosten für nahe gelegene Gebiete in unserer Provinz.",
    AbolishRegionalCapital: "Regionalhauptstadt aufheben",
+   PillageInfrastructure: "Infrastruktur plündern",
+   PillageProduction: "Produktion plündern",
+   PillagePopulation: "Bevölkerung plündern",
+   SelectedTileUpgradeIsAtLeast$1: "Die ausgewählte Gebietsaufwertung beträgt mindestens $1",
+   TileHasBeenUpgradedAtLeast$1Times: "Das Gebiet wurde mindestens $1-mal aufgewertet",
+   RightOfPlunder: "Recht auf Plünderung",
+   Pillage: "Plündern",
+   TimedActionPillageDesc$1$2$3$4: "Verringert die ausgewählte Gebietsaufwertung und die Anzahl der Aufwertungsvorgänge des Gebiets um $1. Dabei werden $2 der Kosten erstattet, die unter den aktuellen Modifikatoren zur Wiederherstellung dieser Aufwertung anfallen würden. Das Gebiet erhält $3 Unruhe für $4 Jahre.",
+   EliminateAtLeast$1BarbarianPolities: "Mindestens $1 barbarische Staatswesen vernichten",
+   EliminatedBarbarianPolities: "Vernichtete barbarische Staatswesen",
+   TheSpoilsOfVictory: "Die Beute des Sieges",
+   TheSpoilsOfVictoryDesc:
+      "Wir haben ein barbarisches Staatswesen zerschlagen. Unsere Befehlshaber drängen uns nun, die Methoden unserer besiegten Feinde in den Dienst der Provinz zu stellen. Die Plünderung unserer Nicht-Kerngebiete könnte unsere Verwaltung und unsere Armeen stärken, doch die Bewohner würden die Verwüstung nicht vergessen.",
+   SanctionPlunderForOurProvince: "Plünderung für unsere Provinz erlauben",
 };

@@ -5,6 +5,7 @@ import type { ICondition } from "../actions/GameAction";
 import type { SaveGame } from "../GameState";
 import { type IBaseModifier, type Modifier, modifierToString } from "./Modifier";
 import type { Province } from "./Province";
+import { TimedActions } from "./TimedAction";
 
 export interface IProvinceUpgrade {
    name: () => string;
@@ -13,6 +14,10 @@ export interface IProvinceUpgrade {
 }
 
 const _ProvinceUpgrades = {
+   RightOfPlunder: {
+      name: () => $t(L.RightOfPlunder),
+      desc: () => TimedActions.Pillage.desc?.() ?? "",
+   },
    ExtensiveAdministration: {
       name: () => $t(L.ExtensiveAdministration),
       modifiers: {

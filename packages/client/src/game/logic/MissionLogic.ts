@@ -4,6 +4,7 @@ import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
 import { type Province, type ProvinceResource, ProvinceResourceNames } from "../definitions/Province";
+import { SpawnedProvinces } from "../definitions/SpawnedProvince";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
@@ -19,6 +20,7 @@ import { cleanUpProvince } from "./CleanupProvince";
 import { getMarriageAlliance, getRelation } from "./DiplomacyLogic";
 import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
+   addProvinceStat,
    ensureProvinceCapitals,
    getMediterraneanCoastalTiles,
    getProvinceCoreCoastalTileCount,
@@ -78,6 +80,9 @@ export function annexTiles({
 function onProvinceFullyAnnexed(annexedProvince: Province, province: Province, save: SaveGame): void {
    cleanUpProvince(annexedProvince, save);
    addProvinceResource("mandate", 1, province, save);
+   if (annexedProvince in SpawnedProvinces) {
+      addProvinceStat("eliminatedBarbarians", 1, province, save);
+   }
 }
 
 export function tileIsOurCoreCondition(tile: Tile, province: Province, save: SaveGame): ICondition {
@@ -151,6 +156,13 @@ export function* warPowerChecks(minimum: number, province: Province, save: SaveG
    const warPower = getWarPower({}, province, save).total.value;
    (yield warPower >= minimum)?.describe($t(L.Reach$1WarPower, formatNumber(minimum)), {
       progress: [warPower, minimum],
+   });
+}
+
+export function* eliminatedBarbariansChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
+   const eliminated = getProvinceStat("eliminatedBarbarians", province, save);
+   (yield eliminated >= minimum)?.describe($t(L.EliminateAtLeast$1BarbarianPolities, formatNumber(minimum)), {
+      progress: [eliminated, minimum],
    });
 }
 

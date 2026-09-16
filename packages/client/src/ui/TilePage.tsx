@@ -5,6 +5,7 @@ import {
    AbolishRegionalCapitalAction,
    EstablishRegionalCapitalAction,
    RelocateCapitalAction,
+   RelocateCapitalModifier,
 } from "../game/actions/CapitalActions";
 import { finalizeCondition } from "../game/actions/GameAction";
 import { Buildings } from "../game/definitions/Building";
@@ -17,7 +18,7 @@ import { isChristianReligion, Religion } from "../game/definitions/Religion";
 import { Terrains } from "../game/definitions/Terrain";
 import { NewSettlementTiles } from "../game/definitions/TileConstants";
 import { getTileName } from "../game/definitions/TileName";
-import { RelocateCapitalModifier, TimedActions } from "../game/definitions/TimedAction";
+import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getGameDate } from "../game/logic/GameDateTime";
 import { MapBackgroundColors } from "../game/logic/MapColor";
@@ -55,6 +56,7 @@ import { html } from "./components/RenderHTMLComp";
 import { DiplomacyPage } from "./DiplomacyPage";
 import { GreatWorkComponent } from "./GreatWorkComponent";
 import { MakeCoreButton } from "./MakeCoreButton";
+import { PillageButton } from "./PillageButton";
 import { SettleTilePage } from "./SettleTilePage";
 import { TileAutonomyComp } from "./TileAutonomyComp";
 import { TileBuildingsModal } from "./TileBuildingsModal";
@@ -258,18 +260,30 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
          </div>
          <div className="h1 my10">{$t(L.Upgrades)}</div>
          <div className="row mx10">
-            <UpgradeInfrastructureButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.infrastructure}</div>
-               <div className="text-sm text-display">{$t(L.Infrastructure)}</div>
-            </UpgradeInfrastructureButton>
-            <UpgradeProductionButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.production}</div>
-               <div className="text-sm text-display">{$t(L.Production)}</div>
-            </UpgradeProductionButton>
-            <UpgradePopulationButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.population}</div>
-               <div className="text-sm text-display">{$t(L.Population)}</div>
-            </UpgradePopulationButton>
+            <div className="f1">
+               <UpgradeInfrastructureButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.infrastructure}</div>
+                  <div className="text-sm text-display">{$t(L.Infrastructure)}</div>
+               </UpgradeInfrastructureButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="infrastructure" />
+            </div>
+            <div className="f1">
+               <UpgradeProductionButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.production}</div>
+                  <div className="text-sm text-display">{$t(L.Production)}</div>
+               </UpgradeProductionButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="production" />
+            </div>
+            <div className="f1">
+               <UpgradePopulationButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.population}</div>
+                  <div className="text-sm text-display">{$t(L.Population)}</div>
+               </UpgradePopulationButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="population" />
+            </div>
          </div>
          <div className="h5" />
          <div className="mx10">

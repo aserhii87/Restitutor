@@ -1,11 +1,6 @@
-import { forEach } from "@project/shared/src/utils/Helper";
 import { type DependencyList, useEffect, useState } from "react";
-import { showPanel } from "../ui/common/ShowPanel";
-import { tryDismissSidebar } from "../ui/common/SidebarManager";
-import { SettingsSingletonModal } from "../ui/SettingsSingletonModal";
-import { G, isDev, revertSpeed, setSpeed } from "../utils/Global";
+import { isDev } from "../utils/Global";
 import { useTypedEvent } from "../utils/Hook";
-import { hasOpenModal, tryDismissTopModal } from "../utils/ModalManager";
 import { CurrentShortcuts, OnKeydown, OnKeyup } from "./Events";
 import type { IShortcutConfig, Shortcut } from "./ShortcutDefinition";
 
@@ -65,21 +60,6 @@ export function makeShortcut(e: {
    };
 }
 
-CurrentShortcuts.set("Pause", () => {
-   if (G.speed !== 0) {
-      setSpeed(0);
-   } else {
-      revertSpeed();
-   }
-});
-
-CurrentShortcuts.set("CloseOpenModal", () => {
-   if (tryDismissTopModal() || hasOpenModal() || tryDismissSidebar()) {
-      return;
-   }
-   showPanel(SettingsSingletonModal, {});
-});
-
 export const useShortcut = (shortcut: Shortcut, callback: (event: KeyboardEvent) => void, deps: DependencyList) => {
    useEffect(() => {
       CurrentShortcuts.set(shortcut, callback);
@@ -88,34 +68,6 @@ export const useShortcut = (shortcut: Shortcut, callback: (event: KeyboardEvent)
       };
    }, [shortcut, callback, ...deps]);
 };
-
-export function initShortcut(): void {
-   window.addEventListener("keydown", (e) => {
-      OnKeydown.emit(e);
-      const isTextInput =
-         e.target instanceof HTMLTextAreaElement ||
-         (e.target instanceof HTMLInputElement && (!e.target.type || e.target.type === "text")) ||
-         (e.target as HTMLElement).isContentEditable;
-      if (isTextInput) {
-         return;
-      }
-      const shortcut = makeShortcut(e);
-
-      forEach(G.save.options.shortcuts, (key, config) => {
-         if (isShortcutEqual(config, shortcut)) {
-            const callback = CurrentShortcuts.get(key);
-            if (callback) {
-               e.preventDefault();
-               e.stopPropagation();
-               callback(e);
-            }
-         }
-      });
-   });
-   window.addEventListener("keyup", (e) => {
-      OnKeyup.emit(e);
-   });
-}
 
 export function useDebugKey(): boolean {
    const [isDebug, setIsDebug] = useState(false);

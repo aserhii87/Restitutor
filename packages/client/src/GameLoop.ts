@@ -1,9 +1,9 @@
 import { hasFlag } from "@project/shared/src/utils/Helper";
 import { GameOptionUpdated, GameStateUpdated } from "./game/Events";
 import { GameOptionFlag } from "./game/GameOption";
+import { initShortcut } from "./game/InitShortcut";
 import { saveGame } from "./game/LoadSave";
 import { tickLogic } from "./game/logic/TickLogic";
-import { initShortcut } from "./game/Shortcut";
 import { TechTreeScene } from "./scenes/TechTreeScene";
 import { WorldScene } from "./scenes/WorldScene";
 import { tickActions } from "./utils/actions/ActionRuntime";

@@ -771,6 +771,20 @@ export const UpgradeCostGrowthFactor = 1.2;
 
 export const getTileUpgradeCost = defineValueGetter(
    (tile: Tile, resource: GovernorPower, save: SaveGame, mode: EvaluationMode = "breakdown") => {
+      return getTileUpgradeCostAtCount(tile, resource, save.state.tiles.get(tile)?.upgradeCount ?? 0, save, mode);
+   },
+);
+
+export function getTilePillageRefund(tile: Tile, resource: GovernorPower, save: SaveGame): number {
+   const upgradeCount = save.state.tiles.get(tile)?.upgradeCount ?? 0;
+   if (upgradeCount - 1 < 0) {
+      return 0;
+   }
+   return 0.5 * getTileUpgradeCostAtCount(tile, resource, upgradeCount - 1, save, "value");
+}
+
+const getTileUpgradeCostAtCount = defineValueGetter(
+   (tile: Tile, resource: GovernorPower, upgradeCount: number, save: SaveGame, mode: EvaluationMode = "breakdown") => {
       const calc = new ValueCalculation({ mode, reverse: true });
       const data = save.state.tiles.get(tile);
       if (!data) {
@@ -782,8 +796,8 @@ export const getTileUpgradeCost = defineValueGetter(
       }
       calc.add(50)?.describe($t(L.BaseValue));
       calc
-         .multiply(UpgradeCostGrowthFactor ** data.upgradeCount - 1)
-         ?.describe($t(L.TileUpgrades), $t(L.TileUpgradesCostDesc$1, formatNumber(data.upgradeCount)));
+         .multiply(UpgradeCostGrowthFactor ** upgradeCount - 1)
+         ?.describe($t(L.TileUpgrades), $t(L.TileUpgradesCostDesc$1, formatNumber(upgradeCount)));
       if (data.culture === state.culture) {
          calc.multiply(-0.1)?.describe($t(L.DominantCulture));
       } else if (state.toleratedCultures.has(data.culture)) {

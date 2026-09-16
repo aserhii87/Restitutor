@@ -10,7 +10,7 @@ import {
 import { RefreshTiles } from "../Events";
 import { getOriginalTileCount } from "../GameState";
 import type { ConditionChecks } from "../logic/Calculation";
-import { allyCountChecks, minCoreTileChecks, techCountChecks } from "../logic/MissionLogic";
+import { allyCountChecks, eliminatedBarbariansChecks, minCoreTileChecks, techCountChecks } from "../logic/MissionLogic";
 import { isGreatPowerChecks, setProvinceNameOverride } from "../logic/ProvinceLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
@@ -234,6 +234,22 @@ export const MissionEvents = {
                GoverningCapacity: { type: "add", value: 100 },
                MilitaryPoint: { type: "add", value: 1 },
             },
+         },
+      ],
+   },
+   Mission8: {
+      name: () => $t(L.TheSpoilsOfVictory),
+      image: EventImage.GallicSack,
+      desc: () => $t(L.TheSpoilsOfVictoryDesc),
+      condition: {
+         conditions: function* (province, save): ConditionChecks {
+            yield* eliminatedBarbariansChecks(1, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.SanctionPlunderForOurProvince),
+            provinceUpgrades: ["RightOfPlunder"],
          },
       ],
    },

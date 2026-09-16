@@ -717,14 +717,13 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 10,
    };
+   Pillage: ITimedAction = {
+      name: () => $t(L.Pillage),
+      desc: () => $t(L.TimedActionPillageDesc$1$2$3$4, "1", "50%", "10", "5"),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
 }
-
-export const RelocateCapitalModifier: { modifier: Modifier } & IBaseModifier = {
-   modifier: "Stability",
-   type: "add",
-   value: -10,
-   duration: 24,
-};
 
 export type TimedAction = keyof TimedActionDefinitions;
 export type TimedEffectAction = {

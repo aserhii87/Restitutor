@@ -1,7 +1,8 @@
 import type { Tile } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
+import type { IBaseModifier, Modifier } from "../definitions/Modifier";
 import type { Province } from "../definitions/Province";
-import { RelocateCapitalModifier, TimedActions } from "../definitions/TimedAction";
+import { TimedActions } from "../definitions/TimedAction";
 import { RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { clearAllCaches } from "../logic/CacheLogic";
@@ -90,3 +91,9 @@ export function RelocateCapitalAction(tile: Tile, province: Province, save: Save
       },
    };
 }
+export const RelocateCapitalModifier: { modifier: Modifier } & IBaseModifier = {
+   modifier: "Stability",
+   type: "add",
+   value: -10,
+   duration: 24,
+};

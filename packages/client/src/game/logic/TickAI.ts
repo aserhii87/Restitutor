@@ -741,17 +741,20 @@ function doTreaties(province: Province, candidates: Province[], save: SaveGame):
 }
 
 const PreferredBuildings = new Set<Building>(["TownSquare", "Forum"]);
-const BuildingOrder = keysOf(Buildings).sort((a, b) => {
-   if (PreferredBuildings.has(a)) {
-      return -1;
-   }
-   if (PreferredBuildings.has(b)) {
-      return 1;
-   }
-   return (Buildings[a].construction.gold ?? 0) - (Buildings[b].construction.gold ?? 0);
-});
+function getBuildingOrder(): Building[] {
+   return keysOf(Buildings).sort((a, b) => {
+      if (PreferredBuildings.has(a)) {
+         return -1;
+      }
+      if (PreferredBuildings.has(b)) {
+         return 1;
+      }
+      return (Buildings[a].construction.gold ?? 0) - (Buildings[b].construction.gold ?? 0);
+   });
+}
 
 function constructBuildings(province: Province, save: SaveGame): void {
+   const buildingOrders = getBuildingOrder();
    const tiles = getProvinceTilesCached(province).sort((tileA, tileB) => {
       return (save.state.tiles.get(tileA)?.buildings.size ?? 0) - (save.state.tiles.get(tileB)?.buildings.size ?? 0);
    });
@@ -768,7 +771,7 @@ function constructBuildings(province: Province, save: SaveGame): void {
          continue;
       }
 
-      for (const building of BuildingOrder) {
+      for (const building of buildingOrders) {
          if (tileData.buildings.has(building)) {
             continue;
          }

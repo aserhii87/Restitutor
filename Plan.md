@@ -6,6 +6,14 @@
 - Governing and maintenance costs now use the distance to the nearest provincial or regional capital, reducing costs for nearby tiles.
 - Regional capitals receive -45% governing cost, +5% defense, and -25 unrest, and have distinct map markers.
 
+## Right of Plunder
+
+- Eliminating a barbarian polity unlocks a mission granting Right of Plunder.
+- Pillage buttons appear below the corresponding upgrade buttons on the tile page.
+- Pillage Infrastructure, Production, or Population on an non-core tile, reducing the selected upgrade and the tile's upgrade times by 1.
+- Pillaging refunds 50% of the corresponding government-point cost, calculated using the current owner's modifiers.
+- All pillaging actions share a 5-year provincial cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
+
 ## Legacy Tree
 
 - Added a legacy upgrade granting +1 regional capital slot.
@@ -19,7 +27,6 @@
 
 ## Plans
 
-[ ] Becoming "Barbarian" and razing Tile Upgrades
 [ ] Settlements events for Pannonia/Noricum/Raetia/Germania
 [ ] Dalmatia events
 [ ] Crisis of the 3rd Century

@@ -3773,4 +3773,18 @@ export const ES = {
    $1TilesFromNearestCapital$2PerTile: "$1 casillas desde la capital más cercana, $2 por casilla",
    TimedActionEstablishRegionalCapitalDesc: "Establecer una capital regional reduce los costes de gobierno y mantenimiento derivados de la distancia en los territorios cercanos de nuestra provincia.",
    AbolishRegionalCapital: "Suprimir capital regional",
+   PillageInfrastructure: "Saquear la infraestructura",
+   PillageProduction: "Saquear la producción",
+   PillagePopulation: "Saquear la población",
+   SelectedTileUpgradeIsAtLeast$1: "El nivel de la mejora territorial seleccionada es de al menos $1",
+   TileHasBeenUpgradedAtLeast$1Times: "El territorio se ha mejorado al menos $1 veces",
+   RightOfPlunder: "Derecho de saqueo",
+   Pillage: "Saquear",
+   TimedActionPillageDesc$1$2$3$4: "Reduce en $1 el nivel de la mejora territorial seleccionada y el número de veces que se ha mejorado el territorio, recuperando el $2 del coste de restaurar esa mejora con los modificadores actuales. El territorio gana $3 de malestar durante $4 años.",
+   EliminateAtLeast$1BarbarianPolities: "Eliminar al menos $1 entidades políticas bárbaras",
+   EliminatedBarbarianPolities: "Entidades políticas bárbaras eliminadas",
+   TheSpoilsOfVictory: "El botín de la victoria",
+   TheSpoilsOfVictoryDesc:
+      "Hemos doblegado a una entidad política bárbara. Nuestros comandantes nos instan ahora a poner los métodos de nuestros enemigos vencidos al servicio de la provincia. Saquear nuestros territorios que no son núcleos podría fortalecer nuestra administración y nuestros ejércitos, pero sus habitantes recordarían la devastación.",
+   SanctionPlunderForOurProvince: "Autorizar saqueos para nuestra provincia",
 };
