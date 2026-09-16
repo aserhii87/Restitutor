@@ -1,5 +1,6 @@
 import { Progress } from "@mantine/core";
 import { formatNumber, formatPercent } from "@project/shared/src/utils/Helper";
+import { getProvinceName } from "../game/logic/ProvinceLogic";
 import { getWarEstimatedTime, getWarPowerComparison, type IWar, isWarStalled } from "../game/logic/WarLogic";
 import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
@@ -16,31 +17,41 @@ export function WarTooltip({ war }: { war: IWar }): React.ReactNode {
    const estimatedTimeLeft = getWarEstimatedTime(war.requiredWarScore - war.actualWarScore, successChance);
    return (
       <>
-         <div className="h2">{$t(L.$1$2War, war.attacker, war.defender)}</div>
+         <div className="h2">
+            {$t(L.$1$2War, getProvinceName(war.attacker, G.save), getProvinceName(war.defender, G.save))}
+         </div>
          <div className="row mx10 my5">
             <div className="f1">{$t(L.Attacker)}</div>
             <div>
-               {war.attacker}
+               {getProvinceName(war.attacker, G.save)}
                {war.attacker === G.save.state.playerProvince && <span className="text-yellow"> {$t(L.Us)}</span>}
             </div>
          </div>
          {war.coAttackers.size > 0 && (
             <div className="row mx10 my5">
                <div className="f1">{$t(L.CoAttackers)}</div>
-               <div>{Array.from(war.coAttackers.keys()).join(", ")}</div>
+               <div>
+                  {Array.from(war.coAttackers.keys())
+                     .map((province) => getProvinceName(province, G.save))
+                     .join(", ")}
+               </div>
             </div>
          )}
          <div className="row mx10 my5">
             <div className="f1">{$t(L.Defender)}</div>
             <div>
-               {war.defender}
+               {getProvinceName(war.defender, G.save)}
                {war.defender === G.save.state.playerProvince && <span className="text-yellow"> {$t(L.Us)}</span>}
             </div>
          </div>
          {war.coDefenders.size > 0 && (
             <div className="row mx10 my5">
                <div className="f1">{$t(L.CoDefenders)}</div>
-               <div>{Array.from(war.coDefenders.keys()).join(", ")}</div>
+               <div>
+                  {Array.from(war.coDefenders.keys())
+                     .map((province) => getProvinceName(province, G.save))
+                     .join(", ")}
+               </div>
             </div>
          )}
          <div className="divider my10" />
@@ -73,17 +84,20 @@ export function WarTooltip({ war }: { war: IWar }): React.ReactNode {
          </div>
          {war.actualWarScore >= war.requiredWarScore && (
             <div className="mx10 my5 text-green">
-               {$t(L.$1HasWonTheWarAfter$2Months, war.attacker, formatNumber(war.log.length))}
+               {$t(L.$1HasWonTheWarAfter$2Months, getProvinceName(war.attacker, G.save), formatNumber(war.log.length))}
             </div>
          )}
          {successChance <= 0.5 && (
             <div className="mx10 my5 text-red">
-               {$t(L.$1IsNotExpectedToWinDueToLessThanA50ChanceOfASuccessfulAttack, war.attacker)}
+               {$t(
+                  L.$1IsNotExpectedToWinDueToLessThanA50ChanceOfASuccessfulAttack,
+                  getProvinceName(war.attacker, G.save),
+               )}
             </div>
          )}
          {isWarStalled(war, G.save) && (
             <div className="mx10 my5 text-yellow">
-               {$t(L.WarIsStalledDueToInsufficientMilitaryPointsFrom$1, war.attacker)}
+               {$t(L.WarIsStalledDueToInsufficientMilitaryPointsFrom$1, getProvinceName(war.attacker, G.save))}
             </div>
          )}
       </>

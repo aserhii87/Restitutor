@@ -67,7 +67,12 @@ export function LeaveWarCoalitionAction(war: IWar, province: Province, save: Sav
             save,
          );
          if (!headless) {
-            showSuccess($t(L.WeHaveLeftThe$1War, `${war.attacker}-${war.defender}`));
+            showSuccess(
+               $t(
+                  L.WeHaveLeftThe$1War,
+                  `${getProvinceName(war.attacker, save)}-${getProvinceName(war.defender, save)}`,
+               ),
+            );
             hideModal();
          }
       },

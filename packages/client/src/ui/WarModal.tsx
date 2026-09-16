@@ -23,6 +23,7 @@ import { GameStateUpdated } from "../game/Events";
 import { getMercenaryCost, getWarPower } from "../game/logic/ArmyLogic";
 import { monthToDate } from "../game/logic/GameDateTime";
 import { getAvailablePeaceTreatyOptions } from "../game/logic/PeaceTreatyLogic";
+import { getProvinceName } from "../game/logic/ProvinceLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
 import { getTimedActionTimeLeft } from "../game/logic/TimedActionLogic";
 import {
@@ -66,7 +67,15 @@ export function WarModal({ war }: { war: IWar }): React.ReactNode {
    const estimatedTimeLeft = getWarEstimatedTime(war.requiredWarScore - war.actualWarScore, successChance);
    const forceAttack = getTimedActionTimeLeft("ForceAttack", war.attacker, G.save);
    return (
-      <ModalComp size="lg" title={<ModalTitleBar title={$t(L.$1$2War, war.attacker, war.defender)} dismiss />}>
+      <ModalComp
+         size="lg"
+         title={
+            <ModalTitleBar
+               title={$t(L.$1$2War, getProvinceName(war.attacker, G.save), getProvinceName(war.defender, G.save))}
+               dismiss
+            />
+         }
+      >
          <WarPowerComp
             attacker={war.attacker}
             coAttackers={war.coAttackers}
@@ -112,7 +121,7 @@ export function WarModal({ war }: { war: IWar }): React.ReactNode {
          )}
          {isWon && (
             <div className="mx10 my5 text-green">
-               {$t(L.After$1Months$2HasWonTheWar, formatNumber(war.log.length), war.attacker)}
+               {$t(L.After$1Months$2HasWonTheWar, formatNumber(war.log.length), getProvinceName(war.attacker, G.save))}
             </div>
          )}
          {war.attacker === G.save.state.playerProvince && !isWon && successChance <= 0.5 && (
@@ -363,7 +372,7 @@ function LeaveWarCoalitionButton({ war, province }: { war: IWar; province: Provi
                <div className="m10">
                   {$t(
                      L.LeavingWarCoalitionTooltip$1$2$3,
-                     coalitionLeader,
+                     getProvinceName(coalitionLeader, G.save),
                      "50",
                      formatNumber(getTruceDuration(war, G.save).value),
                   )}

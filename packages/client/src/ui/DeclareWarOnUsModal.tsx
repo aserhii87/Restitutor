@@ -1,6 +1,7 @@
 import { CasusBelli } from "../game/definitions/CasusBelli";
 import { getTileName } from "../game/definitions/TileName";
 import { EventImage } from "../game/events/EventImages";
+import { getProvinceName } from "../game/logic/ProvinceLogic";
 import type { IWar } from "../game/logic/WarLogic";
 import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
@@ -15,9 +16,14 @@ export function DeclareWarOnUsModal({ war }: { war: IWar }): React.ReactNode {
       .join(", ");
    return (
       <GenericEventModal
-         title={$t(L.$1DeclaredWar, war.attacker)}
+         title={$t(L.$1DeclaredWar, getProvinceName(war.attacker, G.save))}
          content={html(
-            $t(L.GovernorDeclaredWarOnUsDesc$1$2$3, war.attacker, CasusBelli[war.casusBelli].name(), warGoal),
+            $t(
+               L.GovernorDeclaredWarOnUsDesc$1$2$3,
+               getProvinceName(war.attacker, G.save),
+               CasusBelli[war.casusBelli].name(),
+               warGoal,
+            ),
          )}
          image={EventImage.HoratiiOath.url}
          titleTooltip={() => <div className="m10">{$t(L.ImageCredit$1, EventImage.HoratiiOath.credit)}</div>}

@@ -1,6 +1,7 @@
 import { getTileName } from "../game/definitions/TileName";
 import { EventImage } from "../game/events/EventImages";
 import type { PeaceTreatyOption } from "../game/logic/PeaceTreatyLogic";
+import { getProvinceName } from "../game/logic/ProvinceLogic";
 import type { IWar } from "../game/logic/WarLogic";
 import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
@@ -22,8 +23,10 @@ export function InvaderConqueredWarGoalModal({
       .join(", ");
    return (
       <GenericEventModal
-         title={$t(L.$1DefeatedUs, war.attacker)}
-         content={html($t(L.InvaderConqueredWarGoalDesc$1$2$3, war.log.length, war.attacker, warGoal))}
+         title={$t(L.$1DefeatedUs, getProvinceName(war.attacker, G.save))}
+         content={html(
+            $t(L.InvaderConqueredWarGoalDesc$1$2$3, war.log.length, getProvinceName(war.attacker, G.save), warGoal),
+         )}
          image={EventImage.CarthageCaptured.url}
          titleTooltip={() => <div className="m10">{$t(L.ImageCredit$1, EventImage.CarthageCaptured.credit)}</div>}
          buttons={[
