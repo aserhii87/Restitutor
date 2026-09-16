@@ -2,7 +2,7 @@ import { LiveUpdate } from "@capawesome/capacitor-live-update";
 import { Platform, type Product, ProductType, store } from "capacitor-plugin-cdv-purchase";
 import { showPanel } from "../ui/common/ShowPanel";
 import { MobilePurchaseSingletonModal } from "../ui/MobilePurchaseSingletonModal";
-import { isMobilePlatform } from "./NativeUtils";
+import { isMobilePlatform, readFile, writeFile } from "./NativeUtils";
 import { getBuildNumber } from "./Version";
 
 export async function initMobile(): Promise<void> {
@@ -68,19 +68,19 @@ export async function initInAppPurchase(): Promise<void> {
             _product = product;
          }
       })
-      .approved((transaction) => {
+      .approved(async (transaction) => {
          _product = store.get(ProductId);
          if (transaction.products.some((p) => p.id === ProductId)) {
-            setLocalPurchase(true);
+            await setLocalPurchase(true);
             transaction.finish();
          }
       })
       .receiptUpdated(async (receipt) => {
          _product = store.get(ProductId);
          if (store.owned(ProductId)) {
-            setLocalPurchase(true);
+            await setLocalPurchase(true);
          } else {
-            setLocalPurchase(false);
+            await setLocalPurchase(false);
          }
       });
 
@@ -89,19 +89,23 @@ export async function initInAppPurchase(): Promise<void> {
 
 const LocalPurchase = "RestitutorLocalPurchase";
 
-export function isMobilePurchased(): boolean {
-   return getLocalPurchase() || store.owned(ProductId);
+export async function isMobilePurchased(): Promise<boolean> {
+   return (await getLocalPurchase()) || store.owned(ProductId);
 }
 
-function getLocalPurchase(): boolean {
-   return localStorage.getItem(LocalPurchase) === "true";
+async function getLocalPurchase(): Promise<boolean> {
+   try {
+      return (await readFile(LocalPurchase)) === "true";
+   } catch {
+      return false;
+   }
 }
 
-function setLocalPurchase(purchased: boolean): void {
-   if (purchased && !getLocalPurchase()) {
+async function setLocalPurchase(purchased: boolean): Promise<void> {
+   if (purchased && !(await getLocalPurchase())) {
       showPanel(MobilePurchaseSingletonModal, {});
    }
-   localStorage.setItem(LocalPurchase, purchased ? "true" : "false");
+   await writeFile(LocalPurchase, purchased ? "true" : "false");
 }
 
 export async function purchaseMobile() {

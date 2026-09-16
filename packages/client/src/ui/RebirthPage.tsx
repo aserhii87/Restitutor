@@ -13,7 +13,7 @@ import { saveGame } from "../game/LoadSave";
 import { showError } from "../game/logic/AlertLogic";
 import { getLegacyPointsNextRun, rebirth } from "../game/logic/LegacyUpgradeLogic";
 import { getProvinceName, getProvinceOriginalGreatWorks } from "../game/logic/ProvinceLogic";
-import { isMobilePurchased, purchaseMobile, restorePurchaseMobile } from "../game/Mobile";
+import { purchaseMobile, restorePurchaseMobile } from "../game/Mobile";
 import { isMobilePlatform } from "../game/NativeUtils";
 import { RomeMap } from "../game/RomeMap";
 import { WorldScene } from "../scenes/WorldScene";
@@ -36,7 +36,7 @@ export function RebirthPage(): React.ReactNode {
       <SidebarComp title={<SidebarImageHeader image={HeaderImages.Rebirth} title={$t(L.Rebirth)} />}>
          <div className="h1">{$t(L.LegacyPointsForNextRun)}</div>
          <BreakdownComp breakdown={legacyPointsNextRun} />
-         {isMobilePlatform() && !isMobilePurchased() && (
+         {isMobilePlatform() && hasFlag(G.flags, GameFlags.Demo) && (
             <>
                <div className="h1">{$t(L.PurchaseFullGame)}</div>
                <div className="col m10 g5">

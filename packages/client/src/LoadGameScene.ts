@@ -41,9 +41,11 @@ export function loadGameScene() {
    }
 
    if (isMobilePlatform()) {
-      if (isMobilePurchased()) {
-         G.flags = clearFlag(G.flags, GameFlags.Demo);
-      }
+      isMobilePurchased().then((purchased) => {
+         if (purchased) {
+            G.flags = clearFlag(G.flags, GameFlags.Demo);
+         }
+      });
    }
 
    if (G.params.has("legacy")) {
