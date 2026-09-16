@@ -49,6 +49,10 @@ export const Modifiers = {
       name: () => $t(L.Prestige),
       desc: () => $t(L.ModifierPrestigeDesc),
    },
+   RegionalCapitalCount: {
+      name: () => $t(L.RegionalCapital),
+      desc: () => $t(L.ModifierRegionalCapitalCountDesc),
+   },
    GoverningCapacity: {
       name: () => $t(L.GoverningCapacity),
       desc: () => $t(L.ModifierGoverningCapacityDesc),

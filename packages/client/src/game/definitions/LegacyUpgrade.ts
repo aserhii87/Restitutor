@@ -199,6 +199,13 @@ export class LegacyUpgradeDefinitions {
          MakeCoreCost: { type: "multiply", value: -0.1 },
       },
    } as const;
+   RegionalCapitalCount1: ILegacyUpgradeModifier = {
+      requires: ["MakeCore1"],
+      position: [4, 5],
+      modifiers: {
+         RegionalCapitalCount: { type: "add", value: 1 },
+      },
+   } as const;
    Defense1: ILegacyUpgradeModifier = {
       requires: ["InfrastructureUpgrade1"],
       position: [2, 4],

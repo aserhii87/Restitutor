@@ -142,6 +142,7 @@ export interface IProvince {
    advisors: Record<GovernorPower, { selected: IAdvisor | null; candidates: IAdvisor[] }>;
    focus: GovernorPower;
    capital: Tile;
+   regionalCapitals: Set<Tile>;
    rivals: [Province | null, Province | null];
    _relations: Map<Province, IRelation>;
    unlockedTech: Set<Tech>;
@@ -199,6 +200,7 @@ export const AIActions = [
    "ChangeRival",
    "Denounce",
    "SetGovernmentFocus",
+   "EstablishRegionalCapital",
 ] as const;
 export type AIAction = (typeof AIActions)[number];
 

@@ -53,6 +53,21 @@ export function isCapital(tile: Tile, save: SaveGame): boolean {
    return state.capital === tile;
 }
 
+export function isRegionalCapital(tile: Tile, save: SaveGame): boolean {
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return false;
+   }
+   if (!data.coreProvinces.has(data.province)) {
+      return false;
+   }
+   const state = save.state.provinces[data.province];
+   return state !== undefined && state.capital !== tile && state.regionalCapitals.has(tile);
+}
+
+export const RegionalCapitalGoverningCostModifier = -0.45;
+export const GoverningCostPerTileDistance = 0.05;
+
 export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown({ reverse: true });
    const data = save.state.tiles.get(tile);
@@ -95,14 +110,16 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
          });
       }
    }
-   const distanceFromCapital = getDistanceFromCapital(tile, save);
+   const distanceFromCapital = getDistanceFromNearestCapital(tile, save);
    breakdown.multiply.push({
-      name: $t(L.DistanceFromCapital),
-      desc: $t(L.$1TilesFromCapital$2PerTile, formatNumber(distanceFromCapital), "5%"),
-      value: distanceFromCapital * 0.05,
+      name: $t(L.DistanceFromNearestCapital),
+      desc: $t(L.$1TilesFromNearestCapital$2PerTile, formatNumber(distanceFromCapital), "5%"),
+      value: distanceFromCapital * GoverningCostPerTileDistance,
    });
    if (isCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.IsCurrentCapital), value: -0.9 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.multiply.push({ name: $t(L.RegionalCapital), value: RegionalCapitalGoverningCostModifier });
    }
    const terrain = getTileTerrain(tile);
    if (terrain === "Mountain") {
@@ -193,7 +210,7 @@ function _getTileManpower(tile: Tile, save: SaveGame): IValueBreakdown {
 
 export const getTileDefense = cacheTile(_getTileDefense);
 
-export function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
+function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const data = save.state.tiles.get(tile);
    if (!data) {
@@ -231,6 +248,8 @@ export function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
    }
    if (isCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.IsCurrentCapital), value: +0.1 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.multiply.push({ name: $t(L.RegionalCapital), value: 0.05 });
    }
    if (!isConnectedToCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.NotConnectedToCapital), value: -0.1 });
@@ -303,6 +322,8 @@ function _getTileUnrest(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    if (isCapital(tile, save)) {
       breakdown.add.push({ name: $t(L.IsCurrentCapital), value: -50 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.add.push({ name: $t(L.RegionalCapital), value: -25 });
    }
    attachTileModifiers(data.modifiers.Unrest, breakdown);
    if (data.buildings.has("Amphitheatre")) {
@@ -473,7 +494,7 @@ export const ImportRangeUpgradeFactor = 10;
 
 export const getTileOutput = cacheTile(_getTileOutput);
 
-export function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
+function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const data = save.state.tiles.get(tile);
    if (!data) {
@@ -595,7 +616,7 @@ function _getTileGoodsTax(tile: Tile, save: SaveGame): number {
    return goodsProduction * Price[data.goods] * goodsTaxRate;
 }
 
-export function getDistanceFromCapital(tile: Tile, save: SaveGame): number {
+export function getDistanceFromNearestCapital(tile: Tile, save: SaveGame): number {
    const data = save.state.tiles.get(tile);
    if (!data) {
       return 0;
@@ -604,8 +625,13 @@ export function getDistanceFromCapital(tile: Tile, save: SaveGame): number {
    if (!state) {
       return 0;
    }
-   const capital = state.capital;
-   return MapGrid.distanceTile(tile, capital);
+   let distance = MapGrid.distanceTile(tile, state.capital);
+   for (const capital of state.regionalCapitals) {
+      if (isRegionalCapital(capital, save) && save.state.tiles.get(capital)?.province === data.province) {
+         distance = Math.min(distance, MapGrid.distanceTile(tile, capital));
+      }
+   }
+   return distance;
 }
 
 export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile, save, mode) => {
@@ -618,12 +644,16 @@ export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile
    if (!state) {
       return calc.finish();
    }
-   const distance = getDistanceFromCapital(tile, save);
+   const distance = getDistanceFromNearestCapital(tile, save);
    calc
       .add(distance * MaintenanceCostPerTileDistance)
       ?.describe(
-         $t(L.DistanceFromCapital),
-         $t(L.$1TilesFromCapital$2GoldPerTile, formatNumber(distance), formatNumber(MaintenanceCostPerTileDistance)),
+         $t(L.DistanceFromNearestCapital),
+         $t(
+            L.$1TilesFromNearestCapital$2GoldPerTile,
+            formatNumber(distance),
+            formatNumber(MaintenanceCostPerTileDistance),
+         ),
       );
    if (data.culture === state.culture) {
       calc.multiply(-0.1)?.describe($t(L.DominantCulture));
@@ -686,7 +716,7 @@ export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile
    return calc.finish();
 });
 
-const MaintenanceCostPerTileDistance = 1;
+export const MaintenanceCostPerTileDistance = 1;
 
 export function getTileWar(tile: Tile, save: SaveGame): IWar | undefined {
    for (const war of save.state.wars) {

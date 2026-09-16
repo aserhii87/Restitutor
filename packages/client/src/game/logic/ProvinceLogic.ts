@@ -46,9 +46,11 @@ import { RomeMap } from "../RomeMap";
 import { getArmyMaintenanceCost, getWarPower, getWarPowerPerTile } from "./ArmyLogic";
 import { cacheProvince } from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
+import { getRegionalCapitalCount } from "./CapitalLogic";
 import { getRelation } from "./DiplomacyLogic";
 import { generateRandomGovernor } from "./GovernorLogic";
 import { getCulturalCohesion, getReligiousCohesion } from "./InternalAffairsLogic";
+import { annexTiles } from "./MissionLogic";
 import { addModifier, attachModifiers } from "./ModifierLogic";
 import { addProvinceResource } from "./ResourceLogic";
 import { getBaselineTechs } from "./TechLogic";
@@ -289,6 +291,7 @@ export function initProvince(province: Province, capital: Tile): IProvince {
       },
       focus: "administrative",
       capital: capital,
+      regionalCapitals: new Set(),
       rivals: [null, null],
       _relations: new Map(),
       unlockedTech: new Set(["A1", "A2", "A3"]),
@@ -443,14 +446,29 @@ function _getProvinceIncome(
 export function ensureProvinceCapitals(save: SaveGame): Tile[] {
    const result: Tile[] = [];
    forEach(save.state.provinces, (province, state) => {
-      if (save.state.tiles.get(state.capital)?.province === province) {
-         return;
+      if (save.state.tiles.get(state.capital)?.province !== province) {
+         for (const [tile, data] of save.state.tiles) {
+            if (data.province === province) {
+               state.capital = tile;
+               result.push(tile);
+               break;
+            }
+         }
       }
-      for (const [tile, data] of save.state.tiles) {
-         if (data.province === province) {
-            state.capital = tile;
+      const limit = getRegionalCapitalCount(province, save);
+      let retained = 0;
+      for (const tile of state.regionalCapitals) {
+         const data = save.state.tiles.get(tile);
+         if (
+            data?.province !== province ||
+            !data.coreProvinces.has(province) ||
+            tile === state.capital ||
+            retained >= limit
+         ) {
+            state.regionalCapitals.delete(tile);
             result.push(tile);
-            return;
+         } else {
+            ++retained;
          }
       }
    });
@@ -597,14 +615,13 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
          data.coreProvinces.forEach((p) => {
             provinces.add(p);
          });
-         data.province = province;
-         data.coreProvinces.add(province);
          data.rebellion = 0;
          data.culture = Province[province].culture;
          data.religion = Province[province].religion;
          data.modifiers.Unrest.length = 0;
       }
    });
+   const refreshedTiles = annexTiles({ tiles: config.tiles, core: true, province, save });
    GameStateUpdated.emit();
 
    forEach(config.stats, (key, value) => {
@@ -652,7 +669,7 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
 
    startTimedAction("BarbarianInvasions", province, save);
 
-   return [...config.tiles, ...ensureProvinceCapitals(save)];
+   return refreshedTiles;
 }
 
 export function getNeighborProvinces(province: Province, save: SaveGame): Set<Province> {

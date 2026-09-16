@@ -2,10 +2,10 @@ import type { Tile } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { Province } from "../definitions/Province";
 import { TimedActions } from "../definitions/TimedAction";
-import { RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { toConditions } from "../logic/Calculation";
 import { getAnnexClientCost, getRelation } from "../logic/DiplomacyLogic";
+import { annexTiles } from "../logic/MissionLogic";
 import { addModifier } from "../logic/ModifierLogic";
 import { getProvinceName } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
@@ -123,17 +123,16 @@ export function AnnexClientAction(ourProvince: Province, clientProvince: Provinc
       ]),
       execute: () => {
          startTimedAction("AnnexClient", ourProvince, save);
-         const tiles = new Set<Tile>();
+         const tiles: Tile[] = [];
          for (const [tile, data] of save.state.tiles) {
             if (data.province === clientProvince) {
-               data.province = ourProvince;
-               tiles.add(tile);
+               tiles.push(tile);
             }
          }
-         if (tiles.size > 0) {
+         if (tiles.length > 0) {
             addProvinceResource("mandate", 1, ourProvince, save);
          }
-         RefreshTiles.emit({ tiles, options: { indicator: true, visual: true } });
+         annexTiles({ tiles, province: ourProvince, save });
       },
    };
 }

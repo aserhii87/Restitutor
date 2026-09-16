@@ -7,17 +7,17 @@ import { unlockAchievement } from "../Achievement";
 import { addChronicleEntry } from "../definitions/Chronicle";
 import type { Province } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
-import { RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { getCurrentGeneral } from "../logic/ArmyLogic";
 import { getRelation } from "../logic/DiplomacyLogic";
+import { annexTiles } from "../logic/MissionLogic";
 import { addModifier } from "../logic/ModifierLogic";
 import {
    applyPeaceTreatyOption,
    getAvailablePeaceTreatyOptions,
    type PeaceTreatyOption,
 } from "../logic/PeaceTreatyLogic";
-import { addProvinceStat, ensureProvinceCapitals } from "../logic/ProvinceLogic";
+import { addProvinceStat } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { showGameEventModal } from "../logic/TickProvince";
 import { getPlunderedUpgrade, getTruceDuration, type IWar, isEligibleForMandate, WarFlag } from "../logic/WarLogic";
@@ -47,12 +47,6 @@ export function SignPeaceTreatyAction(
       execute: ({ headless }) => {
          if (isEligibleForMandate(war, save)) {
             addProvinceResource("mandate", 1, war.attacker, save);
-         }
-         for (const tile of war.tiles) {
-            const data = save.state.tiles.get(tile);
-            if (data) {
-               data.province = war.attacker;
-            }
          }
          applyPeaceTreatyOption(option, war, save);
          let reduction = 0;
@@ -111,7 +105,6 @@ export function SignPeaceTreatyAction(
             }
          }
          const truceDuration = getTruceDuration(war, save);
-         const changedCapitals = ensureProvinceCapitals(save);
          filterInPlace(save.state.wars, (w) => w !== war);
          const attackerToDefender = getRelation(war.attacker, war.defender, save);
          const defenderToAttacker = getRelation(war.defender, war.attacker, save);
@@ -136,7 +129,7 @@ export function SignPeaceTreatyAction(
                save: save,
             });
          }
-         RefreshTiles.emit({ tiles: [...war.tiles, ...changedCapitals], options: { indicator: true, visual: true } });
+         annexTiles({ tiles: [...war.tiles], province: war.attacker, save });
          if (headless) {
             if (war.defender === save.state.playerProvince) {
                showGameEventModal(InvaderConqueredWarGoalModal, { war, peaceTreatyOption: option });

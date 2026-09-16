@@ -8,11 +8,12 @@ import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import { getProvinceManpower, getWarPower } from "./ArmyLogic";
-import { getProvinceCoreTilesCached } from "./CacheLogic";
+import { calculateTilesConnectedToCapital, clearAllCaches, getProvinceCoreTilesCached } from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
 import { getMarriageAlliance, getRelation } from "./DiplomacyLogic";
 import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
+   ensureProvinceCapitals,
    getMediterraneanCoastalTiles,
    getProvinceCoreCoastalTileCount,
    getProvinceIncome,
@@ -34,17 +35,33 @@ export function annexTiles({
    core?: boolean;
    province: Province;
    save: SaveGame;
-}): void {
+}): Tile[] {
+   const affectedProvinces = new Set<Province>([province]);
+   const refreshedTiles = new Set<Tile>();
    for (const tile of tiles) {
       const tileData = save.state.tiles.get(tile);
       if (tileData) {
+         affectedProvinces.add(tileData.province);
+         refreshedTiles.add(tile);
          tileData.province = province;
          if (core) {
             tileData.coreProvinces.add(province);
          }
       }
    }
-   RefreshTiles.emit({ tiles, options: { indicator: true, visual: true } });
+   clearAllCaches();
+   for (const tile of ensureProvinceCapitals(save)) {
+      refreshedTiles.add(tile);
+      const owner = save.state.tiles.get(tile)?.province;
+      if (owner) {
+         affectedProvinces.add(owner);
+      }
+   }
+   for (const affectedProvince of affectedProvinces) {
+      calculateTilesConnectedToCapital(affectedProvince, save);
+   }
+   RefreshTiles.emit({ tiles: refreshedTiles, options: { indicator: true, visual: true } });
+   return [...refreshedTiles];
 }
 
 export function tileIsOurCoreCondition(tile: Tile, province: Province, save: SaveGame): ICondition {

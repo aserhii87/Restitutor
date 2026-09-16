@@ -13,6 +13,7 @@ import { G, GameFlags, isDev } from "../../utils/Global";
 import { AppeaseAction } from "../actions/AppeaseAction";
 import { RecruitGeneralAction, UpgradeGeneralSkillAction } from "../actions/ArmyGeneralAction";
 import { ConstructBuildingAction } from "../actions/BuildingActions";
+import { EstablishRegionalCapitalAction } from "../actions/CapitalActions";
 import { ChangeRivalAction } from "../actions/ChangeRivalAction";
 import { ConvertToChristianityAction } from "../actions/ConvertToChristianityAction";
 import { CrackDownAction } from "../actions/CrackDownAction";
@@ -61,6 +62,7 @@ import {
    setProvinceTargetConscription,
 } from "./ArmyLogic";
 import { getProvinceTilesCached } from "./CacheLogic";
+import { getBestRegionalCapitalTiles, getRegionalCapitalCount } from "./CapitalLogic";
 import {
    cancelImproveRelations,
    getAttitudeTowards,
@@ -121,6 +123,7 @@ export function tickAI(save: SaveGame): void {
       if (!hasFlag(G.flags, GameFlags.Sandbox) && province === save.state.playerProvince) {
          return;
       }
+      doRegionalCapital(province, save);
       const tiles = getProvinceTilesCached(province).flatMap((tile) => {
          const tileData = save.state.tiles.get(tile);
          return tileData ? [[tile, tileData] as const] : [];
@@ -324,6 +327,22 @@ export function tickAI(save: SaveGame): void {
       tryDoHeadless(makeGameAction("AppointEnvoy", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointArmyStaff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
    });
+}
+
+function doRegionalCapital(province: Province, save: SaveGame): void {
+   const state = save.state.provinces[province];
+   if (
+      !state ||
+      state.regionalCapitals.size >= getRegionalCapitalCount(province, save) ||
+      getTimedActionCooldownLeft("EstablishRegionalCapital", province, save) > 0 ||
+      !hasEnoughProvinceResources({ mandate: 1 }, province, save)
+   ) {
+      return;
+   }
+   const tile = getBestRegionalCapitalTiles(province, save);
+   if (tile !== undefined) {
+      tryDoHeadless(EstablishRegionalCapitalAction(tile, province, save), "EstablishRegionalCapital", province, save);
+   }
 }
 
 function getCultureToTolerate(province: Province, save: SaveGame): Culture | undefined {

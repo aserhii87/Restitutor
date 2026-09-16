@@ -37,7 +37,14 @@ import { getGameDate } from "../game/logic/GameDateTime";
 import { MapBackgroundColors, MapColorsH, MapForegroundColors, MapTextColors } from "../game/logic/MapColor";
 import { findProvinceLabelPosition } from "../game/logic/MapLogic";
 import { getProvinceName } from "../game/logic/ProvinceLogic";
-import { getTileDefense, getTileMaintenanceCost, getTileTerrain, getTileWar, isCapital } from "../game/logic/TileLogic";
+import {
+   getTileDefense,
+   getTileMaintenanceCost,
+   getTileTerrain,
+   getTileWar,
+   isCapital,
+   isRegionalCapital,
+} from "../game/logic/TileLogic";
 import type { IWar } from "../game/logic/WarLogic";
 import { MapGrid, TileHeight, TileWidth } from "../game/MapGrid";
 import { showPanel } from "../ui/common/ShowPanel";
@@ -311,11 +318,17 @@ export class WorldScene extends Scene {
       if (tileData) {
          bg.tint = MapBackgroundColors[tileData.province];
          // Capital
+         let texture: Texture | undefined;
          if (isCapital(tile, G.save)) {
-            const star = this._capitalContainer.map.set(tile, new Sprite(G.textures.get("Misc/Capital")));
+            texture = G.textures.get("Misc/Capital");
+         } else if (isRegionalCapital(tile, G.save)) {
+            texture = G.textures.get("Misc/RegionalCapital");
+         }
+         if (texture) {
+            const star = this._capitalContainer.map.set(tile, new Sprite(texture));
             star.anchor.set(0.5, 0.5);
-            star.scale.set(0.3);
-            star.position.set(x, y + 0.25 * TileHeight);
+            star.scale.set(0.4);
+            star.position.set(x, y + 0.3 * TileHeight);
             star.tint = MapForegroundColors[tileData.province];
          } else {
             this._capitalContainer.map.delete(tile);

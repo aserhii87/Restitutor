@@ -711,6 +711,12 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 5,
    };
+   EstablishRegionalCapital: ITimedAction = {
+      name: () => $t(L.EstablishRegionalCapital),
+      desc: () => $t(L.TimedActionEstablishRegionalCapitalDesc),
+      duration: 0,
+      cooldown: 12 * 10,
+   };
 }
 
 export const RelocateCapitalModifier: { modifier: Modifier } & IBaseModifier = {
