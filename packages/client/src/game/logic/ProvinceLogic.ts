@@ -53,15 +53,9 @@ import { getCulturalCohesion, getReligiousCohesion } from "./InternalAffairsLogi
 import { annexTiles } from "./MissionLogic";
 import { addModifier, attachModifiers } from "./ModifierLogic";
 import { addProvinceResource } from "./ResourceLogic";
+import { settleTile } from "./SettlementLogic";
 import { getBaselineTechs } from "./TechLogic";
-import {
-   getTileGoodsTax,
-   getTileGoverningCost,
-   getTileLandTax,
-   getTileMaintenanceCost,
-   isCoastal,
-   settleTile,
-} from "./TileLogic";
+import { getTileGoodsTax, getTileGoverningCost, getTileLandTax, getTileMaintenanceCost, isCoastal } from "./TileLogic";
 import { startTimedAction } from "./TimedActionLogic";
 import { getProvinceTrades } from "./TradeLogic";
 import { getClients, getPatrons } from "./TreatyLogic";

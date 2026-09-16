@@ -1,4 +1,4 @@
-import { clamp, formatNumber, pointToTile, randOne, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
+import { clamp, formatNumber, pointToTile, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { ICondition, IConditionBreakdown } from "../actions/GameAction";
 import { finalizeBreakdown, finalizeCondition, type IValueBreakdown, makeValueBreakdown } from "../actions/GameAction";
@@ -11,8 +11,6 @@ import { ChristianHeresy, isChristianReligion } from "../definitions/Religion";
 import { BarbarianRaidNegativeEffect } from "../definitions/SpawnedProvince";
 import { Tech } from "../definitions/Tech";
 import type { Terrain } from "../definitions/Terrain";
-import { type ITileData, initTileData, TerrainToGoods } from "../definitions/Tile";
-import { NewSettlementTiles } from "../definitions/TileConstants";
 import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { isLand, terrainOf } from "../Land";
@@ -970,24 +968,6 @@ export function getCultureStatus(tile: Tile, save: SaveGame): CultureReligionSta
       return "Tolerated";
    }
    return "Minor";
-}
-
-export function settleTile(tile: Tile, province: Province, save: SaveGame): ITileData | undefined {
-   if (save.state.tiles.has(tile)) {
-      return undefined;
-   }
-   if (!isLand(tile)) {
-      return undefined;
-   }
-   if (!NewSettlementTiles.has(tile)) {
-      return undefined;
-   }
-   const tileData = initTileData(province, randOne(TerrainToGoods[getTileTerrain(tile)]));
-   tileData.infrastructure = 1;
-   tileData.production = 1;
-   tileData.population = 1;
-   save.state.tiles.set(tile, tileData);
-   return tileData;
 }
 
 export function getTileTerrain(tile: Tile): Terrain {

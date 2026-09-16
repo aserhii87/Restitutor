@@ -28,8 +28,8 @@ import { ensureHeir, findFamilyById, GovernorMaxExcl, GovernorMinIncl } from "./
 import { rebirth } from "./logic/LegacyUpgradeLogic";
 import { spawnProvince } from "./logic/ProvinceLogic";
 import { addProvinceResource } from "./logic/ResourceLogic";
+import { settleTile } from "./logic/SettlementLogic";
 import { addGameEvent } from "./logic/TickProvince";
-import { settleTile } from "./logic/TileLogic";
 import { startTimedAction } from "./logic/TimedActionLogic";
 import { type IWar, WarFlag, WarLogFlag } from "./logic/WarLogic";
 import { randomFemaleName, randomMaleName } from "./RomanNames";

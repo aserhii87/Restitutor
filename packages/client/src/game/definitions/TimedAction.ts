@@ -8,6 +8,7 @@ import { getTotalUpgrades } from "../logic/ProvinceLogic";
 import { timedActionConditions } from "../logic/TimedActionLogic";
 import { BreachOfThePeaceDurationYear } from "../logic/WarLogic";
 import { CasusBelli } from "./CasusBelli";
+import { SocialClassBonusDefaultDuration } from "./Constant";
 import { Price } from "./Goods";
 import type { IBaseModifier, Modifier } from "./Modifier";
 import type { Province } from "./Province";
@@ -585,8 +586,8 @@ class TimedActionDefinitions {
    };
    GrantSocialClassBonus: ITimedAction = {
       name: () => EmptyString,
-      duration: 12 * 5,
-      cooldown: 12 * 5,
+      duration: SocialClassBonusDefaultDuration,
+      cooldown: SocialClassBonusDefaultDuration,
    };
    SocialClassFavor: ITimedAction = {
       name: () => $t(L.SocialClassFavor),

@@ -3665,7 +3665,6 @@ export const ES = {
    TileEsna: "Esna",
    TileNovumHydreuma: "Novum Hydreuma",
    SettleANewTile: "Asentar un nuevo territorio",
-   TileBordersOneOfOurCoreTiles: "El territorio limita con uno de nuestros territorios núcleo",
    NewTileSettlementPhase$1: "Asentamiento de un nuevo territorio (fase $1)",
    $1LandTaxTileOutputAndManpowerFor$2Years: "$1 al impuesto territorial, al rendimiento territorial y a la mano de obra durante $2 años",
    Settle$1: "Asentar el territorio $1",
@@ -3787,4 +3786,13 @@ export const ES = {
    TheSpoilsOfVictoryDesc:
       "Hemos doblegado a una entidad política bárbara. Nuestros comandantes nos instan ahora a poner los métodos de nuestros enemigos vencidos al servicio de la provincia. Saquear nuestros territorios que no son núcleos podría fortalecer nuestra administración y nuestros ejércitos, pero sus habitantes recordarían la devastación.",
    SanctionPlunderForOurProvince: "Autorizar saqueos para nuestra provincia",
+   HearthsBeyondTheRhine: "Hogares más allá del Rin",
+   HearthsBeyondTheRhineDesc:
+      "Al otro lado del Rin, frente a Colonia, las riberas de Castellum Divitia ofrecen espacio para nuevos hogares y campos. Tenemos hombres suficientes para enviar colonos bajo nuestros estandartes, pero entre la primera empalizada y una cosecha abundante median años de duro trabajo. Nuestros terratenientes nos instan, en cambio, a poner en orden las propiedades situadas tras nuestras líneas y a llenar nuestras arcas antes de plantar nuevos mojones.",
+   RaiseNewHearthsAtDivitia: "Levantar nuevos hogares en Divitia",
+   EstablishASettlementAt$1: "Establecer un asentamiento en $1",
+   PutOurOwnEstatesInOrder: "Poner en orden nuestras propias propiedades",
+   $1IsCurrentlyUnsettled: "El territorio de $1 aún no está poblado",
+   $1IsEligibleForSettlement: "El territorio de $1 puede acoger un asentamiento",
+   $1BordersOneOfOurCoreTiles: "$1 limita con uno de nuestros territorios núcleo",
 };

@@ -3623,7 +3623,6 @@ export const EN = {
    TileEsna: "Esna",
    TileNovumHydreuma: "Novum Hydreuma",
    SettleANewTile: "Settle a New Tile",
-   TileBordersOneOfOurCoreTiles: "Tile borders one of our core tiles",
    NewTileSettlementPhase$1: "New Tile Settlement (Phase $1)",
    $1LandTaxTileOutputAndManpowerFor$2Years: "$1 Land Tax, Tile Output, and Manpower for $2 years",
    Settle$1: "Settle $1",
@@ -3744,4 +3743,13 @@ export const EN = {
    TheSpoilsOfVictory: "The Spoils of Victory",
    TheSpoilsOfVictoryDesc: "We have broken a barbarian polity. Our commanders now urge us to turn the methods of our defeated foes to the service of the province. Plundering our non-core lands could strengthen our administration and armies, but the inhabitants would remember the devastation.",
    SanctionPlunderForOurProvince: "Sanction plunder for our province",
+   HearthsBeyondTheRhine: "Hearths Beyond the Rhine",
+   HearthsBeyondTheRhineDesc:
+      "Across the Rhine from Colonia, the banks at Castellum Divitia offer room for new hearths and fields. We have men enough to send settlers beneath our standards, but years of hard toil stand between the first palisade and a fruitful harvest. Our landholders urge us instead to put the estates behind our lines in order, filling our treasury before we plant new boundary stones.",
+   RaiseNewHearthsAtDivitia: "Raise New Hearths at Divitia",
+   EstablishASettlementAt$1: "Establish a settlement at $1",
+   PutOurOwnEstatesInOrder: "Put Our Own Estates in Order",
+   $1IsCurrentlyUnsettled: "$1 is currently unsettled",
+   $1IsEligibleForSettlement: "$1 is eligible for settlement",
+   $1BordersOneOfOurCoreTiles: "$1 borders one of our core tiles",
 };

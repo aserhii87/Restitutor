@@ -7,8 +7,8 @@ import Plebs from "../../assets/images/socialclasses/Plebs.png";
 import Senate from "../../assets/images/socialclasses/Senate.png";
 import { $t, L } from "../../utils/i18n";
 import type { IGameEffect } from "../GameEffect";
+import { SocialClassBonusDefaultDuration } from "./Constant";
 import type { IBaseModifier, Modifier } from "./Modifier";
-import { TimedActions } from "./TimedAction";
 export interface ISocialClassData {
    loyalty: number;
    influence: number;
@@ -92,7 +92,7 @@ export interface ISocialClassBonus {
    opposing: SocialClass[];
 }
 
-const DefaultDuration = TimedActions.GrantSocialClassBonus.duration;
+const DefaultDuration = SocialClassBonusDefaultDuration;
 
 const _SocialClassBonuses = {
    MonthlyAdministrativePoint: {

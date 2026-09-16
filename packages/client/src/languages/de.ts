@@ -3668,7 +3668,6 @@ export const DE = {
    TileEsna: "Esna",
    TileNovumHydreuma: "Novum Hydreuma",
    SettleANewTile: "Ein neues Gebiet besiedeln",
-   TileBordersOneOfOurCoreTiles: "Das Gebiet grenzt an eines unserer Kerngebiete",
    NewTileSettlementPhase$1: "Besiedlung eines neuen Gebiets (Phase $1)",
    $1LandTaxTileOutputAndManpowerFor$2Years: "$1 Grundsteuer, Gebietsproduktion und Mannstärke für $2 Jahre",
    Settle$1: "Gebiet $1 besiedeln",
@@ -3790,4 +3789,13 @@ export const DE = {
    TheSpoilsOfVictoryDesc:
       "Wir haben ein barbarisches Staatswesen zerschlagen. Unsere Befehlshaber drängen uns nun, die Methoden unserer besiegten Feinde in den Dienst der Provinz zu stellen. Die Plünderung unserer Nicht-Kerngebiete könnte unsere Verwaltung und unsere Armeen stärken, doch die Bewohner würden die Verwüstung nicht vergessen.",
    SanctionPlunderForOurProvince: "Plünderung für unsere Provinz erlauben",
+   HearthsBeyondTheRhine: "Herdfeuer jenseits des Rheins",
+   HearthsBeyondTheRhineDesc:
+      "Auf der Colonia gegenüberliegenden Seite des Rheins bieten die Ufer bei Castellum Divitia Platz für neue Herdstätten und Felder. Wir haben genug Männer, um Siedler unter unseren Standarten auszusenden, doch zwischen der ersten Palisade und einer reichen Ernte liegen Jahre harter Arbeit. Unsere Grundbesitzer drängen uns stattdessen, die Güter hinter unseren Linien in Ordnung zu bringen und unsere Schatzkammer zu füllen, bevor wir neue Grenzsteine setzen.",
+   RaiseNewHearthsAtDivitia: "Neue Herdstätten in Divitia errichten",
+   EstablishASettlementAt$1: "Eine Siedlung bei $1 gründen",
+   PutOurOwnEstatesInOrder: "Unsere eigenen Güter in Ordnung bringen",
+   $1IsCurrentlyUnsettled: "$1 ist derzeit unbesiedelt",
+   $1IsEligibleForSettlement: "$1 kann besiedelt werden",
+   $1BordersOneOfOurCoreTiles: "$1 grenzt an eines unserer Kerngebiete",
 };
