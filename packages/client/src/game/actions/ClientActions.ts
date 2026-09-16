@@ -8,7 +8,6 @@ import { getAnnexClientCost, getRelation } from "../logic/DiplomacyLogic";
 import { annexTiles } from "../logic/MissionLogic";
 import { addModifier } from "../logic/ModifierLogic";
 import { getProvinceName } from "../logic/ProvinceLogic";
-import { addProvinceResource } from "../logic/ResourceLogic";
 import { startTimedAction, timedActionConditions } from "../logic/TimedActionLogic";
 import { requirePeaceBetweenChecks } from "../logic/TreatyLogic";
 import { EmptyGameAction } from "./EmptyGameAction";
@@ -128,9 +127,6 @@ export function AnnexClientAction(ourProvince: Province, clientProvince: Provinc
             if (data.province === clientProvince) {
                tiles.push(tile);
             }
-         }
-         if (tiles.length > 0) {
-            addProvinceResource("mandate", 1, ourProvince, save);
          }
          annexTiles({ tiles, province: ourProvince, save });
       },

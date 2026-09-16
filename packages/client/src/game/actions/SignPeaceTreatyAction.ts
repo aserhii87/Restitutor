@@ -20,7 +20,7 @@ import {
 import { addProvinceStat } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { showGameEventModal } from "../logic/TickProvince";
-import { getPlunderedUpgrade, getTruceDuration, type IWar, isEligibleForMandate, WarFlag } from "../logic/WarLogic";
+import { getPlunderedUpgrade, getTruceDuration, type IWar, WarFlag } from "../logic/WarLogic";
 import { finalizeCondition, type IGameAction } from "./GameAction";
 
 export function SignPeaceTreatyAction(
@@ -45,9 +45,6 @@ export function SignPeaceTreatyAction(
          },
       ]),
       execute: ({ headless }) => {
-         if (isEligibleForMandate(war, save)) {
-            addProvinceResource("mandate", 1, war.attacker, save);
-         }
          applyPeaceTreatyOption(option, war, save);
          let reduction = 0;
          if (option === "Devastation") {

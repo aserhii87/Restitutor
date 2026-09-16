@@ -8,8 +8,14 @@ import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import { getProvinceManpower, getWarPower } from "./ArmyLogic";
-import { calculateTilesConnectedToCapital, clearAllCaches, getProvinceCoreTilesCached } from "./CacheLogic";
+import {
+   calculateTilesConnectedToCapital,
+   clearAllCaches,
+   getProvinceCoreTilesCached,
+   getProvinceTilesCached,
+} from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
+import { cleanUpProvince } from "./CleanupProvince";
 import { getMarriageAlliance, getRelation } from "./DiplomacyLogic";
 import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
@@ -21,7 +27,7 @@ import {
    getProvinceStat,
    getTileUpgradeTimes,
 } from "./ProvinceLogic";
-import { getProvinceResource, provinceResourceOf } from "./ResourceLogic";
+import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile } from "./TileLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
@@ -50,6 +56,11 @@ export function annexTiles({
       }
    }
    clearAllCaches();
+   for (const affectedProvince of affectedProvinces) {
+      if (affectedProvince !== province && getProvinceTilesCached(affectedProvince).length === 0) {
+         onProvinceFullyAnnexed(affectedProvince, province, save);
+      }
+   }
    for (const tile of ensureProvinceCapitals(save)) {
       refreshedTiles.add(tile);
       const owner = save.state.tiles.get(tile)?.province;
@@ -62,6 +73,11 @@ export function annexTiles({
    }
    RefreshTiles.emit({ tiles: refreshedTiles, options: { indicator: true, visual: true } });
    return [...refreshedTiles];
+}
+
+function onProvinceFullyAnnexed(annexedProvince: Province, province: Province, save: SaveGame): void {
+   cleanUpProvince(annexedProvince, save);
+   addProvinceResource("mandate", 1, province, save);
 }
 
 export function tileIsOurCoreCondition(tile: Tile, province: Province, save: SaveGame): ICondition {
