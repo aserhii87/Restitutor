@@ -31,7 +31,7 @@ import {
 import { CasusBelli } from "../game/definitions/CasusBelli";
 import { Culture } from "../game/definitions/Culture";
 import { Modifiers } from "../game/definitions/Modifier";
-import type { Province } from "../game/definitions/Province";
+import { type Province, TreatyNames } from "../game/definitions/Province";
 import { Religion } from "../game/definitions/Religion";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
@@ -59,7 +59,7 @@ import { getProvinceName, getProvincePrestige, getProvinceTileCount } from "../g
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
 import { getTimedActionCooldownLeft, getTimedActionTimeLeft } from "../game/logic/TimedActionLogic";
 import { getAllies, getClients, getDefensePacts, getPatrons } from "../game/logic/TreatyLogic";
-import { getCurrentWars, getTruceMonthsLeft } from "../game/logic/WarLogic";
+import { getCurrentWars, getTruceMonthsLeft, getWarsBetween } from "../game/logic/WarLogic";
 import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -406,6 +406,7 @@ function DiplomaticAttitudes({ province }: { province: Province }): React.ReactN
             <thead style={{ position: "sticky", top: 0 }}>
                <tr>
                   <th>{$t(L.ProvincesAttitude)}</th>
+                  <th></th>
                   <th>
                      <FloatingTip label={() => $t(L.AttitudeTowardsUs)}>
                         <div className="mi sm">reply_all</div>
@@ -422,9 +423,43 @@ function DiplomaticAttitudes({ province }: { province: Province }): React.ReactN
                {provinces.map((p) => {
                   const theirAttitude = getAttitudeTowards(p, province, G.save);
                   const ourAttitude = getAttitudeTowards(province, p, G.save);
+                  const treaty = getRelation(province, p, G.save)?.treaty;
+                  const wars = getWarsBetween(province, p, G.save);
+                  const truceMonthsLeft = getTruceMonthsLeft(province, p, G.save);
                   return (
                      <tr key={p}>
                         <td>{getProvinceName(p, G.save)}</td>
+                        <td>
+                           <div className="row g5">
+                              {treaty && (
+                                 <FloatingTip label={() => TreatyNames[treaty.type]()}>
+                                    <div className="mi sm">history_edu</div>
+                                 </FloatingTip>
+                              )}
+                              {wars.length > 0 && (
+                                 <FloatingTip
+                                    className="p0"
+                                    fixedWidth
+                                    label={() => wars.map((war, idx) => <WarTooltip key={idx} war={war} />)}
+                                 >
+                                    <div className="mi sm">swords</div>
+                                 </FloatingTip>
+                              )}
+                              {truceMonthsLeft > 0 && (
+                                 <FloatingTip
+                                    label={() =>
+                                       $t(
+                                          L.WeAreInATruceWith$1For$2Months,
+                                          getProvinceName(p, G.save),
+                                          formatNumber(truceMonthsLeft),
+                                       )
+                                    }
+                                 >
+                                    <div className="mi sm">hourglass_empty</div>
+                                 </FloatingTip>
+                              )}
+                           </div>
+                        </td>
                         <td>
                            <BreakdownTooltip
                               breakdown={theirAttitude}
