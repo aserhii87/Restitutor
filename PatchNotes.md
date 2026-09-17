@@ -22,7 +22,7 @@
 ## Tech Tree
 
 - Added Local Governance: +150 Governing Capacity and +1 regional capital slot.
-- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, and +5 Production Capacity.
+- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, +5 Production Capacity, and +1 Diplomat.
 - Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
 - Changed Cultural Policy: Governing Capacity changed from +100 to +150.
 

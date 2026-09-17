@@ -313,6 +313,7 @@ export class TechDefinitions {
          Prestige: { type: "multiply", value: 0.1 },
          TradeCapacity: { type: "add", value: 1 },
          ProductionCapacity: { type: "add", value: 5 },
+         Diplomat: { type: "add", value: 1 },
       },
    } as const;
 
