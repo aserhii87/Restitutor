@@ -40,5 +40,4 @@
 ## Plans
 
 [ ] Dalmatia events
-[ ] Crisis of the 3rd Century
 [ ] Transferring a tile to a client
