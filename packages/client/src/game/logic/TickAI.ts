@@ -826,7 +826,12 @@ function tryDoHeadless(action: IGameAction, aiAction: AIAction, province: Provin
    if (isConditionMet && (action.cost === undefined || trySpendProvinceResources(action.cost, province, save))) {
       action.execute({ headless: true });
       if (action.effect) {
-         applyGameEffect(action.effect, action.effect.name, province, save);
+         applyGameEffect(
+            action.effect,
+            typeof action.effect.name === "function" ? action.effect.name() : action.effect.name,
+            province,
+            save,
+         );
       }
       if (action.cost) {
          tabulateCost(action.cost, aiAction, state.blackboard.resources);

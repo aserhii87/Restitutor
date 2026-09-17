@@ -617,6 +617,26 @@ class TimedActionDefinitions {
       duration: 12,
       cooldown: 12,
    };
+   ThirdCenturyCrisis: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisis),
+      duration: 12 * 50,
+      cooldown: 0,
+   };
+   ThirdCenturyCrisisCasusBelli: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisCasusBelli),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   ThirdCenturyCrisisConversion: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisConversion),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   ThirdCenturyCrisisMeasure: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisMeasure),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
+   };
    EcumenicalCouncil1: ITimedAction = {
       name: () => $t(L.TheFirstCouncilOfNicaea),
       duration: 12 * 10,

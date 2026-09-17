@@ -30,6 +30,13 @@
 
 - All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
 
+## Crisis of the 3rd Century
+
+- The Age of Soldiers event in 235 AD now begins the Crisis of the Third Century, which lasts for 50 years. To simulate the political instability and rise of soldiers, several actions are available during this period.
+- Gain the Contested Imperium casus belli against a neighboring province for 5 years, with a shared 5-year cooldown. Wars declared with it inflict -10 Stability on the attacker for 2 years after ending, regardless of the outcome.
+- Convert 1 Consul Point into 1 General Skill Point every 5 years during the crisis.
+- Enact emergency measures granting +10% Prestige, +10% War Power, +10% Land Tax and Tile Output, or +1 Military Point at the cost of -10 Stability for 5 years.
+
 ## Plans
 
 [ ] Dalmatia events

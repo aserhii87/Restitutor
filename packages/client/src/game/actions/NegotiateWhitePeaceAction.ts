@@ -13,7 +13,13 @@ import { getRelation } from "../logic/DiplomacyLogic";
 import { addModifier } from "../logic/ModifierLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { showGameEventModal } from "../logic/TickProvince";
-import { getTruceDuration, type IWar, WhitePeaceCostPerTile, warIsOngoingCondition } from "../logic/WarLogic";
+import {
+   getTruceDuration,
+   type IWar,
+   onWarEnded,
+   WhitePeaceCostPerTile,
+   warIsOngoingCondition,
+} from "../logic/WarLogic";
 import { finalizeCondition, type IGameAction } from "./GameAction";
 
 export function NegotiateWhitePeaceAction(war: IWar, province: Province, save: SaveGame): IGameAction {
@@ -31,6 +37,7 @@ export function NegotiateWhitePeaceAction(war: IWar, province: Province, save: S
          if (war.defender === save.state.playerProvince && war.casusBelli !== "BarbarianRaid") {
             unlockAchievement("DefendProvince");
          }
+         onWarEnded(war, save);
          filterInPlace(save.state.wars, (w) => w !== war);
          const attackerToDefender = getRelation(war.attacker, war.defender, save);
          const truceDuration = getTruceDuration(war, save);

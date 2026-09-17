@@ -11,7 +11,7 @@ export interface IGameCostCondition {
 }
 
 export interface IGameEffectWithName extends IGameEffect {
-   name: string;
+   name: string | (() => string);
 }
 
 export interface IGameAction extends IGameCostCondition {

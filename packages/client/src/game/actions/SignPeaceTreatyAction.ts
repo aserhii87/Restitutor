@@ -20,7 +20,7 @@ import {
 import { addProvinceStat } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { showGameEventModal } from "../logic/TickProvince";
-import { getPlunderedUpgrade, getTruceDuration, type IWar, WarFlag } from "../logic/WarLogic";
+import { getPlunderedUpgrade, getTruceDuration, type IWar, onWarEnded, WarFlag } from "../logic/WarLogic";
 import { finalizeCondition, type IGameAction } from "./GameAction";
 
 export function SignPeaceTreatyAction(
@@ -102,6 +102,7 @@ export function SignPeaceTreatyAction(
             }
          }
          const truceDuration = getTruceDuration(war, save);
+         onWarEnded(war, save);
          filterInPlace(save.state.wars, (w) => w !== war);
          const attackerToDefender = getRelation(war.attacker, war.defender, save);
          const defenderToAttacker = getRelation(war.defender, war.attacker, save);

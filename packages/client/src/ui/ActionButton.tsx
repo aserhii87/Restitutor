@@ -54,7 +54,12 @@ export function ActionButton({
             ) {
                execute({ headless: false });
                if (effect) {
-                  applyGameEffect(effect, effect.name, G.save.state.playerProvince, G.save);
+                  applyGameEffect(
+                     effect,
+                     typeof effect.name === "function" ? effect.name() : effect.name,
+                     G.save.state.playerProvince,
+                     G.save,
+                  );
                }
                GameStateUpdated.emit();
                playSound(sound);

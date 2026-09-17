@@ -22,6 +22,7 @@ import { getProvinceName, getProvinceOverextension, monthsToNextConsulElection }
 import { getProvinceResource } from "../game/logic/ResourceLogic";
 import { isSocialClassDisloyal, isSocialClassDominant } from "../game/logic/SocialClassLogic";
 import { getTechsCanBeResearched, hasResearched } from "../game/logic/TechLogic";
+import { isThirdCenturyCrisisActive } from "../game/logic/ThirdCenturyCrisisLogic";
 import { PendingGameEventTimeoutMonths } from "../game/logic/TickProvince";
 import { getTileUnrest } from "../game/logic/TileLogic";
 import { getTimedActionTimeLeft, makeGameAction } from "../game/logic/TimedActionLogic";
@@ -53,6 +54,7 @@ import { LegacyUpgradeSingletonModal } from "./LegacyUpgradeSingletonModal";
 import { ProductionSingletonModal } from "./ProductionSingletonModal";
 import { SenatePage } from "./SenatePage";
 import { SocialClassSingletonModal } from "./SocialClassSingletonModal";
+import { ThirdCenturyCrisisPage } from "./ThirdCenturyCrisisPage";
 import { TradeSingletonModal } from "./TradeSingletonModal";
 import { TreasuryPage } from "./TreasuryPage";
 import { WarModal } from "./WarModal";
@@ -356,8 +358,31 @@ const VacantArmyGeneral: ITodo = {
    },
 };
 
+const ThirdCenturyCrisis: ITodo = {
+   name: () => TimedActions.ThirdCenturyCrisis.name(),
+   icon: () => IconCatalog.Crisis,
+   className: () => "green",
+   tooltip: (save) => {
+      if (!isThirdCenturyCrisisActive(save.state.playerProvince, save)) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.ThirdCenturyCrisis.name(),
+               formatNumber(getTimedActionTimeLeft("ThirdCenturyCrisis", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(ThirdCenturyCrisisPage, {});
+   },
+};
+
 const EcumenicalCouncil: ITodo = {
-   name: (save) => $t(L.OngoingEcumenicalCouncil),
+   name: (save) => $t(L.EcumenicalCouncil),
    icon: (save) => IconCatalog.EcumenicalCouncil,
    className: (save) => "green",
    tooltip: (save) => {
@@ -365,7 +390,15 @@ const EcumenicalCouncil: ITodo = {
       if (!council) {
          return null;
       }
-      return <div className="m10">{$t(L.$1IsOngoingClickToViewDetails, TimedActions[council].name())}</div>;
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions[council].name(),
+               formatNumber(getTimedActionTimeLeft(council, save.state.playerProvince, save)),
+            )}
+         </div>
+      );
    },
    onClick: (save) => {
       showPanel(EcumenicalCouncilPage, {});
@@ -766,6 +799,7 @@ const _Todos = {
    LoomingDisasters,
    BarbarianRaid,
    SocialClassDissent,
+   ThirdCenturyCrisis,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

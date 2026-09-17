@@ -46,15 +46,9 @@ export function getOngoingEcumenicalCouncil(province: Province, save: SaveGame):
 
 export function ongoingEcumenicalCouncilCondition(province: Province, save: SaveGame): ICondition {
    const ongoing = getOngoingEcumenicalCouncil(province, save);
-   if (ongoing) {
-      return {
-         name: TimedActions[ongoing].name(),
-         value: true,
-      };
-   }
    return {
-      name: $t(L.OngoingEcumenicalCouncil),
-      value: false,
+      name: $t(L.$1IsOngoing, ongoing ? TimedActions[ongoing].name() : $t(L.EcumenicalCouncil)),
+      value: ongoing !== null,
    };
 }
 
