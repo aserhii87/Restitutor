@@ -1,4 +1,5 @@
 import { $t, L } from "../../utils/i18n";
+import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
 import { availableDiplomatChecks } from "../logic/DiplomacyLogic";
 import {
@@ -10,6 +11,7 @@ import {
    minCoreTileChecks,
    provinceRevenueChecks,
 } from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import { requireNoTreatyBetweenChecks, requirePeaceBetweenChecks } from "../logic/TreatyLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
@@ -533,6 +535,37 @@ export const NoricumEvent = {
          {
             label: () => $t(L.PutTheFrontierUnderArms),
             modifiers: { MilitaryPoint: { type: "add", value: 1, duration: 2 * 12 } },
+         },
+      ],
+   },
+   Noricum17: {
+      name: () => $t(L.NewHoldingsAt$1, $t(L.TileStanacum)),
+      image: EventImage.FieldHarvest,
+      desc: () => $t(L.NewHoldingsAtStanacumDesc$1$2$3, $t(L.TileStanacum), $t(L.TileLauriacum), $t(L.TileOvilava)),
+      condition: {
+         province: new Set(["Noricum"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(9568325, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.EstablishFarmsAt$1, $t(L.TileStanacum)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(9568325, save)),
+                  execute: (province, save) => {
+                     startSettlement(9568325, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
+            },
          },
       ],
    },

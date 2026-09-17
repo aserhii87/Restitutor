@@ -1,8 +1,10 @@
 import { $t, L } from "../../utils/i18n";
+import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
 import {
    forcePatronageEffect,
    makeCoreCountChecks,
+   manpowerChecks,
    marriageChecks,
    maxCoreTileChecks,
    mediterraneanCoastChecks,
@@ -11,6 +13,7 @@ import {
    provinceResourceChecks,
    victoryCountChecks,
 } from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import {
    requireAnyTreatyBetweenChecks,
    requireNoTreatyBetweenChecks,
@@ -504,6 +507,37 @@ export const PannoniaEvent = {
             casusBelli: {
                Moesia: { casusBelli: "ConquestMission", duration: 10 * 12 },
                Dacia: { casusBelli: "ConquestMission", duration: 10 * 12 },
+            },
+         },
+      ],
+   },
+   Pannonia16: {
+      name: () => $t(L.NewFieldsAt$1, $t(L.TilePartiskon)),
+      image: EventImage.FieldHarvest,
+      desc: () => $t(L.NewFieldsAtPartiskonDesc$1, $t(L.TilePartiskon)),
+      condition: {
+         province: new Set(["Pannonia"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(9896008, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.EstablishFarmsAt$1, $t(L.TilePartiskon)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(9896008, save)),
+                  execute: (province, save) => {
+                     startSettlement(9896008, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
             },
          },
       ],

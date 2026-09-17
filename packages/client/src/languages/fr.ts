@@ -3786,4 +3786,25 @@ export const FR = {
    $1IsCurrentlyUnsettled: "$1 is currently unsettled",
    $1IsEligibleForSettlement: "$1 is eligible for settlement",
    $1BordersOneOfOurCoreTiles: "$1 borders one of our core tiles",
+   NewRootsAt$1: "New Roots at $1",
+   NewRootsAtTemacineDesc$1:
+      "At $1, the promise of new holdings depends as much on a reliable water supply as on willing hands. We have the people to establish households there, but wells, cultivated plots, and a dependable livelihood will require years of patient work. We can begin this settlement on our inland frontier, or improve the management of our existing estates for a quicker return.",
+   EstablishHomesAt$1: "Establish Homes at $1",
+   NorthernHearthsAt$1: "Northern Hearths at $1",
+   NorthernHearthsAtBremeniumDesc$1:
+      "At $1, we can give our northern frontier more than a watchful garrison. New households could tend fields and livestock beside the military roads, turning an exposed outpost into a lasting community. We have sufficient hands, but harsh seasons and years of preparation stand between the first hearths and prosperity. Our landowners would rather see us improve the estates already yielding revenue.",
+   RaiseNewHearthsAt$1: "Raise New Hearths at $1",
+   InlandHearthsAt$1: "Inland Hearths at $1",
+   InlandHearthsAtFasDesc$1:
+      "Beyond our northern coastal towns, $1 offers a place for households willing to build new lives inland. We can send families with their herds and tools to establish holdings under our administration, though the settlement will need many years to prosper. Our existing estates also call for attention, and their stewards promise better revenues if we put our own affairs in order first.",
+   NewHoldingsAt$1: "New Holdings at $1",
+   NewHoldingsAtStanacumDesc$1$2$3:
+      "At $1, new farmsteads could help sustain our Danubian communities around $2 and $3. Our people can supply the hands, livestock, and household goods needed to begin, though dependable harvests will take years. We must choose between planting new roots on the frontier and putting our established estates in better order.",
+   EstablishFarmsAt$1: "Establish Farms at $1",
+   NewFieldsAt$1: "New Fields at $1",
+   NewFieldsAtPartiskonDesc$1:
+      "The open country at $1 offers room for new fields and herds along our eastern frontier. We have enough people to establish a settlement there, but building houses, marking boundaries, and cultivating productive holdings will take more than a single season. Our estate holders argue that improving the farms we already administer would bring a surer return to our treasury.",
+   HearthsAt$1: "Hearths at $1",
+   HearthsAtIciniacumDesc$1$2$3:
+      "The Danubian frontier offers more than ground for watchposts. At $1, we can establish households and fields within reach of our settlements at $2 and $3. We have enough hands to begin, but new holdings will need years of care before they can sustain themselves. Our landowners urge us instead to improve the estates already under our administration.",
 };

@@ -1,4 +1,5 @@
 import { $t, L } from "../../utils/i18n";
+import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
 import {
    allCoreTileChecks,
@@ -10,6 +11,7 @@ import {
    minCoreTileChecks,
    provinceRevenueChecks,
 } from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import {
    requireAnyTreatyBetweenChecks,
    requireNoTreatyBetweenChecks,
@@ -581,6 +583,37 @@ export const BritanniaEvent = {
          {
             label: () => $t(L.ProclaimTheHispanicConquest),
             resources: { consulPoint: 2 },
+         },
+      ],
+   },
+   Britannia18: {
+      name: () => $t(L.NorthernHearthsAt$1, $t(L.TileBremenium)),
+      image: EventImage.Watchtower,
+      desc: () => $t(L.NorthernHearthsAtBremeniumDesc$1, $t(L.TileBremenium)),
+      condition: {
+         province: new Set(["Britannia"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(8716346, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.RaiseNewHearthsAt$1, $t(L.TileBremenium)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(8716346, save)),
+                  execute: (province, save) => {
+                     startSettlement(8716346, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
+            },
          },
       ],
    },

@@ -3795,4 +3795,25 @@ export const ES = {
    $1IsCurrentlyUnsettled: "El territorio de $1 aún no está poblado",
    $1IsEligibleForSettlement: "El territorio de $1 puede acoger un asentamiento",
    $1BordersOneOfOurCoreTiles: "$1 limita con uno de nuestros territorios núcleo",
+   NewRootsAt$1: "Nuevas raíces en $1",
+   NewRootsAtTemacineDesc$1:
+      "En $1, la posibilidad de establecer nuevas propiedades depende tanto de un suministro fiable de agua como de manos dispuestas a trabajar. Tenemos gente suficiente para establecer hogares allí, pero los pozos, las parcelas cultivadas y un sustento seguro exigirán años de trabajo paciente. Podemos fundar este asentamiento en nuestra frontera interior o mejorar la gestión de nuestras propiedades existentes para obtener beneficios más pronto.",
+   EstablishHomesAt$1: "Establecer hogares en $1",
+   NorthernHearthsAt$1: "Hogares del norte en $1",
+   NorthernHearthsAtBremeniumDesc$1:
+      "En $1, podemos ofrecer a nuestra frontera septentrional algo más que una guarnición vigilante. Nuevas familias podrían cultivar campos y criar ganado junto a las calzadas militares, convirtiendo un puesto avanzado vulnerable en una comunidad duradera. Tenemos manos suficientes, pero entre los primeros hogares y la prosperidad median temporadas de clima riguroso y años de preparación. Nuestros terratenientes preferirían que mejorásemos las propiedades que ya generan ingresos.",
+   RaiseNewHearthsAt$1: "Levantar nuevos hogares en $1",
+   InlandHearthsAt$1: "Hogares tierra adentro en $1",
+   InlandHearthsAtFasDesc$1:
+      "Más allá de nuestras ciudades costeras del norte, $1 ofrece un lugar para las familias dispuestas a empezar una nueva vida tierra adentro. Podemos enviar familias con sus rebaños y herramientas para establecer propiedades bajo nuestra administración, aunque el asentamiento necesitará muchos años para prosperar. Nuestras propiedades existentes también requieren atención, y sus administradores prometen mayores ingresos si primero ponemos en orden nuestros propios asuntos.",
+   NewHoldingsAt$1: "Nuevas propiedades en $1",
+   NewHoldingsAtStanacumDesc$1$2$3:
+      "En $1, nuevas granjas podrían ayudar a abastecer a nuestras comunidades danubianas de los alrededores de $2 y $3. Nuestra gente puede aportar la mano de obra, el ganado y los enseres necesarios para comenzar, aunque harán falta años para obtener cosechas regulares. Debemos elegir entre echar nuevas raíces en la frontera y poner en mejor orden nuestras propiedades existentes.",
+   EstablishFarmsAt$1: "Establecer granjas en $1",
+   NewFieldsAt$1: "Nuevos campos en $1",
+   NewFieldsAtPartiskonDesc$1:
+      "Los terrenos abiertos de $1 ofrecen espacio para nuevos campos y rebaños a lo largo de nuestra frontera oriental. Tenemos gente suficiente para establecer un asentamiento allí, pero construir casas, delimitar lindes y cultivar propiedades productivas llevará más de una sola temporada. Nuestros terratenientes sostienen que mejorar las granjas que ya administramos aportaría ingresos más seguros a nuestras arcas.",
+   HearthsAt$1: "Hogares en $1",
+   HearthsAtIciniacumDesc$1$2$3:
+      "La frontera danubiana ofrece algo más que terreno para puestos de vigilancia. En $1, podemos establecer hogares y campos cerca de nuestros asentamientos de $2 y $3. Tenemos manos suficientes para comenzar, pero las nuevas propiedades necesitarán años de cuidados antes de poder mantenerse por sí mismas. Nuestros terratenientes nos instan, en cambio, a mejorar las propiedades que ya están bajo nuestra administración.",
 };

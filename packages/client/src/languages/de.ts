@@ -3798,4 +3798,25 @@ export const DE = {
    $1IsCurrentlyUnsettled: "$1 ist derzeit unbesiedelt",
    $1IsEligibleForSettlement: "$1 kann besiedelt werden",
    $1BordersOneOfOurCoreTiles: "$1 grenzt an eines unserer Kerngebiete",
+   NewRootsAt$1: "Neue Wurzeln in $1",
+   NewRootsAtTemacineDesc$1:
+      "Bei $1 hängt die Aussicht auf neue Landgüter ebenso sehr von einer zuverlässigen Wasserversorgung wie von willigen Arbeitskräften ab. Wir haben genug Menschen, um dort Haushalte anzusiedeln, doch Brunnen, bestellte Äcker und eine gesicherte Lebensgrundlage erfordern Jahre geduldiger Arbeit. Wir können diese Siedlung an unserer Grenze im Binnenland gründen oder die Bewirtschaftung unserer bestehenden Güter verbessern, um schneller Erträge zu erzielen.",
+   EstablishHomesAt$1: "Heimstätten in $1 errichten",
+   NorthernHearthsAt$1: "Nördliche Herdfeuer in $1",
+   NorthernHearthsAtBremeniumDesc$1:
+      "In $1 können wir unserer Nordgrenze mehr bieten als eine wachsame Garnison. Neue Haushalte könnten entlang der Militärstraßen Felder bestellen und Vieh halten und so einen ungeschützten Außenposten in eine dauerhafte Gemeinschaft verwandeln. Wir haben genug Arbeitskräfte, doch raue Jahreszeiten und Jahre der Vorbereitung liegen zwischen den ersten Herdstätten und dem Wohlstand. Unsere Grundbesitzer sähen es lieber, wenn wir die Güter verbesserten, die bereits Erträge liefern.",
+   RaiseNewHearthsAt$1: "Neue Herdstätten in $1 errichten",
+   InlandHearthsAt$1: "Herdfeuer im Binnenland bei $1",
+   InlandHearthsAtFasDesc$1:
+      "Jenseits unserer nördlichen Küstenstädte bietet $1 Platz für Haushalte, die sich im Binnenland ein neues Leben aufbauen wollen. Wir können Familien mit ihren Herden und Werkzeugen entsenden, um Landgüter unter unserer Verwaltung zu gründen, doch die Siedlung wird viele Jahre brauchen, um zu gedeihen. Auch unsere bestehenden Güter bedürfen der Aufmerksamkeit, und ihre Verwalter versprechen höhere Einnahmen, wenn wir zuerst unsere eigenen Angelegenheiten in Ordnung bringen.",
+   NewHoldingsAt$1: "Neue Landgüter bei $1",
+   NewHoldingsAtStanacumDesc$1$2$3:
+      "Bei $1 könnten neue Bauernhöfe zur Versorgung unserer Gemeinden an der Donau rund um $2 und $3 beitragen. Unsere Bevölkerung kann die nötigen Arbeitskräfte, das Vieh und den Hausrat für den Anfang bereitstellen, doch bis zu verlässlichen Ernten werden Jahre vergehen. Wir müssen uns entscheiden, ob wir an der Grenze neue Wurzeln schlagen oder unsere bestehenden Güter besser in Ordnung bringen wollen.",
+   EstablishFarmsAt$1: "Bauernhöfe bei $1 gründen",
+   NewFieldsAt$1: "Neue Felder bei $1",
+   NewFieldsAtPartiskonDesc$1:
+      "Das offene Land bei $1 bietet Platz für neue Felder und Herden entlang unserer Ostgrenze. Wir haben genug Menschen, um dort eine Siedlung zu gründen, doch Häuser zu bauen, Grenzen abzustecken und ertragreiche Landgüter zu bewirtschaften wird mehr als eine einzige Jahreszeit erfordern. Unsere Grundbesitzer meinen, dass die Verbesserung der bereits von uns verwalteten Bauernhöfe unserer Schatzkammer sicherere Erträge bringen würde.",
+   HearthsAt$1: "Herdfeuer in $1",
+   HearthsAtIciniacumDesc$1$2$3:
+      "Die Donaugrenze bietet mehr als nur Standorte für Wachposten. Bei $1 können wir Haushalte ansiedeln und Felder anlegen, in Reichweite unserer Siedlungen in $2 und $3. Wir haben genug Arbeitskräfte für den Anfang, doch neue Landgüter werden jahrelange Pflege benötigen, bevor sie sich selbst versorgen können. Unsere Grundbesitzer drängen uns stattdessen, die bereits unter unserer Verwaltung stehenden Güter zu verbessern.",
 };

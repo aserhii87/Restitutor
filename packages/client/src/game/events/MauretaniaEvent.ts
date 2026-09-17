@@ -7,9 +7,11 @@ import {
    allCoreTileChecks,
    annexTiles,
    isCoreTileChecks,
+   manpowerChecks,
    minCoreTileChecks,
    provinceResourceChecks,
 } from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
@@ -585,6 +587,37 @@ export const MauretaniaEvent = {
             },
             casusBelli: {
                Africa: { casusBelli: "ConquestMission", duration: 5 * 12 },
+            },
+         },
+      ],
+   },
+   Mauretania17: {
+      name: () => $t(L.InlandHearthsAt$1, $t(L.TileFas)),
+      image: EventImage.CivilianMigration,
+      desc: () => $t(L.InlandHearthsAtFasDesc$1, $t(L.TileFas)),
+      condition: {
+         province: new Set(["Mauretania"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(8585303, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.RaiseNewHearthsAt$1, $t(L.TileFas)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(8585303, save)),
+                  execute: (province, save) => {
+                     startSettlement(8585303, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
             },
          },
       ],

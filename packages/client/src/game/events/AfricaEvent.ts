@@ -1,6 +1,14 @@
 import { $t, L } from "../../utils/i18n";
+import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
-import { forcePatronageEffect, marriageChecks, minCoreTileChecks, provinceResourceChecks } from "../logic/MissionLogic";
+import {
+   forcePatronageEffect,
+   manpowerChecks,
+   marriageChecks,
+   minCoreTileChecks,
+   provinceResourceChecks,
+} from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import {
    requireAnyTreatyBetweenChecks,
    requireHigherPrestigeChecks,
@@ -487,6 +495,37 @@ export const AfricaEvent = {
             label: () => $t(L.GuaranteeEveryLawfulWorship),
             modifiers: {
                ToleratedReligion: { type: "add", value: 1 },
+            },
+         },
+      ],
+   },
+   Africa16: {
+      name: () => $t(L.NewRootsAt$1, $t(L.TileTemacine)),
+      image: EventImage.CivilianMigration,
+      desc: () => $t(L.NewRootsAtTemacineDesc$1, $t(L.TileTemacine)),
+      condition: {
+         province: new Set(["Africa"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(9109591, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.EstablishHomesAt$1, $t(L.TileTemacine)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(9109591, save)),
+                  execute: (province, save) => {
+                     startSettlement(9109591, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
             },
          },
       ],
