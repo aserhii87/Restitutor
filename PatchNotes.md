@@ -17,6 +17,7 @@
 ## Legacy Tree
 
 - Added a legacy upgrade granting +1 regional capital slot.
+- Added a Christian Influence branch in legacy tree.
 
 ## Tech Tree
 
