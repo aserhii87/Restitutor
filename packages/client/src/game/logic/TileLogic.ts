@@ -150,6 +150,19 @@ function _getTileManpower(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.Manpower, breakdown);
    attachModifiers("Manpower", breakdown, data.province, save);
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
+   if (hasProvinceUpgrade("HighlandRecruitment", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.HighlandRecruitment.name(), value: 0.25 });
+      }
+   }
    if (!data.coreProvinces.has(data.province)) {
       breakdown.multiply.push({ name: $t(L.NotCore), value: -0.5 });
    }
@@ -365,6 +378,26 @@ function _getTileUnrest(tile: Tile, save: SaveGame): IValueBreakdown {
    return finalizeBreakdown(breakdown);
 }
 
+function isWithinDistanceFromCapital(distance: number, tile: Tile, save: SaveGame): boolean {
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return false;
+   }
+   const state = save.state.provinces[data.province];
+   if (!state) {
+      return false;
+   }
+   for (const capital of new Set([state.capital, ...state.regionalCapitals])) {
+      if (
+         save.state.tiles.get(capital)?.province === data.province &&
+         MapGrid.distanceTile(tile, capital) <= distance
+      ) {
+         return true;
+      }
+   }
+   return false;
+}
+
 export const getTileLandTax = cacheTile(_getTileLandTax);
 
 function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
@@ -380,6 +413,13 @@ function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.LandTax, breakdown);
    attachModifiers("LandTax", breakdown, data.province, save);
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
    if (hasProvinceUpgrade("TheTwoShores", data.province, save) && hasStraitOfGibraltar(data.province, save)) {
       breakdown.multiply.push({ name: ProvinceUpgrades.TheTwoShores.name(), value: 0.3 });
    }
@@ -504,6 +544,14 @@ function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.TileOutput, breakdown);
    attachModifiers("TileOutput", breakdown, data.province, save);
+
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
    if (hasProvinceUpgrade("ProductiveInvestment", data.province, save) && data.upgradeCount > 0) {
       breakdown.multiply.push({
          name: ProvinceUpgrades.ProductiveInvestment.name(),

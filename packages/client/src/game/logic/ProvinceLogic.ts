@@ -16,7 +16,7 @@ import { finalizeBreakdown, makeValueBreakdown } from "../actions/GameAction";
 import { getAdvisorMonthlyCost, initAdvisors } from "../definitions/Advisor";
 import { Buildings } from "../definitions/Building";
 import { Goods } from "../definitions/Goods";
-import { type GreatWork, TileToGreatWork } from "../definitions/GreatWork";
+import { GreatWork, TileToGreatWork } from "../definitions/GreatWork";
 import {
    type GovernorPower,
    type IProvince,
@@ -48,6 +48,7 @@ import { cacheProvince } from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
 import { getRegionalCapitalCount } from "./CapitalLogic";
 import { getRelation } from "./DiplomacyLogic";
+import { getGameDate } from "./GameDateTime";
 import { generateRandomGovernor } from "./GovernorLogic";
 import { getCulturalCohesion, getReligiousCohesion } from "./InternalAffairsLogic";
 import { annexTiles } from "./MissionLogic";
@@ -148,6 +149,21 @@ export function getProvincePrestige(province: Province, save: SaveGame): IValueB
          breakdown.multiply.push({
             name: ProvinceUpgrades.CommercialRenown.name(),
             value: tradeCount * 0.1,
+         });
+      }
+   }
+   if (hasProvinceUpgrade("MonumentsOfPower", province, save)) {
+      const year = getGameDate(save.state.tick).getFullYear();
+      let completedGreatWorks = 0;
+      for (const greatWork of getProvinceGreatWorks(province, save)) {
+         if (GreatWork[greatWork].completionYear <= year) {
+            completedGreatWorks++;
+         }
+      }
+      if (completedGreatWorks > 0) {
+         breakdown.multiply.push({
+            name: ProvinceUpgrades.MonumentsOfPower.name(),
+            value: completedGreatWorks * 0.1,
          });
       }
    }

@@ -43,8 +43,11 @@
 - Adopt Client's Cause: Gain a client's casus belli against another province, preserving its remaining duration.
 - Request Consul Point: Transfer 1 available Consul Point from a client to your province.
 
+## Dalmatia
 
-## Plans
+Dalmatia is now playable, with 10 historical events and 6 missions covering expansion into Italia and the Balkans, including bringing a weakened Pannonia under your protection as a client.
 
-[ ] Dalmatia events
-[ ] Transferring a tile to a client
+### Provincial Spirits
+- Highland Recruitment: +25% Manpower on core Hill and Mountain tiles.
+- Monuments of Power: +10% Prestige for each completed Provincial Great Work.
+- Capitals of Prosperity: +50% Land Tax, Tile Output, and Manpower on core tiles that are capitals or adjacent to your capitals, including regional capitals. Bonuses from multiple capitals do not stack.
