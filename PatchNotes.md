@@ -37,6 +37,13 @@
 - Convert 1 Consul Point into 1 General Skill Point every 5 years during the crisis.
 - Enact emergency measures granting +10% Prestige, +10% War Power, +10% Land Tax and Tile Output, or +1 Military Point at the cost of -10 Stability for 5 years.
 
+## More Client Actions
+
+- Grant Land: Give a client an owned core tile bordering them, gaining +10% Land Tax for 5 years. The tile cannot be a capital or contested in a war.
+- Adopt Client's Cause: Gain a client's casus belli against another province, preserving its remaining duration.
+- Request Consul Point: Transfer 1 available Consul Point from a client to your province.
+
+
 ## Plans
 
 [ ] Dalmatia events
