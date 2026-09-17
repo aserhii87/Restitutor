@@ -3844,4 +3844,5 @@ export const ES = {
    GrantLandTo$1: "Conceder tierras a $1",
    TilesAvailableToGrant: "Territorios disponibles para conceder",
    Grant: "Conceder",
+   Adopt$1sCause: "Adoptar la causa de $1",
 };

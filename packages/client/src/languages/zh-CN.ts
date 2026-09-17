@@ -3755,4 +3755,5 @@ export const ZH_CN = {
    GrantLandTo$1: "向$1授予土地",
    TilesAvailableToGrant: "可授予的地块",
    Grant: "授予",
+   Adopt$1sCause: "采纳$1的诉求",
 };

@@ -3794,4 +3794,5 @@ export const RU = {
    GrantLandTo$1: "Передать землю провинции $1",
    TilesAvailableToGrant: "Владения, доступные для передачи",
    Grant: "Передать",
+   Adopt$1sCause: "Поддержать дело провинции $1",
 };

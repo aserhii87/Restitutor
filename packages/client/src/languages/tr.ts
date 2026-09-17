@@ -3800,4 +3800,5 @@ export const TR = {
    GrantLandTo$1: "Grant Land To $1",
    TilesAvailableToGrant: "Tiles Available To Grant",
    Grant: "Grant",
+   Adopt$1sCause: "Adopt $1's Cause",
 };

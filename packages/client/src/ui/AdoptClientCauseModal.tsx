@@ -2,7 +2,6 @@ import { formatNumber } from "@project/shared/src/utils/Helper";
 import { AdoptClientCauseAction, getClientCasusBelli as getClientCasusBellis } from "../game/actions/ClientActions";
 import { CasusBelli } from "../game/definitions/CasusBelli";
 import type { Province } from "../game/definitions/Province";
-import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getProvinceName } from "../game/logic/ProvinceLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
@@ -21,12 +20,7 @@ export function AdoptClientCauseModal({ province }: { province: Province }): Rea
    return (
       <ModalComp
          size="sm"
-         title={
-            <ModalTitleBar
-               title={`${TimedActions.AdoptClientCause.name()} — ${getProvinceName(province, G.save)}`}
-               dismiss
-            />
-         }
+         title={<ModalTitleBar title={$t(L.Adopt$1sCause, getProvinceName(province, G.save))} dismiss />}
       >
          <div className="box m10">
             <TimedActionDescComp action="AdoptClientCause" />
