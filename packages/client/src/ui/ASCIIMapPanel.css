@@ -4,17 +4,17 @@
    line-height: 1.6;
 
    position: absolute;
-   right: 0.625rem;
-   top: 0.625rem;
+   right: 1rem;
+   top: 1rem;
 
    .ascii-map-options {
       display: flex;
       justify-content: flex-end;
-      padding: 0.625rem 0.625rem 0;
+      padding: 1rem 1rem 0;
    }
 
    pre {
-      margin: 0.625rem;
+      margin: 1rem;
    }
 }
 

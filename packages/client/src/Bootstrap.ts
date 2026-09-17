@@ -18,6 +18,7 @@ import { loadGameScene } from "./LoadGameScene";
 import { migrateSave } from "./MigrateSave";
 import { isSteam } from "./rpc/SteamClient";
 import { showPanel } from "./ui/common/ShowPanel";
+import { applyUiScale } from "./ui/common/UIScaling";
 import { hideLoading } from "./ui/components/LoadingComp";
 import { initHighlighter } from "./ui/Highlighter";
 import { IncompatibleSaveModal } from "./ui/IncompatibleSaveModal";
@@ -132,7 +133,7 @@ export async function bootstrap(): Promise<void> {
       }
    }
 
-   document.documentElement.style.setProperty("font-size", `${G.save.options.uiScale}rem`);
+   applyUiScale(G.save.options.uiScale);
    setLanguage(G.save.options.language);
    initMobile();
    loadSounds();

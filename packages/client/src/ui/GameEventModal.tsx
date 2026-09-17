@@ -66,7 +66,7 @@ export function GameEventModal({ event }: { event: GameEvent }): React.ReactNode
                {data.wikipedia && (
                   <img
                      src={IconCatalog.Wikipedia}
-                     style={{ height: "1rem", opacity: 0.7 }}
+                     style={{ height: "1.6rem", opacity: 0.7 }}
                      className="pointer"
                      onClick={() => {
                         openUrl(`https://en.qrwp.org/${data.wikipedia}`);

@@ -304,7 +304,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             <div>
                <img
                   src={Goods[tileData.goods].icon}
-                  style={{ width: "3rem", height: "3rem" }}
+                  style={{ width: "4.8rem", height: "4.8rem" }}
                   className="frame display-block"
                />
             </div>
@@ -366,7 +366,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
          <TileGreatWorkComponent tile={tile} />
          <div
             className="mx10"
-            style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))", gap: "0.625rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))", gap: "1rem" }}
          >
             {Array.from(tileData.buildings).map((building) => (
                <FloatingTip

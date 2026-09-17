@@ -49,7 +49,7 @@ export function SenatePage(): React.ReactNode {
                <img
                   src={ProvinceResourceImages.consulPoint}
                   className="icon-block"
-                  style={{ height: "1.3125rem", margin: "-0.3125rem 0" }}
+                  style={{ height: "2.1rem", margin: "-0.5rem 0" }}
                />
             </div>
          </FloatingTip>

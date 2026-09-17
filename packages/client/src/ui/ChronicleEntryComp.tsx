@@ -17,7 +17,7 @@ function _ChronicleEntryComp({ entry }: { entry: IChronicleEntry }): React.React
             <FloatingTip label={() => date.toLocaleDateString()}>
                <div
                   className="frame frame-thin text-sm text-center col stretch"
-                  style={{ width: "3.125rem", height: "3.125rem" }}
+                  style={{ width: "5rem", height: "5rem" }}
                >
                   <div>{date.getFullYear()}</div>
                   <div className="divider" />

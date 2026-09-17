@@ -33,10 +33,10 @@ export function getTextureSpriteStyle(
    const spriteStyle: React.CSSProperties = {
       ...style,
       backgroundImage: `url("${G.atlasUrl.get(name)}")`,
-      width: `${(texture.width * scale) / 16}rem`,
-      height: `${(texture.height * scale) / 16}rem`,
-      backgroundPosition: `-${(texture.frame.x * scale) / 16}rem -${(texture.frame.y * scale) / 16}rem`,
-      backgroundSize: `${(texture.baseTexture.width * scale) / 16}rem ${(texture.baseTexture.height * scale) / 16}rem`,
+      width: `${(texture.width * scale) / 10}rem`,
+      height: `${(texture.height * scale) / 10}rem`,
+      backgroundPosition: `-${(texture.frame.x * scale) / 10}rem -${(texture.frame.y * scale) / 10}rem`,
+      backgroundSize: `${(texture.baseTexture.width * scale) / 10}rem ${(texture.baseTexture.height * scale) / 10}rem`,
       imageRendering: isPixel ? "pixelated" : "auto",
    };
    return spriteStyle;

@@ -52,7 +52,7 @@ export function GovernmentSingletonModal(): React.ReactNode {
             <FloatingTip label={() => $t(L.ViewFamilyTree)}>
                <div className="row g5 pointer" onClick={() => showPanel(FamilyTreeSingletonModal, {})}>
                   {state.governor.male.name.join(" ")}
-                  <img src={IconCatalog.FamilyTree} style={{ height: "1.3125rem" }} />
+                  <img src={IconCatalog.FamilyTree} style={{ height: "2.1rem" }} />
                </div>
             </FloatingTip>
          </div>

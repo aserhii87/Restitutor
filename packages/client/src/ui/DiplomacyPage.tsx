@@ -533,7 +533,7 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
          <div className="h1 row">
             <div className="f1">{$t(L.Treaties)}</div>
             <FloatingTip
-               style={{ maxWidth: "25rem" }}
+               style={{ maxWidth: "40rem" }}
                label={() => (
                   <>
                      <div className="text-sm">{$t(L.ObligationOfOtherPartyInCaseOfWar)}</div>

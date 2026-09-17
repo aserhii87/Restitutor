@@ -109,8 +109,8 @@ function FloatingTipOverlay({
                left: 0,
                transform: `translate(${Math.round(x ?? 0)}px, ${Math.round(y ?? 0)}px)`,
                visibility: isPositioned ? style?.visibility : "hidden",
-               width: fixedWidth ? "18.75rem" : style?.width,
-               maxWidth: fixedWidth ? "18.75rem" : style?.maxWidth,
+               width: fixedWidth ? "30rem" : style?.width,
+               maxWidth: fixedWidth ? "30rem" : style?.maxWidth,
             }}
             ref={refs.setFloating}
          >

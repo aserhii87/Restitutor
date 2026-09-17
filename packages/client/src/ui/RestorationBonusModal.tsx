@@ -71,13 +71,13 @@ function ModifierComp({ bonus }: { bonus: RestorationBonus }): React.ReactNode {
          <FloatingTip label={() => $t(L.ImageCredit$1, def.image.credit)}>
             <div
                className="mi text-white sm"
-               style={{ position: "absolute", top: "0.3125rem", right: "0.3125rem", opacity: 0.5 }}
+               style={{ position: "absolute", top: "0.5rem", right: "0.5rem", opacity: 0.5 }}
             >
                copyright
             </div>
          </FloatingTip>
          <div
-            style={{ position: "absolute", bottom: "1em", left: "0.625rem", right: "0.625rem" }}
+            style={{ position: "absolute", bottom: "1em", left: "1rem", right: "1rem" }}
             className="text-center text-roman"
          >
             {getGameEffectDesc(def.effect, G.save.state.playerProvince, G.save)}

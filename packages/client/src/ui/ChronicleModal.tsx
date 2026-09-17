@@ -28,7 +28,7 @@ export function ChronicleModal({ years }: { years: [number, number] }): React.Re
                >
                   <button
                      className="btn text-sm"
-                     style={{ position: "absolute", right: "0.625rem", bottom: "0.625rem" }}
+                     style={{ position: "absolute", right: "1rem", bottom: "1rem" }}
                      onClick={() => {
                         showPanel(ChroniclePage, {});
                         hideModal();

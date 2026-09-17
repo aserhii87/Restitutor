@@ -67,14 +67,14 @@ export function SidebarImageHeader({
             }}
          />
          <div
-            style={{ position: "absolute", top: "0.3125rem", right: "0.3125rem" }}
+            style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
             className={`mi pointer text-white ${CloseButtonClass}`}
             onClick={hideSidebar}
          >
             close
          </div>
          <FloatingTip label={() => $t(L.ImageCredit$1, image.credit)}>
-            <div className="text-roman text-xl" style={{ position: "absolute", bottom: "0.625rem", left: "0.625rem" }}>
+            <div className="text-roman text-xl" style={{ position: "absolute", bottom: "1rem", left: "1rem" }}>
                {title}
             </div>
          </FloatingTip>

@@ -28,6 +28,7 @@ import { ModalTitleBar } from "../utils/ModalManager";
 import { ChangeLanguageComp } from "./ChangeLanguageComp";
 import { ConfirmModal } from "./ConfirmModal";
 import { showPanel } from "./common/ShowPanel";
+import { applyUiScale } from "./common/UIScaling";
 import { FloatingTip } from "./components/FloatingTip";
 import { getImageCredits } from "./ImageCredits";
 import { Todos } from "./TodoPanel";
@@ -42,7 +43,7 @@ export function SettingsSingletonModal(): React.ReactNode {
       <div className="modal panel lg">
          <ModalTitleBar title={$t(L.Settings)} dismiss />
          <div className="row g0 stretch" style={{ minHeight: 0 }}>
-            <div style={{ flex: "0 0 10rem" }}>
+            <div style={{ flex: "0 0 16rem" }}>
                <SegmentedControl
                   fullWidth
                   className="text-display p10"
@@ -55,7 +56,7 @@ export function SettingsSingletonModal(): React.ReactNode {
                         "--sc-font-size": "var(--mantine-font-size-lg)",
                      },
                      label: {
-                        padding: "0.5rem 0.625rem",
+                        padding: "0.8rem 1rem",
                         textAlign: "left",
                      },
                   }}
@@ -159,7 +160,7 @@ function SettingsShortcutsTab(): React.ReactNode {
                      <div className="f1">{Shortcut[shortcut]()}</div>
                      <button
                         className="btn"
-                        style={{ minWidth: "10rem" }}
+                        style={{ minWidth: "16rem" }}
                         onClick={() => setRecording(recording === shortcut ? null : shortcut)}
                      >
                         {recording === shortcut
@@ -196,7 +197,7 @@ function SettingsTodoTab(): React.ReactNode {
          {entriesOf(Todos).map(([id, todo]) => (
             <Fragment key={id}>
                <div key={id} className="row m10">
-                  <img src={todo.icon(G.save)} style={{ width: "1.5rem" }} />
+                  <img src={todo.icon(G.save)} style={{ width: "2.4rem" }} />
                   <div className="f1">
                      <div key={todo.name(G.save)}>{todo.name(G.save)}</div>
                   </div>
@@ -298,7 +299,7 @@ function SettingsGeneralTab(): React.ReactNode {
             <div className="f1">{$t(L.ShowChroniclePopup)}</div>
             <div>{$t(L.Every)}</div>
             <Select
-               w="5rem"
+               w="8rem"
                data={["1", "2", "5", "10"]}
                value={G.save.options.chroniclePopupFrequency.toString()}
                onChange={(value) => {
@@ -332,7 +333,7 @@ function SettingsGeneralTab(): React.ReactNode {
             <div>{$t(L.EdgePanSize)}</div>
             <div className="f1"></div>
             <Slider
-               w="10rem"
+               w="16rem"
                min={1}
                max={100}
                step={1}
@@ -353,7 +354,7 @@ function SettingsGeneralTab(): React.ReactNode {
             </FloatingTip>
             <div className="f1"></div>
             <Slider
-               w="10rem"
+               w="16rem"
                min={100}
                max={2000}
                step={100}
@@ -372,7 +373,7 @@ function SettingsGeneralTab(): React.ReactNode {
             </FloatingTip>
             <div className="f1"></div>
             <Slider
-               w="10rem"
+               w="16rem"
                min={1}
                max={30}
                step={1}
@@ -410,7 +411,7 @@ function SettingsGeneralTab(): React.ReactNode {
             <div>{$t(L.SoundEffectsVolume)}</div>
             <div className="f1" />
             <Slider
-               w="10rem"
+               w="16rem"
                min={0}
                max={1}
                step={0.1}
@@ -426,7 +427,7 @@ function SettingsGeneralTab(): React.ReactNode {
             <div>{$t(L.MusicVolume)}</div>
             <div className="f1" />
             <Slider
-               w="10rem"
+               w="16rem"
                min={0}
                max={1}
                step={0.05}
@@ -442,14 +443,14 @@ function SettingsGeneralTab(): React.ReactNode {
             <div>{$t(L.UiScale)}</div>
             <div className="f1" />
             <Select
-               w="5rem"
+               w="8rem"
                checkIconPosition="right"
                data={range(5, 20 + 1).map((v) => `${v / 10}`)}
                value={G.save.options.uiScale.toString()}
                onChange={(value) => {
                   if (value) {
                      G.save.options.uiScale = safeParseFloat(value, 1);
-                     document.documentElement.style.setProperty("font-size", `${G.save.options.uiScale}rem`);
+                     applyUiScale(G.save.options.uiScale);
                      GameOptionUpdated.emit();
                   }
                }}
