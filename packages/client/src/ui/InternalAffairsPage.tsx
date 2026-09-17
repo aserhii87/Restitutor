@@ -171,7 +171,9 @@ export function InternalAffairsPage(): React.ReactNode {
             )}
          >
             <div className="row mx10 my5">
-               <div className="f1">{ProvinceResourceNames.mandate()}</div>
+               <div>{ProvinceResourceNames.mandate()}</div>
+               <img src={ProvinceResourceImages.mandate} className="icon-block" />
+               <div className="f1" />
                <div>{formatNumber(getProvinceResource("mandate", G.save.state.playerProvince, G.save))}</div>
             </div>
          </FloatingTip>

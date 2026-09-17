@@ -16,6 +16,7 @@ import FamilyTree from "../assets/images/FamilyTree.svg";
 import Gold from "../assets/images/Gold.svg";
 import Legacy from "../assets/images/Legacy.svg";
 import Loan from "../assets/images/Loan.svg";
+import Mandate from "../assets/images/Mandate.svg";
 import MapIcon from "../assets/images/Map.svg";
 import Marriage from "../assets/images/Marriage.svg";
 import Menu from "../assets/images/Menu.svg";
@@ -92,4 +93,5 @@ export const IconCatalog = {
    WarWarning,
    Disaster,
    Wikipedia,
+   Mandate,
 } as const satisfies Record<string, string>;
