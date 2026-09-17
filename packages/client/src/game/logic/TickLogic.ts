@@ -4,6 +4,7 @@ import { WorldScene } from "../../scenes/WorldScene";
 import { ChronicleModal } from "../../ui/ChronicleModal";
 import { showPanel } from "../../ui/common/ShowPanel";
 import { GreatWorkCompletedModal } from "../../ui/GreatWorkCompletedModal";
+import { playSound } from "../../ui/Sound";
 import { G, GameFlags } from "../../utils/Global";
 import { GreatWork } from "../definitions/GreatWork";
 import type { Province } from "../definitions/Province";
@@ -234,5 +235,8 @@ export function tickWar(war: IWar, save: SaveGame): void {
       for (const tile of war.tiles) {
          scene.showFloaterText({ tile, text, color: result.color, font: Fonts.TitleFont });
       }
+   }
+   if (war.actualWarScore >= war.requiredWarScore && war.attacker === save.state.playerProvince) {
+      playSound("victory");
    }
 }

@@ -1,8 +1,8 @@
 import { filterInPlace, hasFlag, isNullOrUndefined } from "@project/shared/src/utils/Helper";
+import { hideSidebar } from "../../ui/common/SidebarManager";
 import { InvaderConqueredWarGoalModal } from "../../ui/InvaderConqueredWarGoalModal";
 import { WarEndedModal } from "../../ui/WarEndedModal";
 import { $t, L } from "../../utils/i18n";
-import { hideModal } from "../../utils/ModalManager";
 import { unlockAchievement } from "../Achievement";
 import { addChronicleEntry } from "../definitions/Chronicle";
 import type { Province } from "../definitions/Province";
@@ -135,7 +135,7 @@ export function SignPeaceTreatyAction(
                showGameEventModal(WarEndedModal, { war });
             }
          } else {
-            hideModal();
+            hideSidebar();
          }
          addChronicleEntry(
             {

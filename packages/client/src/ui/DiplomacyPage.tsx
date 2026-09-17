@@ -116,7 +116,7 @@ export function DiplomacyPage({ province }: { province: Province }): React.React
                <div className="h1">{getProvinceName(province, G.save)}</div>
                <div className="row my5 mx10">
                   <div className="f1">{$t(L.Governor)}</div>
-                  <div>{theirState.governor.male.name.join(" ")}</div>
+                  <div className="text-display">{theirState.governor.male.name.join(" ")}</div>
                </div>
                <div className="row my5 mx10">
                   <div className="f1">{$t(L.Tiles)}</div>
@@ -554,6 +554,54 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
             <TreatyActionButton ourProvince={G.save.state.playerProvince} theirProvince={province} treaty="Alliance" />
             <TreatyActionButton ourProvince={G.save.state.playerProvince} theirProvince={province} treaty="Patron" />
          </div>
+         {getPatrons(province, G.save).includes(G.save.state.playerProvince) && (
+            <>
+               <div className="h1">{$t(L.ClientActions)}</div>
+               <div className="m10 col stretch g5">
+                  <ActionButton
+                     className="py2"
+                     action={() => AnnexClientAction(G.save.state.playerProvince, province, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="AnnexClient" />
+                           {element}
+                           <div className="h2">{Modifiers.AnnexCostDiscount.name()}</div>
+                           <BreakdownComp
+                              breakdown={getAnnexCostDiscount(G.save.state.playerProvince, province, G.save)}
+                              formatFunc={formatPercent}
+                           />
+                        </>
+                     )}
+                  >
+                     {TimedActions.AnnexClient.name()}
+                  </ActionButton>
+                  <ActionButton
+                     className="py2"
+                     action={() => SummonGovernorAction(G.save.state.playerProvince, province, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="SummonGovernor" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {TimedActions.SummonGovernor.name()}
+                  </ActionButton>
+                  <ActionButton
+                     className="py2"
+                     action={() => RequestMilitaryAidAction(G.save.state.playerProvince, province, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="RequestMilitaryAid" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {TimedActions.RequestMilitaryAid.name()}
+                  </ActionButton>
+               </div>
+            </>
+         )}
          <div className="h1">{$t(L.RelationsActions)}</div>
          <div className="m10 col stretch g5">
             <RelationsActionButton
@@ -655,54 +703,6 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
                {TimedActions.ProclaimCrusade.name()}
             </ActionButton>
          </div>
-         {getPatrons(province, G.save).includes(G.save.state.playerProvince) && (
-            <>
-               <div className="h1">{$t(L.ClientActions)}</div>
-               <div className="m10 col stretch g5">
-                  <ActionButton
-                     className="py2"
-                     action={() => SummonGovernorAction(G.save.state.playerProvince, province, G.save)}
-                     tooltip={(element) => (
-                        <>
-                           <TimedActionDescComp action="SummonGovernor" />
-                           {element}
-                        </>
-                     )}
-                  >
-                     {TimedActions.SummonGovernor.name()}
-                  </ActionButton>
-                  <ActionButton
-                     className="py2"
-                     action={() => RequestMilitaryAidAction(G.save.state.playerProvince, province, G.save)}
-                     tooltip={(element) => (
-                        <>
-                           <TimedActionDescComp action="RequestMilitaryAid" />
-                           {element}
-                        </>
-                     )}
-                  >
-                     {TimedActions.RequestMilitaryAid.name()}
-                  </ActionButton>
-                  <ActionButton
-                     className="py2"
-                     action={() => AnnexClientAction(G.save.state.playerProvince, province, G.save)}
-                     tooltip={(element) => (
-                        <>
-                           <TimedActionDescComp action="AnnexClient" />
-                           {element}
-                           <div className="h2">{Modifiers.AnnexCostDiscount.name()}</div>
-                           <BreakdownComp
-                              breakdown={getAnnexCostDiscount(G.save.state.playerProvince, province, G.save)}
-                              formatFunc={formatPercent}
-                           />
-                        </>
-                     )}
-                  >
-                     {TimedActions.AnnexClient.name()}
-                  </ActionButton>
-               </div>
-            </>
-         )}
          <div className="h1">{$t(L.CovertActions)}</div>
          <div className="m10 col stretch g5">
             <RelationsActionButton

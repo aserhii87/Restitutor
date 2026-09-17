@@ -4,8 +4,8 @@ export const Grid2 = { display: "grid", gridTemplateColumns: "repeat(2, minmax(0
 export const Grid1 = { display: "grid", gridTemplateColumns: "repeat(1, minmax(0, 1fr))", gap: "1rem" } as const;
 export const CloseButtonClass = "close-button-shortcut";
 
-export const DiplomacyActionWidth = "25.6rem";
-export const DiplomacyWidth = "64rem";
+export const DiplomacyActionWidth = "25rem";
+export const DiplomacyWidth = "60rem";
 
 export const TopRightPanelHeight = "3.5rem";
 export const TopRightPanelMargin = "1rem";
@@ -18,7 +18,7 @@ document.documentElement.style.setProperty("--resource-panel-height", ResourcePa
 document.documentElement.style.setProperty("--resource-panel-margin", ResourcePanelMargin);
 
 export const SidebarWidth = "40rem";
-export const SidebarWiderWidth = "52.8rem";
+export const SidebarWiderWidth = "50rem";
 export const SidebarTopMargin = `${Number.parseFloat(ResourcePanelHeight) + 2 * Number.parseFloat(ResourcePanelMargin)}rem`;
 export const SidebarMargin = "1rem";
 export const SidebarLeftMargin = `calc(${SidebarMargin} + var(--safe-area-inset-left, env(safe-area-inset-left, 0px)))`;
