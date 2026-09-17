@@ -519,6 +519,24 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 10,
    };
+   GrantLand: ITimedAction = {
+      name: () => $t(L.GrantLand),
+      desc: () => $t(L.TimedActionGrantLandDesc$1$2, "+10%", "5"),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
+   };
+   AdoptClientCause: ITimedAction = {
+      name: () => $t(L.AdoptClientsCause),
+      desc: () => $t(L.TimedActionAdoptClientCauseDesc),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   RequestConsulPoint: ITimedAction = {
+      name: () => $t(L.RequestConsulPoint),
+      desc: () => $t(L.TimedActionRequestConsulPointDesc),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
    SummonGovernor: ITimedAction = {
       name: () => $t(L.SummonGovernor),
       desc: () => $t(L.TimedActionSummonGovernorDesc$1$2, "10%", "10%"),

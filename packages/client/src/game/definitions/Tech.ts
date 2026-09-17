@@ -75,7 +75,7 @@ export class TechDefinitions {
          TradeProfit: { type: "multiply", value: 0.1 },
       },
       buildings: ["Market"],
-      timedActions: ["Denounce"],
+      timedActions: ["Denounce", "AdoptClientCause"],
       goods: ["leather"],
    } as const;
 
@@ -132,7 +132,7 @@ export class TechDefinitions {
       modifiers: {
          ProductionCapacity: { type: "add", value: 5 },
       },
-      timedActions: ["AppointEnvoy", "AnnexClient"],
+      timedActions: ["AppointEnvoy", "AnnexClient", "GrantLand"],
       goods: ["garments"],
    } as const;
 
@@ -162,7 +162,7 @@ export class TechDefinitions {
          DiplomaticRange: { type: "add", value: 5 },
          TradeProfit: { type: "multiply", value: 0.1 },
       },
-      timedActions: ["SendAGift", "RenewVestments"],
+      timedActions: ["SendAGift", "RenewVestments", "RequestConsulPoint"],
    } as const;
 
    F3: ITechDefinition = {

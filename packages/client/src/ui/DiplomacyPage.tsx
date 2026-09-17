@@ -3,7 +3,15 @@ import { cls, formatDelta, formatNumber, formatPercent, keysOf } from "@project/
 import type React from "react";
 import { memo } from "react";
 import { ChangeRivalAction } from "../game/actions/ChangeRivalAction";
-import { AnnexClientAction, RequestMilitaryAidAction, SummonGovernorAction } from "../game/actions/ClientActions";
+import {
+   AnnexClientAction,
+   clientActionConditions,
+   getClientCasusBelli,
+   getGrantLandTiles,
+   RequestConsulPointAction,
+   RequestMilitaryAidAction,
+   SummonGovernorAction,
+} from "../game/actions/ClientActions";
 import {
    CorruptOfficialsAction,
    FabricateCasusBelliAction,
@@ -17,7 +25,7 @@ import { DemandElectionBackingAction } from "../game/actions/DemandElectionBacki
 import { DemandTileCostCondition } from "../game/actions/DemandTileCostCondition";
 import { DemandTributeCostCondition } from "../game/actions/DemandTributeCostCondition";
 import { DenounceAction } from "../game/actions/DenounceAction";
-import type { IGameAction } from "../game/actions/GameAction";
+import { finalizeCondition, type IGameAction } from "../game/actions/GameAction";
 import {
    CancelImproveRelationsAction,
    CancelInfiltrationAction,
@@ -65,6 +73,7 @@ import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
 import { ActionButton } from "./ActionButton";
+import { AdoptClientCauseModal } from "./AdoptClientCauseModal";
 import { BreakdownComp } from "./BreakdownComp";
 import { BreakdownRow, BreakdownTooltip } from "./BreakdownRow";
 import { showPanel } from "./common/ShowPanel";
@@ -75,6 +84,7 @@ import { html } from "./components/RenderHTMLComp";
 import { DeclareWarPage } from "./DeclareWarPage";
 import { DemandTileModal } from "./DemandTileModal";
 import { DemandTributeModal } from "./DemandTributeModal";
+import { GrantLandPage } from "./GrantLandPage";
 import { LookForSpouseModal } from "./LookForSpouseModal";
 import { TradeSingletonModal } from "./TradeSingletonModal";
 import { TreatyActionButton } from "./TreatyActionButton";
@@ -598,6 +608,63 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
                      )}
                   >
                      {TimedActions.RequestMilitaryAid.name()}
+                  </ActionButton>
+                  <ActionButton
+                     className="py2"
+                     action={() => ({
+                        condition: finalizeCondition([
+                           ...clientActionConditions("GrantLand", G.save.state.playerProvince, province, G.save),
+                           {
+                              name: $t(
+                                 L.$1HasAvailableTilesToGrant,
+                                 getProvinceName(G.save.state.playerProvince, G.save),
+                              ),
+                              value: getGrantLandTiles(G.save.state.playerProvince, province, G.save).length > 0,
+                           },
+                        ]),
+                        execute: () => showPanel(GrantLandPage, { province }),
+                     })}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="GrantLand" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {TimedActions.GrantLand.name()}
+                  </ActionButton>
+                  <ActionButton
+                     className="py2"
+                     action={() => ({
+                        condition: finalizeCondition([
+                           ...clientActionConditions("AdoptClientCause", G.save.state.playerProvince, province, G.save),
+                           {
+                              name: $t(L.$1HasActiveCasusBelli, getProvinceName(province, G.save)),
+                              value: getClientCasusBelli(G.save.state.playerProvince, province, G.save).length > 0,
+                           },
+                        ]),
+                        execute: () => showPanel(AdoptClientCauseModal, { province }),
+                     })}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="AdoptClientCause" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {TimedActions.AdoptClientCause.name()}
+                  </ActionButton>
+                  <ActionButton
+                     className="py2"
+                     action={() => RequestConsulPointAction(G.save.state.playerProvince, province, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="RequestConsulPoint" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {TimedActions.RequestConsulPoint.name()}
                   </ActionButton>
                </div>
             </>
