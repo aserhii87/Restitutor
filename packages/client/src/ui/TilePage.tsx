@@ -386,7 +386,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             ))}
             <button
                disabled={!isMyProvince}
-               className="btn"
+               className="btn p0 jcc"
                style={{ width: "100%", aspectRatio: "1 / 1" }}
                onClick={() => showPanel(TileBuildingsModal, { tile })}
             >
