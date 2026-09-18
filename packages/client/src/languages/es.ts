@@ -638,7 +638,6 @@ export const ES = {
    OurPrestige: "Nuestro prestigio",
    OurPrestige$1TheirPrestige$2WeNeedAtLeast$3: "Nuestro prestigio: $1; su prestigio: $2. Necesitamos al menos $3.",
    OurProvinceIsBankrupt: "Nuestra provincia está en bancarrota",
-   OurProvinceIsNowKnownAsThe$1: "Nuestra provincia ahora es conocida como $1.",
    OurProvinceIs$1: "Nuestra provincia es $1",
    OurReligionIs$1: "Nuestra religión es $1",
    OurRivalWillGet$1CasusBelliFor$2Months: "Nuestro rival obtendrá un casus belli de $1 durante $2 meses",
@@ -3945,4 +3944,20 @@ export const ES = {
    $1PrestigeForEachCompletedProvincialGreatWork: "$1 de prestigio por cada gran obra de la provincia terminada",
    CapitalsOfProsperity: "Capitales de la prosperidad",
    CapitalsOfProsperityDesc$1: "$1 de impuesto territorial, rendimiento territorial y mano de obra en territorios núcleo que sean capitales o estén junto a nuestras capitales (incluidas las capitales regionales; los efectos de varias capitales no se acumulan).",
+   ProvinceAlpineConfederation: "Confederación Alpina",
+   ProvinceIllyria: "Iliria",
+   ProvinceDanubianAlliance: "Alianza Danubiana",
+   TheAlpineConfederation: "La Confederación Alpina",
+   TheAlpineConfederationDesc:
+      "Raetia y Noricum están firmemente asentadas bajo nuestra administración. Por sus pasos de montaña transitan mercaderes y suministros militares entre Italia y el Danubio, pero los valles no pueden gobernarse como puestos aislados. Al coordinar a los magistrados locales, el mantenimiento de las vías y los depósitos de suministros, podemos dotar a nuestras tierras alpinas de una administración común y un nombre duradero: la Confederación Alpina.",
+   EstablishTheAlpineConfederation: "Establecer la Confederación Alpina",
+   IllyriaUnited: "Iliria unida",
+   IllyriaUnitedDesc:
+      "Desde los puertos de Dalmatia hasta las ciudades de guarnición de Pannonia, nuestros funcionarios administran ahora un territorio continuo. Las vías que parten de Salona hacia el valle del Sava unen la costa adriática con el interior y hacen pasar peticiones, ingresos y suministros por nuestras manos. Podemos reunir estas responsabilidades en una administración común bajo el antiguo nombre regional de Iliria, reforzando nuestra autoridad sin desatender las necesidades de la costa ni de la frontera.",
+   UnifyOurAdministrationAsIllyria: "Unificar nuestra administración bajo el nombre de Iliria",
+   TheDanubianAlliance: "La Alianza Danubiana",
+   TheDanubianAllianceDesc:
+      "Raetia, Noricum, Pannonia, Dalmatia, Moesia y Dacia comparten ahora nuestra administración. A lo largo de este vasto territorio, el Danubio transporta suministros entre las guarniciones fronterizas, mientras las vías conectan los pasos alpinos, los puertos adriáticos y los asentamientos al otro lado del río. Podemos organizar a sus magistrados y sus redes de suministro en una Alianza Danubiana, dotando a nuestras tierras de la solidez administrativa necesaria para sostener una frontera común.",
+   EstablishTheDanubianAlliance: "Establecer la Alianza Danubiana",
+   OurProvinceIsNowKnownAs$1: "Nuestra provincia ahora es conocida como $1.",
 };

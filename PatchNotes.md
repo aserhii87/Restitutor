@@ -48,9 +48,12 @@ Dalmatia is now playable, with 10 historical events and 6 missions covering expa
 - Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
 - Changed Cultural Policy: Governing Capacity changed from +100 to +150.
 
-## Settlement Events
+## New Events
 
 - All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
+- Alpine Confederation: Unite Raetia and Noricum as either province.
+- Illyria: Unite Dalmatia and Pannonia as either province.
+- Danubian Alliance: Unite Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia as any of these provinces.
 
 ## QoL
 

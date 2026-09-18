@@ -1,17 +1,21 @@
 import { fromEntries, sizeOf } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
-import { ProvinceNameOverrides } from "../definitions/Province";
 import { Tech } from "../definitions/Tech";
 import {
    EasternMediterraneanProvinces,
    WesternMediterraneanProvinces,
    WesternRomanEmpireProvinces,
 } from "../definitions/TileConstants";
-import { RefreshTiles } from "../Events";
 import { getOriginalTileCount } from "../GameState";
 import type { ConditionChecks } from "../logic/Calculation";
-import { allyCountChecks, eliminatedBarbariansChecks, minCoreTileChecks, techCountChecks } from "../logic/MissionLogic";
-import { isGreatPowerChecks, setProvinceNameOverride } from "../logic/ProvinceLogic";
+import {
+   allyCountChecks,
+   eliminatedBarbariansChecks,
+   minCoreTileChecks,
+   setProvinceNameOverrideEffect,
+   techCountChecks,
+} from "../logic/MissionLogic";
+import { isGreatPowerChecks } from "../logic/ProvinceLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
@@ -153,17 +157,7 @@ export const MissionEvents = {
                DiplomaticPoint: { type: "add", value: 1 },
                MilitaryPoint: { type: "add", value: 1 },
             },
-            custom: [
-               {
-                  execute: (province, save) => {
-                     setProvinceNameOverride(province, "WesternRomanEmpire", save);
-                     RefreshTiles.emit({ tiles: [], options: { visual: true } });
-                  },
-                  desc: () => {
-                     return $t(L.OurProvinceIsNowKnownAsThe$1, ProvinceNameOverrides.WesternRomanEmpire());
-                  },
-               },
-            ],
+            custom: [setProvinceNameOverrideEffect("WesternRomanEmpire")],
          },
       ],
    },

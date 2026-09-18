@@ -3,7 +3,13 @@ import { $t, L } from "../../utils/i18n";
 import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
-import { type Province, type ProvinceResource, ProvinceResourceNames } from "../definitions/Province";
+import {
+   type Province,
+   type ProvinceNameOverride,
+   ProvinceNameOverrides,
+   type ProvinceResource,
+   ProvinceResourceNames,
+} from "../definitions/Province";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
@@ -28,6 +34,7 @@ import {
    getProvinceName,
    getProvinceStat,
    getTileUpgradeTimes,
+   setProvinceNameOverride,
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile } from "./TileLogic";
@@ -101,6 +108,18 @@ export function forcePatronageEffect(client: Province): ICustomEffect {
          OfferPatronageAction(province, client, save).execute({ headless: false });
       },
       desc: (province, save) => $t(L.$1BecomesOurClient, getProvinceName(client, save)),
+   };
+}
+
+export function setProvinceNameOverrideEffect(nameOverride: ProvinceNameOverride): ICustomEffect {
+   return {
+      execute: (province, save) => {
+         setProvinceNameOverride(province, nameOverride, save);
+         RefreshTiles.emit({ tiles: [], options: { visual: true } });
+      },
+      desc: (province, save) => {
+         return $t(L.OurProvinceIsNowKnownAs$1, ProvinceNameOverrides[nameOverride]());
+      },
    };
 }
 

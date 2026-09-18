@@ -638,7 +638,6 @@ export const DE = {
    OurPrestige: "Unser Prestige",
    OurPrestige$1TheirPrestige$2WeNeedAtLeast$3: "Unser Prestige: $1, ihr Prestige: $2. Wir benötigen mindestens $3.",
    OurProvinceIsBankrupt: "Unsere Provinz ist bankrott",
-   OurProvinceIsNowKnownAsThe$1: "Unsere Provinz ist nun als $1 bekannt.",
    OurProvinceIs$1: "Unsere Provinz ist $1",
    OurReligionIs$1: "Unsere Religion ist $1",
    OurRivalWillGet$1CasusBelliFor$2Months: "Unser Rivale erhält für $2 Monate den Casus Belli $1",
@@ -3948,4 +3947,20 @@ export const DE = {
    $1PrestigeForEachCompletedProvincialGreatWork: "$1 Prestige für jedes fertiggestellte Großbauwerk der Provinz",
    CapitalsOfProsperity: "Hauptstädte des Wohlstands",
    CapitalsOfProsperityDesc$1: "$1 Grundsteuer, Gebietsproduktion und Mannstärke in Kerngebieten, die Hauptstädte sind oder an unsere Hauptstädte angrenzen (einschließlich Regionalhauptstädten; mehrere Hauptstädte gewähren keinen mehrfachen Bonus).",
+   ProvinceAlpineConfederation: "Alpenkonföderation",
+   ProvinceIllyria: "Illyrien",
+   ProvinceDanubianAlliance: "Donaubündnis",
+   TheAlpineConfederation: "Die Alpenkonföderation",
+   TheAlpineConfederationDesc:
+      "Raetia und Noricum unterstehen fest unserer Verwaltung. Über ihre Gebirgspässe ziehen Händler und militärische Versorgungsgüter zwischen Italien und der Donau, doch die Täler lassen sich nicht als isolierte Außenposten regieren. Indem wir die örtlichen Magistrate, die Straßeninstandhaltung und die Versorgungslager aufeinander abstimmen, können wir unseren Alpenlanden eine gemeinsame Verwaltung und einen bleibenden Namen geben: die Alpenkonföderation.",
+   EstablishTheAlpineConfederation: "Die Alpenkonföderation gründen",
+   IllyriaUnited: "Illyrien vereint",
+   IllyriaUnitedDesc:
+      "Von den Häfen Dalmatias bis zu den Garnisonsstädten Pannonias verwalten unsere Amtsträger nun ein zusammenhängendes Gebiet. Die Straßen von Salona ins Savetal verbinden die Adriaküste mit dem Binnenland und führen Bittgesuche, Einnahmen und Versorgungsgüter durch unsere Hände. Wir können diese Aufgaben unter dem alten regionalen Namen Illyrien in einer gemeinsamen Verwaltung bündeln und so unsere Autorität stärken, ohne die Bedürfnisse der Küste oder der Grenze zu vernachlässigen.",
+   UnifyOurAdministrationAsIllyria: "Unsere Verwaltung unter dem Namen Illyrien vereinen",
+   TheDanubianAlliance: "Das Donaubündnis",
+   TheDanubianAllianceDesc:
+      "Raetia, Noricum, Pannonia, Dalmatia, Moesia und Dacia stehen nun gemeinsam unter unserer Verwaltung. In diesem weiten Gebiet werden auf der Donau Versorgungsgüter zwischen den Grenzgarnisonen befördert, während Straßen die Alpenpässe, die Adriahäfen und die Siedlungen jenseits des Flusses verbinden. Wir können ihre Magistrate und Versorgungsnetze in einem Donaubündnis zusammenführen und unseren Ländern so die Verwaltungskraft geben, eine gemeinsame Grenze zu sichern.",
+   EstablishTheDanubianAlliance: "Das Donaubündnis gründen",
+   OurProvinceIsNowKnownAs$1: "Unsere Provinz ist nun als $1 bekannt.",
 };

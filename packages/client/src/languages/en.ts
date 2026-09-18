@@ -637,7 +637,6 @@ export const EN = {
    OurPrestige: "Our Prestige",
    OurPrestige$1TheirPrestige$2WeNeedAtLeast$3: "Our Prestige: $1, Their Prestige: $2. We need at least $3.",
    OurProvinceIsBankrupt: "Our Province Is Bankrupt",
-   OurProvinceIsNowKnownAsThe$1: "Our province is now known as the $1.",
    OurProvinceIs$1: "Our province is $1",
    OurReligionIs$1: "Our religion is $1",
    OurRivalWillGet$1CasusBelliFor$2Months: "Our rival will get $1 casus belli for $2 months",
@@ -3902,4 +3901,20 @@ export const EN = {
    $1PrestigeForEachCompletedProvincialGreatWork: "$1 Prestige for each completed Provincial Great Work",
    CapitalsOfProsperity: "Capitals of Prosperity",
    CapitalsOfProsperityDesc$1: "$1 Land Tax, Tile Output, and Manpower on core tiles that are capitals or adjacent to our capitals (including regional capitals; multiple capitals do not stack).",
+   ProvinceAlpineConfederation: "Alpine Confederation",
+   ProvinceIllyria: "Illyria",
+   ProvinceDanubianAlliance: "Danubian Alliance",
+   TheAlpineConfederation: "The Alpine Confederation",
+   TheAlpineConfederationDesc:
+      "Raetia and Noricum are firmly established under our administration. Their mountain passes carry merchants and military supplies between Italy and the Danube, but valleys cannot be governed as isolated outposts. By coordinating local magistrates, road maintenance, and supply depots, we can give our Alpine lands a common administration and a lasting name: the Alpine Confederation.",
+   EstablishTheAlpineConfederation: "Establish the Alpine Confederation",
+   IllyriaUnited: "Illyria United",
+   IllyriaUnitedDesc:
+      "From the harbours of Dalmatia to the garrison towns of Pannonia, our officials now administer a continuous domain. The roads from Salona into the Sava valley bind the Adriatic coast to the interior, bringing petitions, revenue, and supplies through our hands. We can bring these responsibilities into a common administration under the old regional name of Illyria, strengthening our authority without abandoning the needs of coast or frontier.",
+   UnifyOurAdministrationAsIllyria: "Unify our administration as Illyria",
+   TheDanubianAlliance: "The Danubian Alliance",
+   TheDanubianAllianceDesc:
+      "Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia now share our administration. Across this vast domain, the Danube carries supplies between frontier garrisons, while roads connect Alpine passes, Adriatic harbours, and the settlements beyond the river. We can organize their magistrates and supply networks into a Danubian Alliance, giving our lands the administrative strength to sustain a common frontier.",
+   EstablishTheDanubianAlliance: "Establish the Danubian Alliance",
+   OurProvinceIsNowKnownAs$1: "Our province is now known as $1.",
 };
