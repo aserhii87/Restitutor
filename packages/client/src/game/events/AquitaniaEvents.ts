@@ -15,7 +15,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const AquitaniaEvent = {
+export const AquitaniaEvents = {
    Aquitania1: {
       name: () => $t(L.TheWineFleetOfBurdigala),
       image: EventImage.GrapeHarvest,

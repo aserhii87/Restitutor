@@ -16,7 +16,7 @@ import { requireNoTreatyBetweenChecks, requirePeaceBetweenChecks } from "../logi
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const NoricumEvent = {
+export const NoricumEvents = {
    Noricum1: {
       name: () => $t(L.TheRoadsOfNoricum),
       wikipedia: "Danubian_Limes",

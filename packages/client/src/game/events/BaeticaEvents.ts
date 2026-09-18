@@ -21,7 +21,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const BaeticaEvent = {
+export const BaeticaEvents = {
    Baetica1: {
       name: () => $t(L.TheOliveFleetOfTheBaetis),
       image: EventImage.OliveHarvest,

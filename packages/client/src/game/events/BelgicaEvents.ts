@@ -6,7 +6,7 @@ import { getProvinceResource } from "../logic/ResourceLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const BelgicaEvent = {
+export const BelgicaEvents = {
    Belgica1: {
       name: () => $t(L.AugustaTreverorumCityOfEmperors),
       wikipedia: "Trier",

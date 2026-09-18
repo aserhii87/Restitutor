@@ -22,7 +22,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const PannoniaEvent = {
+export const PannoniaEvents = {
    Pannonia1: {
       name: () => $t(L.AquincumBecomesAColonia),
       wikipedia: "Aquincum",

@@ -5,31 +5,32 @@ import type { Tech } from "../definitions/Tech";
 import type { ICustomEffect, IGameEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import type { ConditionChecks } from "../logic/Calculation";
-import { AfricaEvent } from "./AfricaEvent";
-import { AquitaniaEvent } from "./AquitaniaEvent";
-import { BaeticaEvent } from "./BaeticaEvent";
-import { BelgicaEvent } from "./BelgicaEvent";
-import { BritanniaEvent } from "./BritanniaEvent";
-import { DalmatiaEvent } from "./DalmatiaEvent";
+import { AfricaEvents } from "./AfricaEvents";
+import { AquitaniaEvents } from "./AquitaniaEvents";
+import { BaeticaEvents } from "./BaeticaEvents";
+import { BelgicaEvents } from "./BelgicaEvents";
+import { BritanniaEvents } from "./BritanniaEvents";
+import { DalmatiaEvents } from "./DalmatiaEvents";
+import { DanubianEvents } from "./DanubianEvents";
 import { GallicEmpireEvents } from "./GallicEmpireEvents";
-import { GermaniaEvent } from "./GermaniaEvent";
-import { HispaniaEvent } from "./HispaniaEvents";
+import { GermaniaEvents } from "./GermaniaEvents";
+import { HispaniaEvents } from "./HispaniaEvents";
 import { HistoricalEvents } from "./HistoricalEvents";
 import type { ImageWithCredit } from "./ImageWithCredit";
-import { ItaliaEvent } from "./ItaliaEvent";
-import { ItaliaSharedEvent } from "./ItaliaSharedEvent";
-import { LugdunensisEvent } from "./LugdunensisEvent";
-import { LusitaniaEvent } from "./LusitaniaEvent";
-import { MauretaniaEvent } from "./MauretaniaEvent";
+import { ItaliaEvents } from "./ItaliaEvents";
+import { ItaliaSharedEvents } from "./ItaliaSharedEvents";
+import { LugdunensisEvents } from "./LugdunensisEvents";
+import { LusitaniaEvents } from "./LusitaniaEvents";
+import { MauretaniaEvents } from "./MauretaniaEvents";
 import { MissionEvents } from "./MissionEvents";
-import { NarbonensisEvent } from "./NarbonensisEvent";
-import { NoricumEvent } from "./NoricumEvent";
-import { PannoniaEvent } from "./PannoniaEvent";
-import { RaetiaEvent } from "./RaetiaEvent";
+import { NarbonensisEvents } from "./NarbonensisEvents";
+import { NoricumEvents } from "./NoricumEvents";
+import { PannoniaEvents } from "./PannoniaEvents";
+import { RaetiaEvents } from "./RaetiaEvents";
 import { RandomEvents } from "./RandomEvents";
 import { ReligiousEvents } from "./ReligiousEvents";
-import { SiciliaEvent } from "./SiciliaEvent";
-import { TarraconensisEvent } from "./TarraconensisEvent";
+import { SiciliaEvents } from "./SiciliaEvents";
+import { TarraconensisEvents } from "./TarraconensisEvents";
 
 export interface IGameEventButton extends IGameEffect {
    label: () => string;
@@ -61,26 +62,27 @@ export interface IGameEventCondition {
 }
 
 const _GameEvents = {
-   ...LugdunensisEvent,
-   ...AquitaniaEvent,
-   ...BelgicaEvent,
-   ...BritanniaEvent,
-   ...NarbonensisEvent,
-   ...GermaniaEvent,
-   ...RaetiaEvent,
-   ...NoricumEvent,
-   ...PannoniaEvent,
-   ...DalmatiaEvent,
-   ...TarraconensisEvent,
-   ...LusitaniaEvent,
-   ...BaeticaEvent,
-   ...MauretaniaEvent,
-   ...AfricaEvent,
-   ...ItaliaEvent,
-   ...SiciliaEvent,
-   ...ItaliaSharedEvent,
+   ...LugdunensisEvents,
+   ...AquitaniaEvents,
+   ...BelgicaEvents,
+   ...BritanniaEvents,
+   ...NarbonensisEvents,
+   ...GermaniaEvents,
+   ...RaetiaEvents,
+   ...NoricumEvents,
+   ...PannoniaEvents,
+   ...DalmatiaEvents,
+   ...TarraconensisEvents,
+   ...LusitaniaEvents,
+   ...BaeticaEvents,
+   ...MauretaniaEvents,
+   ...AfricaEvents,
+   ...ItaliaEvents,
+   ...SiciliaEvents,
+   ...ItaliaSharedEvents,
    ...GallicEmpireEvents,
-   ...HispaniaEvent,
+   ...HispaniaEvents,
+   ...DanubianEvents,
    ...ReligiousEvents,
    ...MissionEvents,
    // These should not appear in `MissionPage`

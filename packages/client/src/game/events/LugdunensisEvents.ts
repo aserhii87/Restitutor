@@ -31,7 +31,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const LugdunensisEvent = {
+export const LugdunensisEvents = {
    Lugdunensis1: {
       name: () => $t(L.BlitzkriegAgainstBelgica),
       image: EventImage.CarthageCaptured,

@@ -18,7 +18,7 @@ import { requireNoTreatyBetweenChecks, requirePeaceBetweenChecks } from "../logi
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const RaetiaEvent = {
+export const RaetiaEvents = {
    Raetia1: {
       name: () => $t(L.TheMilestonesOfRaetia),
       wikipedia: "Via_Raetia",

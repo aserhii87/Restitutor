@@ -13,7 +13,7 @@ import { requireAnyTreatyBetweenChecks } from "../logic/TreatyLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const LusitaniaEvent = {
+export const LusitaniaEvents = {
    Lusitania1: {
       name: () => $t(L.TheWatersOfAugustaEmerita),
       image: EventImage.Aqueduct,

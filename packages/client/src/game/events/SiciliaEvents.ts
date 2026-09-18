@@ -16,7 +16,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const SiciliaEvent = {
+export const SiciliaEvents = {
    Sicilia1: {
       name: () => $t(L.TheGranariesOfRome),
       wikipedia: "Cura_annonae",

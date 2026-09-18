@@ -10,7 +10,7 @@ import { getTimedActionTimeLeft } from "../logic/TimedActionLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const HispaniaEvent = {
+export const HispaniaEvents = {
    Hispania1: {
       name: () => $t(L.TheRoadsIntoGaul),
       image: EventImage.Pyrenees,

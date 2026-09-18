@@ -8,7 +8,7 @@ import { SocialClass } from "./definitions/SocialClass";
 import { Tech } from "./definitions/Tech";
 import { Tiles } from "./definitions/TileConstants";
 import { getTileName } from "./definitions/TileName";
-import { LugdunensisEvent } from "./events/LugdunensisEvent";
+import { LugdunensisEvents } from "./events/LugdunensisEvents";
 import type { SaveGame } from "./GameState";
 import { getCurrentGeneral } from "./logic/ArmyLogic";
 import { addAttitudeModifier, BaseDiplomats, getAttitudeTowards, getRelation } from "./logic/DiplomacyLogic";
@@ -382,7 +382,7 @@ export const Tutorial: ITutorial[] = [
    {
       id: "Mission",
       name: () => $t(L.LetMissionsGuideOurRestoration),
-      desc: () => $t(L.TutorialMissionsDesc$1$1, LugdunensisEvent.Lugdunensis1.name()),
+      desc: () => $t(L.TutorialMissionsDesc$1$1, LugdunensisEvents.Lugdunensis1.name()),
       progress: (save) => {
          const state = save.state.provinces[save.state.playerProvince];
          if (state?.usedEvents.has("Lugdunensis1")) {

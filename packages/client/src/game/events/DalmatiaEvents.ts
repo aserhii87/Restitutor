@@ -7,7 +7,7 @@ import { requireNoTreatyBetweenChecks, requirePeaceBetweenChecks } from "../logi
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const DalmatiaEvent = {
+export const DalmatiaEvents = {
    Dalmatia1: {
       name: () => $t(L.WaterForDomaviasBaths),
       wikipedia: "Domavia",

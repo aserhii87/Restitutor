@@ -16,7 +16,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const ItaliaEvent = {
+export const ItaliaEvents = {
    Italia1: {
       name: () => $t(L.TheSecularGamesOfSeptimiusSeverus),
       wikipedia: "Secular_Games",

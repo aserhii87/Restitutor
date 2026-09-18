@@ -20,7 +20,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const BritanniaEvent = {
+export const BritanniaEvents = {
    Britannia1: {
       name: () => $t(L.TheEmperorAtEboracum),
       wikipedia: "Septimius_Severus",

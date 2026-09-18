@@ -18,7 +18,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const AfricaEvent = {
+export const AfricaEvents = {
    Africa1: {
       name: () => $t(L.ThePassionOfPerpetuaAndFelicity),
       wikipedia: "Perpetua_and_Felicity",

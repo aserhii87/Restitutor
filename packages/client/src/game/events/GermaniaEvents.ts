@@ -19,7 +19,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const GermaniaEvent = {
+export const GermaniaEvents = {
    Germania1: {
       name: () => $t(L.TheKilnsOfRheinzabern),
       image: EventImage.PotteryMarket,
@@ -425,13 +425,13 @@ export const GermaniaEvent = {
                         type: "multiply",
                         value: -0.1,
                         duration: 5 * 12,
-                        name: GermaniaEvent.Germania13.name(),
+                        name: GermaniaEvents.Germania13.name(),
                      });
                      save.state.tiles.get(9109577)?.modifiers.Defense.push({
                         type: "multiply",
                         value: -0.1,
                         duration: 5 * 12,
-                        name: GermaniaEvent.Germania13.name(),
+                        name: GermaniaEvents.Germania13.name(),
                      });
                   },
                },
@@ -457,13 +457,13 @@ export const GermaniaEvent = {
                         type: "multiply",
                         value: -0.1,
                         duration: 5 * 12,
-                        name: GermaniaEvent.Germania12.name(),
+                        name: GermaniaEvents.Germania12.name(),
                      });
                      save.state.tiles.get(9175113)?.modifiers.Defense.push({
                         type: "multiply",
                         value: -0.1,
                         duration: 5 * 12,
-                        name: GermaniaEvent.Germania12.name(),
+                        name: GermaniaEvents.Germania12.name(),
                      });
                   },
                },

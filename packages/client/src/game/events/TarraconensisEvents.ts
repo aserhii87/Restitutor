@@ -23,7 +23,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const TarraconensisEvent = {
+export const TarraconensisEvents = {
    Tarraconensis1: {
       name: () => $t(L.TheSilverOfCarthagoNova),
       image: EventImage.CopperMine,

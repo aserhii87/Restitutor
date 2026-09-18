@@ -18,7 +18,7 @@ import {
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const NarbonensisEvent = {
+export const NarbonensisEvents = {
    Narbonensis1: {
       name: () => $t(L.TheGarumAndOilTradeOfNarbo),
       image: EventImage.QueenEmbarkation,

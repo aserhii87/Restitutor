@@ -2,7 +2,7 @@ import { $t, L } from "../../utils/i18n";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const ItaliaSharedEvent = {
+export const ItaliaSharedEvents = {
    ItaliaShared1: {
       name: () => $t(L.AnAfricanBridgehead),
       image: EventImage.NavalBattle,

@@ -15,7 +15,7 @@ import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
-export const MauretaniaEvent = {
+export const MauretaniaEvents = {
    Mauretania1: {
       name: () => $t(L.TheBavaresCrossTheFrontier),
       wikipedia: "Bavares",
