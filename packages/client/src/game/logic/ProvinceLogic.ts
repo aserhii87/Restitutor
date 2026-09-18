@@ -16,7 +16,7 @@ import { finalizeBreakdown, makeValueBreakdown } from "../actions/GameAction";
 import { getAdvisorMonthlyCost, initAdvisors } from "../definitions/Advisor";
 import { Buildings } from "../definitions/Building";
 import { Goods } from "../definitions/Goods";
-import { GreatWork, TileToGreatWork } from "../definitions/GreatWork";
+import { type GreatWork, TileToGreatWork } from "../definitions/GreatWork";
 import {
    type GovernorPower,
    type IProvince,
@@ -48,8 +48,8 @@ import { cacheProvince } from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
 import { getRegionalCapitalCount } from "./CapitalLogic";
 import { getRelation } from "./DiplomacyLogic";
-import { getGameDate } from "./GameDateTime";
 import { generateRandomGovernor } from "./GovernorLogic";
+import { isGreatWorkCompleted } from "./GreatWorkLogic";
 import { getCulturalCohesion, getReligiousCohesion } from "./InternalAffairsLogic";
 import { annexTiles } from "./MissionLogic";
 import { addModifier, attachModifiers } from "./ModifierLogic";
@@ -153,10 +153,9 @@ export function getProvincePrestige(province: Province, save: SaveGame): IValueB
       }
    }
    if (hasProvinceUpgrade("MonumentsOfPower", province, save)) {
-      const year = getGameDate(save.state.tick).getFullYear();
       let completedGreatWorks = 0;
       for (const greatWork of getProvinceGreatWorks(province, save)) {
-         if (GreatWork[greatWork].completionYear <= year) {
+         if (isGreatWorkCompleted(greatWork, save)) {
             completedGreatWorks++;
          }
       }

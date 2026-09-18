@@ -1,7 +1,8 @@
 import { cls, mapOf } from "@project/shared/src/utils/Helper";
 import { GreatWork } from "../game/definitions/GreatWork";
 import { modifierToString } from "../game/definitions/Modifier";
-import { formatYear, getGameDate } from "../game/logic/GameDateTime";
+import { formatYear } from "../game/logic/GameDateTime";
+import { isGreatWorkCompleted } from "../game/logic/GreatWorkLogic";
 import { WorldScene } from "../scenes/WorldScene";
 import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
@@ -10,7 +11,7 @@ import { html } from "./components/RenderHTMLComp";
 
 export function GreatWorkComponent({ greatWork }: { greatWork: GreatWork }): React.ReactNode {
    const config = GreatWork[greatWork];
-   const isCompleted = config.completionYear < getGameDate(G.save.state.tick).getFullYear();
+   const isCompleted = isGreatWorkCompleted(greatWork, G.save);
    return (
       <FloatingTip
          fixedWidth

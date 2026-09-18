@@ -2,7 +2,7 @@ import { forEach, safePush } from "@project/shared/src/utils/Helper";
 import { G } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
 import { GameStateUpdated } from "../Events";
-import { getGameDate } from "../logic/GameDateTime";
+import { isGreatWorkCompleted } from "../logic/GreatWorkLogic";
 import { isSocialClassDisloyal, isSocialClassDominant } from "../logic/SocialClassLogic";
 import { getTimedActionTimeLeft } from "../logic/TimedActionLogic";
 import { GreatWork } from "./GreatWork";
@@ -113,9 +113,8 @@ function updateModifier(): void {
          }
       });
    });
-   const currentYear = getGameDate(G.save.state.tick).getFullYear();
-   forEach(GreatWork, (_, config) => {
-      if (currentYear < config.completionYear) {
+   forEach(GreatWork, (greatWork, config) => {
+      if (!isGreatWorkCompleted(greatWork, G.save)) {
          return;
       }
       forEach(config.modifiers, (modifier, data) => {

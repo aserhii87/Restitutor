@@ -27,7 +27,7 @@ import {
 import { Fonts } from "../Fonts";
 import { Culture } from "../game/definitions/Culture";
 import { Goods } from "../game/definitions/Goods";
-import { GreatWork, TileToGreatWork } from "../game/definitions/GreatWork";
+import { TileToGreatWork } from "../game/definitions/GreatWork";
 import type { Province } from "../game/definitions/Province";
 import { Religion } from "../game/definitions/Religion";
 import { NewSettlementTiles, OceanLabels } from "../game/definitions/TileConstants";
@@ -35,7 +35,7 @@ import { getTileName } from "../game/definitions/TileName";
 import { GameStateUpdated, RefreshOverlay, RefreshTiles } from "../game/Events";
 import { GameOptionFlag } from "../game/GameOption";
 import { isLand, LandSize } from "../game/Land";
-import { getGameDate } from "../game/logic/GameDateTime";
+import { isGreatWorkCompleted } from "../game/logic/GreatWorkLogic";
 import { MapBackgroundColors, MapColorsH, MapForegroundColors, MapTextColors } from "../game/logic/MapColor";
 import { findProvinceLabelPosition } from "../game/logic/MapLogic";
 import { getProvinceName } from "../game/logic/ProvinceLogic";
@@ -318,7 +318,7 @@ export class WorldScene extends Scene {
                   const visual = this._overlayContainer.map.get(tile);
                   const gw = TileToGreatWork.get(tile);
                   if (visual && gw) {
-                     const visible = getGameDate(G.save.state.tick).getFullYear() >= GreatWork[gw].completionYear;
+                     const visible = isGreatWorkCompleted(gw, G.save);
                      if (visual.visible !== visible) {
                         visual.visible = visible;
                      }
@@ -445,7 +445,7 @@ export class WorldScene extends Scene {
                visual.position.set(x, y - 5);
                visual.scale.set(0.5);
                visual.tint = MapForegroundColors[tileData.province];
-               visual.visible = getGameDate(G.save.state.tick).getFullYear() >= GreatWork[gw].completionYear;
+               visual.visible = isGreatWorkCompleted(gw, G.save);
             } else {
                this._overlayContainer.map.delete(tile);
             }
