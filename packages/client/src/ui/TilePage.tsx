@@ -38,7 +38,7 @@ import {
    getTileUnrest,
 } from "../game/logic/TileLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
-import { timedActionConditions } from "../game/logic/TimedActionLogic";
+import { startTimedAction, timedActionConditions } from "../game/logic/TimedActionLogic";
 import { getWarForTile } from "../game/logic/WarLogic";
 import { G, isDev } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -217,6 +217,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
                            },
                         ]),
                         execute: () => {
+                           startTimedAction("EvangelizeTile", G.save.state.playerProvince, G.save);
                            tileData.religion = state.religion;
                         },
                      })}
