@@ -62,9 +62,9 @@ export function TopPanel(): React.ReactNode {
    );
 }
 
-const FirstColumnWidth = 8.75;
-const ColumnWidth = 5.625;
-const IconWidth = 1.25;
+const FirstColumnWidth = 14;
+const ColumnWidth = 9;
+const IconWidth = 2;
 const IconRowStyle = { flex: "1", display: "flex", justifyContent: "space-between", alignItems: "center" };
 
 export function TopLeftPanel(): React.ReactNode {

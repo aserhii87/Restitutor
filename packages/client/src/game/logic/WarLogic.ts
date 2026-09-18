@@ -26,7 +26,7 @@ import {
    getRelation,
    getRelations,
 } from "./DiplomacyLogic";
-import { attachModifiers } from "./ModifierLogic";
+import { addModifier, attachModifiers } from "./ModifierLogic";
 import {
    getProvinceName,
    getProvincePrestige,
@@ -80,6 +80,20 @@ export const WarResult = {
 } as const;
 
 export const BreachOfThePeaceDurationYear = 5;
+
+export function onWarEnded(war: IWar, save: SaveGame): void {
+   if (war.casusBelli === "ContestedImperium") {
+      addModifier({
+         modifier: "Stability",
+         type: "add",
+         value: -10,
+         duration: 12 * 2,
+         name: CasusBelli.ContestedImperium.name(),
+         province: war.attacker,
+         save,
+      });
+   }
+}
 
 function getCoDefenders(attacker: Province, defender: Province, save: SaveGame): Map<Province, IConditionBreakdown> {
    const result = new Map<Province, IConditionBreakdown>();

@@ -120,7 +120,7 @@ export function WorldWarTooltip(): React.ReactNode {
          <div
             ref={refs.setFloating}
             className="floating-tip panel p0"
-            style={{ ...floatingStyles, width: "18.75rem", pointerEvents: "none" }}
+            style={{ ...floatingStyles, width: "30rem", pointerEvents: "none" }}
          >
             <WorldWarTooltipContent war={war} />
          </div>

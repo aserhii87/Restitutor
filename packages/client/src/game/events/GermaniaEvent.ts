@@ -2,8 +2,15 @@ import { $t, L } from "../../utils/i18n";
 import { Province } from "../definitions/Province";
 import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
-import { forcePatronageEffect, maxCoreTileChecks, minCoreTileChecks, warPowerChecks } from "../logic/MissionLogic";
+import {
+   forcePatronageEffect,
+   manpowerChecks,
+   maxCoreTileChecks,
+   minCoreTileChecks,
+   warPowerChecks,
+} from "../logic/MissionLogic";
 import { getProvinceResource } from "../logic/ResourceLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import {
    requireAnyTreatyBetweenChecks,
    requireNoTreatyBetweenChecks,
@@ -491,6 +498,37 @@ export const GermaniaEvent = {
             label: () => $t(L.PlaceTheLegionsAboveAll),
             modifiers: {
                MilitaryPoint: { type: "add", value: 1 },
+            },
+         },
+      ],
+   },
+   Germania16: {
+      name: () => $t(L.HearthsBeyondTheRhine),
+      image: EventImage.Watchtower,
+      desc: () => $t(L.HearthsBeyondTheRhineDesc),
+      condition: {
+         province: new Set(["Germania"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(9240641, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.RaiseNewHearthsAtDivitia),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(9240641, save)),
+                  execute: (province, save) => {
+                     startSettlement(9240641, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
             },
          },
       ],

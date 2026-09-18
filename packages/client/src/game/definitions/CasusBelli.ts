@@ -17,6 +17,10 @@ export const _CasusBelli = {
       name: () => $t(L.HumiliateRival),
       effect: () => $t(L.$1WarPowerFor$2YearsAfterDeclaringWar, "+10%", "5"),
    },
+   ContestedImperium: {
+      name: () => $t(L.CasusBelliContestedImperium),
+      effect: () => $t(L.PostwarStabilityRegardlessOfOutcome$1$2, "-10", "2"),
+   },
    ConquestMission: {
       name: () => $t(L.ConquestMission),
       effect: () => $t(L.$1WarScoreWhenWarGoalHasMoreThanOneTile, "-10%"),

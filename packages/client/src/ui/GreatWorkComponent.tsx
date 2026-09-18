@@ -26,7 +26,7 @@ export function GreatWorkComponent({ greatWork }: { greatWork: GreatWork }): Rea
                         left: 0,
                         width: "100%",
                         background: "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8))",
-                        paddingTop: "5rem",
+                        paddingTop: "8rem",
                      }}
                      className="text-shadow"
                   >
@@ -66,7 +66,7 @@ export function GreatWorkComponent({ greatWork }: { greatWork: GreatWork }): Rea
             }}
          >
             <div>
-               <img src={config.image.url} style={{ width: "3rem", height: "3rem" }} className="img-border" />
+               <img src={config.image.url} style={{ width: "4.8rem", height: "4.8rem" }} className="img-border" />
             </div>
             <div className="f1">
                <div className="row g5">

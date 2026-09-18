@@ -8,6 +8,7 @@ import { getTotalUpgrades } from "../logic/ProvinceLogic";
 import { timedActionConditions } from "../logic/TimedActionLogic";
 import { BreachOfThePeaceDurationYear } from "../logic/WarLogic";
 import { CasusBelli } from "./CasusBelli";
+import { SocialClassBonusDefaultDuration } from "./Constant";
 import { Price } from "./Goods";
 import type { IBaseModifier, Modifier } from "./Modifier";
 import type { Province } from "./Province";
@@ -518,6 +519,24 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 10,
    };
+   GrantLand: ITimedAction = {
+      name: () => $t(L.GrantLand),
+      desc: () => $t(L.TimedActionGrantLandDesc$1$2, "+10%", "5"),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
+   };
+   AdoptClientCause: ITimedAction = {
+      name: () => $t(L.AdoptClientsCause),
+      desc: () => $t(L.TimedActionAdoptClientCauseDesc),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   RequestConsulPoint: ITimedAction = {
+      name: () => $t(L.RequestConsulPoint),
+      desc: () => $t(L.TimedActionRequestConsulPointDesc),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
    SummonGovernor: ITimedAction = {
       name: () => $t(L.SummonGovernor),
       desc: () => $t(L.TimedActionSummonGovernorDesc$1$2, "10%", "10%"),
@@ -585,8 +604,8 @@ class TimedActionDefinitions {
    };
    GrantSocialClassBonus: ITimedAction = {
       name: () => EmptyString,
-      duration: 12 * 5,
-      cooldown: 12 * 5,
+      duration: SocialClassBonusDefaultDuration,
+      cooldown: SocialClassBonusDefaultDuration,
    };
    SocialClassFavor: ITimedAction = {
       name: () => $t(L.SocialClassFavor),
@@ -615,6 +634,26 @@ class TimedActionDefinitions {
       name: () => EmptyString,
       duration: 12,
       cooldown: 12,
+   };
+   ThirdCenturyCrisis: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisis),
+      duration: 12 * 50,
+      cooldown: 0,
+   };
+   ThirdCenturyCrisisCasusBelli: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisCasusBelli),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   ThirdCenturyCrisisConversion: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisConversion),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
+   ThirdCenturyCrisisMeasure: ITimedAction = {
+      name: () => $t(L.TimedActionThirdCenturyCrisisMeasure),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
    };
    EcumenicalCouncil1: ITimedAction = {
       name: () => $t(L.TheFirstCouncilOfNicaea),
@@ -711,14 +750,19 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 5,
    };
+   EstablishRegionalCapital: ITimedAction = {
+      name: () => $t(L.EstablishRegionalCapital),
+      desc: () => $t(L.TimedActionEstablishRegionalCapitalDesc),
+      duration: 0,
+      cooldown: 12 * 10,
+   };
+   Pillage: ITimedAction = {
+      name: () => $t(L.Pillage),
+      desc: () => $t(L.TimedActionPillageDesc$1$2$3$4, "1", "50%", "10", "5"),
+      duration: 0,
+      cooldown: 12 * 5,
+   };
 }
-
-export const RelocateCapitalModifier: { modifier: Modifier } & IBaseModifier = {
-   modifier: "Stability",
-   type: "add",
-   value: -10,
-   duration: 24,
-};
 
 export type TimedAction = keyof TimedActionDefinitions;
 export type TimedEffectAction = {

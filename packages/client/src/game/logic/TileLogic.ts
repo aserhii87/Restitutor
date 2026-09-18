@@ -1,4 +1,4 @@
-import { clamp, formatNumber, pointToTile, randOne, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
+import { clamp, formatNumber, pointToTile, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { ICondition, IConditionBreakdown } from "../actions/GameAction";
 import { finalizeBreakdown, finalizeCondition, type IValueBreakdown, makeValueBreakdown } from "../actions/GameAction";
@@ -11,8 +11,6 @@ import { ChristianHeresy, isChristianReligion } from "../definitions/Religion";
 import { BarbarianRaidNegativeEffect } from "../definitions/SpawnedProvince";
 import { Tech } from "../definitions/Tech";
 import type { Terrain } from "../definitions/Terrain";
-import { type ITileData, initTileData, TerrainToGoods } from "../definitions/Tile";
-import { NewSettlementTiles } from "../definitions/TileConstants";
 import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { isLand, terrainOf } from "../Land";
@@ -52,6 +50,21 @@ export function isCapital(tile: Tile, save: SaveGame): boolean {
    }
    return state.capital === tile;
 }
+
+export function isRegionalCapital(tile: Tile, save: SaveGame): boolean {
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return false;
+   }
+   if (!data.coreProvinces.has(data.province)) {
+      return false;
+   }
+   const state = save.state.provinces[data.province];
+   return state !== undefined && state.capital !== tile && state.regionalCapitals.has(tile);
+}
+
+export const RegionalCapitalGoverningCostModifier = -0.45;
+export const GoverningCostPerTileDistance = 0.05;
 
 export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown({ reverse: true });
@@ -95,14 +108,16 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
          });
       }
    }
-   const distanceFromCapital = getDistanceFromCapital(tile, save);
+   const distanceFromCapital = getDistanceFromNearestCapital(tile, save);
    breakdown.multiply.push({
-      name: $t(L.DistanceFromCapital),
-      desc: $t(L.$1TilesFromCapital$2PerTile, formatNumber(distanceFromCapital), "5%"),
-      value: distanceFromCapital * 0.05,
+      name: $t(L.DistanceFromNearestCapital),
+      desc: $t(L.$1TilesFromNearestCapital$2PerTile, formatNumber(distanceFromCapital), "5%"),
+      value: distanceFromCapital * GoverningCostPerTileDistance,
    });
    if (isCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.IsCurrentCapital), value: -0.9 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.multiply.push({ name: $t(L.RegionalCapital), value: RegionalCapitalGoverningCostModifier });
    }
    const terrain = getTileTerrain(tile);
    if (terrain === "Mountain") {
@@ -135,6 +150,19 @@ function _getTileManpower(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.Manpower, breakdown);
    attachModifiers("Manpower", breakdown, data.province, save);
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
+   if (hasProvinceUpgrade("HighlandRecruitment", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.HighlandRecruitment.name(), value: 0.25 });
+      }
+   }
    if (!data.coreProvinces.has(data.province)) {
       breakdown.multiply.push({ name: $t(L.NotCore), value: -0.5 });
    }
@@ -193,7 +221,7 @@ function _getTileManpower(tile: Tile, save: SaveGame): IValueBreakdown {
 
 export const getTileDefense = cacheTile(_getTileDefense);
 
-export function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
+function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const data = save.state.tiles.get(tile);
    if (!data) {
@@ -231,6 +259,8 @@ export function _getTileDefense(tile: Tile, save: SaveGame): IValueBreakdown {
    }
    if (isCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.IsCurrentCapital), value: +0.1 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.multiply.push({ name: $t(L.RegionalCapital), value: 0.05 });
    }
    if (!isConnectedToCapital(tile, save)) {
       breakdown.multiply.push({ name: $t(L.NotConnectedToCapital), value: -0.1 });
@@ -303,6 +333,8 @@ function _getTileUnrest(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    if (isCapital(tile, save)) {
       breakdown.add.push({ name: $t(L.IsCurrentCapital), value: -50 });
+   } else if (isRegionalCapital(tile, save)) {
+      breakdown.add.push({ name: $t(L.RegionalCapital), value: -25 });
    }
    attachTileModifiers(data.modifiers.Unrest, breakdown);
    if (data.buildings.has("Amphitheatre")) {
@@ -346,6 +378,26 @@ function _getTileUnrest(tile: Tile, save: SaveGame): IValueBreakdown {
    return finalizeBreakdown(breakdown);
 }
 
+function isWithinDistanceFromCapital(distance: number, tile: Tile, save: SaveGame): boolean {
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return false;
+   }
+   const state = save.state.provinces[data.province];
+   if (!state) {
+      return false;
+   }
+   for (const capital of new Set([state.capital, ...state.regionalCapitals])) {
+      if (
+         save.state.tiles.get(capital)?.province === data.province &&
+         MapGrid.distanceTile(tile, capital) <= distance
+      ) {
+         return true;
+      }
+   }
+   return false;
+}
+
 export const getTileLandTax = cacheTile(_getTileLandTax);
 
 function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
@@ -361,6 +413,13 @@ function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.LandTax, breakdown);
    attachModifiers("LandTax", breakdown, data.province, save);
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
    if (hasProvinceUpgrade("TheTwoShores", data.province, save) && hasStraitOfGibraltar(data.province, save)) {
       breakdown.multiply.push({ name: ProvinceUpgrades.TheTwoShores.name(), value: 0.3 });
    }
@@ -473,7 +532,7 @@ export const ImportRangeUpgradeFactor = 10;
 
 export const getTileOutput = cacheTile(_getTileOutput);
 
-export function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
+function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const data = save.state.tiles.get(tile);
    if (!data) {
@@ -485,6 +544,14 @@ export function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.TileOutput, breakdown);
    attachModifiers("TileOutput", breakdown, data.province, save);
+
+   if (
+      hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
+      data.coreProvinces.has(data.province) &&
+      isWithinDistanceFromCapital(1, tile, save)
+   ) {
+      breakdown.multiply.push({ name: ProvinceUpgrades.CapitalsOfProsperity.name(), value: 0.5 });
+   }
    if (hasProvinceUpgrade("ProductiveInvestment", data.province, save) && data.upgradeCount > 0) {
       breakdown.multiply.push({
          name: ProvinceUpgrades.ProductiveInvestment.name(),
@@ -595,7 +662,7 @@ function _getTileGoodsTax(tile: Tile, save: SaveGame): number {
    return goodsProduction * Price[data.goods] * goodsTaxRate;
 }
 
-export function getDistanceFromCapital(tile: Tile, save: SaveGame): number {
+export function getDistanceFromNearestCapital(tile: Tile, save: SaveGame): number {
    const data = save.state.tiles.get(tile);
    if (!data) {
       return 0;
@@ -604,8 +671,13 @@ export function getDistanceFromCapital(tile: Tile, save: SaveGame): number {
    if (!state) {
       return 0;
    }
-   const capital = state.capital;
-   return MapGrid.distanceTile(tile, capital);
+   let distance = MapGrid.distanceTile(tile, state.capital);
+   for (const capital of state.regionalCapitals) {
+      if (isRegionalCapital(capital, save) && save.state.tiles.get(capital)?.province === data.province) {
+         distance = Math.min(distance, MapGrid.distanceTile(tile, capital));
+      }
+   }
+   return distance;
 }
 
 export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile, save, mode) => {
@@ -618,12 +690,16 @@ export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile
    if (!state) {
       return calc.finish();
    }
-   const distance = getDistanceFromCapital(tile, save);
+   const distance = getDistanceFromNearestCapital(tile, save);
    calc
       .add(distance * MaintenanceCostPerTileDistance)
       ?.describe(
-         $t(L.DistanceFromCapital),
-         $t(L.$1TilesFromCapital$2GoldPerTile, formatNumber(distance), formatNumber(MaintenanceCostPerTileDistance)),
+         $t(L.DistanceFromNearestCapital),
+         $t(
+            L.$1TilesFromNearestCapital$2GoldPerTile,
+            formatNumber(distance),
+            formatNumber(MaintenanceCostPerTileDistance),
+         ),
       );
    if (data.culture === state.culture) {
       calc.multiply(-0.1)?.describe($t(L.DominantCulture));
@@ -686,7 +762,7 @@ export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile
    return calc.finish();
 });
 
-const MaintenanceCostPerTileDistance = 1;
+export const MaintenanceCostPerTileDistance = 1;
 
 export function getTileWar(tile: Tile, save: SaveGame): IWar | undefined {
    for (const war of save.state.wars) {
@@ -741,6 +817,20 @@ export const UpgradeCostGrowthFactor = 1.2;
 
 export const getTileUpgradeCost = defineValueGetter(
    (tile: Tile, resource: GovernorPower, save: SaveGame, mode: EvaluationMode = "breakdown") => {
+      return getTileUpgradeCostAtCount(tile, resource, save.state.tiles.get(tile)?.upgradeCount ?? 0, save, mode);
+   },
+);
+
+export function getTilePillageRefund(tile: Tile, resource: GovernorPower, save: SaveGame): number {
+   const upgradeCount = save.state.tiles.get(tile)?.upgradeCount ?? 0;
+   if (upgradeCount - 1 < 0) {
+      return 0;
+   }
+   return 0.5 * getTileUpgradeCostAtCount(tile, resource, upgradeCount - 1, save, "value");
+}
+
+const getTileUpgradeCostAtCount = defineValueGetter(
+   (tile: Tile, resource: GovernorPower, upgradeCount: number, save: SaveGame, mode: EvaluationMode = "breakdown") => {
       const calc = new ValueCalculation({ mode, reverse: true });
       const data = save.state.tiles.get(tile);
       if (!data) {
@@ -752,8 +842,8 @@ export const getTileUpgradeCost = defineValueGetter(
       }
       calc.add(50)?.describe($t(L.BaseValue));
       calc
-         .multiply(UpgradeCostGrowthFactor ** data.upgradeCount - 1)
-         ?.describe($t(L.TileUpgrades), $t(L.TileUpgradesCostDesc$1, formatNumber(data.upgradeCount)));
+         .multiply(UpgradeCostGrowthFactor ** upgradeCount - 1)
+         ?.describe($t(L.TileUpgrades), $t(L.TileUpgradesCostDesc$1, formatNumber(upgradeCount)));
       if (data.culture === state.culture) {
          calc.multiply(-0.1)?.describe($t(L.DominantCulture));
       } else if (state.toleratedCultures.has(data.culture)) {
@@ -926,24 +1016,6 @@ export function getCultureStatus(tile: Tile, save: SaveGame): CultureReligionSta
       return "Tolerated";
    }
    return "Minor";
-}
-
-export function settleTile(tile: Tile, province: Province, save: SaveGame): ITileData | undefined {
-   if (save.state.tiles.has(tile)) {
-      return undefined;
-   }
-   if (!isLand(tile)) {
-      return undefined;
-   }
-   if (!NewSettlementTiles.has(tile)) {
-      return undefined;
-   }
-   const tileData = initTileData(province, randOne(TerrainToGoods[getTileTerrain(tile)]));
-   tileData.infrastructure = 1;
-   tileData.production = 1;
-   tileData.population = 1;
-   save.state.tiles.set(tile, tileData);
-   return tileData;
 }
 
 export function getTileTerrain(tile: Tile): Terrain {

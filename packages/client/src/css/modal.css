@@ -20,8 +20,8 @@
       position: absolute;
       top: 0;
       color: #fff;
-      padding: 0.625rem 0.625rem 10% 0.625rem;
-      text-shadow: 0.0625rem 0.0625rem 0 rgba(0, 0, 0, 0.75);
+      padding: 1rem 1rem 10% 1rem;
+      text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.75);
       background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
       width: 100%;
    }
@@ -32,24 +32,24 @@
       left: 0;
       right: 0;
       padding: 25% 0 0 0;
-      text-shadow: 0.0625rem 0.0625rem 0 rgba(0, 0, 0, 0.75);
+      text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.75);
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
    }
 
    .modal-transparent-button {
       cursor: var(--hand-cursor);
-      padding: 0.625rem;
+      padding: 1rem;
       text-align: center;
       font-family: "TitleFont", serif;
       font-size: var(--mantine-font-size-lg);
-      text-shadow: 0.0625rem 0.0625rem 0 rgba(0, 0, 0, 0.75);
+      text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.75);
 
       &:hover {
          color: #fff;
       }
 
       &:active {
-         transform: translateY(0.0625rem);
+         transform: translateY(0.1rem);
       }
 
       &:disabled:active {
@@ -60,25 +60,25 @@
 
 .modal.xl {
    max-width: 90vw;
-   width: 65rem;
+   width: 104rem;
 }
 
 .modal.lg {
    max-width: 90vw;
-   width: 45rem;
+   width: 72rem;
 }
 
 .modal.md {
    max-width: 90vw;
-   width: 35rem;
+   width: 56rem;
 }
 
 .modal.sm {
    max-width: 90vw;
-   width: 30rem;
+   width: 48rem;
 }
 
 .modal.xs {
    max-width: 90vw;
-   width: 25rem;
+   width: 40rem;
 }

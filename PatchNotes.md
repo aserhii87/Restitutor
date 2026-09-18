@@ -1,58 +1,53 @@
-## War 2.0
+# 0.25
 
-### Army Compositions and Counters
+## Regional Capital
 
-- Army Composition: the 25% cap on Ranged and Cavalry is removed - either can reach 100%. Adjusting army composition now has a 1-year cooldown.
-- Unit Power Scaling: Infantry/Ranged/Cavalry retain base power of 1/2/3. General Skill Levels now add 50% of the corresponding unit's base power instead of a flat +1. Unit Power bonuses from technology, legacy upgrades, and social classes likewise change from +1 to +50% - this makes the scaling linear and equal for all unit types.
-- Unit Counters: Infantry counters Cavalry, Cavalry counters Ranged, and Ranged counters Infantry - they gain 0.25% Effectiveness for each 1% of enemy's army unit that they counter, and lose 0.25% Effectiveness for unit that they are countered. Effectiveness is 100% (neutral) when viewing a province's war power without an enemy. For example, if an enemy has 20% Ranged and 10% Cavalry, our Infantry Unit will have -2.5% Effectiveness (97.5% of Base War Power).
+- Added regional capitals, which can be established on owned core tiles for 1 Mandate, with a 10-year cooldown. Regional capital status can be abolished (does not reset cooldown)
+- Governing and maintenance costs now use the distance to the nearest provincial or regional capital, reducing costs for nearby tiles.
+- Regional capitals receive -45% governing cost, +5% defense, and -25 unrest, and have distinct map markers.
 
-### Peace Treaty Additional Terms
+## Right of Plunder
 
-- You can now select an additional peace treaty term when singing a peace treaty after victory.
-- Current options are: War Reparations, Forced Disarmament (+Gold for the victor), Demilitarization (-War Power for the defeated), Forced Concessions (-Stability for the defeated), Public Humiliation (-Prestige for the defeated), or Devastation; Complete annexations offer Devastation, Triumphal Unity, Martial Ascendancy, or Victorious Prestige.
+- Eliminating a barbarian polity unlocks a mission granting Right of Plunder.
+- Pillage buttons appear below the corresponding upgrade buttons on the tile page.
+- Pillage Infrastructure, Production, or Population on an non-core tile, reducing the selected upgrade and the tile's upgrade times by 1.
+- Pillaging refunds 50% of the corresponding government-point cost, calculated using the current owner's modifiers.
+- All pillaging actions share a 5-year provincial cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
 
-### More Warfare Actions
+## Legacy Tree
 
-- Plunder War Tiles: now reduces 20% of upgrades instead of flat -1.
-- Make War Speech grants 10% of required war score (rounded down, minimum 1) instead of 1 war score. Cooldown has been increased to 2 years. Costs 10 administrative points per war score granted, replacing the previous flat cost of 50 administrative points.
-- Decimate Our Army grants 10% of required war score (rounded down, minimum 1) instead of 1 war score. Gold cost equals army maintenance cost multiplied by war score granted.
-- Forceful attack: We lose 5% of our standing army (reduced from 10%) when our attack is repelled.
-- Execute a Battle Plan: Spend 1 general skill point to gain war score equal to total general skill levels. Requires an appointed general and has a 1-year cooldown.
-- Expand "Proclaim Right Of Reprisal" to all defensive wars.
+- Added a legacy upgrade granting +1 regional capital slot.
+- Added a Christian Influence branch in legacy tree.
 
-### War Related Polish
+## Tech Tree
 
-- A new war cannot be declared between provinces that are already fighting on opposing sides of an ongoing war.
-- Allies, defense pact partners, and eligible client/patron partners cannot join a war coalition against a province (leader attacker/defender) with which they have an active truce.
-- NPCs will raise their conscription after being attacked less aggressively than before (from 5% per attack to 2% per attack).
+- Added Local Governance: +150 Governing Capacity and +1 regional capital slot.
+- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, +5 Production Capacity, and +1 Diplomat.
+- Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
+- Changed Cultural Policy: Governing Capacity changed from +100 to +150.
 
-- Add a confirmation dialog when lowering target conscription and army maintenance (can be skipped).
+## Settlement Events
 
-## Autonomy Rework
+- All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
 
-- Each 1% autonomy now also reduces Governing Cost and Tile Defense by 0.5%.
-- Autonomy changes now share a province-wide 6-month cooldown, including Reset, Settle Unrest, and automation. Unchanged values do not trigger the cooldown.
-- Automatic settlement checks monthly when off cooldown and settles only the highest-unrest tile with positive unrest whose autonomy can change. It does nothing if no tile qualifies.
-- Autonomy sliders in UI are adjusted to accommodate the cooldown change.
+## Crisis of the 3rd Century
 
-## Looming Disasters
+- The Age of Soldiers event in 235 AD now begins the Crisis of the Third Century, which lasts for 50 years. To simulate the political instability and rise of soldiers, several actions are available during this period.
+- Gain the Contested Imperium casus belli against a neighboring province for 5 years, with a shared 5-year cooldown. Wars declared with it inflict -10 Stability on the attacker for 2 years after ending, regardless of the outcome.
+- Convert 1 Consul Point into 1 General Skill Point every 5 years during the crisis.
+- Enact emergency measures granting +10% Prestige, +10% War Power, +10% Land Tax and Tile Output, or +1 Military Point at the cost of -10 Stability for 5 years.
 
-- Currently there two kinds of "disasters" from the narrative events: barbarian formations and heresy outbreaks. Internal Affairs panel now previews the next upcoming disaster. Select "Show All" to view upcoming disasters.
-- Disaster previews show the event year, description, and affected areas: tiles taken over by new barbarian polities, or provinces and tiles affected by heresies. Tile links let you locate affected areas on the map.
-- Disasters within 10 years are highlighted in red and trigger a "Looming Disasters" todo icon on the right.
+## More Client Actions
 
-## Governing Cost/Capacity Balancing
+- Grant Land: Give a client an owned core tile bordering them, gaining +10% Land Tax for 5 years. The tile cannot be a capital or contested in a war.
+- Adopt Client's Cause: Gain a client's casus belli against another province, preserving its remaining duration.
+- Request Consul Point: Transfer 1 available Consul Point from a client to your province.
 
-- Reduce governing cost from distance from capital from 10% per tile to 5% per tile.
-- Add Basilica: unlocked by Civic Education, reduces Tile Governing Cost by 40%. Costs 400 gold to build and 2 gold in maintenance.
+## Dalmatia
 
-## Map Visual
+Dalmatia is now playable, with 10 historical events and 6 missions covering expansion into Italia and the Balkans, including bringing a weakened Pannonia under your protection as a client.
 
-- Tiles contested in a war now shows the war progress. Every month the war result (Success, Repelled, Stalled) will show up on that tile.
-- When hover over a tile contested in a war, a tooltip of that war shows up.
-
-## Other Changes
-- Extend the Administrative branch of the legacy upgrade tree.
-- Fix a bug where demanding a tile deduct double the diplomacy points.
-- Improve the performance of Tiles & Upgrade popup - fixed the table header when scroll.
-- Show other provinces' attitude in Diplomacy panel.
+### Provincial Spirits
+- Highland Recruitment: +25% Manpower on core Hill and Mountain tiles.
+- Monuments of Power: +10% Prestige for each completed Provincial Great Work.
+- Capitals of Prosperity: +50% Land Tax, Tile Output, and Manpower on core tiles that are capitals or adjacent to your capitals, including regional capitals. Bonuses from multiple capitals do not stack.

@@ -5,6 +5,7 @@ import error from "../assets/sounds/error.mp3";
 import event from "../assets/sounds/event.mp3";
 import shatter from "../assets/sounds/shatter.mp3";
 import sword from "../assets/sounds/sword.mp3";
+import victory from "../assets/sounds/victory.mp3";
 
 import { G } from "../utils/Global";
 
@@ -14,6 +15,7 @@ const SoundClips = {
    sword,
    event,
    shatter,
+   victory,
 } as const satisfies Record<string, string>;
 
 export type SoundClip = keyof typeof SoundClips;

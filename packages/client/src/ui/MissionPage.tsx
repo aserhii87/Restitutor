@@ -50,7 +50,7 @@ export function MissionPage(): React.ReactNode {
    );
 }
 
-const MaxContainerHeight = 10;
+const MaxContainerHeight = 16;
 
 function MissionEvent({ event }: { event: GameEvent }): React.ReactNode {
    const [isConditionExpanded, setIsConditionExpanded] = useState(false);
@@ -104,7 +104,7 @@ function MissionEvent({ event }: { event: GameEvent }): React.ReactNode {
                <div ref={conditionContentRef}>
                   <ConditionBreakdownComp condition={condition} />
                </div>
-               {isConditionExpanded && <div style={{ height: "1rem" }} />}
+               {isConditionExpanded && <div style={{ height: "1.6rem" }} />}
             </div>
             {isConditionOverflowing && (
                <div

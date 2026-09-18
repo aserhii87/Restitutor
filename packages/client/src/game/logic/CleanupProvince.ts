@@ -2,6 +2,7 @@ import { filterInPlace, forEach } from "@project/shared/src/utils/Helper";
 import { NegotiateWhitePeaceAction } from "../actions/NegotiateWhitePeaceAction";
 import type { Province } from "../definitions/Province";
 import type { SaveGame } from "../GameState";
+import { clearAllCaches } from "./CacheLogic";
 import { getRelations } from "./DiplomacyLogic";
 import { clearProvincePrestigeRankingCache } from "./ProvinceLogic";
 
@@ -29,5 +30,6 @@ export function cleanUpProvince(province: Province, save: SaveGame): void {
       return true;
    });
    delete save.state.provinces[province];
+   clearAllCaches();
    clearProvincePrestigeRankingCache();
 }

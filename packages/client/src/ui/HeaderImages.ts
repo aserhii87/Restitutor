@@ -1,5 +1,6 @@
 import BarbarianRaid from "../assets/images/headers/BarbarianRaid.webp";
 import Chronicle from "../assets/images/headers/ChronicleHeader.webp";
+import Crisis from "../assets/images/headers/Crisis.webp";
 import EcumenicalCouncil from "../assets/images/headers/EcumenicalCouncil.webp";
 import Peace from "../assets/images/headers/Peace.webp";
 import Rebirth from "../assets/images/headers/Rebirth.webp";
@@ -17,6 +18,7 @@ export const HeaderImages = {
    Chronicle: { url: Chronicle, credit: "Das Forum Romanum, J. Bühlmann (1901)" },
    Rebirth: { url: Rebirth, credit: "Le triomphe de la Ville de Paris, François-Edouard Picot (1842)" },
    Treasury: { url: Treasury, credit: "Ancient Rome, Giovanni Paolo Panini (1757)" },
+   Crisis: { url: Crisis, credit: "The Fall of Pompeii, Anton Hoffmann (1920)" },
    Peace: {
       url: Peace,
       credit: "Vercingetorix surrenders to Julius Caesar, Alphonse Marie de Neuville (French, 1835-1885)",

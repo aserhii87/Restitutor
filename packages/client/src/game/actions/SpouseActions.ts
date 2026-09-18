@@ -153,13 +153,6 @@ export function DivorceAction(province: Province, save: SaveGame): IGameAction {
    };
 }
 
-export const TakeLoverEffect: IGameEffect = {
-   modifiers: {
-      Stability: { type: "add", value: -5, duration: TimedActions.TakeLover.duration },
-      Prestige: { type: "multiply", value: -0.05, duration: TimedActions.TakeLover.duration },
-   },
-};
-
 export function TakeLoverAction(province: Province, save: SaveGame): IGameAction {
    const state = save.state.provinces[province];
    if (!state) {
@@ -180,7 +173,10 @@ export function TakeLoverAction(province: Province, save: SaveGame): IGameAction
       },
       effect: {
          name: $t(L.TakeALoverWith$1, name.join(" ")),
-         ...TakeLoverEffect,
+         modifiers: {
+            Stability: { type: "add", value: -5, duration: TimedActions.TakeLover.duration },
+            Prestige: { type: "multiply", value: -0.05, duration: TimedActions.TakeLover.duration },
+         },
       },
       execute: () => {
          startTimedAction("TakeLover", province, save);

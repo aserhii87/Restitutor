@@ -24,6 +24,7 @@ import CarthageCaptured from "../../assets/images/events/CarthageCaptured.webp";
 import CarthageDecline from "../../assets/images/events/CarthageDecline.webp";
 import ChariotRace1 from "../../assets/images/events/ChariotRace1.webp";
 import ChariotRace2 from "../../assets/images/events/ChariotRace2.webp";
+import ChristianBurial from "../../assets/images/events/ChristianBurial.webp";
 import ChristTeaching from "../../assets/images/events/ChristTeaching.webp";
 import CiceroInSenate from "../../assets/images/events/CiceroInSenate.webp";
 import CircusBattle from "../../assets/images/events/CircusBattle.webp";
@@ -166,6 +167,7 @@ import Wedding2 from "../../assets/images/events/Wedding2.webp";
 import WinterMarch from "../../assets/images/events/WinterMarch.webp";
 import ZenobiaCaptured from "../../assets/images/events/ZenobiaCaptured.webp";
 import ZenobiaSpeech from "../../assets/images/events/ZenobiaSpeech.webp";
+import DiocletiansPalace from "../../assets/images/greatworks/DiocletiansPalace.webp";
 import type { ImageWithCredit } from "./ImageWithCredit";
 
 interface IEventImage extends ImageWithCredit {
@@ -303,6 +305,11 @@ export const EventImage = {
       credit: "The Chariot Race, Alexander von Wagner (c. 1882)",
       keywords: ["Circus", "Horses", "Rome", "Sport"],
    },
+   ChristianBurial: {
+      url: ChristianBurial,
+      credit: "Burial of Saint Cecilia in the Catacombs of Rome, Luis de Madrazo y Kuntz (1852)",
+      keywords: ["Christianity", "Martyr", "Mourning", "Catacombs", "Cecilia", "Bishop", "Rome"],
+   },
    ChristTeaching: {
       url: ChristTeaching,
       credit: "Christ Among the Doctors, Paolo Veronese (c.1560)",
@@ -337,6 +344,11 @@ export const EventImage = {
       url: ClovisBaptism,
       credit: "The Baptism of Clovis, Master of Saint Giles (c.1500)",
       keywords: ["Franks", "Christianity", "King", "Conversion"],
+   },
+   CoastalPalace: {
+      url: DiocletiansPalace,
+      credit: "Reconstruction of Diocletian's Palace in Split, Ernest Hébrard (1912)",
+      keywords: ["Diocletian", "Split", "Architecture", "Fortification", "Adriatic", "Ships"],
    },
    Colosseum: {
       url: Colosseum,

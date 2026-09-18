@@ -177,7 +177,7 @@ export function BarbarianRaidModal(): React.ReactNode {
                               <td>
                                  {raid &&
                                     (raid.defender === G.save.state.playerProvince ? (
-                                       <div style={{ ...Grid2, gap: "0.3125rem" }}>
+                                       <div style={{ ...Grid2, gap: "0.5rem" }}>
                                           <ActionButton
                                              action={() => ({
                                                 cost: {
@@ -275,7 +275,7 @@ export function BarbarianRaidModal(): React.ReactNode {
                                           </ActionButton>
                                        </div>
                                     ) : (
-                                       <div style={{ ...Grid2, gap: "0.3125rem" }}>
+                                       <div style={{ ...Grid2, gap: "0.5rem" }}>
                                           <ActionButton
                                              action={() => ({
                                                 cost: {

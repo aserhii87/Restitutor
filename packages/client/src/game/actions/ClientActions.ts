@@ -1,18 +1,162 @@
-import type { Tile } from "@project/shared/src/utils/Helper";
+import { keysOf, type Tile } from "@project/shared/src/utils/Helper";
+import { hideSidebar } from "../../ui/common/SidebarManager";
 import { $t, L } from "../../utils/i18n";
+import { hideModal } from "../../utils/ModalManager";
+import type { CasusBelli } from "../definitions/CasusBelli";
 import type { Province } from "../definitions/Province";
-import { TimedActions } from "../definitions/TimedAction";
-import { RefreshTiles } from "../Events";
+import { getBorderingProvinces } from "../definitions/Tile";
+import { type TimedAction, TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { toConditions } from "../logic/Calculation";
-import { getAnnexClientCost, getRelation } from "../logic/DiplomacyLogic";
+import { getAnnexClientCost, getRelation, getRelations } from "../logic/DiplomacyLogic";
+import { annexTiles } from "../logic/MissionLogic";
 import { addModifier } from "../logic/ModifierLogic";
 import { getProvinceName } from "../logic/ProvinceLogic";
-import { addProvinceResource } from "../logic/ResourceLogic";
+import { addProvinceResource, getProvinceResource, spendProvinceResource } from "../logic/ResourceLogic";
 import { startTimedAction, timedActionConditions } from "../logic/TimedActionLogic";
 import { requirePeaceBetweenChecks } from "../logic/TreatyLogic";
+import { getWarForTile } from "../logic/WarLogic";
 import { EmptyGameAction } from "./EmptyGameAction";
-import { finalizeCondition, type IGameAction } from "./GameAction";
+import { finalizeCondition, type ICondition, type IGameAction } from "./GameAction";
+
+export function clientActionConditions(
+   action: TimedAction,
+   ourProvince: Province,
+   clientProvince: Province,
+   save: SaveGame,
+): ICondition[] {
+   return [
+      ...timedActionConditions({ action }, ourProvince, save),
+      {
+         name: $t(L.$1IsOurClient, getProvinceName(clientProvince, save)),
+         value:
+            !!save.state.provinces[ourProvince] &&
+            !!save.state.provinces[clientProvince] &&
+            getRelation(ourProvince, clientProvince, save)?.treaty?.type === "Patron" &&
+            getRelation(clientProvince, ourProvince, save)?.treaty?.type === "Client",
+      },
+      ...toConditions(requirePeaceBetweenChecks(ourProvince, clientProvince, save)),
+   ];
+}
+
+export function getGrantLandTiles(ourProvince: Province, clientProvince: Province, save: SaveGame): Tile[] {
+   const capitals = new Set(keysOf(save.state.provinces).map((province) => save.state.provinces[province]?.capital));
+   return Array.from(save.state.tiles)
+      .filter(
+         ([tile, data]) =>
+            data.province === ourProvince &&
+            data.coreProvinces.has(ourProvince) &&
+            !capitals.has(tile) &&
+            getWarForTile(tile, save) === undefined &&
+            getBorderingProvinces(tile, save).includes(clientProvince),
+      )
+      .map(([tile]) => tile);
+}
+
+export function GrantLandAction(
+   ourProvince: Province,
+   clientProvince: Province,
+   tile: Tile,
+   save: SaveGame,
+): IGameAction {
+   const tiles = getGrantLandTiles(ourProvince, clientProvince, save);
+   return {
+      condition: finalizeCondition([
+         ...clientActionConditions("GrantLand", ourProvince, clientProvince, save),
+         {
+            name: $t(L.$1HasAvailableTilesToGrant, getProvinceName(ourProvince, save)),
+            value: tiles.includes(tile),
+         },
+      ]),
+      execute: ({ headless }) => {
+         annexTiles({ tiles: [tile], province: clientProvince, save });
+         startTimedAction("GrantLand", ourProvince, save);
+         if (!headless) {
+            hideSidebar();
+         }
+      },
+      effect: {
+         name: TimedActions.GrantLand.name(),
+         modifiers: {
+            LandTax: {
+               type: "multiply",
+               value: 0.1,
+               duration: TimedActions.GrantLand.duration,
+            },
+         },
+      },
+   };
+}
+
+type CasusBelliResult = {
+   province: Province;
+   casusBelli: CasusBelli;
+   monthsLeft: number;
+};
+
+export function getClientCasusBelli(
+   ourProvince: Province,
+   clientProvince: Province,
+   save: SaveGame,
+): CasusBelliResult[] {
+   const result: CasusBelliResult[] = [];
+   getRelations(clientProvince, save)?.forEach((relation, otherProvince) => {
+      if (otherProvince === ourProvince) return;
+      relation.casusBelli.forEach((data, casusBelli) => {
+         if (data.monthsLeft <= 0) return;
+         result.push({ province: otherProvince, casusBelli, monthsLeft: data.monthsLeft });
+      });
+   });
+   return result;
+}
+
+export function AdoptClientCauseAction(
+   ourProvince: Province,
+   clientProvince: Province,
+   cb: CasusBelliResult,
+   save: SaveGame,
+): IGameAction {
+   const causes = getClientCasusBelli(ourProvince, clientProvince, save);
+   return {
+      condition: finalizeCondition([
+         ...clientActionConditions("AdoptClientCause", ourProvince, clientProvince, save),
+         {
+            name: $t(L.$1HasActiveCasusBelli, getProvinceName(clientProvince, save)),
+            value: causes.some((entry) => entry.province === cb.province && entry.casusBelli === cb.casusBelli),
+         },
+      ]),
+      execute: ({ headless }) => {
+         const source = getRelation(clientProvince, cb.province, save)?.casusBelli.get(cb.casusBelli);
+         const relation = getRelation(ourProvince, cb.province, save);
+         if (!source || !relation) return;
+         relation.casusBelli.set(cb.casusBelli, {
+            ...source,
+            monthsLeft: Math.max(source.monthsLeft, relation.casusBelli.get(cb.casusBelli)?.monthsLeft ?? 0),
+         });
+         startTimedAction("AdoptClientCause", ourProvince, save);
+         if (!headless) {
+            hideModal();
+         }
+      },
+   };
+}
+
+export function RequestConsulPointAction(ourProvince: Province, clientProvince: Province, save: SaveGame): IGameAction {
+   return {
+      condition: finalizeCondition([
+         ...clientActionConditions("RequestConsulPoint", ourProvince, clientProvince, save),
+         {
+            name: $t(L.$1HasAConsulPoint, getProvinceName(clientProvince, save)),
+            value: getProvinceResource("consulPoint", clientProvince, save) >= 1,
+         },
+      ]),
+      execute: () => {
+         spendProvinceResource("consulPoint", 1, clientProvince, save);
+         addProvinceResource("consulPoint", 1, ourProvince, save);
+         startTimedAction("RequestConsulPoint", ourProvince, save);
+      },
+   };
+}
 
 export function SummonGovernorAction(ourProvince: Province, clientProvince: Province, save: SaveGame): IGameAction {
    const usToThem = getRelation(ourProvince, clientProvince, save);
@@ -21,14 +165,7 @@ export function SummonGovernorAction(ourProvince: Province, clientProvince: Prov
       return EmptyGameAction;
    }
    return {
-      condition: finalizeCondition([
-         ...timedActionConditions({ action: "SummonGovernor" }, ourProvince, save),
-         {
-            name: $t(L.TheyAreOurClient),
-            value: usToThem.treaty?.type === "Patron" && themToUs.treaty?.type === "Client",
-         },
-         ...toConditions(requirePeaceBetweenChecks(ourProvince, clientProvince, save)),
-      ]),
+      condition: finalizeCondition(clientActionConditions("SummonGovernor", ourProvince, clientProvince, save)),
       execute: () => {
          startTimedAction("SummonGovernor", ourProvince, save);
          addModifier({
@@ -68,14 +205,7 @@ export function RequestMilitaryAidAction(ourProvince: Province, clientProvince: 
       return EmptyGameAction;
    }
    return {
-      condition: finalizeCondition([
-         ...timedActionConditions({ action: "RequestMilitaryAid" }, ourProvince, save),
-         {
-            name: $t(L.TheyAreOurClient),
-            value: usToThem.treaty?.type === "Patron" && themToUs.treaty?.type === "Client",
-         },
-         ...toConditions(requirePeaceBetweenChecks(ourProvince, clientProvince, save)),
-      ]),
+      condition: finalizeCondition(clientActionConditions("RequestMilitaryAid", ourProvince, clientProvince, save)),
       execute: () => {
          startTimedAction("RequestMilitaryAid", ourProvince, save);
          const name = $t(
@@ -113,27 +243,16 @@ export function AnnexClientAction(ourProvince: Province, clientProvince: Provinc
    }
    return {
       cost: getAnnexClientCost(ourProvince, clientProvince, save),
-      condition: finalizeCondition([
-         ...timedActionConditions({ action: "AnnexClient" }, ourProvince, save),
-         {
-            name: $t(L.TheyAreOurClient),
-            value: usToThem.treaty?.type === "Patron" && themToUs.treaty?.type === "Client",
-         },
-         ...toConditions(requirePeaceBetweenChecks(ourProvince, clientProvince, save)),
-      ]),
+      condition: finalizeCondition(clientActionConditions("AnnexClient", ourProvince, clientProvince, save)),
       execute: () => {
          startTimedAction("AnnexClient", ourProvince, save);
-         const tiles = new Set<Tile>();
+         const tiles: Tile[] = [];
          for (const [tile, data] of save.state.tiles) {
             if (data.province === clientProvince) {
-               data.province = ourProvince;
-               tiles.add(tile);
+               tiles.push(tile);
             }
          }
-         if (tiles.size > 0) {
-            addProvinceResource("mandate", 1, ourProvince, save);
-         }
-         RefreshTiles.emit({ tiles, options: { indicator: true, visual: true } });
+         annexTiles({ tiles, province: ourProvince, save });
       },
    };
 }

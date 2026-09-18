@@ -10,6 +10,7 @@ import { AquitaniaEvent } from "./AquitaniaEvent";
 import { BaeticaEvent } from "./BaeticaEvent";
 import { BelgicaEvent } from "./BelgicaEvent";
 import { BritanniaEvent } from "./BritanniaEvent";
+import { DalmatiaEvent } from "./DalmatiaEvent";
 import { GallicEmpireEvents } from "./GallicEmpireEvents";
 import { GermaniaEvent } from "./GermaniaEvent";
 import { HispaniaEvent } from "./HispaniaEvents";
@@ -69,6 +70,7 @@ const _GameEvents = {
    ...RaetiaEvent,
    ...NoricumEvent,
    ...PannoniaEvent,
+   ...DalmatiaEvent,
    ...TarraconensisEvent,
    ...LusitaniaEvent,
    ...BaeticaEvent,

@@ -1,9 +1,12 @@
 import { forEach, fromEntries, hasFlag } from "@project/shared/src/utils/Helper";
 import { isPaused, revertSpeed } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
+import { durationToString } from "../definitions/Modifier";
 import { GallicEmpireProvinces, PalmyreneEmpireProvinces } from "../definitions/TileConstants";
+import { TimedActions } from "../definitions/TimedAction";
 import { GameOptionFlag } from "../GameOption";
 import { getRelation } from "../logic/DiplomacyLogic";
+import { startTimedAction } from "../logic/TimedActionLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
@@ -244,7 +247,7 @@ export const HistoricalEvents = {
    },
    Y235: {
       name: () => $t(L.TheAgeOfSoldiers),
-      wikipedia: "Severus_Alexander",
+      wikipedia: "Crisis_of_the_Third_Century",
       image: EventImage.CaesarDeath2,
       desc: () => $t(L.TheAgeOfSoldiersDesc),
       condition: {
@@ -256,10 +259,32 @@ export const HistoricalEvents = {
             modifiers: {
                Prestige: { type: "multiply", value: 0.25, duration: 12 },
             },
+            custom: [
+               {
+                  desc: () =>
+                     $t(
+                        L.$1CommencesAndLastsFor$2,
+                        TimedActions.ThirdCenturyCrisis.name(),
+                        durationToString(TimedActions.ThirdCenturyCrisis.duration),
+                     ),
+                  execute: (province, save) => startTimedAction("ThirdCenturyCrisis", province, save),
+               },
+            ],
          },
          {
             label: () => $t(L.WeShallMindOurOwnBusinessInstead),
             resources: { administrative: 50, diplomatic: 50 },
+            custom: [
+               {
+                  desc: () =>
+                     $t(
+                        L.$1CommencesAndLastsFor$2,
+                        TimedActions.ThirdCenturyCrisis.name(),
+                        durationToString(TimedActions.ThirdCenturyCrisis.duration),
+                     ),
+                  execute: (province, save) => startTimedAction("ThirdCenturyCrisis", province, save),
+               },
+            ],
          },
       ],
    },

@@ -66,7 +66,7 @@ export function ProductionNode({ data }: NodeProps<ProductionNode>): React.React
                                  <div>
                                     <img
                                        src={Goods[g].icon}
-                                       style={{ width: "2rem", height: "2rem", margin: "-0.25rem" }}
+                                       style={{ width: "3.2rem", height: "3.2rem", margin: "-0.4rem" }}
                                        className="display-block"
                                     />
                                  </div>
@@ -86,7 +86,7 @@ export function ProductionNode({ data }: NodeProps<ProductionNode>): React.React
                         <div>
                            <img
                               src={config.icon}
-                              style={{ width: "2rem", height: "2rem", margin: "-0.25rem" }}
+                              style={{ width: "3.2rem", height: "3.2rem", margin: "-0.4rem" }}
                               className="display-block"
                            />
                         </div>
@@ -177,7 +177,7 @@ export function ProductionNode({ data }: NodeProps<ProductionNode>): React.React
                      <>{html($t(L.Unlock$1ProductionByResearching$2, config.name(), tech ? Tech[tech].name() : ""))}</>
                   )}
                >
-                  <div className="mi cc" style={{ margin: "0.25rem" }}>
+                  <div className="mi cc" style={{ margin: "0.4rem" }}>
                      lock
                   </div>
                </FloatingTip>

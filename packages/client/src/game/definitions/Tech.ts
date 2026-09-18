@@ -75,7 +75,7 @@ export class TechDefinitions {
          TradeProfit: { type: "multiply", value: 0.1 },
       },
       buildings: ["Market"],
-      timedActions: ["Denounce"],
+      timedActions: ["Denounce", "AdoptClientCause"],
       goods: ["leather"],
    } as const;
 
@@ -132,7 +132,7 @@ export class TechDefinitions {
       modifiers: {
          ProductionCapacity: { type: "add", value: 5 },
       },
-      timedActions: ["AppointEnvoy", "AnnexClient"],
+      timedActions: ["AppointEnvoy", "AnnexClient", "GrantLand"],
       goods: ["garments"],
    } as const;
 
@@ -162,7 +162,7 @@ export class TechDefinitions {
          DiplomaticRange: { type: "add", value: 5 },
          TradeProfit: { type: "multiply", value: 0.1 },
       },
-      timedActions: ["SendAGift", "RenewVestments"],
+      timedActions: ["SendAGift", "RenewVestments", "RequestConsulPoint"],
    } as const;
 
    F3: ITechDefinition = {
@@ -275,7 +275,7 @@ export class TechDefinitions {
       name: () => $t(L.TechCulturalPolicy),
       modifiers: {
          ToleratedCulture: { type: "add", value: 1 },
-         GoverningCapacity: { type: "add", value: 100 },
+         GoverningCapacity: { type: "add", value: 150 },
       },
    } as const;
 
@@ -297,20 +297,34 @@ export class TechDefinitions {
       },
    } as const;
 
-   // K1: ITechDefinition = {
-   //    requires: ["J1"],
-   //    name: () => $t(L.TechLocalGovernance),
-   // } as const;
+   K1: ITechDefinition = {
+      requires: ["J1"],
+      name: () => $t(L.TechLocalGovernance),
+      modifiers: {
+         GoverningCapacity: { type: "add", value: 150 },
+         RegionalCapitalCount: { type: "add", value: 1 },
+      },
+   } as const;
 
-   // K2: ITechDefinition = {
-   //    requires: ["J2"],
-   //    name: () => $t(L.TechClientProvinces),
-   // } as const;
+   K2: ITechDefinition = {
+      requires: ["J2"],
+      name: () => $t(L.TechImperialProsperity),
+      modifiers: {
+         Prestige: { type: "multiply", value: 0.1 },
+         TradeCapacity: { type: "add", value: 1 },
+         ProductionCapacity: { type: "add", value: 5 },
+         Diplomat: { type: "add", value: 1 },
+      },
+   } as const;
 
-   // K3: ITechDefinition = {
-   //    requires: ["J3"],
-   //    name: () => $t(L.TechCombinedArms),
-   // } as const;
+   K3: ITechDefinition = {
+      requires: ["J3"],
+      name: () => $t(L.TechCombinedArms),
+      modifiers: {
+         CavalryUnitPower: { type: "multiply", value: 0.5 },
+         WarPower: { type: "multiply", value: 0.1 },
+      },
+   } as const;
 
    // L1: ITechDefinition = {
    //    requires: ["K1"],

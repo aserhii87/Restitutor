@@ -46,6 +46,7 @@ export const ProvinceStats = {
    lowerClassLoyalty: 100,
    religiousClassLoyalty: 100,
    militaryClassLoyalty: 100,
+   eliminatedBarbarians: 0,
 } as const;
 
 export const ProvinceStatNames: Record<ProvinceStat, () => string> = {
@@ -76,6 +77,7 @@ export const ProvinceStatNames: Record<ProvinceStat, () => string> = {
    lowerClassLoyalty: () => $t(L.LowerClassLoyaltyStat),
    religiousClassLoyalty: () => $t(L.ReligiousClassLoyaltyStat),
    militaryClassLoyalty: () => $t(L.MilitaryClassLoyaltyStat),
+   eliminatedBarbarians: () => $t(L.EliminatedBarbarianPolities),
 } as const;
 
 export type ProvinceStat = keyof typeof ProvinceStats;
@@ -142,6 +144,7 @@ export interface IProvince {
    advisors: Record<GovernorPower, { selected: IAdvisor | null; candidates: IAdvisor[] }>;
    focus: GovernorPower;
    capital: Tile;
+   regionalCapitals: Set<Tile>;
    rivals: [Province | null, Province | null];
    _relations: Map<Province, IRelation>;
    unlockedTech: Set<Tech>;
@@ -199,6 +202,7 @@ export const AIActions = [
    "ChangeRival",
    "Denounce",
    "SetGovernmentFocus",
+   "EstablishRegionalCapital",
 ] as const;
 export type AIAction = (typeof AIActions)[number];
 
@@ -320,7 +324,7 @@ export const Province = {
       name: () => $t(L.ProvinceDalmatia),
       culture: "Illyrian",
       religion: "GrecoRoman",
-      upgrades: [],
+      upgrades: ["HighlandRecruitment", "MonumentsOfPower", "CapitalsOfProsperity"],
    },
    Epirus: { code: "EP", name: () => $t(L.ProvinceEpirus), culture: "Greek", religion: "GrecoRoman", upgrades: [] },
    Galatia: {
@@ -498,6 +502,7 @@ export const EnabledProvinces: Province[] = [
    "Raetia",
    "Noricum",
    "Pannonia",
+   "Dalmatia",
 ];
 EnabledProvinces.sort();
 export const AlwaysFreeProvinces = new Set<Province>(["Lugdunensis"]);

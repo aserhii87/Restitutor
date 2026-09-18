@@ -4,6 +4,7 @@ import Bankruptcy from "../assets/images/Bankruptcy.svg";
 import Barbarian from "../assets/images/Barbarian.svg";
 import Chronicle from "../assets/images/Chronicle.svg";
 import Core from "../assets/images/Core.svg";
+import Crisis from "../assets/images/Crisis.svg";
 import Decree from "../assets/images/Decree.svg";
 import Diplomat from "../assets/images/Diplomat.svg";
 import Diplomatic from "../assets/images/Diplomatic.svg";
@@ -16,6 +17,7 @@ import FamilyTree from "../assets/images/FamilyTree.svg";
 import Gold from "../assets/images/Gold.svg";
 import Legacy from "../assets/images/Legacy.svg";
 import Loan from "../assets/images/Loan.svg";
+import Mandate from "../assets/images/Mandate.svg";
 import MapIcon from "../assets/images/Map.svg";
 import Marriage from "../assets/images/Marriage.svg";
 import Menu from "../assets/images/Menu.svg";
@@ -92,4 +94,6 @@ export const IconCatalog = {
    WarWarning,
    Disaster,
    Wikipedia,
+   Mandate,
+   Crisis,
 } as const satisfies Record<string, string>;

@@ -38,6 +38,7 @@ const RomanColors: MantineColorsTuple = [
 ];
 
 const theme = createTheme({
+   scale: 16 / 10,
    fontFamily: `${Fonts.MainFont}, sans-serif`,
    lineHeights: {
       xs: "1.0",
@@ -59,7 +60,7 @@ const theme = createTheme({
       Tooltip: Tooltip.extend({
          defaultProps: {
             color: "gray",
-            maw: "22rem",
+            maw: "35.2rem",
             multiline: true,
          },
       }),

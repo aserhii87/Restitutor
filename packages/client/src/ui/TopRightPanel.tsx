@@ -114,7 +114,7 @@ function TimeComp(): React.ReactNode {
    refreshOnTypedEvent(GameTimeUpdated);
    const currentDate = getGameDate(G.save.state.tick);
    return (
-      <div className="text-sm text text-center" style={{ width: "7.5rem" }}>
+      <div className="text-sm text text-center" style={{ width: "12rem" }}>
          {currentDate.toLocaleDateString()} ({G.save.state.month})
       </div>
    );
@@ -125,7 +125,7 @@ function _DiscordComp(): React.ReactNode {
       <FloatingTip label={() => $t(L.JoinOurDiscordServer)}>
          <img
             src={IconCatalog.Discord}
-            style={{ display: "block", height: "1.125rem" }}
+            style={{ display: "block", height: "1.8rem" }}
             onClick={() => openUrl(DiscordUrl)}
          />
       </FloatingTip>
@@ -141,7 +141,7 @@ function _SteamComp(): React.ReactNode {
       >
          <img
             src={IconCatalog.Steam}
-            style={{ display: "block", height: "1.25rem" }}
+            style={{ display: "block", height: "2rem" }}
             onClick={() => openUrl(hasFlag(G.flags, GameFlags.Demo) ? SteamUrl : SteamCommunityUrl)}
          />
       </FloatingTip>

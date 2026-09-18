@@ -4,15 +4,24 @@ import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
 import { type Province, type ProvinceResource, ProvinceResourceNames } from "../definitions/Province";
+import { SpawnedProvinces } from "../definitions/SpawnedProvince";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import { getProvinceManpower, getWarPower } from "./ArmyLogic";
-import { getProvinceCoreTilesCached } from "./CacheLogic";
+import {
+   calculateTilesConnectedToCapital,
+   clearAllCaches,
+   getProvinceCoreTilesCached,
+   getProvinceTilesCached,
+} from "./CacheLogic";
 import type { ConditionChecks } from "./Calculation";
+import { cleanUpProvince } from "./CleanupProvince";
 import { getMarriageAlliance, getRelation } from "./DiplomacyLogic";
 import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
+   addProvinceStat,
+   ensureProvinceCapitals,
    getMediterraneanCoastalTiles,
    getProvinceCoreCoastalTileCount,
    getProvinceIncome,
@@ -20,7 +29,7 @@ import {
    getProvinceStat,
    getTileUpgradeTimes,
 } from "./ProvinceLogic";
-import { getProvinceResource, provinceResourceOf } from "./ResourceLogic";
+import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile } from "./TileLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
@@ -34,17 +43,46 @@ export function annexTiles({
    core?: boolean;
    province: Province;
    save: SaveGame;
-}): void {
+}): Tile[] {
+   const affectedProvinces = new Set<Province>([province]);
+   const refreshedTiles = new Set<Tile>();
    for (const tile of tiles) {
       const tileData = save.state.tiles.get(tile);
       if (tileData) {
+         affectedProvinces.add(tileData.province);
+         refreshedTiles.add(tile);
          tileData.province = province;
          if (core) {
             tileData.coreProvinces.add(province);
          }
       }
    }
-   RefreshTiles.emit({ tiles, options: { indicator: true, visual: true } });
+   clearAllCaches();
+   for (const affectedProvince of affectedProvinces) {
+      if (affectedProvince !== province && getProvinceTilesCached(affectedProvince).length === 0) {
+         onProvinceFullyAnnexed(affectedProvince, province, save);
+      }
+   }
+   for (const tile of ensureProvinceCapitals(save)) {
+      refreshedTiles.add(tile);
+      const owner = save.state.tiles.get(tile)?.province;
+      if (owner) {
+         affectedProvinces.add(owner);
+      }
+   }
+   for (const affectedProvince of affectedProvinces) {
+      calculateTilesConnectedToCapital(affectedProvince, save);
+   }
+   RefreshTiles.emit({ tiles: refreshedTiles, options: { indicator: true, visual: true } });
+   return [...refreshedTiles];
+}
+
+function onProvinceFullyAnnexed(annexedProvince: Province, province: Province, save: SaveGame): void {
+   cleanUpProvince(annexedProvince, save);
+   addProvinceResource("mandate", 1, province, save);
+   if (annexedProvince in SpawnedProvinces) {
+      addProvinceStat("eliminatedBarbarians", 1, province, save);
+   }
 }
 
 export function tileIsOurCoreCondition(tile: Tile, province: Province, save: SaveGame): ICondition {
@@ -118,6 +156,13 @@ export function* warPowerChecks(minimum: number, province: Province, save: SaveG
    const warPower = getWarPower({}, province, save).total.value;
    (yield warPower >= minimum)?.describe($t(L.Reach$1WarPower, formatNumber(minimum)), {
       progress: [warPower, minimum],
+   });
+}
+
+export function* eliminatedBarbariansChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
+   const eliminated = getProvinceStat("eliminatedBarbarians", province, save);
+   (yield eliminated >= minimum)?.describe($t(L.EliminateAtLeast$1BarbarianPolities, formatNumber(minimum)), {
+      progress: [eliminated, minimum],
    });
 }
 

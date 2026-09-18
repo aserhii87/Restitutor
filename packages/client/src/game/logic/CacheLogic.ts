@@ -7,13 +7,12 @@ import { MapGrid } from "../MapGrid";
 import type { EvaluationBreakdown, EvaluationFunction, EvaluationImplementation, EvaluationMode } from "./Calculation";
 
 let _keyedCaches = new WeakMap<object, Map<unknown, unknown>>();
+let _cachedProvinceTiles: Map<Province, Tile[]> | undefined;
+let _cachedProvinceCoreTiles: Map<Province, Tile[]> | undefined;
 
-export const _cachedProvinceTiles = new Map<Province, Tile[]>();
-export const _cachedProvinceCoreTiles = new Map<Province, Tile[]>();
-
-function _populateProvinceTileCache(save: SaveGame): void {
-   _cachedProvinceTiles.clear();
-   _cachedProvinceCoreTiles.clear();
+function populateProvinceTileCache(save: SaveGame): void {
+   _cachedProvinceTiles = new Map();
+   _cachedProvinceCoreTiles = new Map();
    for (const [tile, data] of save.state.tiles) {
       if (data.province) {
          mapSafePush(_cachedProvinceTiles, data.province, tile);
@@ -24,10 +23,13 @@ function _populateProvinceTileCache(save: SaveGame): void {
    }
 }
 
-GameStateUpdated.on(() => {
+export function clearAllCaches(): void {
    _keyedCaches = new WeakMap();
-   _populateProvinceTileCache(G.save);
-});
+   _cachedProvinceTiles = undefined;
+   _cachedProvinceCoreTiles = undefined;
+}
+
+GameStateUpdated.on(clearAllCaches);
 
 type KeyedFunc<Key, T> = (key: Key, save: SaveGame) => T;
 
@@ -164,9 +166,15 @@ export function isConnectedToCapital(tile: Tile, save: SaveGame): boolean {
 }
 
 export function getProvinceTilesCached(province: Province): Tile[] {
-   return _cachedProvinceTiles.get(province) ?? [];
+   if (_cachedProvinceTiles === undefined) {
+      populateProvinceTileCache(G.save);
+   }
+   return _cachedProvinceTiles?.get(province) ?? [];
 }
 
 export function getProvinceCoreTilesCached(province: Province): Tile[] {
-   return _cachedProvinceCoreTiles.get(province) ?? [];
+   if (_cachedProvinceCoreTiles === undefined) {
+      populateProvinceTileCache(G.save);
+   }
+   return _cachedProvinceCoreTiles?.get(province) ?? [];
 }

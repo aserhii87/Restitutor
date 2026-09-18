@@ -15,3 +15,5 @@ export const SentryDSN = "https://c8bb0d77bec740e097724f281d481c75@bugreport.fis
 export const SaveKey = "Restitutor";
 export const BackupFrequency = 10 * 60 * 1000; // 10 minutes
 export const BackupCount = 10;
+
+export const SocialClassBonusDefaultDuration = 12 * 5;

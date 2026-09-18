@@ -1,16 +1,19 @@
 import { $t, L } from "../../utils/i18n";
 import { Culture } from "../definitions/Culture";
+import { getTileName } from "../definitions/TileName";
 import type { ConditionChecks } from "../logic/Calculation";
 import { availableDiplomatChecks } from "../logic/DiplomacyLogic";
 import { changeProvinceCulture } from "../logic/InternalAffairsLogic";
 import {
    forcePatronageEffect,
    isCoreTileChecks,
+   manpowerChecks,
    maxCoreTileChecks,
    mediterraneanCoastChecks,
    minCoreTileChecks,
    minCulturePercentageChecks,
 } from "../logic/MissionLogic";
+import { settleTileChecks, startSettlement } from "../logic/SettlementLogic";
 import { requireNoTreatyBetweenChecks, requirePeaceBetweenChecks } from "../logic/TreatyLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
@@ -565,6 +568,37 @@ export const RaetiaEvent = {
             label: () => $t(L.EntrustItaliaToOurLegions),
             modifiers: {
                MilitaryPoint: { type: "add", value: 1, duration: 5 * 12 },
+            },
+         },
+      ],
+   },
+   Raetia18: {
+      name: () => $t(L.HearthsAt$1, $t(L.TileIciniacum)),
+      image: EventImage.Watchtower,
+      desc: () => $t(L.HearthsAtIciniacumDesc$1$2$3, $t(L.TileIciniacum), $t(L.TileRegina), $t(L.TileMediana)),
+      condition: {
+         province: new Set(["Raetia"]),
+         conditions: function* (province, save): ConditionChecks {
+            yield* settleTileChecks(9437252, province, save);
+            yield* manpowerChecks(50_000, province, save);
+         },
+      },
+      buttons: [
+         {
+            label: () => $t(L.RaiseNewHearthsAt$1, $t(L.TileIciniacum)),
+            custom: [
+               {
+                  desc: (province, save) => $t(L.EstablishASettlementAt$1, getTileName(9437252, save)),
+                  execute: (province, save) => {
+                     startSettlement(9437252, province, save);
+                  },
+               },
+            ],
+         },
+         {
+            label: () => $t(L.PutOurOwnEstatesInOrder),
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.2, duration: 2 * 12 },
             },
          },
       ],

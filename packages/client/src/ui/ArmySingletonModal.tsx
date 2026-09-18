@@ -300,7 +300,7 @@ export function ArmySingletonModal(): React.ReactNode {
                   <img
                      src={ProvinceResourceImages.generalSkillPoint}
                      className="icon-block"
-                     style={{ height: "1.3125rem" }}
+                     style={{ height: "2.1rem" }}
                   />
                </div>
             </FloatingTip>

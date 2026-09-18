@@ -6,7 +6,7 @@ type CircleCompProps = Omit<ComponentPropsWithRef<"div">, "color"> & {
    size?: string;
 };
 
-export function CircleComp({ color, size = "0.875rem", ref, style, ...props }: CircleCompProps): React.ReactNode {
+export function CircleComp({ color, size = "1.4rem", ref, style, ...props }: CircleCompProps): React.ReactNode {
    return (
       <div
          {...props}

@@ -22,7 +22,7 @@ export function GreatWorkCompletedModal({ greatWork }: { greatWork: GreatWork })
                <div>{config.name()}</div>
                <img
                   src={IconCatalog.Wikipedia}
-                  style={{ height: "1rem", opacity: 0.7 }}
+                  style={{ height: "1.6rem", opacity: 0.7 }}
                   className="pointer"
                   onClick={() => {
                      openUrl(`https://en.qrwp.org/${config.wikipedia}`);

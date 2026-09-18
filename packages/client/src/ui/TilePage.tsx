@@ -1,6 +1,12 @@
 import { Progress } from "@mantine/core";
 import { formatNumber, formatPercent, type Tile } from "@project/shared/src/utils/Helper";
 import { Fragment } from "react/jsx-runtime";
+import {
+   AbolishRegionalCapitalAction,
+   EstablishRegionalCapitalAction,
+   RelocateCapitalAction,
+   RelocateCapitalModifier,
+} from "../game/actions/CapitalActions";
 import { finalizeCondition } from "../game/actions/GameAction";
 import { Buildings } from "../game/definitions/Building";
 import { Culture } from "../game/definitions/Culture";
@@ -12,12 +18,11 @@ import { isChristianReligion, Religion } from "../game/definitions/Religion";
 import { Terrains } from "../game/definitions/Terrain";
 import { NewSettlementTiles } from "../game/definitions/TileConstants";
 import { getTileName } from "../game/definitions/TileName";
-import { RelocateCapitalModifier, TimedActions } from "../game/definitions/TimedAction";
-import { GameStateUpdated, RefreshTiles } from "../game/Events";
+import { TimedActions } from "../game/definitions/TimedAction";
+import { GameStateUpdated } from "../game/Events";
 import { getGameDate } from "../game/logic/GameDateTime";
 import { MapBackgroundColors } from "../game/logic/MapColor";
 import { tileIsOurCoreCondition } from "../game/logic/MissionLogic";
-import { addModifier } from "../game/logic/ModifierLogic";
 import { getProvinceName, getProvinceStat } from "../game/logic/ProvinceLogic";
 import {
    getCultureStatus,
@@ -33,7 +38,7 @@ import {
    getTileUnrest,
 } from "../game/logic/TileLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
-import { startTimedAction, timedActionConditions } from "../game/logic/TimedActionLogic";
+import { timedActionConditions } from "../game/logic/TimedActionLogic";
 import { getWarForTile } from "../game/logic/WarLogic";
 import { G, isDev } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -51,6 +56,7 @@ import { html } from "./components/RenderHTMLComp";
 import { DiplomacyPage } from "./DiplomacyPage";
 import { GreatWorkComponent } from "./GreatWorkComponent";
 import { MakeCoreButton } from "./MakeCoreButton";
+import { PillageButton } from "./PillageButton";
 import { SettleTilePage } from "./SettleTilePage";
 import { TileAutonomyComp } from "./TileAutonomyComp";
 import { TileBuildingsModal } from "./TileBuildingsModal";
@@ -103,31 +109,34 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
 
             <div className="row my5">
                <div className="f1">{$t(L.Capital)}</div>
-               {state.capital !== tile && isMyProvince && (
+               {state.capital === tile && <div className="mi sm text-yellow">account_balance</div>}
+               {state.regionalCapitals.has(tile) && <div className="mi sm">account_balance</div>}
+               {state.capital !== tile && !state.regionalCapitals.has(tile) && (
+                  <div className="mi sm text-dimmed">cancel</div>
+               )}
+            </div>
+
+            {isMyProvince && state.capital !== tile && !state.regionalCapitals.has(tile) && (
+               <div className="row my5 g5">
+                  <div className="f1" />
                   <ActionButton
                      className="text-sm"
-                     action={() => ({
-                        cost: { mandate: 1 },
-                        condition: finalizeCondition([
-                           ...timedActionConditions({ action: "RelocateCapital" }, G.save.state.playerProvince, G.save),
-                           tileIsOurCoreCondition(tile, G.save.state.playerProvince, G.save),
-                           { name: $t(L.TileIsNotAtWar), value: !war },
-                        ]),
-                        execute: () => {
-                           startTimedAction("RelocateCapital", tileData.province, G.save);
-                           addModifier({
-                              ...RelocateCapitalModifier,
-                              name: TimedActions.RelocateCapital.name(),
-                              province: tileData.province,
-                              save: G.save,
-                           });
-                           const oldCapital = state.capital;
-                           state.capital = tile;
-                           RefreshTiles.emit({ tiles: [tile, oldCapital], options: { indicator: true, visual: true } });
-                        },
-                     })}
+                     action={() => EstablishRegionalCapitalAction(tile, G.save.state.playerProvince, G.save)}
                      tooltip={(element) => (
                         <>
+                           <TimedActionDescComp action="EstablishRegionalCapital" />
+                           {element}
+                        </>
+                     )}
+                  >
+                     {$t(L.EstablishRegionalCapital)}
+                  </ActionButton>
+                  <ActionButton
+                     className="text-sm"
+                     action={() => RelocateCapitalAction(tile, G.save.state.playerProvince, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <div className="h3">{TimedActions.RelocateCapital.name()}</div>
                            <div className="m10">
                               <div className="my5">{$t(L.RelocatingOurProvincialCapitalHasTheFollowingEffect)}</div>
                               <div className="my5">
@@ -140,10 +149,20 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
                   >
                      {$t(L.RelocateCapital)}
                   </ActionButton>
-               )}
-               {state.capital === tile && <div className="mi sm text-green">check_circle</div>}
-               {state.capital !== tile && <div className="mi sm text-red">cancel</div>}
-            </div>
+               </div>
+            )}
+
+            {isMyProvince && state.capital !== tile && state.regionalCapitals.has(tile) && (
+               <div className="row my5 g5">
+                  <div className="f1" />
+                  <ActionButton
+                     className="text-sm"
+                     action={() => AbolishRegionalCapitalAction(tile, G.save.state.playerProvince, G.save)}
+                  >
+                     {$t(L.AbolishRegionalCapital)}
+                  </ActionButton>
+               </div>
+            )}
 
             <div className="row my5">
                <div className="f1">{$t(L.Core)}</div>
@@ -241,18 +260,30 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
          </div>
          <div className="h1 my10">{$t(L.Upgrades)}</div>
          <div className="row mx10">
-            <UpgradeInfrastructureButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.infrastructure}</div>
-               <div className="text-sm text-display">{$t(L.Infrastructure)}</div>
-            </UpgradeInfrastructureButton>
-            <UpgradeProductionButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.production}</div>
-               <div className="text-sm text-display">{$t(L.Production)}</div>
-            </UpgradeProductionButton>
-            <UpgradePopulationButton tile={tile} className="f1 btn py5">
-               <div className="text-roman">{tileData.population}</div>
-               <div className="text-sm text-display">{$t(L.Population)}</div>
-            </UpgradePopulationButton>
+            <div className="f1">
+               <UpgradeInfrastructureButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.infrastructure}</div>
+                  <div className="text-sm text-display">{$t(L.Infrastructure)}</div>
+               </UpgradeInfrastructureButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="infrastructure" />
+            </div>
+            <div className="f1">
+               <UpgradeProductionButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.production}</div>
+                  <div className="text-sm text-display">{$t(L.Production)}</div>
+               </UpgradeProductionButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="production" />
+            </div>
+            <div className="f1">
+               <UpgradePopulationButton tile={tile} className="w100 btn py5">
+                  <div className="text-roman">{tileData.population}</div>
+                  <div className="text-sm text-display">{$t(L.Population)}</div>
+               </UpgradePopulationButton>
+               <div className="h5" />
+               <PillageButton tile={tile} upgrade="population" />
+            </div>
          </div>
          <div className="h5" />
          <div className="mx10">
@@ -273,7 +304,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             <div>
                <img
                   src={Goods[tileData.goods].icon}
-                  style={{ width: "3rem", height: "3rem" }}
+                  style={{ width: "4.8rem", height: "4.8rem" }}
                   className="frame display-block"
                />
             </div>
@@ -335,7 +366,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
          <TileGreatWorkComponent tile={tile} />
          <div
             className="mx10"
-            style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))", gap: "0.625rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))", gap: "1rem" }}
          >
             {Array.from(tileData.buildings).map((building) => (
                <FloatingTip
@@ -355,7 +386,7 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             ))}
             <button
                disabled={!isMyProvince}
-               className="btn"
+               className="btn p0 jcc"
                style={{ width: "100%", aspectRatio: "1 / 1" }}
                onClick={() => showPanel(TileBuildingsModal, { tile })}
             >

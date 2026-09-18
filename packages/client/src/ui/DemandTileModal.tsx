@@ -8,8 +8,9 @@ import { CasusBelli } from "../game/definitions/CasusBelli";
 import type { Province } from "../game/definitions/Province";
 import { getTileName } from "../game/definitions/TileName";
 import { TimedActions } from "../game/definitions/TimedAction";
-import { GameStateUpdated, RefreshTiles } from "../game/Events";
+import { GameStateUpdated } from "../game/Events";
 import { addAttitudeModifier, getRelation } from "../game/logic/DiplomacyLogic";
+import { annexTiles } from "../game/logic/MissionLogic";
 import { addModifier } from "../game/logic/ModifierLogic";
 import { getProvinceName, getProvincePrestige } from "../game/logic/ProvinceLogic";
 import { startTimedAction } from "../game/logic/TimedActionLogic";
@@ -163,10 +164,9 @@ function DemandTileChance({ tile, onRollStart }: { tile: Tile; onRollStart: () =
             },
          })}
          onAccept={() => {
-            tileData.province = G.save.state.playerProvince;
+            annexTiles({ tiles: [tile], province: G.save.state.playerProvince, save: G.save });
             unlockAchievement("DemandTile");
             GameStateUpdated.emit();
-            RefreshTiles.emit({ tiles: [tile], options: { indicator: true, visual: true } });
             hideModal();
          }}
          onReject={() => {

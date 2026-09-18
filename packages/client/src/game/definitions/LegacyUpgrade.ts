@@ -186,36 +186,43 @@ export class LegacyUpgradeDefinitions {
       },
    } as const;
    MakeCore1: ILegacyUpgradeModifier = {
-      requires: ["InfrastructureUpgrade1"],
+      requires: ["ChristianityYearly1"],
       position: [3, 4],
       modifiers: {
          MakeCoreCost: { type: "multiply", value: -0.1 },
       },
    } as const;
-   MakeCore2: ILegacyUpgradeModifier = {
+   InfrastructureUpgrade1: ILegacyUpgradeModifier = {
       requires: ["MakeCore1"],
       position: [3, 5],
+      modifiers: {
+         InfrastructureUpgradeCost: { type: "multiply", value: -0.1 },
+      },
+   } as const;
+   MakeCore2: ILegacyUpgradeModifier = {
+      requires: ["InfrastructureUpgrade1"],
+      position: [3, 6],
       modifiers: {
          MakeCoreCost: { type: "multiply", value: -0.1 },
       },
    } as const;
    Defense1: ILegacyUpgradeModifier = {
-      requires: ["InfrastructureUpgrade1"],
-      position: [2, 4],
+      requires: ["MakeCore1"],
+      position: [4, 5],
       modifiers: {
          Defense: { type: "multiply", value: 0.1 },
       },
    } as const;
    Defense2: ILegacyUpgradeModifier = {
       requires: ["Defense1"],
-      position: [2, 5],
+      position: [4, 6],
       modifiers: {
          Defense: { type: "multiply", value: 0.1 },
       },
    } as const;
    Defense3: ILegacyUpgradeModifier = {
       requires: ["Defense2"],
-      position: [2, 6],
+      position: [4, 7],
       modifiers: {
          Defense: { type: "multiply", value: 0.1 },
       },
@@ -462,6 +469,13 @@ export class LegacyUpgradeDefinitions {
          AdvisorCost: { type: "multiply", value: -0.1 },
       },
    } as const;
+   RegionalCapitalCount1: ILegacyUpgradeModifier = {
+      requires: ["AdvisorCost1"],
+      position: [-4, 5],
+      modifiers: {
+         RegionalCapitalCount: { type: "add", value: 1 },
+      },
+   } as const;
    TradeProfit1: ILegacyUpgradeModifier = {
       requires: ["ProductionCapacity1"],
       position: [1, -2],
@@ -504,11 +518,32 @@ export class LegacyUpgradeDefinitions {
          BuildingSlot: { type: "add", value: 1 },
       },
    } as const;
-   InfrastructureUpgrade1: ILegacyUpgradeModifier = {
+   ChristianityYearly1: ILegacyUpgradeModifier = {
       requires: ["GoverningCapacity1"],
       position: [2, 3],
       modifiers: {
-         InfrastructureUpgradeCost: { type: "multiply", value: -0.1 },
+         ChristianityYearly: { type: "add", value: 1 },
+      },
+   } as const;
+   ChristianityYearly2: ILegacyUpgradeModifier = {
+      requires: ["ChristianityYearly1"],
+      position: [2, 4],
+      modifiers: {
+         ChristianityYearly: { type: "add", value: 1 },
+      },
+   } as const;
+   ChristianityYearly3: ILegacyUpgradeModifier = {
+      requires: ["ChristianityYearly2"],
+      position: [2, 5],
+      modifiers: {
+         ChristianityYearly: { type: "add", value: 1 },
+      },
+   } as const;
+   ChristianityYearly4: ILegacyUpgradeModifier = {
+      requires: ["ChristianityYearly3"],
+      position: [2, 6],
+      modifiers: {
+         ChristianityYearly: { type: "add", value: 1 },
       },
    } as const;
    Stability1: ILegacyUpgradeModifier = {

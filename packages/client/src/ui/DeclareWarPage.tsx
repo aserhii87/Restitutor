@@ -104,7 +104,7 @@ export function DeclareWarPage({ province }: { province: Province }): React.Reac
          <div className="h1">{$t(L.WarGoal)}</div>
          <div
             className="m10 text-sm"
-            style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-start", gap: "0.3125rem" }}
+            style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-start", gap: "0.5rem" }}
          >
             {Array.from(warGoalTiles).map((tile) => (
                <div

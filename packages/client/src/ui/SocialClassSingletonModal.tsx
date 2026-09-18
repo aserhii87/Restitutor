@@ -55,7 +55,7 @@ export function SocialClassSingletonModal(): React.ReactNode {
                   return (
                      <Fragment key={key}>
                         <div className="row m10" key={key}>
-                           <div className="text-display text-lg text-primary" style={{ width: "2.5rem" }}>
+                           <div className="text-display text-lg text-primary" style={{ width: "4rem" }}>
                               {numberToRoman(idx + 1)}.
                            </div>
                            <div className="f1">
@@ -112,7 +112,7 @@ export function SocialClassSingletonModal(): React.ReactNode {
                })}
             </div>
             <div className="divider vertical" />
-            <div style={{ width: "20rem" }}>
+            <div style={{ width: "32rem" }}>
                <div className="cc">
                   <PieChart
                      data={mapOf(SocialClass, (key, data) => ({
@@ -195,10 +195,10 @@ export function SocialClassSingletonModal(): React.ReactNode {
                                  <div
                                     style={{
                                        backgroundColor: getThemeColor(SocialClass[key].color, theme),
-                                       width: "1rem",
-                                       height: "1rem",
+                                       width: "1.6rem",
+                                       height: "1.6rem",
                                        borderRadius: "15%",
-                                       flex: "0 0 1rem",
+                                       flex: "0 0 1.6rem",
                                     }}
                                  />
                                  <div className="f1 text-roman text-sm">{SocialClass[key].name()}</div>
