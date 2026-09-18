@@ -4,6 +4,7 @@ import {
    forEach,
    formatNumber,
    fromEntries,
+   hasFlag,
    pointToTile,
    range,
    shuffle,
@@ -34,6 +35,7 @@ import type { SpawnedProvince } from "../definitions/SpawnedProvince";
 import {
    BarbarianRaidNegativeEffect,
    SpawnedProvinceBoostMonths,
+   SpawnedProvinceFlags,
    SpawnedProvinces,
 } from "../definitions/SpawnedProvince";
 import { getBorderingProvinces } from "../definitions/Tile";
@@ -666,7 +668,9 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
       });
    }
 
-   startTimedAction("BarbarianInvasions", province, save);
+   if (hasFlag(config.flags, SpawnedProvinceFlags.Raid)) {
+      startTimedAction("BarbarianInvasions", province, save);
+   }
 
    return refreshedTiles;
 }

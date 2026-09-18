@@ -1,9 +1,16 @@
-import type { Tile } from "@project/shared/src/utils/Helper";
+import type { Tile, ValueOf } from "@project/shared/src/utils/Helper";
 import type { Province, ProvinceResource, ProvinceStat } from "./Province";
 
 export const SpawnedProvinceBoostMonths = 12 * 20;
 export const MaxRaidMonths = 12;
 export const BarbarianRaidNegativeEffect = -10;
+
+export const SpawnedProvinceFlags = {
+   None: 0,
+   Raid: 1 << 0,
+} as const;
+
+export type SpawnedProvinceFlags = ValueOf<typeof SpawnedProvinceFlags>;
 
 const BaseSpawnedProvinceData: SpawnedProvinceData = {
    stats: {
@@ -13,6 +20,7 @@ const BaseSpawnedProvinceData: SpawnedProvinceData = {
    resources: {
       generalSkillPoint: 10,
    },
+   flags: SpawnedProvinceFlags.Raid,
 };
 
 export const _SpawnedProvinces = {
@@ -64,12 +72,12 @@ export const _SpawnedProvinces = {
    },
    Caliphate: {
       ...BaseSpawnedProvinceData,
-      resources: { ...BaseSpawnedProvinceData.resources, christianity: -10 },
       tiles: [
          10944609, 10879073, 10944610, 10944611, 11010148, 10879072, 10813535, 10813534, 10747997, 10879069, 10879070,
          10879071, 10944608, 10944607, 11010144, 11075684, 11010149, 11075685, 11075686, 11075687, 11141223, 11010145,
          11010146,
       ],
+      flags: SpawnedProvinceFlags.None,
    },
    Bulgars: {
       ...BaseSpawnedProvinceData,
@@ -80,6 +88,7 @@ export const _SpawnedProvinces = {
 export interface SpawnedProvinceData {
    stats: Partial<Record<ProvinceStat, number>>;
    resources: Partial<Record<ProvinceResource, number>>;
+   flags: SpawnedProvinceFlags;
 }
 
 export interface SpawnedProvinceConfig extends SpawnedProvinceData {
