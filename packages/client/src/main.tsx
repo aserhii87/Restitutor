@@ -19,7 +19,7 @@ import { Sidebar } from "./ui/common/SidebarManager";
 import { LoadingComp } from "./ui/components/LoadingComp";
 import { ModsManager } from "./ui/mods/ModsManager";
 import { TopPanel } from "./ui/TopPanel";
-import { TutorialPanel } from "./ui/TutorialPanel";
+import { BottomRightPanel } from "./ui/TutorialPanel";
 import { WorldWarTooltip } from "./ui/WorldWarTooltip";
 import { G, isDev } from "./utils/Global";
 import { ModalManager } from "./utils/ModalManager";
@@ -102,7 +102,7 @@ if (isSteam() && G.params.has("mod")) {
          <Sidebar />
          <TopPanel />
          <BottomPanel />
-         <TutorialPanel />
+         <BottomRightPanel />
          <ASCIIMapPanel />
          <WorldWarTooltip />
          <Popover />

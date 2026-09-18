@@ -292,10 +292,16 @@
    transform: translateX(-50%);
 }
 
-.tutorial-panel {
+.bottom-right-panel {
    width: 40rem;
    position: absolute;
    bottom: 1rem;
    right: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.tutorial-panel {
    z-index: calc(var(--mantine-z-index-modal) + 1);
 }

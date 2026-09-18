@@ -11,6 +11,14 @@ import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
 import { renderMarkup } from "./ParseMarkup";
 
+export function BottomRightPanel(): React.ReactNode {
+   return (
+      <div className="bottom-right-panel">
+         <TutorialPanel />
+      </div>
+   );
+}
+
 export function TutorialPanel(): React.ReactNode {
    refreshOnTypedEvent(GameStateUpdated);
    refreshOnTypedEvent(GameOptionUpdated);
