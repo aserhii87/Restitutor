@@ -12,29 +12,30 @@ export type ReligionFlags = ValueOf<typeof ReligionFlags>;
 
 interface IReligionConfig {
    name: () => string;
+   code: string;
    flags: ReligionFlags;
 }
 
 const _Religion = {
-   GrecoRoman: { name: () => $t(L.ReligionGrecoRoman), flags: ReligionFlags.None },
-   Celtic: { name: () => $t(L.ReligionCeltic), flags: ReligionFlags.None },
-   Germanic: { name: () => $t(L.ReligionGermanic), flags: ReligionFlags.None },
-   Iberian: { name: () => $t(L.ReligionIberian), flags: ReligionFlags.None },
-   Berber: { name: () => $t(L.ReligionBerber), flags: ReligionFlags.None },
-   Eastern: { name: () => $t(L.ReligionEastern), flags: ReligionFlags.None },
-   Anatolian: { name: () => $t(L.ReligionAnatolian), flags: ReligionFlags.None },
-   Egyptian: { name: () => $t(L.ReligionEgyptian), flags: ReligionFlags.None },
-   Judaism: { name: () => $t(L.ReligionJudaism), flags: ReligionFlags.None },
-   Hunnic: { name: () => $t(L.ReligionHunnic), flags: ReligionFlags.None },
-   Christianity: { name: () => $t(L.ReligionChristianity), flags: ReligionFlags.Christian },
-   Donatism: { name: () => $t(L.ReligionDonatism), flags: ReligionFlags.Christian },
-   Arianism: { name: () => $t(L.ReligionArianism), flags: ReligionFlags.Christian },
-   Macedonianism: { name: () => $t(L.ReligionMacedonianism), flags: ReligionFlags.Christian },
-   Pelagianism: { name: () => $t(L.ReligionPelagianism), flags: ReligionFlags.Christian },
-   Nestorianism: { name: () => $t(L.ReligionNestorianism), flags: ReligionFlags.Christian },
-   Miaphysitism: { name: () => $t(L.ReligionMiaphysitism), flags: ReligionFlags.Christian },
-   Monothelitism: { name: () => $t(L.ReligionMonothelitism), flags: ReligionFlags.Christian },
-   Iconoclasm: { name: () => $t(L.ReligionIconoclasm), flags: ReligionFlags.Christian },
+   GrecoRoman: { name: () => $t(L.ReligionGrecoRoman), code: "GR", flags: ReligionFlags.None },
+   Celtic: { name: () => $t(L.ReligionCeltic), code: "CE", flags: ReligionFlags.None },
+   Germanic: { name: () => $t(L.ReligionGermanic), code: "GE", flags: ReligionFlags.None },
+   Iberian: { name: () => $t(L.ReligionIberian), code: "IB", flags: ReligionFlags.None },
+   Berber: { name: () => $t(L.ReligionBerber), code: "BE", flags: ReligionFlags.None },
+   Eastern: { name: () => $t(L.ReligionEastern), code: "EA", flags: ReligionFlags.None },
+   Anatolian: { name: () => $t(L.ReligionAnatolian), code: "AN", flags: ReligionFlags.None },
+   Egyptian: { name: () => $t(L.ReligionEgyptian), code: "EG", flags: ReligionFlags.None },
+   Judaism: { name: () => $t(L.ReligionJudaism), code: "JU", flags: ReligionFlags.None },
+   Hunnic: { name: () => $t(L.ReligionHunnic), code: "HU", flags: ReligionFlags.None },
+   Christianity: { name: () => $t(L.ReligionChristianity), code: "CH", flags: ReligionFlags.Christian },
+   Donatism: { name: () => $t(L.ReligionDonatism), code: "DO", flags: ReligionFlags.Christian },
+   Arianism: { name: () => $t(L.ReligionArianism), code: "AR", flags: ReligionFlags.Christian },
+   Macedonianism: { name: () => $t(L.ReligionMacedonianism), code: "MA", flags: ReligionFlags.Christian },
+   Pelagianism: { name: () => $t(L.ReligionPelagianism), code: "PE", flags: ReligionFlags.Christian },
+   Nestorianism: { name: () => $t(L.ReligionNestorianism), code: "NE", flags: ReligionFlags.Christian },
+   Miaphysitism: { name: () => $t(L.ReligionMiaphysitism), code: "MI", flags: ReligionFlags.Christian },
+   Monothelitism: { name: () => $t(L.ReligionMonothelitism), code: "MO", flags: ReligionFlags.Christian },
+   Iconoclasm: { name: () => $t(L.ReligionIconoclasm), code: "IC", flags: ReligionFlags.Christian },
 } as const satisfies Record<string, IReligionConfig>;
 
 interface IChristianHeresyConfig {

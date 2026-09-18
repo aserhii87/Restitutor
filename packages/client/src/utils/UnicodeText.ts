@@ -61,6 +61,16 @@ export class UnicodeText extends Container {
       throw new Error("UnicodeText: No Text or BitmapText!");
    }
 
+   public get text(): string {
+      if (this._text) {
+         return this._text.text;
+      }
+      if (this._bitmapText) {
+         return this._bitmapText.text;
+      }
+      throw new Error("UnicodeText: No Text or BitmapText!");
+   }
+
    public set text(text: string) {
       if (this._text) {
          this._text.text = text;

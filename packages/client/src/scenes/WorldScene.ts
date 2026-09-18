@@ -25,9 +25,11 @@ import {
    TilingSprite,
 } from "pixi.js";
 import { Fonts } from "../Fonts";
+import { Culture } from "../game/definitions/Culture";
 import { Goods } from "../game/definitions/Goods";
 import { GreatWork, TileToGreatWork } from "../game/definitions/GreatWork";
 import type { Province } from "../game/definitions/Province";
+import { Religion } from "../game/definitions/Religion";
 import { NewSettlementTiles, OceanLabels } from "../game/definitions/TileConstants";
 import { getTileName } from "../game/definitions/TileName";
 import { GameStateUpdated, RefreshOverlay, RefreshTiles } from "../game/Events";
@@ -254,14 +256,31 @@ export class WorldScene extends Scene {
 
       GameStateUpdated.on(() => {
          this._drawWarProgress();
-         switch (getOverlay()) {
+         const overlay = getOverlay();
+         switch (overlay) {
+            case "Culture":
+            case "Religion": {
+               for (const [tile, tileData] of G.save.state.tiles) {
+                  const visual = this._overlayContainer.map.get(tile) as UnicodeText | undefined;
+                  const code =
+                     overlay === "Culture" ? Culture[tileData.culture].code : Religion[tileData.religion].code;
+                  if (visual && visual.text !== code) {
+                     visual.text = code;
+                     adjustTextSize(visual);
+                  }
+               }
+               break;
+            }
             case "Upgrade": {
                for (const [tile, tileData] of G.save.state.tiles) {
                   const visual = this._overlayContainer.map.get(tile);
                   if (visual) {
                      const text = visual as UnicodeText;
-                     text.text = `${tileData.infrastructure + tileData.production + tileData.population}`;
-                     adjustTextSize(text);
+                     const value = `${tileData.infrastructure + tileData.production + tileData.population}`;
+                     if (text.text !== value) {
+                        text.text = value;
+                        adjustTextSize(text);
+                     }
                   }
                }
                break;
@@ -271,8 +290,11 @@ export class WorldScene extends Scene {
                   const visual = this._overlayContainer.map.get(tile);
                   if (visual) {
                      const text = visual as UnicodeText;
-                     text.text = `${round(getTileDefense(tile, G.save).value, 1)}`;
-                     adjustTextSize(text);
+                     const value = `${round(getTileDefense(tile, G.save).value, 1)}`;
+                     if (text.text !== value) {
+                        text.text = value;
+                        adjustTextSize(text);
+                     }
                   }
                }
                break;
@@ -282,8 +304,11 @@ export class WorldScene extends Scene {
                   const visual = this._overlayContainer.map.get(tile);
                   if (visual) {
                      const text = visual as UnicodeText;
-                     text.text = `${round(getTileMaintenanceCost(tile, G.save, "value"), 1)}`;
-                     adjustTextSize(text);
+                     const value = `${round(getTileMaintenanceCost(tile, G.save, "value"), 1)}`;
+                     if (text.text !== value) {
+                        text.text = value;
+                        adjustTextSize(text);
+                     }
                   }
                }
                break;
@@ -293,7 +318,10 @@ export class WorldScene extends Scene {
                   const visual = this._overlayContainer.map.get(tile);
                   const gw = TileToGreatWork.get(tile);
                   if (visual && gw) {
-                     visual.visible = getGameDate(G.save.state.tick).getFullYear() >= GreatWork[gw].completionYear;
+                     const visible = getGameDate(G.save.state.tick).getFullYear() >= GreatWork[gw].completionYear;
+                     if (visual.visible !== visible) {
+                        visual.visible = visible;
+                     }
                   }
                }
                break;
@@ -348,7 +376,19 @@ export class WorldScene extends Scene {
          return;
       }
       const { x, y } = MapGrid.gridToPosition(tileToPoint(tile));
-      switch (getOverlay()) {
+      const overlay = getOverlay();
+      switch (overlay) {
+         case "Culture":
+         case "Religion": {
+            const code = overlay === "Culture" ? Culture[tileData.culture].code : Religion[tileData.religion].code;
+            const visual = new UnicodeText(code, { fontName: Fonts.MainFont });
+            adjustTextSize(visual);
+            this._overlayContainer.map.set(tile, visual);
+            visual.anchor.set(0.5, 0.5);
+            visual.position.set(x, y);
+            visual.tint = MapForegroundColors[tileData.province];
+            break;
+         }
          case "Terrain": {
             const visual = this._renderTerrain(tile);
             visual.tint = hslToRgb(MapColorsH[tileData.province], 100, 25);

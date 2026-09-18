@@ -14,22 +14,6 @@
 - Pillaging refunds 50% of the corresponding government-point cost, calculated using the current owner's modifiers.
 - All pillaging actions share a 5-year provincial cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
 
-## Legacy Tree
-
-- Added a legacy upgrade granting +1 regional capital slot.
-- Added a Christian Influence branch in legacy tree.
-
-## Tech Tree
-
-- Added Local Governance: +150 Governing Capacity and +1 regional capital slot.
-- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, +5 Production Capacity, and +1 Diplomat.
-- Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
-- Changed Cultural Policy: Governing Capacity changed from +100 to +150.
-
-## Settlement Events
-
-- All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
-
 ## Crisis of the 3rd Century
 
 - The Age of Soldiers event in 235 AD now begins the Crisis of the Third Century, which lasts for 50 years. To simulate the political instability and rise of soldiers, several actions are available during this period.
@@ -51,3 +35,23 @@ Dalmatia is now playable, with 10 historical events and 6 missions covering expa
 - Highland Recruitment: +25% Manpower on core Hill and Mountain tiles.
 - Monuments of Power: +10% Prestige for each completed Provincial Great Work.
 - Capitals of Prosperity: +50% Land Tax, Tile Output, and Manpower on core tiles that are capitals or adjacent to your capitals, including regional capitals. Bonuses from multiple capitals do not stack.
+
+## Legacy Tree
+
+- Added a legacy upgrade granting +1 regional capital slot.
+- Added a Christian Influence branch in legacy tree.
+
+## Tech Tree
+
+- Added Local Governance: +150 Governing Capacity and +1 regional capital slot.
+- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, +5 Production Capacity, and +1 Diplomat.
+- Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
+- Changed Cultural Policy: Governing Capacity changed from +100 to +150.
+
+## Settlement Events
+
+- All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
+
+## QoL
+
+- Add Culture and Religion map overlay - a legend is display on the bottom right panel.

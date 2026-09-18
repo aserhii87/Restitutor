@@ -18,6 +18,8 @@ export const Overlays = {
    Upgrade: () => $t(L.Upgrade),
    Defense: () => $t(L.Defense),
    Maintenance: () => $t(L.Maintenance),
+   Culture: () => $t(L.Culture),
+   Religion: () => $t(L.Religion),
    GreatWorks: () => $t(L.GreatWorks),
 } as const satisfies Record<string, () => string>;
 

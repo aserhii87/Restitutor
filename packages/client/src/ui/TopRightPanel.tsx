@@ -1,9 +1,8 @@
 import { Menu } from "@mantine/core";
-import { useForceUpdate } from "@mantine/hooks";
 import { clamp, cls, entriesOf, hasFlag } from "@project/shared/src/utils/Helper";
 import { memo } from "react";
 import { DiscordUrl, SteamCommunityUrl, SteamUrl } from "../game/definitions/Constant";
-import { GameOptionUpdated, GameSpeedChanged, GameTimeUpdated } from "../game/Events";
+import { GameOptionUpdated, GameSpeedChanged, GameTimeUpdated, RefreshOverlay } from "../game/Events";
 import { GameOptionFlag } from "../game/GameOption";
 import { getGameDate } from "../game/logic/GameDateTime";
 import { useShortcut } from "../game/Shortcut";
@@ -51,7 +50,7 @@ function SteamDiscordComp(): React.ReactNode {
 }
 
 function OverlayComp(): React.ReactNode {
-   const forceUpdate = useForceUpdate();
+   refreshOnTypedEvent(RefreshOverlay);
    const current = getOverlay();
    return (
       <Menu position="bottom-end">
@@ -64,7 +63,6 @@ function OverlayComp(): React.ReactNode {
                   key={overlay}
                   onClick={() => {
                      setOverlay(overlay);
-                     forceUpdate();
                   }}
                   className={cls(overlay === current ? "text-primary" : null)}
                >
