@@ -3369,11 +3369,6 @@ export const FR = {
    SupplyTheGothicCamp: "Supply the Gothic camp",
    CloseTheRoadsAndPasses: "Close the roads and passes",
    PetitionTheCourtToPay: "Petition the court to pay",
-   TheDeathOfSeverinus: "The Death of Severinus",
-   TheDeathOfSeverinusDesc: "Severinus has died at his monastery in Favianis after years of feeding towns, ransoming captives, and negotiating with rulers beyond the Danube. His last warning foretells the departure of Noricum's Roman people.",
-   EndowTheMonasteryAtFavianis: "Endow the monastery at Favianis",
-   StockTheFortifiedTowns: "Stock the fortified towns",
-   SeizeTheMonasticStores: "Seize the monastic stores",
    TheEvacuationOfNoricum: "The Evacuation of Noricum",
    TheEvacuationOfNoricumDesc: "After destroying the Rugian kingdom, Odoacer has ordered the Roman provincials of riverside Noricum to withdraw into Italia. Families gather at the forts with carts, livestock, and the remains of Severinus.",
    OrganizeTheMarchToItalia: "Organize the march to Italia",
@@ -3951,4 +3946,10 @@ export const FR = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia now share our administration. Across this vast domain, the Danube carries supplies between frontier garrisons, while roads connect Alpine passes, Adriatic harbours, and the settlements beyond the river. We can organize their magistrates and supply networks into a Danubian Alliance, giving our lands the administrative strength to sustain a common frontier.",
    EstablishTheDanubianAlliance: "Establish the Danubian Alliance",
    OurProvinceIsNowKnownAs$1: "Our province is now known as $1.",
+   TheLifeOfSeverinus: "The Life of Severinus",
+   TheLifeOfSeverinusDesc:
+      "At his monastery near Naples, Eugippius has written the Life of Severinus, preserving accounts of our Norican towns, the feeding of the hungry, and the ransoming of captives. His work celebrates a holy man's deeds, mixing memories of frontier life with accounts of miracles. We can sponsor copies for our churches, support relief in Severinus's memory, or collect civic records alongside the monks' account.",
+   SponsorCopiesForOurChurches: "Sponsor Copies for Our Churches",
+   FundReliefInSeverinussMemory: "Fund Relief in Severinus's Memory",
+   PreserveOurTownsCivicRecords: "Preserve Our Towns' Civic Records",
 };

@@ -3368,11 +3368,6 @@ export const ES = {
    SupplyTheGothicCamp: "Abastecer el campamento godo",
    CloseTheRoadsAndPasses: "Cerrar las calzadas y los pasos",
    PetitionTheCourtToPay: "Pedir a la corte que pague",
-   TheDeathOfSeverinus: "La muerte de Severino",
-   TheDeathOfSeverinusDesc: "Severino ha muerto en su monasterio de Favianis tras años de alimentar ciudades, rescatar cautivos y negociar con gobernantes más allá del Danubio. Sus monjes afirman que su última advertencia anuncia la partida de la población romana de Noricum.",
-   EndowTheMonasteryAtFavianis: "Dotar al monasterio de Favianis",
-   StockTheFortifiedTowns: "Abastecer las ciudades fortificadas",
-   SeizeTheMonasticStores: "Confiscar las reservas monásticas",
    TheEvacuationOfNoricum: "La evacuación de Noricum",
    TheEvacuationOfNoricumDesc:
       "Tras la destrucción del reino rugio por las fuerzas de Odoacro, su hermano Onoulfo ha ordenado a los provinciales romanos que quedan en el Noricum ribereño retirarse a Italia. Las familias se reúnen en los fuertes con carros y ganado, mientras los monjes de Severino preparan sus restos para el viaje.",
@@ -3961,4 +3956,10 @@ export const ES = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia y Dacia comparten ahora nuestra administración. A lo largo de este vasto territorio, el Danubio transporta suministros entre las guarniciones fronterizas, mientras las vías conectan los pasos alpinos, los puertos adriáticos y los asentamientos al otro lado del río. Podemos organizar a sus magistrados y sus redes de suministro en una Alianza Danubiana, dotando a nuestras tierras de la solidez administrativa necesaria para sostener una frontera común.",
    EstablishTheDanubianAlliance: "Establecer la Alianza Danubiana",
    OurProvinceIsNowKnownAs$1: "Nuestra provincia ahora es conocida como $1.",
+   TheLifeOfSeverinus: "La vida de Severino",
+   TheLifeOfSeverinusDesc:
+      "En su monasterio cerca de Nápoles, Eugipio ha escrito la Vida de Severino, preservando relatos sobre nuestras ciudades de Noricum, la alimentación de los hambrientos y el rescate de cautivos. Su obra celebra los actos de un hombre santo, mezclando recuerdos de la vida fronteriza con relatos de milagros. Podemos financiar copias para nuestras iglesias, apoyar la asistencia a los necesitados en memoria de Severino o recopilar registros municipales que complementen el relato de los monjes.",
+   SponsorCopiesForOurChurches: "Financiar copias para nuestras iglesias",
+   FundReliefInSeverinussMemory: "Financiar la asistencia en memoria de Severino",
+   PreserveOurTownsCivicRecords: "Preservar los registros de nuestras ciudades",
 };

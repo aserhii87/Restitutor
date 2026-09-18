@@ -3299,11 +3299,6 @@ export const ZH_TW = {
    SupplyTheGothicCamp: "為哥特營地提供補給",
    CloseTheRoadsAndPasses: "封鎖道路與山口",
    PetitionTheCourtToPay: "請求宮廷支付款項",
-   TheDeathOfSeverinus: "塞維裡努斯之死",
-   TheDeathOfSeverinusDesc: "塞維裡努斯在法維阿尼斯的修道院中去世；多年來，他一直供養城鎮、贖回俘虜，並與多瑙河以外的統治者談判。他的修士們說，他最後的警告預示著諾里庫姆的羅馬人將要離去。",
-   EndowTheMonasteryAtFavianis: "資助法維阿尼斯的修道院",
-   StockTheFortifiedTowns: "為設防城鎮儲備物資",
-   SeizeTheMonasticStores: "沒收修道院儲備",
    TheEvacuationOfNoricum: "撤離諾里庫姆",
    TheEvacuationOfNoricumDesc: "奧多亞塞的軍隊摧毀魯吉王國後，他的兄弟奧努爾夫命令河畔諾里庫姆剩餘的羅馬居民撤往義大利。各個家庭帶著馬車與牲畜聚集到要塞，而塞維裡努斯的修士們則為遺骸的旅程做準備。",
    OrganizeTheMarchToItalia: "組織前往義大利的遷徙",
@@ -3852,4 +3847,10 @@ export const ZH_TW = {
    TheDanubianAllianceDesc: "雷蒂亞、諾里庫姆、潘諾尼亞、達爾馬提亞、默西亞與達契亞如今都歸我們統一治理。在這片遼闊的疆域中，多瑙河將補給運往沿線的邊防駐軍，道路則連接著阿爾卑斯山口、亞得里亞海港口與河對岸的聚落。我們可以將各地的政務官和補給網絡整合為多瑙河同盟，使我們的領地具備維繫共同邊疆所需的行政力量。",
    EstablishTheDanubianAlliance: "建立多瑙河同盟",
    OurProvinceIsNowKnownAs$1: "我們的行省現被稱為 $1。",
+   TheLifeOfSeverinus: "塞維裡努斯傳",
+   TheLifeOfSeverinusDesc:
+      "歐吉皮烏斯在那不勒斯附近的修道院中寫成了《塞維裡努斯傳》，記錄了我們諾里庫姆城鎮的往事，以及賑濟飢民、贖回俘虜的事蹟。這部著作頌揚了一位聖者的善行，將邊疆生活的回憶與神蹟故事交織在一起。我們可以資助抄寫此書，供我們的教會使用，也可以資助賑濟以紀念塞維裡努斯，或收集城鎮政務檔案，補充修士們的記述。",
+   SponsorCopiesForOurChurches: "資助為我們的教會抄寫此書",
+   FundReliefInSeverinussMemory: "資助賑濟以紀念塞維裡努斯",
+   PreserveOurTownsCivicRecords: "保存我們城鎮的政務檔案",
 };

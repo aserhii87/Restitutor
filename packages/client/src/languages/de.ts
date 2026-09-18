@@ -3374,11 +3374,6 @@ export const DE = {
    SupplyTheGothicCamp: "Das gotische Lager versorgen",
    CloseTheRoadsAndPasses: "Die Straßen und Pässe schließen",
    PetitionTheCourtToPay: "Den Hof um Zahlung ersuchen",
-   TheDeathOfSeverinus: "Der Tod des Severinus",
-   TheDeathOfSeverinusDesc: "Severinus ist in seinem Kloster in Favianis gestorben, nachdem er jahrelang Städte versorgt, Gefangene freigekauft und mit Herrschern jenseits der Donau verhandelt hatte. Seine Mönche berichten, dass seine letzte Warnung den Aufbruch der römischen Bevölkerung Noricums ankündigt.",
-   EndowTheMonasteryAtFavianis: "Das Kloster in Favianis ausstatten",
-   StockTheFortifiedTowns: "Die befestigten Städte bevorraten",
-   SeizeTheMonasticStores: "Die Klostervorräte beschlagnahmen",
    TheEvacuationOfNoricum: "Die Evakuierung Noricums",
    TheEvacuationOfNoricumDesc:
       "Nachdem Odoakers Truppen das Reich der Rugier zerstört haben, befiehlt sein Bruder Onoulphus den verbliebenen römischen Provinzbewohnern des Donaugebiets von Noricum, sich nach Italia zurückzuziehen. Familien versammeln sich mit Wagen und Vieh bei den Kastellen, während Severinus' Mönche seine sterblichen Überreste für die Reise vorbereiten.",
@@ -3963,4 +3958,10 @@ export const DE = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia und Dacia stehen nun gemeinsam unter unserer Verwaltung. In diesem weiten Gebiet werden auf der Donau Versorgungsgüter zwischen den Grenzgarnisonen befördert, während Straßen die Alpenpässe, die Adriahäfen und die Siedlungen jenseits des Flusses verbinden. Wir können ihre Magistrate und Versorgungsnetze in einem Donaubündnis zusammenführen und unseren Ländern so die Verwaltungskraft geben, eine gemeinsame Grenze zu sichern.",
    EstablishTheDanubianAlliance: "Das Donaubündnis gründen",
    OurProvinceIsNowKnownAs$1: "Unsere Provinz ist nun als $1 bekannt.",
+   TheLifeOfSeverinus: "Das Leben des Severinus",
+   TheLifeOfSeverinusDesc:
+      "In seinem Kloster bei Neapel hat Eugippius das Leben des Severinus verfasst und darin Berichte über unsere norischen Städte, die Speisung der Hungernden und den Freikauf von Gefangenen bewahrt. Sein Werk würdigt die Taten eines heiligen Mannes und verbindet Erinnerungen an das Leben an der Grenze mit Wunderberichten. Wir können Abschriften für unsere Kirchen finanzieren, Hilfsmaßnahmen zum Gedenken an Severinus unterstützen oder ergänzend zum Bericht der Mönche städtische Aufzeichnungen sammeln.",
+   SponsorCopiesForOurChurches: "Abschriften für unsere Kirchen finanzieren",
+   FundReliefInSeverinussMemory: "Hilfsmaßnahmen zum Gedenken an Severinus finanzieren",
+   PreserveOurTownsCivicRecords: "Die Aufzeichnungen unserer Städte bewahren",
 };
