@@ -3,6 +3,7 @@ import Alps from "../../assets/images/events/Alps.webp";
 import AmbroseBarsTheodosius from "../../assets/images/events/AmbroseBarsTheodosius.webp";
 import AncientRome from "../../assets/images/events/AncientRome.webp";
 import Aqueduct from "../../assets/images/events/Aqueduct.webp";
+import ArabCouncil from "../../assets/images/events/ArabCouncil.webp";
 import Arianism from "../../assets/images/events/Arianism.webp";
 import AttilasFeast from "../../assets/images/events/AttilasFeast.webp";
 import AugustineDeath from "../../assets/images/events/AugustineDeath.webp";
@@ -40,6 +41,7 @@ import CopperMine from "../../assets/images/events/CopperMine.webp";
 import CouncilOfTrent from "../../assets/images/events/CouncilOfTrent.webp";
 import DeciusDeath from "../../assets/images/events/DeciusDeath.webp";
 import DelphiOracle from "../../assets/images/events/DelphiOracle.webp";
+import DesertCaravan from "../../assets/images/events/DesertCaravan.webp";
 import DiocletianStatue from "../../assets/images/events/DiocletianStatue.webp";
 import Donatism from "../../assets/images/events/Donatism.webp";
 import DruidRitual from "../../assets/images/events/DruidRitual.webp";
@@ -199,6 +201,11 @@ export const EventImage = {
       url: Aqueduct,
       credit: "Landscape with ruins and an aqueduct, Pierre Antoine Patel the younger",
       keywords: ["Rome", "Architecture", "Water", "Ruins"],
+   },
+   ArabCouncil: {
+      url: ArabCouncil,
+      credit: "Arab Chieftains in Council (The Negotiator), Horace Vernet (1834)",
+      keywords: ["Chieftains", "Negotiation", "Gathering", "Encampment", "Tent"],
    },
    Arianism: {
       url: Arianism,
@@ -389,6 +396,11 @@ export const EventImage = {
       url: DelphiOracle,
       credit: "The Oracle at Delphi, Hans Werner Schmidt (1920)",
       keywords: ["Greece", "Pythia", "Prophecy", "Temple"],
+   },
+   DesertCaravan: {
+      url: DesertCaravan,
+      credit: "Pilgrims Going to Mecca, Léon Belly (1861)",
+      keywords: ["Pilgrims", "Mecca", "Camels", "Travel", "Islam"],
    },
    DiocletianStatue: {
       url: DiocletianStatue,

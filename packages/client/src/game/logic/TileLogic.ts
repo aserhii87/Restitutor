@@ -1,4 +1,4 @@
-import { clamp, formatNumber, pointToTile, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
+import { clamp, entriesOf, formatNumber, pointToTile, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { ICondition, IConditionBreakdown } from "../actions/GameAction";
 import { finalizeBreakdown, finalizeCondition, type IValueBreakdown, makeValueBreakdown } from "../actions/GameAction";
@@ -1023,4 +1023,11 @@ export function getCultureStatus(tile: Tile, save: SaveGame): CultureReligionSta
 
 export function getTileTerrain(tile: Tile): Terrain {
    return terrainOf(tile) ?? "Plain";
+}
+export function getProvincesByDistance(tile: Tile, save: SaveGame): Province[] {
+   return entriesOf(save.state.provinces)
+      .sort(([p1, d1], [p2, d2]) => {
+         return MapGrid.distanceTile(d1.capital, tile) - MapGrid.distanceTile(d2.capital, tile);
+      })
+      .map(([p]) => p);
 }

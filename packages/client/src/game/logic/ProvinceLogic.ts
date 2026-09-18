@@ -56,7 +56,14 @@ import { addModifier, attachModifiers } from "./ModifierLogic";
 import { addProvinceResource } from "./ResourceLogic";
 import { settleTile } from "./SettlementLogic";
 import { getBaselineTechs } from "./TechLogic";
-import { getTileGoodsTax, getTileGoverningCost, getTileLandTax, getTileMaintenanceCost, isCoastal } from "./TileLogic";
+import {
+   getProvincesByDistance,
+   getTileGoodsTax,
+   getTileGoverningCost,
+   getTileLandTax,
+   getTileMaintenanceCost,
+   isCoastal,
+} from "./TileLogic";
 import { startTimedAction } from "./TimedActionLogic";
 import { getProvinceTrades } from "./TradeLogic";
 import { getClients, getPatrons } from "./TreatyLogic";
@@ -222,19 +229,6 @@ export function getProvincesInRange(range: number, province: Province, save: Sav
       }
    }
    return result;
-}
-
-export function getProvincesByDistance(province: Province, save: SaveGame): Province[] {
-   const capital = save.state.provinces[province]?.capital;
-   if (!capital) {
-      return [];
-   }
-   return entriesOf(save.state.provinces)
-      .filter(([p]) => p !== province)
-      .sort(([p1, d1], [p2, d2]) => {
-         return MapGrid.distanceTile(d1.capital, capital) - MapGrid.distanceTile(d2.capital, capital);
-      })
-      .map(([p]) => p);
 }
 
 export const getProvinceOverextension = cacheProvince(_getProvinceOverextension);
@@ -648,33 +642,29 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
       }
    });
 
-   const neighboringProvinces = new Set<Province>();
-   for (const tile of config.tiles) {
-      for (const neighboringProvince of getBorderingProvinces(tile, save)) {
-         if (neighboringProvince === province || neighboringProvince === save.state.playerProvince) {
-            continue;
-         }
-         neighboringProvinces.add(neighboringProvince);
+   const nearbyProvinces = getProvincesByDistance(config.tiles[0], save)
+      .filter((p) => p !== province && p !== save.state.playerProvince)
+      .slice(0, 5);
+
+   if (nearbyProvinces.length > 0) {
+      let targetWarPower = 0;
+      for (const neighboringProvince of nearbyProvinces) {
+         const warPowerPerTile = getWarPowerPerTile(neighboringProvince, save);
+         targetWarPower += warPowerPerTile;
       }
-   }
+      targetWarPower = 2 * (targetWarPower / nearbyProvinces.length) * config.tiles.length;
 
-   let targetWarPower = 0;
-   for (const neighboringProvince of neighboringProvinces) {
-      const warPowerPerTile = getWarPowerPerTile(neighboringProvince, save);
-      targetWarPower += warPowerPerTile;
+      const currentWarPower = getWarPower({}, province, save).total.value;
+      addModifier({
+         modifier: "WarPower",
+         name: source,
+         type: "multiply",
+         value: clamp(targetWarPower / currentWarPower, 1, 10),
+         duration: SpawnedProvinceBoostMonths,
+         province,
+         save,
+      });
    }
-   targetWarPower = 2 * (targetWarPower / neighboringProvinces.size) * config.tiles.length;
-
-   const currentWarPower = getWarPower({}, province, save).total.value;
-   addModifier({
-      modifier: "WarPower",
-      name: source,
-      type: "multiply",
-      value: clamp(targetWarPower / currentWarPower, 1, 10),
-      duration: SpawnedProvinceBoostMonths,
-      province,
-      save,
-   });
 
    startTimedAction("BarbarianInvasions", province, save);
 

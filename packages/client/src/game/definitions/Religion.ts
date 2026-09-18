@@ -36,6 +36,8 @@ const _Religion = {
    Miaphysitism: { name: () => $t(L.ReligionMiaphysitism), code: "MI", flags: ReligionFlags.Christian },
    Monothelitism: { name: () => $t(L.ReligionMonothelitism), code: "MO", flags: ReligionFlags.Christian },
    Iconoclasm: { name: () => $t(L.ReligionIconoclasm), code: "IC", flags: ReligionFlags.Christian },
+   Steppe: { name: () => $t(L.ReligionSteppe), code: "ST", flags: ReligionFlags.None },
+   Islam: { name: () => $t(L.ReligionIslam), code: "IS", flags: ReligionFlags.None },
 } as const satisfies Record<string, IReligionConfig>;
 
 interface IChristianHeresyConfig {

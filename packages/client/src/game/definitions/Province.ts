@@ -484,6 +484,16 @@ export const Province = {
       upgrades: [],
    },
    Huns: { code: "HU", name: () => $t(L.ProvinceHuns), culture: "Hunnic", religion: "Hunnic", upgrades: [] },
+   Avars: { code: "AV", name: () => $t(L.ProvinceAvars), culture: "Steppe", religion: "Steppe", upgrades: [] },
+   Lombards: {
+      code: "LO",
+      name: () => $t(L.ProvinceLombards),
+      culture: "Germanic",
+      religion: "Arianism",
+      upgrades: [],
+   },
+   Caliphate: { code: "CL", name: () => $t(L.ProvinceCaliphate), culture: "Arab", religion: "Islam", upgrades: [] },
+   Bulgars: { code: "BG", name: () => $t(L.ProvinceBulgars), culture: "Steppe", religion: "Steppe", upgrades: [] },
 } as const satisfies Record<string, IProvinceConfig>;
 
 export type Province = keyof typeof Province;

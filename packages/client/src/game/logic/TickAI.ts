@@ -86,13 +86,12 @@ import {
    getProvinceGoverningCost,
    getProvinceIncome,
    getProvinceStat,
-   getProvincesByDistance,
    getProvincesInRange,
    pledgeProvinceConsulVotes,
 } from "./ProvinceLogic";
 import { getProvinceResource, hasEnoughProvinceResources, trySpendProvinceResources } from "./ResourceLogic";
 import { getCheapestLockedTech } from "./TechLogic";
-import { getBuildingSlot, getTileUnrest, getTileWar } from "./TileLogic";
+import { getBuildingSlot, getProvincesByDistance, getTileUnrest, getTileWar } from "./TileLogic";
 import {
    getTimedActionCooldownLeft,
    getTimedActionTimeLeft,
@@ -322,11 +321,22 @@ export function tickAI(save: SaveGame): void {
       } else {
          doWar(province, save);
       }
-      tryDoHeadless(ConvertToChristianityAction(province, save), "ConvertToChristianity", province, save);
+      doReligion(province, save);
       tryDoHeadless(makeGameAction("AppointPontiff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointEnvoy", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointArmyStaff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
    });
+}
+
+function doReligion(province: Province, save: SaveGame) {
+   const state = save.state.provinces[province];
+   if (!state) {
+      return;
+   }
+   if (state.religion === "Islam") {
+      return;
+   }
+   tryDoHeadless(ConvertToChristianityAction(province, save), "ConvertToChristianity", province, save);
 }
 
 function doRegionalCapital(province: Province, save: SaveGame): void {
@@ -651,7 +661,7 @@ function doDiplomacy(province: Province, save: SaveGame): void {
    if (!state) {
       return;
    }
-   const sortedProvinces = getProvincesByDistance(province, save);
+   const sortedProvinces = getProvincesByDistance(state.capital, save).filter((p) => p !== province);
    const part1 = sortedProvinces.slice(0, 5);
    const part2 = sortedProvinces.slice(5, 10);
    const part3 = sortedProvinces.slice(10);
