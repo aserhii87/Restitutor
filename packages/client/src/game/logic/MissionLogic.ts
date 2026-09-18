@@ -3,6 +3,7 @@ import { $t, L } from "../../utils/i18n";
 import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
+import { durationToString } from "../definitions/Modifier";
 import {
    type Province,
    type ProvinceNameOverride,
@@ -11,6 +12,7 @@ import {
    ProvinceResourceNames,
 } from "../definitions/Province";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
+import { type TimedAction, TimedActions } from "../definitions/TimedAction";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
@@ -38,6 +40,7 @@ import {
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile } from "./TileLogic";
+import { startTimedAction } from "./TimedActionLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
 export function annexTiles({
@@ -120,6 +123,16 @@ export function setProvinceNameOverrideEffect(nameOverride: ProvinceNameOverride
       desc: (province, save) => {
          return $t(L.OurProvinceIsNowKnownAs$1, ProvinceNameOverrides[nameOverride]());
       },
+   };
+}
+
+export function startTimedActionEffect(action: TimedAction): ICustomEffect {
+   return {
+      desc: (province, save) => {
+         const config = TimedActions[action];
+         return $t(L.$1StartsAndLastsFor$2, config.name(), durationToString(config.duration));
+      },
+      execute: (province, save) => startTimedAction(action, province, save),
    };
 }
 

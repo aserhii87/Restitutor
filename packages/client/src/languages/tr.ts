@@ -2549,7 +2549,6 @@ export const TR = {
    SelectAHereticProvinceFirst: "Select a heretic province first",
    FirstCouncilOfNicaeaDesc: "Emperor Constantine has summoned bishops from across the Roman world to Nicaea. They will settle the dispute provoked by Arius and define the relationship between the Father and the Son in a common creed.",
    AffirmTheNiceneCreed: "Affirm the Nicene Creed",
-   $1CommencesAndLastsFor$2: "$1 commences and lasts for $2",
    FirstCouncilOfConstantinopleDesc: "Emperor Theodosius has called the bishops to Constantinople. The gathering will reaffirm the Nicene faith, answer the Macedonian controversy, and proclaim the divinity of the Holy Spirit.",
    AffirmTheDivinityOfTheHolySpirit: "Affirm the divinity of the Holy Spirit",
    CouncilOfEphesusDesc: "The bishops have assembled at Ephesus to judge the teachings of Nestorius. At issue is whether Mary may be called Theotokos and how the divine and human are united in Christ.",
@@ -3941,4 +3940,5 @@ export const TR = {
    TileGhamid: "Ghamid",
    TileBishah: "Bishah",
    TileJurash: "Jurash",
+   $1StartsAndLastsFor$2: "$1 commences and lasts for $2",
 };

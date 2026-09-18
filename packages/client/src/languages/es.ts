@@ -2552,7 +2552,6 @@ export const ES = {
    SelectAHereticProvinceFirst: "Seleccionar primero una provincia herética",
    FirstCouncilOfNicaeaDesc: "El emperador Constantino ha convocado en Nicea a obispos de todo el mundo romano. Resolverán la disputa provocada por Arrio y definirán la relación entre el Padre y el Hijo en un credo común.",
    AffirmTheNiceneCreed: "Afirmar el credo niceno",
-   $1CommencesAndLastsFor$2: "$1 comienza y dura $2",
    FirstCouncilOfConstantinopleDesc: "El emperador Teodosio ha convocado a los obispos en Constantinopla. La reunión reafirmará la fe nicena, responderá a la controversia macedoniana y proclamará la divinidad del Espíritu Santo.",
    AffirmTheDivinityOfTheHolySpirit: "Afirmar la divinidad del Espíritu Santo",
    CouncilOfEphesusDesc: "Los obispos se han reunido en Éfeso para juzgar las enseñanzas de Nestorio. La cuestión es si se puede llamar Theotokos a María y cómo se unen lo divino y lo humano en Cristo.",
@@ -3986,4 +3985,5 @@ export const ES = {
    TileGhamid: "Ghamid",
    TileBishah: "Bishah",
    TileJurash: "Jurash",
+   $1StartsAndLastsFor$2: "$1 comienza y dura $2",
 };

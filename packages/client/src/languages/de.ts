@@ -2560,7 +2560,6 @@ export const DE = {
    SelectAHereticProvinceFirst: "Zuerst eine häretische Provinz auswählen",
    FirstCouncilOfNicaeaDesc: "Kaiser Konstantin hat Bischöfe aus der gesamten römischen Welt nach Nicaea berufen. Sie sollen den von Arius ausgelösten Streit beilegen und das Verhältnis zwischen Vater und Sohn in einem gemeinsamen Glaubensbekenntnis bestimmen.",
    AffirmTheNiceneCreed: "Das nizänische Glaubensbekenntnis bekräftigen",
-   $1CommencesAndLastsFor$2: "$1 beginnt und dauert $2",
    FirstCouncilOfConstantinopleDesc: "Kaiser Theodosius hat die Bischöfe nach Konstantinopel berufen. Die Versammlung soll den nizänischen Glauben bekräftigen, den makedonianischen Streit beantworten und die Göttlichkeit des Heiligen Geistes verkünden.",
    AffirmTheDivinityOfTheHolySpirit: "Die Göttlichkeit des Heiligen Geistes bekräftigen",
    CouncilOfEphesusDesc: "Die Bischöfe haben sich in Ephesus versammelt, um über die Lehren des Nestorius zu urteilen. Zur Frage steht, ob Maria Theotokos genannt werden darf und wie das Göttliche und Menschliche in Christus vereint sind.",
@@ -3988,4 +3987,5 @@ export const DE = {
    TileGhamid: "Ghamid",
    TileBishah: "Bishah",
    TileJurash: "Jurash",
+   $1StartsAndLastsFor$2: "$1 beginnt und dauert $2",
 };

@@ -56,7 +56,7 @@ export function AcquireContestedImperiumAction(target: Province, province: Provi
       },
       effect: {
          name: TimedActions.ThirdCenturyCrisisCasusBelli.name(),
-         casusBelli: target ? { [target]: { casusBelli: "ContestedImperium", duration: 12 * 5 } } : {},
+         casusBelli: { [target]: { casusBelli: "ContestedImperium", duration: 12 * 5 } },
       },
    };
 }

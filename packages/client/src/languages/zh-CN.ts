@@ -2543,7 +2543,6 @@ export const ZH_CN = {
    SelectAHereticProvinceFirst: "请先选择一个异端行省",
    FirstCouncilOfNicaeaDesc: "君士坦丁皇帝已召集罗马世界各地的主教前往尼西亚。他们将平息阿里乌斯引发的争端，并在共同的信经中界定圣父与圣子的关系。",
    AffirmTheNiceneCreed: "确认《尼西亚信经》",
-   $1CommencesAndLastsFor$2: "$1开始举行，将持续$2",
    FirstCouncilOfConstantinopleDesc: "狄奥多西皇帝已召集众主教前往君士坦丁堡。此次会议将重申尼西亚信仰，回应马其顿派争议，并宣告圣灵的神性。",
    AffirmTheDivinityOfTheHolySpirit: "确认圣灵的神性",
    CouncilOfEphesusDesc: "众主教已齐聚以弗所，审判聂斯脱里的教义。争议的焦点是玛利亚能否被称为“诞神女”，以及基督的神性与人性如何结合。",
@@ -3877,4 +3876,5 @@ export const ZH_CN = {
    TileGhamid: "加米德",
    TileBishah: "比沙",
    TileJurash: "朱拉什",
+   $1StartsAndLastsFor$2: "$1开始，将持续$2",
 };

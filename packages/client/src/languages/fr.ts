@@ -2560,7 +2560,6 @@ export const FR = {
    SelectAHereticProvinceFirst: "Sélectionnez d'abord une province hérétique",
    FirstCouncilOfNicaeaDesc: "L'empereur Constantin a convoqué des évêques de tout le monde romain à Nicée. Ils régleront la controverse provoquée par Arius et définiront dans un credo commun la relation entre le Père et le Fils.",
    AffirmTheNiceneCreed: "Affirmer le credo de Nicée",
-   $1CommencesAndLastsFor$2: "$1 commence et dure $2",
    FirstCouncilOfConstantinopleDesc: "L'empereur Théodose a convoqué les évêques à Constantinople. L'assemblée réaffirmera la foi de Nicée, répondra à la controverse macédonienne et proclamera la divinité du Saint-Esprit.",
    AffirmTheDivinityOfTheHolySpirit: "Affirmer la divinité du Saint-Esprit",
    CouncilOfEphesusDesc: "Les évêques se sont réunis à Éphèse pour juger les enseignements de Nestorius. La question est de savoir si Marie peut être appelée Theotokos et comment les natures divine et humaine s'unissent dans le Christ.",
@@ -3976,4 +3975,5 @@ export const FR = {
    TileGhamid: "Ghamid",
    TileBishah: "Bishah",
    TileJurash: "Jurash",
+   $1StartsAndLastsFor$2: "$1 commence et dure $2",
 };
