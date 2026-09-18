@@ -52,6 +52,7 @@ export const DanubianEvents = {
       name: () => $t(L.TheDanubianAlliance),
       image: EventImage.RomanExpedition,
       desc: () => $t(L.TheDanubianAllianceDesc),
+      achievement: "DanubianAlliance",
       condition: {
          province: new Set(DanubiaProvinces),
          annexAndCore: fromEntries(DanubiaProvinces.map((province) => [province, Number.POSITIVE_INFINITY])),

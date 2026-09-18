@@ -55,6 +55,10 @@ Dalmatia is now playable, with 10 historical events and 6 missions covering expa
 - Illyria: Unite Dalmatia and Pannonia as either province.
 - Danubian Alliance: Unite Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia as any of these provinces.
 
+## Achievements
+
+- The Blue Danube: Complete the "The Danubian Alliance" mission.
+
 ## QoL
 
 - Add Culture and Religion map overlay - a legend is display on the bottom right panel.
