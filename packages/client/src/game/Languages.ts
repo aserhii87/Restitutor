@@ -7,12 +7,14 @@ import { FR } from "../languages/fr";
 import { RU } from "../languages/ru";
 import { TR } from "../languages/tr";
 import { ZH_CN } from "../languages/zh-CN";
+import { ZH_TW } from "../languages/zh-TW";
 
 export const Languages = {
    en: EN,
    es: ES,
    de: DE,
    "zh-CN": ZH_CN,
+   "zh-TW": ZH_TW,
    ru: RU,
    fr: FR,
    tr: TR,
@@ -23,6 +25,7 @@ export const LanguagesImage = {
    es: "ES",
    de: "DE",
    "zh-CN": "CN",
+   "zh-TW": "TW",
    ru: "RU",
    fr: "FR",
    tr: "TR",
