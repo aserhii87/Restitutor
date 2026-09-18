@@ -3739,7 +3739,8 @@ export const ES = {
    AutonomyHasChanged: "La autonomía ha cambiado",
    From$1To$2: "De $1 a $2",
    AdjustAutonomy: "Ajustar la autonomía",
-   TimedActionAdjustAutonomyDesc$1$2$3$4: "Cada $1 de autonomía reduce el impuesto territorial, el rendimiento territorial y la mano de obra en $2; el malestar, en $3; y el coste de gobierno y la defensa territorial, en $4. Todos los cambios de autonomía de la provincia comparten el mismo tiempo de espera.",
+   TimedActionAdjustAutonomyDesc$1$2$3$4:
+      "Cada $1 de autonomía reduce el impuesto territorial, el rendimiento territorial y la mano de obra en $2; el malestar, en $3; y el coste de gobierno, la defensa territorial y el mantenimiento territorial, en $4. Todos los cambios de autonomía de la provincia comparten el mismo tiempo de espera.",
    AutomaticallySettlePositiveUnrestDesc: "Cada mes, cuando esta acción no está en espera, se resuelve el malestar del territorio con mayor malestar positivo cuya autonomía pueda cambiar. Si ningún territorio cumple los requisitos, no ocurre nada.",
    Disasters: "Desastres",
    In$1Years: "en $1 años",

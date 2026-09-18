@@ -3697,7 +3697,7 @@ export const EN = {
    AutonomyHasChanged: "Autonomy has changed",
    From$1To$2: "From $1 to $2",
    AdjustAutonomy: "Adjust Autonomy",
-   TimedActionAdjustAutonomyDesc$1$2$3$4: "Each $1 of autonomy reduces Land Tax, Tile Output, and Manpower by $2; Unrest by $3; and Governing Cost and Tile Defense by $4. All autonomy changes in the province share a cooldown.",
+   TimedActionAdjustAutonomyDesc$1$2$3$4: "Each $1 of autonomy reduces Land Tax, Tile Output, and Manpower by $2; Unrest by $3; and Governing Cost, Tile Defense, and Tile Maintenance by $4. All autonomy changes in the province share a cooldown.",
    AutomaticallySettlePositiveUnrestDesc: "Each month when this action is off cooldown, unrest is settled on the tile with the highest positive unrest whose autonomy can change. Nothing happens if no tile qualifies.",
    Disasters: "Disasters",
    In$1Years: "in $1 years",

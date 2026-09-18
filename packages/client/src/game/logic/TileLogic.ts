@@ -753,6 +753,9 @@ export const getTileMaintenanceCost = cacheTileEvaluation<IValueBreakdown>((tile
    ) {
       calc.multiply(-0.1)?.describe(ProvinceUpgrades.WartimeAdministration.name());
    }
+   if (data.autonomy > 0) {
+      calc.multiply(-data.autonomy * 0.005)?.describe($t(L.Autonomy));
+   }
    attachTileModifiersToCalculation(data.modifiers.Maintenance, calc);
    attachModifiersToCalculation("TileMaintenance", calc, data.province, save);
    const overextension = getProvinceOverextension(data.province, save).value;

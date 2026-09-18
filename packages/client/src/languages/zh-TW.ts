@@ -3658,7 +3658,7 @@ export const ZH_TW = {
    AutonomyHasChanged: "自治度已改變",
    From$1To$2: "從 $1 調整為 $2",
    AdjustAutonomy: "調整自治度",
-   TimedActionAdjustAutonomyDesc$1$2$3$4: "自治度每提高 $1，土地稅、地塊產出和人力就降低 $2，動盪降低 $3，治理花費和地塊防禦降低 $4。行省內的所有自治度調整共享同一冷卻時間。",
+   TimedActionAdjustAutonomyDesc$1$2$3$4: "自治度每提高 $1，土地稅、地塊產出和人力就降低 $2，動盪降低 $3，治理花費、地塊防禦和地塊維護費降低 $4。行省內的所有自治度調整共享同一冷卻時間。",
    AutomaticallySettlePositiveUnrestDesc: "每月當此行動不處於冷卻時，將在自治度可調整且動盪為正的地塊中，選擇動盪最高的地塊平定動盪。若沒有符合條件的地塊，則不採取行動。",
    Disasters: "災難",
    In$1Years: "$1年後",

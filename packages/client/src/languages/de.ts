@@ -3742,7 +3742,7 @@ export const DE = {
    AutonomyHasChanged: "Die Autonomie wurde geändert",
    From$1To$2: "Von $1 auf $2",
    AdjustAutonomy: "Autonomie anpassen",
-   TimedActionAdjustAutonomyDesc$1$2$3$4: "Je $1 Autonomie werden Grundsteuer, Gebietsproduktion und Mannstärke um $2, Unruhe um $3 sowie Verwaltungskosten und Gebietsverteidigung um $4 verringert. Alle Autonomieänderungen in der Provinz teilen sich dieselbe Abklingzeit.",
+   TimedActionAdjustAutonomyDesc$1$2$3$4: "Je $1 Autonomie werden Grundsteuer, Gebietsproduktion und Mannstärke um $2, Unruhe um $3 sowie Verwaltungskosten, Gebietsverteidigung und Gebietsunterhalt um $4 verringert. Alle Autonomieänderungen in der Provinz teilen sich dieselbe Abklingzeit.",
    AutomaticallySettlePositiveUnrestDesc: "Jeden Monat, in dem diese Aktion keiner Abklingzeit unterliegt, wird die Unruhe im Gebiet mit der höchsten positiven Unruhe beigelegt, dessen Autonomie geändert werden kann. Gibt es kein geeignetes Gebiet, geschieht nichts.",
    Disasters: "Katastrophen",
    In$1Years: "in $1 Jahren",

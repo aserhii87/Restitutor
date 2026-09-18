@@ -62,3 +62,4 @@ Dalmatia is now playable, with 10 historical events and 6 missions covering expa
 ## QoL
 
 - Add Culture and Religion map overlay - a legend is display on the bottom right panel.
+- Each 1% autonomy now reduces Tile Maintenance by 0.5%.
