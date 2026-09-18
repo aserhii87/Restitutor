@@ -52,7 +52,11 @@ export function DissolveTreatyModal(): React.ReactNode {
                         action={() => ({
                            cost: { consulPoint: 1 },
                            condition: finalizeCondition([
-                              ...timedActionConditions({ action: "DissolveTreaty" }, selectedProvince, G.save),
+                              ...timedActionConditions(
+                                 { action: "DissolveTreaty" },
+                                 G.save.state.playerProvince,
+                                 G.save,
+                              ),
                               requireDefensePactAllyOrPatronCount(selectedProvince, 2, G.save),
                            ]),
                            execute: () => {
