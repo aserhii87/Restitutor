@@ -57,9 +57,6 @@ export function settleTile(tile: Tile, province: Province, save: SaveGame): ITil
    if (!isLand(tile)) {
       return undefined;
    }
-   if (!NewSettlementTiles.has(tile)) {
-      return undefined;
-   }
    const tileData = initTileData(province, randOne(TerrainToGoods[getTileTerrain(tile)]));
    tileData.infrastructure = 1;
    tileData.production = 1;
