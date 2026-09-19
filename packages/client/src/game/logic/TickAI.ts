@@ -86,13 +86,12 @@ import {
    getProvinceGoverningCost,
    getProvinceIncome,
    getProvinceStat,
-   getProvincesByDistance,
    getProvincesInRange,
    pledgeProvinceConsulVotes,
 } from "./ProvinceLogic";
 import { getProvinceResource, hasEnoughProvinceResources, trySpendProvinceResources } from "./ResourceLogic";
 import { getCheapestLockedTech } from "./TechLogic";
-import { getBuildingSlot, getTileUnrest, getTileWar } from "./TileLogic";
+import { getBuildingSlot, getProvincesByDistance, getTileUnrest, getTileWar } from "./TileLogic";
 import {
    getTimedActionCooldownLeft,
    getTimedActionTimeLeft,
@@ -651,7 +650,7 @@ function doDiplomacy(province: Province, save: SaveGame): void {
    if (!state) {
       return;
    }
-   const sortedProvinces = getProvincesByDistance(province, save);
+   const sortedProvinces = getProvincesByDistance(state.capital, save).filter((p) => p !== province);
    const part1 = sortedProvinces.slice(0, 5);
    const part2 = sortedProvinces.slice(5, 10);
    const part3 = sortedProvinces.slice(10);
