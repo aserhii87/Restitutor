@@ -5,14 +5,9 @@ import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { getTimedActionTimeLeft } from "./TimedActionLogic";
 
-export function isThirdCenturyCrisisActive(province: Province, save: SaveGame): boolean {
-   const timeLeft = getTimedActionTimeLeft("ThirdCenturyCrisis", province, save);
-   return Number.isFinite(timeLeft) && timeLeft > 0;
-}
-
 export function ongoingThirdCenturyCrisisCondition(province: Province, save: SaveGame): ICondition {
    return {
       name: $t(L.$1IsOngoing, TimedActions.ThirdCenturyCrisis.name()),
-      value: isThirdCenturyCrisisActive(province, save),
+      value: getTimedActionTimeLeft("ThirdCenturyCrisis", province, save) > 0,
    };
 }

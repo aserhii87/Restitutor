@@ -10,7 +10,6 @@ import { durationToString } from "../game/definitions/Modifier";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getNeighborProvinces, getProvinceName } from "../game/logic/ProvinceLogic";
-import { isThirdCenturyCrisisActive } from "../game/logic/ThirdCenturyCrisisLogic";
 import { getTimedActionCooldownLeft, getTimedActionTimeLeft } from "../game/logic/TimedActionLogic";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -22,7 +21,7 @@ import { HeaderImages } from "./HeaderImages";
 export function ThirdCenturyCrisisPage(): React.ReactNode {
    refreshOnTypedEvent(GameStateUpdated);
    const province = G.save.state.playerProvince;
-   if (!isThirdCenturyCrisisActive(province, G.save)) {
+   if (getTimedActionTimeLeft("ThirdCenturyCrisis", province, G.save) <= 0) {
       return null;
    }
    const neighbors = Array.from(getNeighborProvinces(province, G.save)).sort();

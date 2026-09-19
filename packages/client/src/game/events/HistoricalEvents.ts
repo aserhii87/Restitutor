@@ -467,7 +467,6 @@ export const HistoricalEvents = {
                MakeCoreCost: { type: "multiply", value: -0.5 },
                ArmyMaintenance: { type: "multiply", value: -0.25 },
             },
-            provinceUpgrades: ["Tetrarchy"],
          },
          {
             label: () => $t(L.RomeOnlyNeedsOneEmperor),

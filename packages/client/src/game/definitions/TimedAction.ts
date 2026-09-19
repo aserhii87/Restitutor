@@ -772,6 +772,11 @@ class TimedActionDefinitions {
       duration: 12 * 22,
       cooldown: 0,
    };
+   Tetrarchy: ITimedAction = {
+      name: () => $t(L.Tetrarchy),
+      duration: 12 * 31,
+      cooldown: 0,
+   };
 }
 
 export type TimedAction = keyof TimedActionDefinitions;

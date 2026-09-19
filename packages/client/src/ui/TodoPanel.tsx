@@ -22,7 +22,6 @@ import { getProvinceName, getProvinceOverextension, monthsToNextConsulElection }
 import { getProvinceResource } from "../game/logic/ResourceLogic";
 import { isSocialClassDisloyal, isSocialClassDominant } from "../game/logic/SocialClassLogic";
 import { getTechsCanBeResearched, hasResearched } from "../game/logic/TechLogic";
-import { isThirdCenturyCrisisActive } from "../game/logic/ThirdCenturyCrisisLogic";
 import { PendingGameEventTimeoutMonths } from "../game/logic/TickProvince";
 import { getTileUnrest } from "../game/logic/TileLogic";
 import { getTimedActionTimeLeft, makeGameAction } from "../game/logic/TimedActionLogic";
@@ -363,7 +362,7 @@ const ThirdCenturyCrisis: ITodo = {
    icon: () => IconCatalog.Crisis,
    className: () => "green",
    tooltip: (save) => {
-      if (!isThirdCenturyCrisisActive(save.state.playerProvince, save)) {
+      if (getTimedActionTimeLeft("ThirdCenturyCrisis", save.state.playerProvince, save) <= 0) {
          return null;
       }
       return (
@@ -380,6 +379,29 @@ const ThirdCenturyCrisis: ITodo = {
       showPanel(ThirdCenturyCrisisPage, {});
    },
 };
+
+// const Tetrarchy: ITodo = {
+//    name: () => TimedActions.Tetrarchy.name(),
+//    icon: () => IconCatalog.Tetrarchy,
+//    className: () => "green",
+//    tooltip: (save) => {
+//       if (getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save) <= 0) {
+//          return null;
+//       }
+//       return (
+//          <div className="m10">
+//             {$t(
+//                L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+//                TimedActions.Tetrarchy.name(),
+//                formatNumber(getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save)),
+//             )}
+//          </div>
+//       );
+//    },
+//    onClick: () => {
+//       showPanel(ThirdCenturyCrisisPage, {});
+//    },
+// };
 
 const EcumenicalCouncil: ITodo = {
    name: (save) => $t(L.EcumenicalCouncil),
@@ -800,6 +822,7 @@ const _Todos = {
    BarbarianRaid,
    SocialClassDissent,
    ThirdCenturyCrisis,
+   // Tetrarchy,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

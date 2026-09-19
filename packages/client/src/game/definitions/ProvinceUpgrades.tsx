@@ -24,9 +24,6 @@ const _ProvinceUpgrades = {
          GoverningCapacity: { type: "add", value: 100 },
       },
    },
-   Tetrarchy: {
-      name: () => $t(L.Tetrarchy),
-   },
    ReligiousUnrest: {
       name: () => $t(L.ReligiousUnrest),
       modifiers: {

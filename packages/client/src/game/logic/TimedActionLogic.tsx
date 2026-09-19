@@ -26,7 +26,7 @@ export function getTimedActionTimeLeft(timedAction: TimedAction, province: Provi
    const config = TimedActions[timedAction];
    const state = save.state.provinces[province];
    if (!state) {
-      return Number.POSITIVE_INFINITY;
+      return 0;
    }
    const lastPerformed = state.timedActions.get(timedAction);
    if (lastPerformed === undefined) {

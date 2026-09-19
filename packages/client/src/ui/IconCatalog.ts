@@ -37,6 +37,7 @@ import Stability from "../assets/images/Stability.svg";
 import Steam from "../assets/images/Steam.svg";
 import Tech from "../assets/images/Tech.svg";
 import TechTree from "../assets/images/TechTree.svg";
+import Tetrarchy from "../assets/images/Tetrarchy.svg";
 import Trade from "../assets/images/Trade.svg";
 import Treaty from "../assets/images/Treaty.svg";
 import Truce from "../assets/images/Truce.svg";
@@ -96,4 +97,5 @@ export const IconCatalog = {
    Wikipedia,
    Mandate,
    Crisis,
+   Tetrarchy,
 } as const satisfies Record<string, string>;
