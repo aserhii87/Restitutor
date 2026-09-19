@@ -5,6 +5,7 @@ import EcumenicalCouncil from "../assets/images/headers/EcumenicalCouncil.webp";
 import Peace from "../assets/images/headers/Peace.webp";
 import Rebirth from "../assets/images/headers/Rebirth.webp";
 import Senate from "../assets/images/headers/Senate.webp";
+import Tetrarchy from "../assets/images/headers/Tetrarchy.webp";
 import Treasury from "../assets/images/headers/Treasury.webp";
 import type { ImageWithCredit } from "../game/events/ImageWithCredit";
 
@@ -19,6 +20,10 @@ export const HeaderImages = {
    Rebirth: { url: Rebirth, credit: "Le triomphe de la Ville de Paris, François-Edouard Picot (1842)" },
    Treasury: { url: Treasury, credit: "Ancient Rome, Giovanni Paolo Panini (1757)" },
    Crisis: { url: Crisis, credit: "The Fall of Pompeii, Anton Hoffmann (1920)" },
+   Tetrarchy: {
+      url: Tetrarchy,
+      credit: "Cross-section of the Baths of Diocletian, Edmond Jean-Baptiste Paulin (1880)",
+   },
    Peace: {
       url: Peace,
       credit: "Vercingetorix surrenders to Julius Caesar, Alphonse Marie de Neuville (French, 1835-1885)",

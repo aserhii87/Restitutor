@@ -40,7 +40,7 @@ import {
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile } from "./TileLogic";
-import { startTimedAction } from "./TimedActionLogic";
+import { getTimedActionTimeLeft, startTimedAction } from "./TimedActionLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
 export function annexTiles({
@@ -100,6 +100,20 @@ export function tileIsOurCoreCondition(tile: Tile, province: Province, save: Sav
    return {
       name: $t(L.TileIsCurrentlyOurCore),
       value: !!tileData && tileData.coreProvinces.has(province) && tileData.province === province,
+   };
+}
+
+export function provinceOnMapCondition(province: Province, save: SaveGame): ICondition {
+   return {
+      name: $t(L.$1IsOnTheMap, getProvinceName(province, save)),
+      value: !!save.state.provinces[province],
+   };
+}
+
+export function activeTimedActionCondition(action: TimedAction, province: Province, save: SaveGame): ICondition {
+   return {
+      name: $t(L.$1IsOngoing, TimedActions[action].name()),
+      value: getTimedActionTimeLeft(action, province, save) > 0,
    };
 }
 

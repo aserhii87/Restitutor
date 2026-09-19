@@ -36,7 +36,11 @@ export function ThirdCenturyCrisisPage(): React.ReactNode {
          }
       >
          <div className="mx10 my5">
-            {$t(L.CrisisEndsIn$1Months, formatNumber(getTimedActionTimeLeft("ThirdCenturyCrisis", province, G.save)))}
+            {$t(
+               L.$1EndsIn$2Months,
+               TimedActions.ThirdCenturyCrisis.name(),
+               formatNumber(getTimedActionTimeLeft("ThirdCenturyCrisis", province, G.save)),
+            )}
          </div>
          <div className="h1">{CasusBelli.ContestedImperium.name()}</div>
          {neighbors.map((neighbor) => (

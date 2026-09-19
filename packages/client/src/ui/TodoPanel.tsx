@@ -53,6 +53,7 @@ import { LegacyUpgradeSingletonModal } from "./LegacyUpgradeSingletonModal";
 import { ProductionSingletonModal } from "./ProductionSingletonModal";
 import { SenatePage } from "./SenatePage";
 import { SocialClassSingletonModal } from "./SocialClassSingletonModal";
+import { TetrarchyPage } from "./TetrarchyPage";
 import { ThirdCenturyCrisisPage } from "./ThirdCenturyCrisisPage";
 import { TradeSingletonModal } from "./TradeSingletonModal";
 import { TreasuryPage } from "./TreasuryPage";
@@ -380,28 +381,28 @@ const ThirdCenturyCrisis: ITodo = {
    },
 };
 
-// const Tetrarchy: ITodo = {
-//    name: () => TimedActions.Tetrarchy.name(),
-//    icon: () => IconCatalog.Tetrarchy,
-//    className: () => "green",
-//    tooltip: (save) => {
-//       if (getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save) <= 0) {
-//          return null;
-//       }
-//       return (
-//          <div className="m10">
-//             {$t(
-//                L.$1IsOngoing$2MonthsLeftClickToViewDetails,
-//                TimedActions.Tetrarchy.name(),
-//                formatNumber(getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save)),
-//             )}
-//          </div>
-//       );
-//    },
-//    onClick: () => {
-//       showPanel(ThirdCenturyCrisisPage, {});
-//    },
-// };
+const Tetrarchy: ITodo = {
+   name: () => TimedActions.Tetrarchy.name(),
+   icon: () => IconCatalog.Tetrarchy,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.Tetrarchy.name(),
+               formatNumber(getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(TetrarchyPage, {});
+   },
+};
 
 const EcumenicalCouncil: ITodo = {
    name: (save) => $t(L.EcumenicalCouncil),
@@ -822,7 +823,7 @@ const _Todos = {
    BarbarianRaid,
    SocialClassDissent,
    ThirdCenturyCrisis,
-   // Tetrarchy,
+   Tetrarchy,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

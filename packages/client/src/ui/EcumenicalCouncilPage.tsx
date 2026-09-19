@@ -52,7 +52,8 @@ export function EcumenicalCouncilPage(): React.ReactNode {
          <div className="row mx10 my5">
             <div className="f1">
                {$t(
-                  L.CouncilEndsIn$1Months,
+                  L.$1EndsIn$2Months,
+                  TimedActions[council].name(),
                   formatNumber(getTimedActionTimeLeft(council, G.save.state.playerProvince, G.save)),
                )}
             </div>

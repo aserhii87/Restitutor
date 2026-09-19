@@ -534,7 +534,7 @@ export const LugdunensisEvents = {
       desc: () => $t(L.TheDeclineOfLugdunumDesc),
       condition: {
          province: new Set(["Lugdunensis"]),
-         year: [260, Number.POSITIVE_INFINITY],
+         year: [261, Number.POSITIVE_INFINITY],
       },
       buttons: [
          {

@@ -462,20 +462,22 @@ export const HistoricalEvents = {
       },
       buttons: [
          {
-            label: () => $t(L.ItsTimeToAdoptTheTetrarchy),
+            label: () => $t(L.ConsolidateOurProvincialCommand),
             modifiers: {
                MakeCoreCost: { type: "multiply", value: -0.5 },
                ArmyMaintenance: { type: "multiply", value: -0.25 },
             },
+            custom: [startTimedActionEffect("Tetrarchy")],
          },
          {
-            label: () => $t(L.RomeOnlyNeedsOneEmperor),
+            label: () => $t(L.ReformOurProvincialAdministration),
             modifiers: {
                InfrastructureUpgradeCost: { type: "multiply", value: -0.5 },
                ProductionUpgradeCost: { type: "multiply", value: -0.5 },
                PopulationUpgradeCost: { type: "multiply", value: -0.5 },
                AdvisorCost: { type: "multiply", value: -0.25 },
             },
+            custom: [startTimedActionEffect("Tetrarchy")],
          },
       ],
    },

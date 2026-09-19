@@ -1,10 +1,5 @@
 import type { MantineColor } from "@mantine/core";
 import { hslToHex } from "@project/shared/src/thirdparty/RandomColor";
-import Clergy from "../../assets/images/socialclasses/Clergy.png";
-import Equites from "../../assets/images/socialclasses/Equites.png";
-import Military from "../../assets/images/socialclasses/Military.png";
-import Plebs from "../../assets/images/socialclasses/Plebs.png";
-import Senate from "../../assets/images/socialclasses/Senate.png";
 import { $t, L } from "../../utils/i18n";
 import type { IGameEffect } from "../GameEffect";
 import { SocialClassBonusDefaultDuration } from "./Constant";
@@ -17,7 +12,6 @@ export interface ISocialClassData {
 interface ISocialClassConfig {
    name: () => string;
    color: MantineColor;
-   icon: string;
    dominant: Partial<Record<Modifier, IBaseModifier>>;
    disloyal: Partial<Record<Modifier, IBaseModifier>>;
 }
@@ -29,7 +23,6 @@ export const _SocialClass = {
    UpperClass: {
       name: () => $t(L.Senate),
       color: hslToHex(40, ColorS, ColorL),
-      icon: Senate,
       dominant: {
          LandTax: { type: "multiply", value: -0.2 },
       },
@@ -40,7 +33,6 @@ export const _SocialClass = {
    MiddleClass: {
       name: () => $t(L.Equites),
       color: hslToHex(210, ColorS, ColorL),
-      icon: Equites,
       dominant: {
          TileOutput: { type: "multiply", value: -0.2 },
       },
@@ -51,7 +43,6 @@ export const _SocialClass = {
    LowerClass: {
       name: () => $t(L.Plebs),
       color: hslToHex(120, ColorS, ColorL),
-      icon: Plebs,
       dominant: {
          DiplomaticPoint: { type: "add", value: -1 },
       },
@@ -62,7 +53,6 @@ export const _SocialClass = {
    ReligiousClass: {
       name: () => $t(L.SocialClassClergy),
       color: hslToHex(280, ColorS, ColorL),
-      icon: Clergy,
       dominant: {
          Prestige: { type: "multiply", value: -0.2 },
       },
@@ -73,7 +63,6 @@ export const _SocialClass = {
    MilitaryClass: {
       name: () => $t(L.SocialClassMilitary),
       color: hslToHex(0, ColorS, ColorL),
-      icon: Military,
       dominant: {
          Stability: { type: "add", value: -10 },
       },
