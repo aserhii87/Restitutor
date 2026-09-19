@@ -762,6 +762,21 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12 * 5,
    };
+   PlagueOfJustinian: ITimedAction = {
+      name: () => $t(L.PlagueOfJustinian),
+      duration: 12 * 10,
+      cooldown: 0,
+   };
+   JustinianReconquest: ITimedAction = {
+      name: () => $t(L.JustiniansReconquest),
+      duration: 12 * 38,
+      cooldown: 0,
+   };
+   TwentyYearsAnarchy: ITimedAction = {
+      name: () => $t(L.TwentyYearsAnarchy),
+      duration: 12 * 22,
+      cooldown: 0,
+   };
 }
 
 export type TimedAction = keyof TimedActionDefinitions;
