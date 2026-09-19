@@ -473,6 +473,7 @@ export const TarraconensisEvents = {
       desc: () => $t(L.LusitaniaUnderOurProtectionDesc),
       condition: {
          province: new Set(["Tarraconensis"]),
+         onMap: { Lusitania: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Lusitania", save);
             yield* requirePeaceBetweenChecks(province, "Lusitania", save);

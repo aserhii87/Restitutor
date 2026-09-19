@@ -36,6 +36,7 @@ export const GallicEmpireEvents = {
       desc: () => $t(L.TheSubmissionOfBritanniaDesc),
       condition: {
          nameOverride: "GallicEmpire",
+         onMap: { Britannia: true },
          annexAndCore: { Britannia: Math.ceil(getOriginalTileCount("Britannia") * 0.7) },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Britannia", save);

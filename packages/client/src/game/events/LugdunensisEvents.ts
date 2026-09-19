@@ -139,6 +139,7 @@ export const LugdunensisEvents = {
       desc: () => $t(L.BoundByBloodAndOathDesc),
       condition: {
          province: new Set(["Lugdunensis"]),
+         onMap: { Belgica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Belgica", save);
             yield* requirePeaceBetweenChecks(province, "Belgica", save);

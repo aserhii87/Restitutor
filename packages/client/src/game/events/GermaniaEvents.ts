@@ -359,6 +359,7 @@ export const GermaniaEvents = {
       desc: () => $t(L.RaetiaSeeksOurProtectionDesc),
       condition: {
          province: new Set(["Germania"]),
+         onMap: { Raetia: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Raetia", save);
             yield* requirePeaceBetweenChecks(province, "Raetia", save);
@@ -379,6 +380,7 @@ export const GermaniaEvents = {
       desc: () => $t(L.BelgicaSeeksOurProtectionDesc),
       condition: {
          province: new Set(["Germania"]),
+         onMap: { Belgica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Belgica", save);
             yield* requirePeaceBetweenChecks(province, "Belgica", save);
