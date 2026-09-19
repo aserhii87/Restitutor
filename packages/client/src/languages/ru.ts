@@ -3935,7 +3935,6 @@ export const RU = {
    TileBishah: "Биша",
    TileJurash: "Джураш",
    $1StartsAndLastsFor$2: "$1 начинается и продлится $2",
-   PlagueOfJustinian: "Юстинианова чума",
    JustiniansReconquest: "Отвоевание земель Юстинианом",
    TwentyYearsAnarchy: "Двадцатилетняя анархия",
    ACreedToMendTheEmpire: "Вероисповедание ради единства империи",

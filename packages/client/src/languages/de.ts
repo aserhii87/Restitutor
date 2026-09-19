@@ -3988,7 +3988,6 @@ export const DE = {
    TileBishah: "Bishah",
    TileJurash: "Jurash",
    $1StartsAndLastsFor$2: "$1 beginnt und dauert $2",
-   PlagueOfJustinian: "Justinianische Pest",
    JustiniansReconquest: "Justinians Rückeroberung",
    TwentyYearsAnarchy: "Zwanzigjährige Anarchie",
    ACreedToMendTheEmpire: "Ein Bekenntnis zur Einigung des Reiches",

@@ -3877,7 +3877,6 @@ export const ZH_TW = {
    TileBishah: "比沙",
    TileJurash: "朱拉什",
    $1StartsAndLastsFor$2: "$1開始，將持續$2",
-   PlagueOfJustinian: "查士丁尼瘟疫",
    JustiniansReconquest: "查士丁尼的再征服",
    TwentyYearsAnarchy: "二十年混亂",
    ACreedToMendTheEmpire: "彌合帝國的信綱",

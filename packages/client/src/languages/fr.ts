@@ -3976,7 +3976,6 @@ export const FR = {
    TileBishah: "Bishah",
    TileJurash: "Jurash",
    $1StartsAndLastsFor$2: "$1 commence et dure $2",
-   PlagueOfJustinian: "Plague of Justinian",
    JustiniansReconquest: "Justinian's Reconquest",
    TwentyYearsAnarchy: "Twenty Years' Anarchy",
    ACreedToMendTheEmpire: "A Creed to Mend the Empire",
