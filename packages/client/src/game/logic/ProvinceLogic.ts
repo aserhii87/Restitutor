@@ -30,7 +30,7 @@ import {
    type ProvinceStat,
    ProvinceStats,
 } from "../definitions/Province";
-import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
+import { hasNotProvinceUpgradeCondition, hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import type { SpawnedProvince } from "../definitions/SpawnedProvince";
 import {
    BarbarianRaidNegativeEffect,
@@ -547,6 +547,10 @@ export function pledgeProvinceConsulVotes(province: Province, save: SaveGame): v
          new Set(shuffle(range(0, save.state.senate.consulCandidates.length)).slice(0, 2)),
       );
    }
+}
+
+export function pledgeProvinceConsulVotesConditions(province: Province, save: SaveGame): ICondition[] {
+   return [hasNotProvinceUpgradeCondition("OurOwnDestiny", province, save)];
 }
 
 export function getProvinceName(province: Province, save: SaveGame): string {

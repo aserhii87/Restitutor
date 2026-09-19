@@ -24,6 +24,7 @@ import { playSound } from "../../ui/Sound";
 import { G, GameFlags } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
 import { unlockAchievement } from "../Achievement";
+import { finalizeCondition } from "../actions/GameAction";
 import type { IGovernorFamily } from "../definitions/Family";
 import { PersonFlags } from "../definitions/Family";
 import { type Province, ProvinceFlags } from "../definitions/Province";
@@ -65,6 +66,7 @@ import {
    getProvinceTileCount,
    getRestoration,
    pledgeProvinceConsulVotes,
+   pledgeProvinceConsulVotesConditions,
    setProvinceStat,
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, spendProvinceResource } from "./ResourceLogic";
@@ -362,7 +364,10 @@ export function tickProvince(province: Province, save: SaveGame): void {
       }
    }
 
-   if (hasFlag(state.flags, ProvinceFlags.AutomaticallyPledgeSupport)) {
+   if (
+      hasFlag(state.flags, ProvinceFlags.AutomaticallyPledgeSupport) &&
+      finalizeCondition(pledgeProvinceConsulVotesConditions(province, save)).value
+   ) {
       pledgeProvinceConsulVotes(province, save);
    }
 

@@ -88,6 +88,7 @@ import {
    getProvinceStat,
    getProvincesInRange,
    pledgeProvinceConsulVotes,
+   pledgeProvinceConsulVotesConditions,
 } from "./ProvinceLogic";
 import { getProvinceResource, hasEnoughProvinceResources, trySpendProvinceResources } from "./ResourceLogic";
 import { getCheapestLockedTech } from "./TechLogic";
@@ -647,7 +648,9 @@ function getDesiredTreatyCount(province: Province, save: SaveGame): number {
 }
 
 function doSenateVote(province: Province, save: SaveGame): void {
-   pledgeProvinceConsulVotes(province, save);
+   if (finalizeCondition(pledgeProvinceConsulVotesConditions(province, save)).value) {
+      pledgeProvinceConsulVotes(province, save);
+   }
    if (getProvinceResource("consulPoint", province, save) > 0) {
       tryDoHeadless(makeGameAction("RequestFunding", province, save), "RequestFunding", province, save);
    }
