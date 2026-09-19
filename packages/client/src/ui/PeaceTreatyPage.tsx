@@ -55,7 +55,7 @@ export function PeaceTreatyPage({ war, province }: { war: IWar; province: Provin
          </div>
          <div className="m10">
             <ActionButton
-               id="PeaceTreatyModal_SignPeaceTreaty"
+               id="PeaceTreatyPage_SignPeaceTreaty"
                className="py2 primary w100"
                action={() => SignPeaceTreatyAction(war, province, selectedOption, G.save)}
                tooltip={(element) => (

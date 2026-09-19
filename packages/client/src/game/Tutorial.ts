@@ -200,7 +200,7 @@ export const Tutorial: ITutorial[] = [
       selectors: [
          "#LeftPanel_OngoingWar_0.animate-bounce-right",
          "#WarModal_SignPeaceTreaty",
-         "#PeaceTreatyModal_SignPeaceTreaty",
+         "#PeaceTreatyPage_SignPeaceTreaty",
       ],
    },
    {

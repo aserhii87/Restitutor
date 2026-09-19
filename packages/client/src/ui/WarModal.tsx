@@ -49,7 +49,7 @@ import { showPanel } from "./common/ShowPanel";
 import { colorNumber } from "./components/ColorNumber";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
-import { PeaceTreatyPage } from "./PeaceTreatyModal";
+import { PeaceTreatyPage } from "./PeaceTreatyPage";
 import { PeaceTreatyTooltip } from "./PeaceTreatyTooltip";
 import { TilePage } from "./TilePage";
 import { Grid2, Grid3 } from "./UIConstant";
