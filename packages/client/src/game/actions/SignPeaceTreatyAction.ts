@@ -1,4 +1,4 @@
-import { filterInPlace, hasFlag, isNullOrUndefined } from "@project/shared/src/utils/Helper";
+import { clamp, filterInPlace, hasFlag, isNullOrUndefined } from "@project/shared/src/utils/Helper";
 import { hideSidebar } from "../../ui/common/SidebarManager";
 import { InvaderConqueredWarGoalModal } from "../../ui/InvaderConqueredWarGoalModal";
 import { WarEndedModal } from "../../ui/WarEndedModal";
@@ -57,9 +57,17 @@ export function SignPeaceTreatyAction(
             for (const tile of war.tiles) {
                const data = save.state.tiles.get(tile);
                if (data) {
-                  data.infrastructure -= getPlunderedUpgrade(data.infrastructure, reduction);
-                  data.production -= getPlunderedUpgrade(data.production, reduction);
-                  data.population -= getPlunderedUpgrade(data.population, reduction);
+                  const plunderedInfrastructure = getPlunderedUpgrade(data.infrastructure, reduction);
+                  const plunderedProduction = getPlunderedUpgrade(data.production, reduction);
+                  const plunderedPopulation = getPlunderedUpgrade(data.population, reduction);
+                  data.infrastructure -= plunderedInfrastructure;
+                  data.production -= plunderedProduction;
+                  data.population -= plunderedPopulation;
+                  data.upgradeCount = clamp(
+                     data.upgradeCount - plunderedInfrastructure - plunderedProduction - plunderedPopulation,
+                     0,
+                     Number.POSITIVE_INFINITY,
+                  );
                }
             }
          }
