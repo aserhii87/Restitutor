@@ -1,4 +1,4 @@
-import { formatNumber, safePush } from "@project/shared/src/utils/Helper";
+import { filterInPlace, forEach, formatNumber, safePush } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { IValueBreakdown } from "../actions/GameAction";
 import type { IModifier, Modifier } from "../definitions/Modifier";
@@ -77,16 +77,13 @@ export function attachTileModifiersToCalculation<M extends EvaluationMode>(
 }
 
 export function addModifier({ modifier, name, type, value, duration, province, save }: IAddModifier): void {
+   if (!Number.isFinite(value)) {
+      console.error("Invalid modifier:", { name, type, value, duration, modifier });
+      return;
+   }
    const state = save.state.provinces[province];
    if (state) {
       safePush(state.modifiers, modifier, { name, type, value, duration });
-   }
-}
-
-export function addMonthlyModifier(type: Modifier, value: IModifier, province: Province, save: SaveGame): void {
-   const state = save.state.provinces[province];
-   if (state) {
-      safePush(state.dynamicModifiers, type, value);
    }
 }
 
@@ -101,4 +98,27 @@ export function attachTileModifiers(modifiers: IModifier[] | undefined, breakdow
       }
    }
    return breakdown;
+}
+
+export function ensureValidModifiers(save: SaveGame): void {
+   forEach(save.state.provinces, (province, state) => {
+      forEach(state.modifiers, (type, modifiers) => {
+         filterInPlace(modifiers, (modifier) => {
+            if (!Number.isFinite(modifier.value)) {
+               console.error("Invalid modifier:", modifier);
+               return false;
+            }
+            return true;
+         });
+      });
+      forEach(state.dynamicModifiers, (type, modifiers) => {
+         filterInPlace(modifiers, (modifier) => {
+            if (!Number.isFinite(modifier.value)) {
+               console.error("Invalid modifier:", modifier);
+               return false;
+            }
+            return true;
+         });
+      });
+   });
 }
