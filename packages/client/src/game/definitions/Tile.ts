@@ -19,7 +19,7 @@ export interface ITileConfig {
 }
 
 export interface ITileData {
-   nameOverride?: string;
+   nameOverride?: TileNameOverride;
    province: Province;
    coreProvinces: Set<Province>;
    originalProvince: Province;
@@ -45,6 +45,12 @@ export interface ITileData {
       Unrest: IModifier[];
    };
 }
+
+export const TileNameOverrides = {
+   Constantinople: () => "Constantinople",
+} as const satisfies Record<string, () => string>;
+
+export type TileNameOverride = keyof typeof TileNameOverrides;
 
 export function getBorderingProvinces(tile: Tile, save: SaveGame): Province[] {
    const result: Province[] = [];

@@ -277,7 +277,6 @@ function _getProvinceGoverningCost(province: Province, save: SaveGame): IValueBr
 
 export function initProvince(province: Province, capital: Tile): IProvince {
    return {
-      nameOverride: undefined,
       culture: Province[province].culture,
       toleratedCultures: new Set(),
       religion: Province[province].religion,

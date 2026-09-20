@@ -133,7 +133,7 @@ export const ProvinceFlags = {
 export type ProvinceFlags = ValueOf<typeof ProvinceFlags>;
 
 export interface IProvince {
-   nameOverride: ProvinceNameOverride | undefined;
+   nameOverride?: ProvinceNameOverride;
    culture: Culture;
    toleratedCultures: Set<Culture>;
    religion: Religion;
