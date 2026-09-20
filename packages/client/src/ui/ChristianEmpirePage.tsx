@@ -48,7 +48,10 @@ export function ChristianEmpirePage(): React.ReactNode {
                      },
                      condition: finalizeCondition([
                         ...timedActionConditions(
-                           { action: "ChristianEmpireAction" },
+                           {
+                              action: "ChristianEmpireAction",
+                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
+                           },
                            G.save.state.playerProvince,
                            G.save,
                         ),
@@ -77,7 +80,10 @@ export function ChristianEmpirePage(): React.ReactNode {
                      },
                      condition: finalizeCondition([
                         ...timedActionConditions(
-                           { action: "ChristianEmpireAction" },
+                           {
+                              action: "ChristianEmpireAction",
+                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
+                           },
                            G.save.state.playerProvince,
                            G.save,
                         ),
@@ -106,7 +112,10 @@ export function ChristianEmpirePage(): React.ReactNode {
                      },
                      condition: finalizeCondition([
                         ...timedActionConditions(
-                           { action: "ChristianEmpireAction" },
+                           {
+                              action: "ChristianEmpireAction",
+                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
+                           },
                            G.save.state.playerProvince,
                            G.save,
                         ),
@@ -135,7 +144,10 @@ export function ChristianEmpirePage(): React.ReactNode {
                      },
                      condition: finalizeCondition([
                         ...timedActionConditions(
-                           { action: "ChristianEmpireAction" },
+                           {
+                              action: "ChristianEmpireAction",
+                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
+                           },
                            G.save.state.playerProvince,
                            G.save,
                         ),

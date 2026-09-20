@@ -50,6 +50,7 @@ import { GameEventModal } from "./GameEventModal";
 import { GovernmentSingletonModal } from "./GovernmentSingletonModal";
 import { IconCatalog } from "./IconCatalog";
 import { InternalAffairsPage } from "./InternalAffairsPage";
+import { JustinianReconquestPage } from "./JustinianReconquestPage";
 import { LegacyUpgradeSingletonModal } from "./LegacyUpgradeSingletonModal";
 import { ProductionSingletonModal } from "./ProductionSingletonModal";
 import { SenatePage } from "./SenatePage";
@@ -425,6 +426,29 @@ const ChristianEmpire: ITodo = {
    },
    onClick: () => {
       showPanel(ChristianEmpirePage, {});
+   },
+};
+
+const JustinianReconquest: ITodo = {
+   name: () => TimedActions.JustinianReconquest.name(),
+   icon: () => IconCatalog.Reconquest,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("JustinianReconquest", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.JustinianReconquest.name(),
+               formatNumber(getTimedActionTimeLeft("JustinianReconquest", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(JustinianReconquestPage, {});
    },
 };
 
@@ -849,6 +873,7 @@ const _Todos = {
    ThirdCenturyCrisis,
    Tetrarchy,
    ChristianEmpire,
+   JustinianReconquest,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

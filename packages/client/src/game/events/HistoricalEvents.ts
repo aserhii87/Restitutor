@@ -1067,7 +1067,7 @@ export const HistoricalEvents = {
             label: () => $t(L.ContributeToImperialAmbitions),
             resources: { gold: -500, diplomatic: 75 },
             modifiers: { Prestige: { type: "multiply", value: 0.15, duration: 36 } },
-            // custom: [startTimedActionEffect("JustinianReconquest")],
+            custom: [startTimedActionEffect("JustinianReconquest")],
          },
          {
             label: () => $t(L.InvestInOurProvincialWorks),
@@ -1076,7 +1076,7 @@ export const HistoricalEvents = {
                TileOutput: { type: "multiply", value: 0.15, duration: 36 },
                InfrastructureUpgradeCost: { type: "multiply", value: -0.1, duration: 36 },
             },
-            // custom: [startTimedActionEffect("JustinianReconquest")],
+            custom: [startTimedActionEffect("JustinianReconquest")],
          },
       ],
    },

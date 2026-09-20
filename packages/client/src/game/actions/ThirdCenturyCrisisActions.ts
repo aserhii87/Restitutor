@@ -87,7 +87,10 @@ export function EnactThirdCenturyCrisisMeasureAction(
       condition: finalizeCondition([
          activeTimedActionCondition("ThirdCenturyCrisis", province, save),
          ...timedActionConditions(
-            { action: "ThirdCenturyCrisisMeasure", label: $t(L.EmergencyMeasuresAreNotOnCooldown) },
+            {
+               action: "ThirdCenturyCrisisMeasure",
+               label: $t(L.$1IsNotOnCooldown, TimedActions.ThirdCenturyCrisisMeasure.name()),
+            },
             province,
             save,
          ),

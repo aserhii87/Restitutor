@@ -31,6 +31,7 @@ import Prestige from "../assets/images/Prestige.svg";
 import Production from "../assets/images/Production.svg";
 import Province from "../assets/images/Province.svg";
 import Rebellion from "../assets/images/Rebellion.svg";
+import Reconquest from "../assets/images/Reconquest.svg";
 import Rivals from "../assets/images/Rivals.svg";
 import Senate from "../assets/images/Senate.svg";
 import SocialClass from "../assets/images/SocialClass.svg";
@@ -100,4 +101,5 @@ export const IconCatalog = {
    Crisis,
    Tetrarchy,
    ChiRho,
+   Reconquest,
 } as const satisfies Record<string, string>;

@@ -767,6 +767,21 @@ class TimedActionDefinitions {
       duration: 12 * 38,
       cooldown: 0,
    };
+   JustinianReconquestHonorTheGeneral: ITimedAction = {
+      name: () => $t(L.HonorTheGeneral),
+      duration: 0,
+      cooldown: 12,
+   };
+   JustinianReconquestFundReconquest: ITimedAction = {
+      name: () => $t(L.FundReconquest),
+      duration: 12 * 2,
+      cooldown: 12 * 2,
+   };
+   JustinianReconquestAction: ITimedAction = {
+      name: () => $t(L.JustiniansReconquestAction),
+      duration: 12 * 2,
+      cooldown: 12 * 2,
+   };
    TwentyYearsAnarchy: ITimedAction = {
       name: () => $t(L.TwentyYearsAnarchy),
       duration: 12 * 22,

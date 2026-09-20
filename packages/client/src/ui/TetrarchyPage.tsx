@@ -82,7 +82,14 @@ export function TetrarchyPage(): React.ReactNode {
                            diplomatic: 50,
                         },
                         condition: finalizeCondition([
-                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
+                           ...timedActionConditions(
+                              {
+                                 action: "TetrarchyAction",
+                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
+                              },
+                              G.save.state.playerProvince,
+                              G.save,
+                           ),
                            activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
                            provinceOnMapCondition(province, G.save),
                            underDifferentEmperorsCondition(province, G.save.state.playerProvince, G.save),
@@ -121,7 +128,14 @@ export function TetrarchyPage(): React.ReactNode {
                            diplomatic: 25,
                         },
                         condition: finalizeCondition([
-                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
+                           ...timedActionConditions(
+                              {
+                                 action: "TetrarchyAction",
+                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
+                              },
+                              G.save.state.playerProvince,
+                              G.save,
+                           ),
                            activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
                            provinceOnMapCondition(province, G.save),
                            underDifferentEmperorsCondition(province, G.save.state.playerProvince, G.save),
@@ -157,7 +171,14 @@ export function TetrarchyPage(): React.ReactNode {
                            diplomatic: 25,
                         },
                         condition: finalizeCondition([
-                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
+                           ...timedActionConditions(
+                              {
+                                 action: "TetrarchyAction",
+                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
+                              },
+                              G.save.state.playerProvince,
+                              G.save,
+                           ),
                            activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
                            provinceOnMapCondition(province, G.save),
                            underSameEmperorCondition(province, G.save.state.playerProvince, G.save),
@@ -197,7 +218,14 @@ export function TetrarchyPage(): React.ReactNode {
                            military: 25,
                         },
                         condition: finalizeCondition([
-                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
+                           ...timedActionConditions(
+                              {
+                                 action: "TetrarchyAction",
+                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
+                              },
+                              G.save.state.playerProvince,
+                              G.save,
+                           ),
                            activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
                            provinceOnMapCondition(province, G.save),
                            underSameEmperorCondition(province, G.save.state.playerProvince, G.save),
