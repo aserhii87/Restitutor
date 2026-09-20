@@ -36,7 +36,7 @@ export function PillageAction(tile: Tile, upgrade: PillageUpgrade, province: Pro
             name: $t(L.TileIsNotYetOurCore),
             value: !tileData.coreProvinces.has(province),
          },
-         { name: $t(L.SelectedTileUpgradeIsAtLeast$1, "1"), value: tileData[upgrade] >= 1 },
+         { name: $t(L.SelectedTileUpgradeIsAtLeast$1, "2"), value: tileData[upgrade] >= 2 },
          { name: $t(L.TileHasBeenUpgradedAtLeast$1Times, "1"), value: tileData.upgradeCount >= 1 },
       ]),
       execute: () => {
