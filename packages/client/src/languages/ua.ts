@@ -1836,7 +1836,6 @@ export const UA = {
    ProvincialSpirits: "Дух провінції",
    AnnexCostDiscount: "Знижка на анексію",
    ModifierAnnexCostDiscountDesc: "Знижка на вартість анексії клієнтської провінції",
-   PatronageDurationMax50: "Тривалість патронату (макс. 50%)",
    TheyHaveBeenOurClientFor$1Months: "Вони є нашим клієнтом уже $1 міс.",
    SocialClassClergy: "Духовенство",
    SocialClassMilitary: "Військові",
@@ -4072,4 +4071,6 @@ export const UA = {
    AppointMilitaryChaplains: "Appoint Military Chaplains",
    ChristianProvinceInfluenceBonus$1$2: "$1 $2 for each Christian province that has a positive attitude towards us.",
    $1Yearly: "$1 Yearly",
+   PatronageDurationMax$1: "Patronage Duration (Max. $1)",
+   SortByCount: "Sort by Count",
 };

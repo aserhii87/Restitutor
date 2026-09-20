@@ -1838,7 +1838,6 @@ export const DE = {
    ProvincialSpirits: "Provinzgeist",
    AnnexCostDiscount: "Rabatt auf Annexionskosten",
    ModifierAnnexCostDiscountDesc: "Der Rabatt auf die Kosten für die Annexion eines Klientelstaats",
-   PatronageDurationMax50: "Dauer der Schutzherrschaft (max. 50 %)",
    TheyHaveBeenOurClientFor$1Months: "Sie sind seit $1 Monaten unser Klientelstaat",
    SocialClassClergy: "Klerus",
    SocialClassMilitary: "Militär",
@@ -4135,4 +4134,6 @@ export const DE = {
    AppointMilitaryChaplains: "Militärgeistliche ernennen",
    ChristianProvinceInfluenceBonus$1$2: "$1 $2 für jede christliche Provinz mit einer positiven Haltung uns gegenüber.",
    $1Yearly: "$1 jährlich",
+   PatronageDurationMax$1: "Dauer der Schutzherrschaft (max. $1)",
+   SortByCount: "Nach Anzahl sortieren",
 };

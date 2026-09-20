@@ -1828,7 +1828,6 @@ export const ZH_TW = {
    ProvincialSpirits: "行省精神",
    AnnexCostDiscount: "吞併費用折扣",
    ModifierAnnexCostDiscountDesc: "吞併附庸行省費用的折扣",
-   PatronageDurationMax50: "庇護持續時長（最高50%）",
    TheyHaveBeenOurClientFor$1Months: "他們已作為我們的附庸持續了 $1 個月",
    SocialClassClergy: "神職人員",
    SocialClassMilitary: "軍人",
@@ -4005,4 +4004,6 @@ export const ZH_TW = {
    AppointMilitaryChaplains: "任命隨軍神職人員",
    ChristianProvinceInfluenceBonus$1$2: "每個對我們持正面態度的基督宗教行省使$2 $1。",
    $1Yearly: "每年$1",
+   PatronageDurationMax$1: "庇護持續時長（最高$1）",
+   SortByCount: "依數量排序",
 };

@@ -12,6 +12,7 @@ Base language is English and can be found in the list below
 - French: https://github.com/fishpondstudio/Restitutor/blob/main/packages/client/src/languages/fr.ts
 - Spanish: https://github.com/fishpondstudio/Restitutor/blob/main/packages/client/src/languages/es.ts
 - Turkish: https://github.com/fishpondstudio/Restitutor/blob/main/packages/client/src/languages/tr.ts
+- Ukrainian (external contributor owned): https://github.com/fishpondstudio/Restitutor/blob/main/packages/client/src/languages/ua.ts
 
 ## Edit Existing Translation
 

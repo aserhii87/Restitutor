@@ -816,6 +816,7 @@ export function getTileMakeCoreCost(tile: Tile, save: SaveGame): IValueBreakdown
    return finalizeBreakdown(breakdown);
 }
 
+export const UpgradeBaseCost = 50;
 export const UpgradeCostGrowthFactor = 1.2;
 
 export const getTileUpgradeCost = defineValueGetter(
@@ -843,7 +844,7 @@ const getTileUpgradeCostAtCount = defineValueGetter(
       if (!state) {
          return calc.finish();
       }
-      calc.add(50)?.describe($t(L.BaseValue));
+      calc.add(UpgradeBaseCost)?.describe($t(L.BaseValue));
       calc
          .multiply(UpgradeCostGrowthFactor ** upgradeCount - 1)
          ?.describe($t(L.TileUpgrades), $t(L.TileUpgradesCostDesc$1, formatNumber(upgradeCount)));

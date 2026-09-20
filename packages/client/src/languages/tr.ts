@@ -1834,7 +1834,6 @@ export const TR = {
    ProvincialSpirits: "Provincial Spirits",
    AnnexCostDiscount: "Annex Cost Discount",
    ModifierAnnexCostDiscountDesc: "The discount on the cost of annexing a client province",
-   PatronageDurationMax50: "Patronage Duration (Max. 50%)",
    TheyHaveBeenOurClientFor$1Months: "They have been our client for $1 months",
    SocialClassClergy: "Clergy",
    SocialClassMilitary: "Military",
@@ -4075,4 +4074,6 @@ export const TR = {
    AppointMilitaryChaplains: "Appoint Military Chaplains",
    ChristianProvinceInfluenceBonus$1$2: "$1 $2 for each Christian province that has a positive attitude towards us.",
    $1Yearly: "$1 Yearly",
+   PatronageDurationMax$1: "Patronage Duration (Max. $1)",
+   SortByCount: "Sort by Count",
 };

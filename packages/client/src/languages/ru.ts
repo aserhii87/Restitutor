@@ -1834,7 +1834,6 @@ export const RU = {
    ProvincialSpirits: "Дух провинции",
    AnnexCostDiscount: "Скидка на стоимость аннексии",
    ModifierAnnexCostDiscountDesc: "Скидка на стоимость аннексии провинции-клиента",
-   PatronageDurationMax50: "Срок покровительства (макс. 50%)",
    TheyHaveBeenOurClientFor$1Months: "Они являются нашим клиентом в течение $1 месяцев",
    SocialClassClergy: "Духовенство",
    SocialClassMilitary: "Военные",
@@ -4068,4 +4067,6 @@ export const RU = {
    AppointMilitaryChaplains: "Назначить военных священников",
    ChristianProvinceInfluenceBonus$1$2: "$1 к показателю «$2» за каждую христианскую провинцию с положительным отношением к нам.",
    $1Yearly: "$1 в год",
+   PatronageDurationMax$1: "Срок покровительства (макс. $1)",
+   SortByCount: "Сортировать по количеству",
 };

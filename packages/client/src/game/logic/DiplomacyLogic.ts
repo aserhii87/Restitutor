@@ -1,4 +1,4 @@
-import { clamp, forEach, formatNumber, mapSafePush, range } from "@project/shared/src/utils/Helper";
+import { clamp, forEach, formatNumber, mapSafePush } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import {
    finalizeBreakdown,
@@ -17,7 +17,7 @@ import type { ConditionChecks } from "./Calculation";
 import { getFamilyMemberFrom } from "./GovernorLogic";
 import { attachModifiers } from "./ModifierLogic";
 import { getProvinceName } from "./ProvinceLogic";
-import { UpgradeCostGrowthFactor } from "./TileLogic";
+import { UpgradeBaseCost } from "./TileLogic";
 
 export const MaxImprovedRelations = 50;
 export const RivalAttitudeModifier = -20;
@@ -301,15 +301,9 @@ export function getAnnexClientCost(
    let gold = 0;
    for (const [tile, data] of save.state.tiles) {
       if (data.province === clientProvince) {
-         range(0, data.infrastructure).forEach((i) => {
-            administrative += 50 * UpgradeCostGrowthFactor ** i;
-         });
-         range(0, data.production).forEach((i) => {
-            diplomatic += 50 * UpgradeCostGrowthFactor ** i;
-         });
-         range(0, data.population).forEach((i) => {
-            military += 50 * UpgradeCostGrowthFactor ** i;
-         });
+         administrative += UpgradeBaseCost * data.infrastructure;
+         diplomatic += UpgradeBaseCost * data.production;
+         military += UpgradeBaseCost * data.population;
       }
    }
    gold = (administrative + diplomatic + military) * 3;
@@ -327,9 +321,9 @@ export function getAnnexCostDiscount(province: Province, clientProvince: Provinc
    const patronMonths = getRelation(province, clientProvince, save)?.patronMonths ?? 0;
    if (patronMonths > 0) {
       breakdown.add.push({
-         name: $t(L.PatronageDurationMax50),
+         name: $t(L.PatronageDurationMax$1, "90%"),
          desc: $t(L.TheyHaveBeenOurClientFor$1Months, formatNumber(patronMonths)),
-         value: clamp(patronMonths * 0.01, 0, 0.5),
+         value: clamp(patronMonths * 0.01, 0, 0.9),
       });
    }
    attachModifiers("AnnexCostDiscount", breakdown, province, save);
