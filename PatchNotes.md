@@ -22,6 +22,17 @@ The following actions are available for provinces under different emperors:
 
 All actions share a two-year cooldown, so you will need to choose between strengthening ties, preparing for war, and building your spy network.
 
+## Under the Sign of the Cross
+
+Under the Sign of the Cross is a new historical narrative mechanic that starts with the Edict of Milan in 313 AD and lasts for 50 years. During the time period, each Christian province with a positive attitude toward you grants +1 Christian Influence per year.
+
+The following actions are available:
+
+- **Issue Christian Edict:** Spend 1 Consul Point to gain 3 Christian Influence.
+- **Expand Church Administration:** Spend 10 Administrative Points per core tile to gain 1 Christian Influence per core tile.
+- **Sponsor Missionaries:** Spend 10 Diplomatic Points per core tile to gain 1 Christian Influence per core tile.
+- **Appoint Military Chaplains:** Spend 10 Military Points per core tile to gain 1 Christian Influence per core tile.
+
 ## Bugfixes
 
 - Fixed a bug where patronage missions still show up even after it is no longer available.
