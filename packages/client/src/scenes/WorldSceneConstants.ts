@@ -11,7 +11,7 @@ export const InternalBorder: ILineStyleOptions = {
    scaleMode: LINE_SCALE_MODE.NONE,
    cap: LINE_CAP.ROUND,
    join: LINE_JOIN.ROUND,
-   color: 0x888888,
+   color: 0x666666,
 };
 
 export const WarBorder: ILineStyleOptions = {
