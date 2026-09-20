@@ -124,6 +124,42 @@ export function TetrarchyPage(): React.ReactNode {
                            ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
                            activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
                            provinceOnMapCondition(province, G.save),
+                           underDifferentEmperorsCondition(province, G.save.state.playerProvince, G.save),
+                        ]),
+                        execute: () => {
+                           startTimedAction("TetrarchyAction", G.save.state.playerProvince, G.save);
+                        },
+                        effect: {
+                           name: () => $t(L.ExpandSpyNetwork),
+                           infiltration: {
+                              [province]: 25,
+                           },
+                        },
+                     })}
+                     tooltip={(element) => (
+                        <>
+                           <div className="h2">{$t(L.ExpandSpyNetwork)}</div>
+                           <div className="row mx10 my5">
+                              <div className="f1">{$t(L.Cooldown)}</div>
+                              <div className="text-sm text-dimmed">
+                                 {durationToString(TimedActions.TetrarchyAction.cooldown)}
+                              </div>
+                           </div>
+                           {element}
+                        </>
+                     )}
+                  >
+                     <div className="mi sm py2">domino_mask</div>
+                  </ActionButton>
+                  <ActionButton
+                     action={() => ({
+                        cost: {
+                           diplomatic: 25,
+                        },
+                        condition: finalizeCondition([
+                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
+                           activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
+                           provinceOnMapCondition(province, G.save),
                            underSameEmperorCondition(province, G.save.state.playerProvince, G.save),
                         ]),
                         execute: () => {
@@ -154,42 +190,6 @@ export function TetrarchyPage(): React.ReactNode {
                      )}
                   >
                      <div className="mi sm py2">heart_plus</div>
-                  </ActionButton>
-                  <ActionButton
-                     action={() => ({
-                        cost: {
-                           diplomatic: 25,
-                        },
-                        condition: finalizeCondition([
-                           ...timedActionConditions({ action: "TetrarchyAction" }, G.save.state.playerProvince, G.save),
-                           activeTimedActionCondition("Tetrarchy", G.save.state.playerProvince, G.save),
-                           provinceOnMapCondition(province, G.save),
-                           underSameEmperorCondition(province, G.save.state.playerProvince, G.save),
-                        ]),
-                        execute: () => {
-                           startTimedAction("TetrarchyAction", G.save.state.playerProvince, G.save);
-                        },
-                        effect: {
-                           name: () => $t(L.ExpandSpyNetwork),
-                           infiltration: {
-                              [province]: 25,
-                           },
-                        },
-                     })}
-                     tooltip={(element) => (
-                        <>
-                           <div className="h2">{$t(L.ExpandSpyNetwork)}</div>
-                           <div className="row mx10 my5">
-                              <div className="f1">{$t(L.Cooldown)}</div>
-                              <div className="text-sm text-dimmed">
-                                 {durationToString(TimedActions.TetrarchyAction.cooldown)}
-                              </div>
-                           </div>
-                           {element}
-                        </>
-                     )}
-                  >
-                     <div className="mi sm py2">domino_mask</div>
                   </ActionButton>
                   <ActionButton
                      action={() => ({
