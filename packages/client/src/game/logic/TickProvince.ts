@@ -93,8 +93,7 @@ export function tickProvince(province: Province, save: SaveGame): void {
    addProvinceResource("diplomatic", getProvinceGovernmentPoint("diplomatic", province, save).value, province, save);
    addProvinceResource("military", getProvinceGovernmentPoint("military", province, save).value, province, save);
 
-   const modifiers = state.modifiers;
-   forEach(modifiers, (type, modifier) => {
+   forEach(state.modifiers, (type, modifier) => {
       filterInPlace(modifier, (modifier) => {
          if (!modifier.duration) {
             return true;

@@ -3,6 +3,7 @@ import { G } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
 import { GameStateUpdated } from "../Events";
 import { isGreatWorkCompleted } from "../logic/GreatWorkLogic";
+import { ensureValidModifiers } from "../logic/ModifierLogic";
 import { isSocialClassDisloyal, isSocialClassDominant } from "../logic/SocialClassLogic";
 import { getTimedActionTimeLeft } from "../logic/TimedActionLogic";
 import { GreatWork } from "./GreatWork";
@@ -134,6 +135,7 @@ function updateModifier(): void {
          });
       });
    });
+   ensureValidModifiers(G.save);
 }
 
 export function subscribeToModifierUpdate(): void {
