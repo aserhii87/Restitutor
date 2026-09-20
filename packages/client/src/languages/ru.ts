@@ -4060,4 +4060,12 @@ export const RU = {
    ConductJointDrills: "Провести совместные учения",
    ConsolidateOurProvincialCommand: "Укрепить командование нашей провинции",
    ReformOurProvincialAdministration: "Обновить управление нашей провинцией",
+   UnderTheSignOfTheCross: "Под знаком креста",
+   UnderTheSignOfTheCrossAction: "Действие «Под знаком креста»",
+   IssueChristianEdict: "Издать христианский эдикт",
+   ExpandChurchAdministration: "Расширить церковное управление",
+   SponsorMissionaries: "Поддержать миссионеров",
+   AppointMilitaryChaplains: "Назначить военных священников",
+   ChristianProvinceInfluenceBonus$1$2: "$1 к показателю «$2» за каждую христианскую провинцию с положительным отношением к нам.",
+   $1Yearly: "$1 в год",
 };

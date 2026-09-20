@@ -27,7 +27,7 @@ export function getAttitudeTowards(fromProvince: Province, toProvince: Province,
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const fromProvinceData = save.state.provinces[fromProvince];
    const toProvinceData = save.state.provinces[toProvince];
-   if (!fromProvinceData || !toProvinceData) {
+   if (!fromProvinceData || !toProvinceData || fromProvince === toProvince) {
       return breakdown;
    }
    if (fromProvinceData.culture === toProvinceData.culture) {
@@ -94,7 +94,7 @@ function getAttitudeModifier(fromProvince: Province, toProvince: Province, save:
 export function getMarriageAlliance(province1: Province, province2: Province, save: SaveGame): IFullFamily[] {
    const state1 = save.state.provinces[province1];
    const state2 = save.state.provinces[province2];
-   if (!state1 || !state2) {
+   if (!state1 || !state2 || province1 === province2) {
       return [];
    }
    return [

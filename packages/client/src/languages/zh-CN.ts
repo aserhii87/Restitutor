@@ -3997,4 +3997,12 @@ export const ZH_CN = {
    ConductJointDrills: "开展联合操练",
    ConsolidateOurProvincialCommand: "巩固我们在行省的指挥权",
    ReformOurProvincialAdministration: "改革我们的行省行政",
+   UnderTheSignOfTheCross: "十字架之下",
+   UnderTheSignOfTheCrossAction: "十字架之下行动",
+   IssueChristianEdict: "颁布基督宗教敕令",
+   ExpandChurchAdministration: "扩充教会行政机构",
+   SponsorMissionaries: "资助传教士",
+   AppointMilitaryChaplains: "任命随军神职人员",
+   ChristianProvinceInfluenceBonus$1$2: "每个对我们持正面态度的基督宗教行省使$2 $1。",
+   $1Yearly: "每年$1",
 };

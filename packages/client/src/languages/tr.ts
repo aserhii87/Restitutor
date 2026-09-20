@@ -4067,4 +4067,12 @@ export const TR = {
    ConductJointDrills: "Conduct Joint Drills",
    ConsolidateOurProvincialCommand: "Consolidate our provincial command",
    ReformOurProvincialAdministration: "Reform our provincial administration",
+   UnderTheSignOfTheCross: "Under the Sign of the Cross",
+   UnderTheSignOfTheCrossAction: "Under the Sign of the Cross Action",
+   IssueChristianEdict: "Issue Christian Edict",
+   ExpandChurchAdministration: "Expand Church Administration",
+   SponsorMissionaries: "Sponsor Missionaries",
+   AppointMilitaryChaplains: "Appoint Military Chaplains",
+   ChristianProvinceInfluenceBonus$1$2: "$1 $2 for each Christian province that has a positive attitude towards us.",
+   $1Yearly: "$1 Yearly",
 };

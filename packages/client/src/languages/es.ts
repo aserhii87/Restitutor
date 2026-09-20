@@ -4121,4 +4121,12 @@ export const ES = {
    ConductJointDrills: "Realizar ejercicios militares conjuntos",
    ConsolidateOurProvincialCommand: "Afianzar nuestro mando provincial",
    ReformOurProvincialAdministration: "Reformar nuestra gestión provincial",
+   UnderTheSignOfTheCross: "Bajo el signo de la cruz",
+   UnderTheSignOfTheCrossAction: "Acción de Bajo el signo de la cruz",
+   IssueChristianEdict: "Promulgar un edicto cristiano",
+   ExpandChurchAdministration: "Ampliar la administración eclesiástica",
+   SponsorMissionaries: "Patrocinar misioneros",
+   AppointMilitaryChaplains: "Nombrar capellanes militares",
+   ChristianProvinceInfluenceBonus$1$2: "$1 de $2 por cada provincia cristiana que tenga una actitud positiva hacia nosotros.",
+   $1Yearly: "$1 al año",
 };

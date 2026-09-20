@@ -576,6 +576,7 @@ export const HistoricalEvents = {
                ChristianityYearly: { type: "add", value: 1 },
                ToleratedReligion: { type: "add", value: 1 },
             },
+            custom: [startTimedActionEffect("ChristianEmpire")],
          },
          {
             label: () => $t(L.TheEmperorsDivinityMustBeRespected),
@@ -583,6 +584,7 @@ export const HistoricalEvents = {
                Prestige: { type: "multiply", value: 0.1 },
                WarPower: { type: "multiply", value: 0.1 },
             },
+            custom: [startTimedActionEffect("ChristianEmpire")],
          },
       ],
    },

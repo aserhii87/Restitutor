@@ -782,6 +782,16 @@ class TimedActionDefinitions {
       duration: 12 * 2,
       cooldown: 12 * 2,
    };
+   ChristianEmpire: ITimedAction = {
+      name: () => $t(L.UnderTheSignOfTheCross),
+      duration: 12 * 50,
+      cooldown: 0,
+   };
+   ChristianEmpireAction: ITimedAction = {
+      name: () => $t(L.UnderTheSignOfTheCrossAction),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
+   };
 }
 
 export type TimedAction = keyof TimedActionDefinitions;

@@ -38,6 +38,7 @@ import { $t, L } from "../utils/i18n";
 import { ArmySingletonModal } from "./ArmySingletonModal";
 import { BankruptcyEffectComp } from "./BankruptcyEffectComp";
 import { BarbarianRaidModal } from "./BarbarianRaidModal";
+import { ChristianEmpirePage } from "./ChristianEmpirePage";
 import { showPanel } from "./common/ShowPanel";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
@@ -401,6 +402,29 @@ const Tetrarchy: ITodo = {
    },
    onClick: () => {
       showPanel(TetrarchyPage, {});
+   },
+};
+
+const ChristianEmpire: ITodo = {
+   name: () => TimedActions.ChristianEmpire.name(),
+   icon: () => IconCatalog.ChiRho,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("ChristianEmpire", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.ChristianEmpire.name(),
+               formatNumber(getTimedActionTimeLeft("ChristianEmpire", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(ChristianEmpirePage, {});
    },
 };
 
@@ -824,6 +848,7 @@ const _Todos = {
    SocialClassDissent,
    ThirdCenturyCrisis,
    Tetrarchy,
+   ChristianEmpire,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,
