@@ -1830,7 +1830,6 @@ export const ZH_CN = {
    ProvincialSpirits: "行省精神",
    AnnexCostDiscount: "吞并费用折扣",
    ModifierAnnexCostDiscountDesc: "吞并附庸行省费用的折扣",
-   PatronageDurationMax50: "庇护持续时长（最高50%）",
    TheyHaveBeenOurClientFor$1Months: "他们已作为我们的附庸持续了 $1 个月",
    SocialClassClergy: "神职人员",
    SocialClassMilitary: "军人",
@@ -3852,4 +3851,6 @@ export const ZH_CN = {
    TheDanubianAllianceDesc: "雷蒂亚、诺里库姆、潘诺尼亚、达尔马提亚、默西亚与达契亚如今都归我们统一治理。在这片辽阔的疆域中，多瑙河将补给运往沿线的边防驻军，道路则连接着阿尔卑斯山口、亚得里亚海港口与河对岸的聚落。我们可以将各地的政务官和补给网络整合为多瑙河同盟，使我们的领地具备维系共同边疆所需的行政力量。",
    EstablishTheDanubianAlliance: "建立多瑙河同盟",
    OurProvinceIsNowKnownAs$1: "我们的行省现被称为 $1。",
+   PatronageDurationMax$1: "庇护持续时长（最高$1）",
+   SortByCount: "按数量排序",
 };

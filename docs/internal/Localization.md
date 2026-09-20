@@ -29,6 +29,7 @@ This registry is the single source of truth for language files and their ownersh
 | French | `packages/client/src/languages/fr.ts` | **External** | String values are reserved for the external translator. Keys may be synchronized mechanically, but string values must not be translated, reviewed, corrected, or otherwise revised. |
 | Spanish | `packages/client/src/languages/es.ts` | **Machine** | String values are translated and maintained through machine translation. |
 | Turkish | `packages/client/src/languages/tr.ts` | **External** | String values are reserved for the external translator. Keys may be synchronized mechanically, but string values must not be translated, reviewed, corrected, or otherwise revised. |
+| Ukrainian | `packages/client/src/languages/ua.ts` | **External** | String values are reserved for the external contributor. Keys may be synchronized mechanically, but string values must not be translated, reviewed, corrected, or otherwise revised. |
 
 ## Workflow
 

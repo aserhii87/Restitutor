@@ -1838,7 +1838,6 @@ export const ES = {
    ProvincialSpirits: "Espíritu provincial",
    AnnexCostDiscount: "Descuento del coste de anexión",
    ModifierAnnexCostDiscountDesc: "El descuento aplicado al coste de anexionar una provincia cliente",
-   PatronageDurationMax50: "Duración del patronazgo (máx. 50 %)",
    TheyHaveBeenOurClientFor$1Months: "Han sido nuestros clientes durante $1 meses",
    SocialClassClergy: "Clero",
    SocialClassMilitary: "Militares",
@@ -3961,4 +3960,6 @@ export const ES = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia y Dacia comparten ahora nuestra administración. A lo largo de este vasto territorio, el Danubio transporta suministros entre las guarniciones fronterizas, mientras las vías conectan los pasos alpinos, los puertos adriáticos y los asentamientos al otro lado del río. Podemos organizar a sus magistrados y sus redes de suministro en una Alianza Danubiana, dotando a nuestras tierras de la solidez administrativa necesaria para sostener una frontera común.",
    EstablishTheDanubianAlliance: "Establecer la Alianza Danubiana",
    OurProvinceIsNowKnownAs$1: "Nuestra provincia ahora es conocida como $1.",
+   PatronageDurationMax$1: "Duración del patronazgo (máx. $1)",
+   SortByCount: "Ordenar por cantidad",
 };

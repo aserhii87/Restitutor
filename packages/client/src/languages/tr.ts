@@ -1836,7 +1836,6 @@ export const TR = {
    ProvincialSpirits: "Provincial Spirits",
    AnnexCostDiscount: "Annex Cost Discount",
    ModifierAnnexCostDiscountDesc: "The discount on the cost of annexing a client province",
-   PatronageDurationMax50: "Patronage Duration (Max. 50%)",
    TheyHaveBeenOurClientFor$1Months: "They have been our client for $1 months",
    SocialClassClergy: "Clergy",
    SocialClassMilitary: "Military",
@@ -3916,4 +3915,6 @@ export const TR = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia now share our administration. Across this vast domain, the Danube carries supplies between frontier garrisons, while roads connect Alpine passes, Adriatic harbours, and the settlements beyond the river. We can organize their magistrates and supply networks into a Danubian Alliance, giving our lands the administrative strength to sustain a common frontier.",
    EstablishTheDanubianAlliance: "Establish the Danubian Alliance",
    OurProvinceIsNowKnownAs$1: "Our province is now known as $1.",
+   PatronageDurationMax$1: "Patronage Duration (Max. $1)",
+   SortByCount: "Sort by Count",
 };

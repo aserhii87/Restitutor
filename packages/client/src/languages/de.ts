@@ -1840,7 +1840,6 @@ export const DE = {
    ProvincialSpirits: "Provinzgeist",
    AnnexCostDiscount: "Rabatt auf Annexionskosten",
    ModifierAnnexCostDiscountDesc: "Der Rabatt auf die Kosten für die Annexion eines Klientelstaats",
-   PatronageDurationMax50: "Dauer der Schutzherrschaft (max. 50 %)",
    TheyHaveBeenOurClientFor$1Months: "Sie sind seit $1 Monaten unser Klientelstaat",
    SocialClassClergy: "Klerus",
    SocialClassMilitary: "Militär",
@@ -3963,4 +3962,6 @@ export const DE = {
       "Raetia, Noricum, Pannonia, Dalmatia, Moesia und Dacia stehen nun gemeinsam unter unserer Verwaltung. In diesem weiten Gebiet werden auf der Donau Versorgungsgüter zwischen den Grenzgarnisonen befördert, während Straßen die Alpenpässe, die Adriahäfen und die Siedlungen jenseits des Flusses verbinden. Wir können ihre Magistrate und Versorgungsnetze in einem Donaubündnis zusammenführen und unseren Ländern so die Verwaltungskraft geben, eine gemeinsame Grenze zu sichern.",
    EstablishTheDanubianAlliance: "Das Donaubündnis gründen",
    OurProvinceIsNowKnownAs$1: "Unsere Provinz ist nun als $1 bekannt.",
+   PatronageDurationMax$1: "Dauer der Schutzherrschaft (max. $1)",
+   SortByCount: "Nach Anzahl sortieren",
 };

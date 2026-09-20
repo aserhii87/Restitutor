@@ -12,7 +12,7 @@
 - Pillage buttons appear below the corresponding upgrade buttons on the tile page.
 - Pillage Infrastructure, Production, or Population on an non-core tile, reducing the selected upgrade and the tile's upgrade times by 1.
 - Pillaging refunds 50% of the corresponding government-point cost, calculated using the current owner's modifiers.
-- All pillaging actions share a 5-year provincial cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
+- All pillaging actions share a 1-year province-wide cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
 
 ## Crisis of the 3rd Century
 
@@ -59,7 +59,13 @@ Dalmatia is now playable, with 10 historical events and 6 missions covering expa
 
 - The Blue Danube: Complete the "The Danubian Alliance" mission.
 
-## QoL
+## QoL & Balance
 
 - Add Culture and Religion map overlay - a legend is display on the bottom right panel.
 - Each 1% autonomy now reduces Tile Maintenance by 0.5%.
+- Reduce the initial cost of annexing a client. The time-based discount now goes up to 90%.
+
+## Bugfix
+
+- Fix a bug where Barbarian polities can have NaN war power.
+- Fix a bug where plundering tiles does not reduce the upgrade counter.

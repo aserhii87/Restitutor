@@ -760,7 +760,7 @@ class TimedActionDefinitions {
       name: () => $t(L.Pillage),
       desc: () => $t(L.TimedActionPillageDesc$1$2$3$4, "1", "50%", "10", "5"),
       duration: 0,
-      cooldown: 12 * 5,
+      cooldown: 12,
    };
 }
 

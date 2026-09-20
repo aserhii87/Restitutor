@@ -1838,7 +1838,6 @@ export const UA = {
    ProvincialSpirits: "Дух провінції",
    AnnexCostDiscount: "Знижка на анексію",
    ModifierAnnexCostDiscountDesc: "Знижка на вартість анексії клієнтської провінції",
-   PatronageDurationMax50: "Тривалість патронату (макс. 50%)",
    TheyHaveBeenOurClientFor$1Months: "Вони є нашим клієнтом уже $1 міс.",
    SocialClassClergy: "Духовенство",
    SocialClassMilitary: "Військові",
@@ -3913,4 +3912,6 @@ export const UA = {
       "Реція, Норік, Паннонія, Далмація, Мезія та Дакія тепер під спільною адміністрацією. Цим величезним краєм Дунай несе припаси між прикордонними залогами, а шляхи з'єднують альпійські перевали, адріатичні гавані й поселення за рікою. Ми можемо об'єднати їхніх магістратів і мережі постачання в Дунайський союз, давши нашим землям адміністративну силу, щоб утримувати спільний кордон.",
    EstablishTheDanubianAlliance: "Заснувати Дунайський союз",
    OurProvinceIsNowKnownAs$1: "Наша провінція тепер зветься $1.",
+   PatronageDurationMax$1: "Patronage Duration (Max. $1)",
+   SortByCount: "Sort by Count",
 };
