@@ -2,8 +2,10 @@ import { cls, entriesOf, forEach, formatNumber, hasFlag } from "@project/shared/
 import { UpgradeGeneralSkillAction } from "../game/actions/ArmyGeneralAction";
 import { canDoAction } from "../game/actions/GameAction";
 import { CanTradeCostCondition } from "../game/actions/TradeActions";
+import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Goods } from "../game/definitions/Goods";
-import { type Province, ProvinceFlags, TreatyNames } from "../game/definitions/Province";
+import type { Province } from "../game/definitions/Province";
+import { ProvinceFlags } from "../game/definitions/ProvinceState";
 import { SocialClass } from "../game/definitions/SocialClass";
 import { Tech } from "../game/definitions/Tech";
 import { getTileName } from "../game/definitions/TileName";

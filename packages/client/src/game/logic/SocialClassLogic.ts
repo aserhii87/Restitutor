@@ -1,7 +1,8 @@
 import { keysOf, reduceOf, shuffle } from "@project/shared/src/utils/Helper";
 import { srand } from "@project/shared/src/utils/Random";
 import { makeModifierGetter } from "../definitions/Modifier";
-import type { Province, ProvinceStat } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { ProvinceStat } from "../definitions/ProvinceStats";
 import { SocialClass, type SocialClassBonus, SocialClassBonuses } from "../definitions/SocialClass";
 import type { SaveGame } from "../GameState";
 import { addProvinceStat, getProvinceStat } from "./ProvinceLogic";

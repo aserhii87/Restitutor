@@ -4,13 +4,9 @@ import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
 import { durationToString } from "../definitions/Modifier";
-import {
-   type Province,
-   type ProvinceNameOverride,
-   ProvinceNameOverrides,
-   type ProvinceResource,
-   ProvinceResourceNames,
-} from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import { type ProvinceNameOverride, ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
+import { type ProvinceResource, ProvinceResourceNames } from "../definitions/ProvinceResources";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
 import { getTileName } from "../definitions/TileName";
 import type { TileNameOverride } from "../definitions/TileNameOverrides";

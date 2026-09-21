@@ -1,7 +1,8 @@
 import { entriesOf, forEach, formatNumber, mapSafeAdd, sizeOf } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { Building } from "../definitions/Building";
-import type { Province, ProvinceResourceCosts } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { ProvinceResourceCosts } from "../definitions/ProvinceResources";
 import { Tech } from "../definitions/Tech";
 import type { SaveGame } from "../GameState";
 import { defineValueGetter, type EvaluationMode, ValueCalculation } from "./Calculation";

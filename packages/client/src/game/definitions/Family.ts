@@ -1,6 +1,7 @@
 import type { ValueOf } from "@project/shared/src/utils/Helper";
 import type { PersonTrait } from "./PersonTrait";
-import type { GovernorStats, Province } from "./Province";
+import type { Province } from "./Province";
+import type { GovernorStats } from "./ProvinceResources";
 
 export const PersonFlags = {
    None: 0,

@@ -15,7 +15,8 @@ import {
 } from "../game/actions/ArmyGeneralAction";
 import { finalizeCondition } from "../game/actions/GameAction";
 import { durationToString } from "../game/definitions/Modifier";
-import { ProvinceResourceNames, ProvinceStatNames } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
+import { ProvinceStatNames } from "../game/definitions/ProvinceStats";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameOptionUpdated, GameStateUpdated } from "../game/Events";
 import { GameOptionFlag } from "../game/GameOption";

@@ -1,6 +1,7 @@
 import { clamp, forEach } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
-import { type Province, type ProvinceResourceCosts, ProvinceResourceNames } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import { type ProvinceResourceCosts, ProvinceResourceNames } from "../definitions/ProvinceResources";
 import type { IGameEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
 import { hasEnoughProvinceResources } from "../logic/ResourceLogic";

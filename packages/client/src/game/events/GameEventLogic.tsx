@@ -2,7 +2,8 @@ import { clamp, entriesOf, filterOf, forEach, isNullOrUndefined, sizeOf } from "
 import type React from "react";
 import { html } from "../../ui/components/RenderHTMLComp";
 import { $t, L, markupText } from "../../utils/i18n";
-import { type Province, ProvinceNameOverrides } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import { ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { Religion } from "../definitions/Religion";
 import { Tech } from "../definitions/Tech";

@@ -5,7 +5,8 @@ import { finalizeBreakdown, finalizeCondition, type IValueBreakdown, makeValueBr
 import { type Building, Buildings } from "../definitions/Building";
 import type { CultureReligionStatus } from "../definitions/CultureReligionStatus";
 import { Price } from "../definitions/Goods";
-import type { GovernorPower, Province } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { GovernorPower } from "../definitions/ProvinceResources";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { ChristianHeresy, isChristianReligion } from "../definitions/Religion";
 import { BarbarianRaidNegativeEffect } from "../definitions/SpawnedProvince";

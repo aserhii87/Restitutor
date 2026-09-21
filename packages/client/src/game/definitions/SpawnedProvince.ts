@@ -1,5 +1,7 @@
 import type { Tile, ValueOf } from "@project/shared/src/utils/Helper";
-import type { Province, ProvinceResource, ProvinceStat } from "./Province";
+import type { Province } from "./Province";
+import type { ProvinceResource } from "./ProvinceResources";
+import type { ProvinceStat } from "./ProvinceStats";
 
 export const SpawnedProvinceBoostMonths = 12 * 20;
 export const MaxRaidMonths = 12;

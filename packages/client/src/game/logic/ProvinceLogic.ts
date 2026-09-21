@@ -18,18 +18,11 @@ import { getAdvisorMonthlyCost, initAdvisors } from "../definitions/Advisor";
 import { Buildings } from "../definitions/Building";
 import { Goods } from "../definitions/Goods";
 import { type GreatWork, TileToGreatWork } from "../definitions/GreatWork";
-import {
-   type GovernorPower,
-   type IProvince,
-   Province,
-   ProvinceFlags,
-   type ProvinceNameOverride,
-   ProvinceNameOverrides,
-   ProvinceOriginalTiles,
-   ProvinceResources,
-   type ProvinceStat,
-   ProvinceStats,
-} from "../definitions/Province";
+import { Province } from "../definitions/Province";
+import { type ProvinceNameOverride, ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
+import { type GovernorPower, ProvinceResources } from "../definitions/ProvinceResources";
+import { type IProvince, ProvinceFlags } from "../definitions/ProvinceState";
+import { type ProvinceStat, ProvinceStats } from "../definitions/ProvinceStats";
 import { hasNotProvinceUpgradeCondition, hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import type { SpawnedProvince } from "../definitions/SpawnedProvince";
 import {
@@ -44,6 +37,7 @@ import { GameStateUpdated, RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { getSeaComponent } from "../Land";
 import { MapGrid } from "../MapGrid";
+import { ProvinceOriginalTiles } from "../ProvinceOriginalTiles";
 import { RomeMap } from "../RomeMap";
 import { getArmyMaintenanceCost, getWarPower, getWarPowerPerTile } from "./ArmyLogic";
 import { cacheProvince } from "./CacheLogic";

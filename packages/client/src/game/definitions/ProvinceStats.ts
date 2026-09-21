@@ -1,0 +1,70 @@
+import { $t, L } from "../../utils/i18n";
+
+export const DefaultConscription = 10;
+export const MinGoodsTaxRate = 10;
+export const MaxGoodsTaxRate = 50;
+
+export const ProvinceStats = {
+   targetConscription: DefaultConscription,
+   actualConscription: DefaultConscription,
+   armyMaintenance: 100,
+   armyMorale: 100,
+   rangedUnit: 0,
+   cavalryUnit: 0,
+   infantrySkill: 0,
+   rangedSkill: 0,
+   cavalrySkill: 0,
+   makeCoreCount: 0,
+   attackCount: 0,
+   defendCount: 0,
+   victoryCount: 0,
+   consulVotes: 1,
+   goodsTaxRate: MaxGoodsTaxRate,
+   usedRestoration: 0,
+   agendaCount: 0,
+   upperClassInfluence: 100,
+   middleClassInfluence: 80,
+   lowerClassInfluence: 60,
+   religiousClassInfluence: 0,
+   militaryClassInfluence: 60,
+   upperClassLoyalty: 100,
+   middleClassLoyalty: 100,
+   lowerClassLoyalty: 100,
+   religiousClassLoyalty: 100,
+   militaryClassLoyalty: 100,
+   eliminatedBarbarians: 0,
+} as const;
+
+export const ProvinceStatNames: Record<ProvinceStat, () => string> = {
+   targetConscription: () => $t(L.TargetConscription),
+   actualConscription: () => $t(L.ActualConscription),
+   armyMaintenance: () => $t(L.ArmyMaintenance),
+   armyMorale: () => $t(L.ArmyMorale),
+   rangedUnit: () => $t(L.RangedUnit),
+   cavalryUnit: () => $t(L.CavalryUnit),
+   infantrySkill: () => $t(L.InfantrySkill),
+   rangedSkill: () => $t(L.RangedSkill),
+   cavalrySkill: () => $t(L.CavalrySkill),
+   makeCoreCount: () => $t(L.NumberOfCoresMade),
+   attackCount: () => $t(L.NumberOfAttacks),
+   defendCount: () => $t(L.NumberOfDefenses),
+   victoryCount: () => $t(L.NumberOfVictories),
+   consulVotes: () => $t(L.ConsulVotes),
+   goodsTaxRate: () => $t(L.GoodsTaxRate),
+   usedRestoration: () => $t(L.UsedRestoration),
+   agendaCount: () => $t(L.AgendaCount),
+   upperClassInfluence: () => $t(L.UpperClassInfluenceStat),
+   middleClassInfluence: () => $t(L.MiddleClassInfluenceStat),
+   lowerClassInfluence: () => $t(L.LowerClassInfluenceStat),
+   religiousClassInfluence: () => $t(L.ReligiousClassInfluenceStat),
+   militaryClassInfluence: () => $t(L.MilitaryClassInfluenceStat),
+   upperClassLoyalty: () => $t(L.UpperClassLoyaltyStat),
+   middleClassLoyalty: () => $t(L.MiddleClassLoyaltyStat),
+   lowerClassLoyalty: () => $t(L.LowerClassLoyaltyStat),
+   religiousClassLoyalty: () => $t(L.ReligiousClassLoyaltyStat),
+   militaryClassLoyalty: () => $t(L.MilitaryClassLoyaltyStat),
+   eliminatedBarbarians: () => $t(L.EliminatedBarbarianPolities),
+} as const;
+
+export type ProvinceStat = keyof typeof ProvinceStats;
+export type ProvinceStats = Record<ProvinceStat, number>;

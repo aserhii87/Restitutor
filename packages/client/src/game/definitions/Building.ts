@@ -18,7 +18,7 @@ import { $t, L } from "../../utils/i18n";
 import type { ICondition } from "../actions/GameAction";
 import type { SaveGame } from "../GameState";
 import { isCoastal } from "../logic/TileLogic";
-import type { ProvinceResourceCosts } from "./Province";
+import type { ProvinceResourceCosts } from "./ProvinceResources";
 
 export interface IBuilding {
    name: () => string;

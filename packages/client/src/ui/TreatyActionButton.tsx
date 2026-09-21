@@ -1,8 +1,9 @@
 import { formatNumber } from "@project/shared/src/utils/Helper";
 import type React from "react";
 import { finalizeCondition } from "../game/actions/GameAction";
+import { type Treaty, TreatyNames } from "../game/definitions/Diplomacy";
 import { durationToString } from "../game/definitions/Modifier";
-import { type Province, type Treaty, TreatyNames } from "../game/definitions/Province";
+import type { Province } from "../game/definitions/Province";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { getProvinceName } from "../game/logic/ProvinceLogic";
 import {

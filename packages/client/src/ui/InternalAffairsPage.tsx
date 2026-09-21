@@ -16,7 +16,9 @@ import { AdjustAutonomyAction, SettleUnrestAction } from "../game/actions/Adjust
 import { ConvertToChristianityAction } from "../game/actions/ConvertToChristianityAction";
 import { Culture } from "../game/definitions/Culture";
 import { Modifiers, modifierValueToString } from "../game/definitions/Modifier";
-import { Province, ProvinceFlags, ProvinceResourceNames } from "../game/definitions/Province";
+import { Province } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
+import { ProvinceFlags } from "../game/definitions/ProvinceState";
 import { getProvinceUpgradeDesc, hasProvinceUpgrade, ProvinceUpgrades } from "../game/definitions/ProvinceUpgrades";
 import { Religion } from "../game/definitions/Religion";
 import { getTileName } from "../game/definitions/TileName";

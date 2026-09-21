@@ -1,7 +1,7 @@
 import { Switch } from "@mantine/core";
 import { hasFlag, toggleFlag } from "@project/shared/src/utils/Helper";
 import { finalizeCondition } from "../game/actions/GameAction";
-import { ProvinceFlags } from "../game/definitions/Province";
+import { ProvinceFlags } from "../game/definitions/ProvinceState";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getRevealedConsulVotes } from "../game/logic/DiplomacyLogic";

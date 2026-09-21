@@ -8,9 +8,11 @@ import {
    type IValueBreakdown,
    makeValueBreakdown,
 } from "../actions/GameAction";
+import type { IRelation } from "../definitions/Diplomacy";
 import type { IFullFamily } from "../definitions/Family";
 import { type IModifier, makeModifierGetter } from "../definitions/Modifier";
-import type { IRelation, Province, ProvinceResourceCosts } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { ProvinceResourceCosts } from "../definitions/ProvinceResources";
 import type { SaveGame } from "../GameState";
 import { MapGrid } from "../MapGrid";
 import type { ConditionChecks } from "./Calculation";

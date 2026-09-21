@@ -1,6 +1,8 @@
 import { forEach, keysOf } from "@project/shared/src/utils/Helper";
 import type { IFamily, IPerson } from "./game/definitions/Family";
-import { Province, ProvinceResources, ProvinceStats } from "./game/definitions/Province";
+import { Province } from "./game/definitions/Province";
+import { ProvinceResources } from "./game/definitions/ProvinceResources";
+import { ProvinceStats } from "./game/definitions/ProvinceStats";
 import { addProvinceUpgrade, ProvinceUpgrades } from "./game/definitions/ProvinceUpgrades";
 import { SocialClass } from "./game/definitions/SocialClass";
 import { TimedActions } from "./game/definitions/TimedAction";

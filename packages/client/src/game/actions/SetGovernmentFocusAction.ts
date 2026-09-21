@@ -1,5 +1,6 @@
 import { $t, L } from "../../utils/i18n";
-import type { GovernorPower, Province } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { GovernorPower } from "../definitions/ProvinceResources";
 import type { SaveGame } from "../GameState";
 import { startTimedAction, timedActionConditions } from "../logic/TimedActionLogic";
 import { EmptyGameAction } from "./EmptyGameAction";

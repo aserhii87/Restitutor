@@ -37,15 +37,10 @@ import { getAdvisorInitialCost, getAdvisorMonthlyCost } from "../definitions/Adv
 import { type Building, Buildings } from "../definitions/Building";
 import type { Culture } from "../definitions/Culture";
 import type { IFamily } from "../definitions/Family";
-import {
-   type AIAction,
-   type BlackboardResource,
-   DefaultConscription,
-   type Province,
-   type ProvinceResource,
-   type ProvinceResourceCosts,
-   Provinces,
-} from "../definitions/Province";
+import { type Province, Provinces } from "../definitions/Province";
+import type { AIAction, BlackboardResource } from "../definitions/ProvinceAI";
+import type { ProvinceResource, ProvinceResourceCosts } from "../definitions/ProvinceResources";
+import { DefaultConscription } from "../definitions/ProvinceStats";
 import type { Religion } from "../definitions/Religion";
 import { SocialClass } from "../definitions/SocialClass";
 import { MaxRaidMonths, SpawnedProvinces } from "../definitions/SpawnedProvince";

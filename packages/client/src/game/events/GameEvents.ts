@@ -1,4 +1,5 @@
-import type { Province, ProvinceNameOverride } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { ProvinceNameOverride } from "../definitions/ProvinceNameOverrides";
 import type { ProvinceUpgrade } from "../definitions/ProvinceUpgrades";
 import type { Religion } from "../definitions/Religion";
 import type { Tech } from "../definitions/Tech";

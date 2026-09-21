@@ -1,7 +1,7 @@
 import { entriesOf, formatNumber } from "@project/shared/src/utils/Helper";
 import { deepEqual } from "fast-equals";
 import { memo } from "react";
-import { type ProvinceResource, ProvinceResourceNames } from "../game/definitions/Province";
+import { type ProvinceResource, ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { GameStateUpdated } from "../game/Events";
 import { hasEnoughProvinceResources } from "../game/logic/ResourceLogic";
 import { G } from "../utils/Global";

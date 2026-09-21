@@ -1,6 +1,7 @@
 import type { Tile } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
-import type { GovernorPower, Province } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { GovernorPower } from "../definitions/ProvinceResources";
 import { hasProvinceUpgradeCondition } from "../definitions/ProvinceUpgrades";
 import type { ITileData } from "../definitions/Tile";
 import type { SaveGame } from "../GameState";
