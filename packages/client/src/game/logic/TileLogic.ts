@@ -11,7 +11,7 @@ import { ChristianHeresy, isChristianReligion } from "../definitions/Religion";
 import { BarbarianRaidNegativeEffect } from "../definitions/SpawnedProvince";
 import { Tech } from "../definitions/Tech";
 import type { Terrain } from "../definitions/Terrain";
-import type { TileNameOverride } from "../definitions/Tile";
+import type { TileNameOverride } from "../definitions/TileNameOverrides";
 import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { isLand, terrainOf } from "../Land";

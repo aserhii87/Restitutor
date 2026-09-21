@@ -12,8 +12,9 @@ import {
    ProvinceResourceNames,
 } from "../definitions/Province";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
-import { type TileNameOverride, TileNameOverrides } from "../definitions/Tile";
 import { getTileName } from "../definitions/TileName";
+import type { TileNameOverride } from "../definitions/TileNameOverrides";
+import { TileNameOverrides } from "../definitions/TileNameOverrides";
 import { type TimedAction, TimedActions } from "../definitions/TimedAction";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";

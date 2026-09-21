@@ -1,6 +1,5 @@
 import { pointToTile, type Tile, tileToPoint } from "@project/shared/src/utils/Helper";
 import { makeNoise2D } from "open-simplex-noise";
-import { $t, L } from "../../utils/i18n";
 import type { SaveGame } from "../GameState";
 import { getTileTerrain } from "../logic/TileLogic";
 import { MapGrid } from "../MapGrid";
@@ -12,6 +11,7 @@ import type { IModifier } from "./Modifier";
 import { Province } from "./Province";
 import type { Religion } from "./Religion";
 import type { Terrain } from "./Terrain";
+import type { TileNameOverride } from "./TileNameOverrides";
 
 export interface ITileConfig {
    province?: Province;
@@ -46,12 +46,6 @@ export interface ITileData {
       Unrest: IModifier[];
    };
 }
-
-export const TileNameOverrides = {
-   Constantinople: () => $t(L.TileConstantinople),
-} as const satisfies Record<string, () => string>;
-
-export type TileNameOverride = keyof typeof TileNameOverrides;
 
 export function getBorderingProvinces(tile: Tile, save: SaveGame): Province[] {
    const result: Province[] = [];

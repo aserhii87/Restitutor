@@ -1,7 +1,7 @@
 import type { Tile } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import type { SaveGame } from "../GameState";
-import { TileNameOverrides } from "./Tile";
+import { TileNameOverrides } from "./TileNameOverrides";
 
 export function getTileName(tile: Tile, save: SaveGame): string {
    const tileData = save.state.tiles.get(tile);
