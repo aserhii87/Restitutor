@@ -4009,4 +4009,6 @@ export const ZH_TW = {
    SkipConfirmationWhenUnlockingLegacyUpgrades: "解鎖傳承升級時跳過確認",
    BarbarianAction: "蠻族行動",
    EcumenicalCouncilAction: "大公會議行動",
+   $1IsNowKnownAs$2: "$1現被稱為$2。",
+   TileConstantinople: "君士坦丁堡",
 };

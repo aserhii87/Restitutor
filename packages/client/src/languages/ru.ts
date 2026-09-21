@@ -4072,4 +4072,6 @@ export const RU = {
    SkipConfirmationWhenUnlockingLegacyUpgrades: "Пропускать подтверждение при разблокировке улучшений наследия",
    BarbarianAction: "Действие варваров",
    EcumenicalCouncilAction: "Действие Вселенского собора",
+   $1IsNowKnownAs$2: "$1 теперь носит название $2.",
+   TileConstantinople: "Константинополь",
 };

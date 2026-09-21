@@ -4079,4 +4079,6 @@ export const TR = {
    SkipConfirmationWhenUnlockingLegacyUpgrades: "Skip confirmation when unlocking legacy upgrades",
    BarbarianAction: "Barbarian Action",
    EcumenicalCouncilAction: "Ecumenical Council Action",
+   $1IsNowKnownAs$2: "$1 is now known as $2.",
+   TileConstantinople: "Constantinople",
 };

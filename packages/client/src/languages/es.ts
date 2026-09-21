@@ -4133,4 +4133,6 @@ export const ES = {
    SkipConfirmationWhenUnlockingLegacyUpgrades: "Omitir la confirmación al desbloquear mejoras de legado",
    BarbarianAction: "Acción bárbara",
    EcumenicalCouncilAction: "Acción del concilio ecuménico",
+   $1IsNowKnownAs$2: "$1 ahora se conoce como $2.",
+   TileConstantinople: "Constantinopla",
 };

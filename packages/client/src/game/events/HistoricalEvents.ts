@@ -1,10 +1,10 @@
 import { forEach, fromEntries, hasFlag } from "@project/shared/src/utils/Helper";
 import { isPaused, revertSpeed } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
-import { GallicEmpireProvinces, PalmyreneEmpireProvinces } from "../definitions/TileConstants";
+import { GallicEmpireProvinces, PalmyreneEmpireProvinces, Tiles } from "../definitions/TileConstants";
 import { GameOptionFlag } from "../GameOption";
 import { getRelation } from "../logic/DiplomacyLogic";
-import { startTimedActionEffect } from "../logic/MissionLogic";
+import { setTileNameOverrideEffect, startTimedActionEffect } from "../logic/MissionLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
@@ -603,6 +603,7 @@ export const HistoricalEvents = {
             modifiers: {
                Stability: { type: "add", value: 10, duration: 10 * 12 },
             },
+            custom: [setTileNameOverrideEffect(Tiles.Constantinople, "Constantinople")],
          },
          {
             label: () => $t(L.TheEternalCityCannotBeReplaced),
@@ -610,6 +611,7 @@ export const HistoricalEvents = {
             modifiers: {
                Prestige: { type: "multiply", value: 0.1, duration: 10 * 12 },
             },
+            custom: [setTileNameOverrideEffect(Tiles.Constantinople, "Constantinople")],
          },
       ],
    },

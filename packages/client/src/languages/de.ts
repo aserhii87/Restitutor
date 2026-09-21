@@ -4139,4 +4139,6 @@ export const DE = {
    SkipConfirmationWhenUnlockingLegacyUpgrades: "Bestätigung beim Freischalten von Vermächtnisaufwertungen überspringen",
    BarbarianAction: "Barbarenaktion",
    EcumenicalCouncilAction: "Aktion des ökumenischen Konzils",
+   $1IsNowKnownAs$2: "$1 ist nun als $2 bekannt.",
+   TileConstantinople: "Konstantinopel",
 };

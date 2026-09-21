@@ -40,7 +40,7 @@ import {
 } from "../definitions/SpawnedProvince";
 import { getBorderingProvinces } from "../definitions/Tile";
 import { MediterraneanTiles, StraitOfGibraltarTiles, Tiles } from "../definitions/TileConstants";
-import { GameStateUpdated } from "../Events";
+import { GameStateUpdated, RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { getSeaComponent } from "../Land";
 import { MapGrid } from "../MapGrid";
@@ -571,6 +571,7 @@ export function setProvinceNameOverride(province: Province, nameOverride: Provin
       }
    });
    state.nameOverride = nameOverride;
+   RefreshTiles.emit({ tiles: [], options: { visual: true } });
 }
 
 export function getAnnexedTiles(toAnnex: Province, ourProvince: Province, save: SaveGame): [number, number] {

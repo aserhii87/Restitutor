@@ -12,6 +12,8 @@ import {
    ProvinceResourceNames,
 } from "../definitions/Province";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
+import { type TileNameOverride, TileNameOverrides } from "../definitions/Tile";
+import { getTileName } from "../definitions/TileName";
 import { type TimedAction, TimedActions } from "../definitions/TimedAction";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
@@ -39,7 +41,7 @@ import {
    setProvinceNameOverride,
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
-import { isCoreTile } from "./TileLogic";
+import { isCoreTile, setTileNameOverride } from "./TileLogic";
 import { getTimedActionTimeLeft, startTimedAction } from "./TimedActionLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
@@ -132,10 +134,20 @@ export function setProvinceNameOverrideEffect(nameOverride: ProvinceNameOverride
    return {
       execute: (province, save) => {
          setProvinceNameOverride(province, nameOverride, save);
-         RefreshTiles.emit({ tiles: [], options: { visual: true } });
       },
       desc: (province, save) => {
          return $t(L.OurProvinceIsNowKnownAs$1, ProvinceNameOverrides[nameOverride]());
+      },
+   };
+}
+
+export function setTileNameOverrideEffect(tile: Tile, nameOverride: TileNameOverride): ICustomEffect {
+   return {
+      execute: (province, save) => {
+         setTileNameOverride(tile, nameOverride, save);
+      },
+      desc: (province, save) => {
+         return $t(L.$1IsNowKnownAs$2, getTileName(tile, save), TileNameOverrides[nameOverride]());
       },
    };
 }
