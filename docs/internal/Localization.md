@@ -106,7 +106,7 @@ import { $t, L } from "../utils/i18n"; // adjust relative path
 - `L` is a clone of the `EN` object from `en.ts`. At runtime, `setLanguage()` in `Global.tsx` calls `Object.assign(L, Languages[lang])` to swap in the active language.
 - `$t(L.SomeKey)` looks up the translated string and returns it. `L.SomeKey` evaluates to the string value for the active language.
 - `$t(L.SomeKey, arg1, arg2, ...)` substitutes `$1`, `$2`, `$3`, ... tokens with the arguments (by token number, not by position in the string).
-- `$t` always receives `L.KeyName` (which evaluates to the string value), never a bare string literal.
+- `$t` always receives a direct `L.KeyName` (which evaluates to the string value), never a bare string literal or conditional key expression. Put conditionals outside `$t`: `condition ? $t(L.KeyA, ...args) : $t(L.KeyB, ...args)` so the validator can check both calls.
 - Falsy translation values (e.g. `undefined` or `""`) render as `⚠️` followed by that value (e.g. `⚠️undefined`).
 - Missing arguments render as `⚠️<token number>` (1-based; e.g. missing `$1` → `⚠️1`, missing `$10` → `⚠️10`).
 
@@ -150,7 +150,30 @@ html($t(L.Make$1OurCoreTile, getTileName(tile)))
 
 Use `html()` only when the string contains HTML tags. Plain text does not need it.
 
-**This is validated automatically** by `pnpm run translate` — if a key's content contains `<i>`, `<b>`, `<q>`, or `<br>` and the call site in a `.tsx` file is not wrapped in `html()`, the script reports an error. Markup tags handled by `renderMarkup()` (`<Province>`, `<Tile>`, and `<icon>`) are excluded. Use `html` imported from `RenderHTMLComp` (not an alias); keys used only in `.ts` files are exempt because callers wrap the result.
+**This is validated automatically** by `pnpm run translate` — if a key's content contains `<i>`, `<b>`, `<q>`, or `<br>` and the call site in a `.tsx` file is not wrapped in `html()`, `renderMarkup()`, `htmlText()`, or `markupText()`, the script reports an error. Custom markup tags (`<Province>`, `<Tile>`, and `<icon>`) are excluded from this check. Use the original helper names (not aliases); keys used only in `.ts` files are exempt because callers wrap the result.
+
+### `htmlText()` and `markupText()` for Deferred Rendering
+
+Import these helpers from `utils/i18n`. Both return the input string unchanged; they do not render, escape, or sanitize it.
+
+- `htmlText()` declares that a downstream consumer renders HTML.
+- `markupText()` declares that a downstream consumer uses `renderMarkup()` to render HTML and custom `<Province>`, `<Tile>`, and `<icon>` tags.
+
+Use them for string-valued data such as `ICondition.name`, which `ConditionBreakdownComp` renders through `renderMarkup()`:
+
+```ts
+name: htmlText($t(L.$1NotOnCooldown, def.name()))
+```
+
+Keep conditional translation keys in separate calls:
+
+```ts
+shouldBeOnMap
+   ? markupText($t(L.$1IsOnTheMap, targetProvince))
+   : markupText($t(L.$1IsNotOnTheMap, targetProvince))
+```
+
+Do not use these markers for plain JSX text or consumers that do not parse markup. Use `html()` or `renderMarkup()` when rendering immediately.
 
 ## Parameter Extraction
 
@@ -433,7 +456,7 @@ pnpm test run
 2. **Validates token consecutiveness** (`en.ts`) — checks every key's value for `$N` tokens: they must start from `$1` and be consecutive with no gaps (e.g. `$1 $2 $3` ✓, `$1 $3 $4` ✗, `$2 $3 $4` ✗). Skips `$$` metadata keys.
 3. **Validates key-content token match** (`en.ts`) — verifies that the `$1`, `$2`, ... tokens in the key name appear in the same order as in the content value.
 4. **Validates argument counts** — checks that the highest `$N` index in each key's value matches the number of arguments passed to `$t` (reusing the same token number does not require duplicate arguments).
-5. **Validates `html()` wrapper** — if a key's content in `en.ts` contains `<i>`, `<b>`, `<q>`, or `<br>`, the `$t()` call site in `.tsx` files must be wrapped in `html()` from `RenderHTMLComp`. Tags handled by `renderMarkup()` (`<Province>`, `<Tile>`, and `<icon>`) are excluded. Keys used only in `.ts` files are exempt because callers wrap the result. Add new tag names to `HTML_TAGS` in `scripts/Translate.js` when introducing other inline HTML in `en.ts`.
+5. **Validates HTML handling** — if a key's content in `en.ts` contains `<i>`, `<b>`, `<q>`, or `<br>`, the `$t()` call site in `.tsx` files must be wrapped in `html()` or `renderMarkup()` for immediate rendering, or `htmlText()` or `markupText()` for deferred rendering. Custom markup tags (`<Province>`, `<Tile>`, and `<icon>`) are excluded. Use the original helper names (not aliases); keys used only in `.ts` files are exempt because callers wrap the result. Add new tag names to `HTML_TAGS` in `scripts/Translate.js` when introducing other inline HTML in `en.ts`.
 6. Removes unused keys from `en.ts` (keys starting with `$` are never removed).
 7. Syncs every other file in the [Language Registry](#language-registry) to match the keys in `en.ts`. Key synchronization does not change a file's ownership or permit edits to its translated values.
 8. Formats language files with biome.

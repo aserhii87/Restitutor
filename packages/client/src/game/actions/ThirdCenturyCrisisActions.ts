@@ -89,7 +89,6 @@ export function EnactThirdCenturyCrisisMeasureAction(
          ...timedActionConditions(
             {
                action: "ThirdCenturyCrisisMeasure",
-               label: $t(L.$1IsNotOnCooldown, TimedActions.ThirdCenturyCrisisMeasure.name()),
             },
             province,
             save,

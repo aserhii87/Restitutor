@@ -8,6 +8,16 @@ export function $t(str: string, ...subs: (string | number | bigint)[]): string {
    return `⚠️${str}`;
 }
 
+// Keep HTML as a string when a downstream consumer handles rendering.
+export function htmlText(value: string): string {
+   return value;
+}
+
+// Keep HTML and custom markup as a string for downstream renderMarkup() calls.
+export function markupText(value: string): string {
+   return value;
+}
+
 function interpolate(phase: string, subs: (string | number | bigint)[]): string {
    if (!phase.includes("$")) return phase;
 

@@ -1,6 +1,6 @@
 import { clamp, formatNumber, mapOf } from "@project/shared/src/utils/Helper";
 import { html } from "../../ui/components/RenderHTMLComp";
-import { $t, L } from "../../utils/i18n";
+import { $t, htmlText, L } from "../../utils/i18n";
 import { finalizeCondition, type ICondition, type IGameAction } from "../actions/GameAction";
 import { modifierToString } from "../definitions/Modifier";
 import type { Province } from "../definitions/Province";
@@ -36,11 +36,7 @@ export function getTimedActionTimeLeft(timedAction: TimedAction, province: Provi
 }
 
 export function timedActionConditions(
-   {
-      action,
-      label = $t(L.CurrentlyNotOnCooldown),
-      ignoreTech = false,
-   }: { action: TimedAction; label?: string; ignoreTech?: boolean },
+   { action, ignoreTech = false }: { action: TimedAction; ignoreTech?: boolean },
    province: Province,
    save: SaveGame,
 ): ICondition[] {
@@ -58,7 +54,7 @@ export function timedActionConditions(
    const def = TimedActions[action];
    if (def.cooldown > 0) {
       result.push({
-         name: label,
+         name: htmlText($t(L.$1NotOnCooldown, def.name())),
          desc:
             cooldownLeft > 0
                ? $t(L.$1MonthsLeft, formatNumber(cooldownLeft))

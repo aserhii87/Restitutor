@@ -50,7 +50,6 @@ export function ChristianEmpirePage(): React.ReactNode {
                         ...timedActionConditions(
                            {
                               action: "ChristianEmpireAction",
-                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
                            },
                            G.save.state.playerProvince,
                            G.save,
@@ -82,7 +81,6 @@ export function ChristianEmpirePage(): React.ReactNode {
                         ...timedActionConditions(
                            {
                               action: "ChristianEmpireAction",
-                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
                            },
                            G.save.state.playerProvince,
                            G.save,
@@ -114,7 +112,6 @@ export function ChristianEmpirePage(): React.ReactNode {
                         ...timedActionConditions(
                            {
                               action: "ChristianEmpireAction",
-                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
                            },
                            G.save.state.playerProvince,
                            G.save,
@@ -146,7 +143,6 @@ export function ChristianEmpirePage(): React.ReactNode {
                         ...timedActionConditions(
                            {
                               action: "ChristianEmpireAction",
-                              label: $t(L.$1IsNotOnCooldown, TimedActions.ChristianEmpireAction.name()),
                            },
                            G.save.state.playerProvince,
                            G.save,

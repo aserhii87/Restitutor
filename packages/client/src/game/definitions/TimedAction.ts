@@ -194,15 +194,10 @@ class TimedActionDefinitions {
          return {
             cost: { administrative: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointEnvoy", label: $t(L.AppointingAnEnvoyIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointEnvoy", ignoreTech: true }, province, save),
                ...timedActionConditions(
                   {
                      action: "AppointArmyStaff",
-                     label: $t(L.AppointingArmyStaffIsNotOnCooldown),
                      ignoreTech: true,
                   },
                   province,
@@ -223,15 +218,10 @@ class TimedActionDefinitions {
          return {
             cost: { diplomatic: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointPontiff", label: $t(L.AppointingAPontiffIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointPontiff", ignoreTech: true }, province, save),
                ...timedActionConditions(
                   {
                      action: "AppointArmyStaff",
-                     label: $t(L.AppointingArmyStaffIsNotOnCooldown),
                      ignoreTech: true,
                   },
                   province,
@@ -252,16 +242,8 @@ class TimedActionDefinitions {
          return {
             cost: { military: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointPontiff", label: $t(L.AppointingAPontiffIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
-               ...timedActionConditions(
-                  { action: "AppointEnvoy", label: $t(L.AppointingAnEnvoyIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointPontiff", ignoreTech: true }, province, save),
+               ...timedActionConditions({ action: "AppointEnvoy", ignoreTech: true }, province, save),
             ]),
          };
       },
@@ -603,7 +585,7 @@ class TimedActionDefinitions {
       cooldown: 12 * 5,
    };
    GrantSocialClassBonus: ITimedAction = {
-      name: () => EmptyString,
+      name: () => $t(L.SocialClassAgenda),
       duration: SocialClassBonusDefaultDuration,
       cooldown: SocialClassBonusDefaultDuration,
    };
@@ -631,7 +613,7 @@ class TimedActionDefinitions {
       },
    };
    BarbarianActions: ITimedAction = {
-      name: () => EmptyString,
+      name: () => $t(L.BarbarianAction),
       duration: 12,
       cooldown: 12,
    };
@@ -712,7 +694,7 @@ class TimedActionDefinitions {
       },
    };
    EcumenicalCouncilAction: ITimedAction = {
-      name: () => $t(L.SponsorDelegate),
+      name: () => $t(L.EcumenicalCouncilAction),
       duration: 0,
       cooldown: 6,
    };

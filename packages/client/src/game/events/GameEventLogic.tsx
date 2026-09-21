@@ -1,7 +1,7 @@
 import { clamp, entriesOf, filterOf, forEach, isNullOrUndefined, sizeOf } from "@project/shared/src/utils/Helper";
 import type React from "react";
 import { html } from "../../ui/components/RenderHTMLComp";
-import { $t, L } from "../../utils/i18n";
+import { $t, L, markupText } from "../../utils/i18n";
 import { type Province, ProvinceNameOverrides } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { Religion } from "../definitions/Religion";
@@ -144,7 +144,9 @@ export const getGameEventCondition = defineConditionChecks(function* (
          const shouldBeOnMap = condition.onMap[targetProvince];
          const isOnMap = !isNullOrUndefined(save.state.provinces[targetProvince]);
          (yield shouldBeOnMap ? isOnMap : !isOnMap)?.describe(
-            $t(shouldBeOnMap ? L.$1IsOnTheMap : L.$1IsNotOnTheMap, targetProvince),
+            shouldBeOnMap
+               ? markupText($t(L.$1IsOnTheMap, targetProvince))
+               : markupText($t(L.$1IsNotOnTheMap, targetProvince)),
          );
       }
    }

@@ -85,7 +85,6 @@ export function TetrarchyPage(): React.ReactNode {
                            ...timedActionConditions(
                               {
                                  action: "TetrarchyAction",
-                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
                               },
                               G.save.state.playerProvince,
                               G.save,
@@ -131,7 +130,6 @@ export function TetrarchyPage(): React.ReactNode {
                            ...timedActionConditions(
                               {
                                  action: "TetrarchyAction",
-                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
                               },
                               G.save.state.playerProvince,
                               G.save,
@@ -174,7 +172,6 @@ export function TetrarchyPage(): React.ReactNode {
                            ...timedActionConditions(
                               {
                                  action: "TetrarchyAction",
-                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
                               },
                               G.save.state.playerProvince,
                               G.save,
@@ -221,7 +218,6 @@ export function TetrarchyPage(): React.ReactNode {
                            ...timedActionConditions(
                               {
                                  action: "TetrarchyAction",
-                                 label: $t(L.$1IsNotOnCooldown, TimedActions.TetrarchyAction.name()),
                               },
                               G.save.state.playerProvince,
                               G.save,

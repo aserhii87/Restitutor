@@ -125,7 +125,6 @@ function ProvinceBox({ province }: { province: Province }): React.ReactNode {
                               ...timedActionConditions(
                                  {
                                     action: "JustinianReconquestAction",
-                                    label: $t(L.$1IsNotOnCooldown, TimedActions.JustinianReconquestAction.name()),
                                  },
                                  G.save.state.playerProvince,
                                  G.save,
@@ -157,7 +156,6 @@ function ProvinceBox({ province }: { province: Province }): React.ReactNode {
                               ...timedActionConditions(
                                  {
                                     action: "JustinianReconquestAction",
-                                    label: $t(L.$1IsNotOnCooldown, TimedActions.JustinianReconquestAction.name()),
                                  },
                                  G.save.state.playerProvince,
                                  G.save,
@@ -206,7 +204,6 @@ function ProvinceBox({ province }: { province: Province }): React.ReactNode {
                                     ...timedActionConditions(
                                        {
                                           action: "JustinianReconquestAction",
-                                          label: $t(L.$1IsNotOnCooldown, TimedActions.JustinianReconquestAction.name()),
                                        },
                                        G.save.state.playerProvince,
                                        G.save,
