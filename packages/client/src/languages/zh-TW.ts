@@ -4012,4 +4012,6 @@ export const ZH_TW = {
    ProclaimRestoration: "宣告復興",
    SubvertDefenders: "策反守軍",
    ClaimCore: "宣稱核心",
+   UnlockLegacyUpgrade: "解鎖傳承升級",
+   SkipConfirmationWhenUnlockingLegacyUpgrades: "解鎖傳承升級時跳過確認",
 };

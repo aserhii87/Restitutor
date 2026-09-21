@@ -4075,4 +4075,6 @@ export const RU = {
    ProclaimRestoration: "Провозгласить восстановление",
    SubvertDefenders: "Подкупить защитников",
    ClaimCore: "Заявить притязание на ядро",
+   UnlockLegacyUpgrade: "Разблокировать улучшение наследия",
+   SkipConfirmationWhenUnlockingLegacyUpgrades: "Пропускать подтверждение при разблокировке улучшений наследия",
 };

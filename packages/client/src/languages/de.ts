@@ -4142,4 +4142,6 @@ export const DE = {
    ProclaimRestoration: "Wiederherstellung verkünden",
    SubvertDefenders: "Verteidiger unterwandern",
    ClaimCore: "Als Kerngebiet beanspruchen",
+   UnlockLegacyUpgrade: "Vermächtnisaufwertung freischalten",
+   SkipConfirmationWhenUnlockingLegacyUpgrades: "Bestätigung beim Freischalten von Vermächtnisaufwertungen überspringen",
 };

@@ -4079,4 +4079,6 @@ export const UA = {
    ProclaimRestoration: "Proclaim Restoration",
    SubvertDefenders: "Subvert Defenders",
    ClaimCore: "Claim Core",
+   UnlockLegacyUpgrade: "Unlock Legacy Upgrade",
+   SkipConfirmationWhenUnlockingLegacyUpgrades: "Skip confirmation when unlocking legacy upgrades",
 };

@@ -21,6 +21,7 @@ export const GameOptionFlag = {
    SkipArmyMaintenanceReductionConfirmation: 1 << 9,
    OnlyShowAvailableTrades: 1 << 10,
    SortMapLegendByCount: 1 << 11,
+   SkipLegacyUpgradeConfirmation: 1 << 12,
 };
 
 export type GameOptionFlag = ValueOf<typeof GameOptionFlag>;

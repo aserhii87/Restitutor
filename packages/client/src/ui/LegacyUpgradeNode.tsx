@@ -1,4 +1,5 @@
-import { cls } from "@project/shared/src/utils/Helper";
+import { Checkbox } from "@mantine/core";
+import { cls, hasFlag, setFlag } from "@project/shared/src/utils/Helper";
 import {
    type EdgeProps,
    getStraightPath,
@@ -9,13 +10,19 @@ import {
    useInternalNode,
 } from "@xyflow/react";
 import { type LegacyUpgrade, LegacyUpgrades } from "../game/definitions/LegacyUpgrade";
-import { GameStateUpdated } from "../game/Events";
+import { GameOptionUpdated, GameStateUpdated } from "../game/Events";
+import { GameOptionFlag } from "../game/GameOption";
 import { canUpgradeLegacyUpgrade, getLegacyUpgradeCost, getLegacyUpgradeName } from "../game/logic/LegacyUpgradeLogic";
 import { trySpendProvinceResources } from "../game/logic/ResourceLogic";
 import { G, isDev } from "../utils/Global";
+import { $t, L } from "../utils/i18n";
+import { hideModal } from "../utils/ModalManager";
 import { ConditionBreakdownComp } from "./ConditionBreakdownComp";
+import { ConfirmModal } from "./ConfirmModal";
+import { showPanel } from "./common/ShowPanel";
 import { remToPx } from "./common/UIScaling";
 import { FloatingTip } from "./components/FloatingTip";
+import { ResourceCostComp } from "./ResourceCostComp";
 import { LegacyUpgradeNodeHeight, LegacyUpgradeNodeWidth } from "./UIConstant";
 
 export type LegacyUpgradeNode = Node<{ legacyUpgrade: LegacyUpgrade }, "LegacyUpgradeNode">;
@@ -62,16 +69,66 @@ export function LegacyUpgradeNode({ data }: NodeProps<LegacyUpgradeNode>): React
                if (!upgradeCondition.value) {
                   return;
                }
-               if (
-                  trySpendProvinceResources(
-                     { legacy: getLegacyUpgradeCost(G.save.state.playerProvince, G.save) },
-                     G.save.state.playerProvince,
-                     G.save,
-                  )
-               ) {
-                  state.legacyUpgrades.add(data.legacyUpgrade);
-                  GameStateUpdated.emit();
+               const unlock = () => {
+                  const province = G.save.state.playerProvince;
+                  const currentState = G.save.state.provinces[province];
+                  if (
+                     !currentState ||
+                     currentState.legacyUpgrades.has(data.legacyUpgrade) ||
+                     !canUpgradeLegacyUpgrade(data.legacyUpgrade, province, G.save).value
+                  ) {
+                     return;
+                  }
+                  if (trySpendProvinceResources({ legacy: getLegacyUpgradeCost(province, G.save) }, province, G.save)) {
+                     currentState.legacyUpgrades.add(data.legacyUpgrade);
+                     GameStateUpdated.emit();
+                  }
+               };
+               if (hasFlag(G.save.options.flag, GameOptionFlag.SkipLegacyUpgradeConfirmation)) {
+                  unlock();
+                  return;
                }
+               let skipConfirmation = false;
+               showPanel(ConfirmModal, {
+                  title: $t(L.UnlockLegacyUpgrade),
+                  message: (
+                     <>
+                        <div className="box primary">
+                           <div className="mx10 my5">
+                              <div>{getLegacyUpgradeName(data.legacyUpgrade)}</div>
+                              {"desc" in def && <div className="text-sm text-dimmed">{def.desc()}</div>}
+                           </div>
+                           <div className="divider" />
+                           <ResourceCostComp
+                              cost={{ legacy: getLegacyUpgradeCost(G.save.state.playerProvince, G.save) }}
+                           />
+                        </div>
+                        <Checkbox
+                           className="mt10"
+                           label={$t(L.DontShowThisConfirmationAgain)}
+                           defaultChecked={false}
+                           onChange={(event) => {
+                              skipConfirmation = event.currentTarget.checked;
+                           }}
+                        />
+                     </>
+                  ),
+                  confirm: {
+                     id: "LegacyUpgradeNode_UnlockConfirm",
+                     label: $t(L.Confirm),
+                     onClick: () => {
+                        if (skipConfirmation) {
+                           G.save.options.flag = setFlag(
+                              G.save.options.flag,
+                              GameOptionFlag.SkipLegacyUpgradeConfirmation,
+                           );
+                           GameOptionUpdated.emit();
+                        }
+                        unlock();
+                        hideModal();
+                     },
+                  },
+               });
             }}
          >
             {getLegacyUpgradeName(data.legacyUpgrade)}

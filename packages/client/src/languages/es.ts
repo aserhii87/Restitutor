@@ -4136,4 +4136,6 @@ export const ES = {
    ProclaimRestoration: "Proclamar la restauración",
    SubvertDefenders: "Subvertir a los defensores",
    ClaimCore: "Reclamar como núcleo",
+   UnlockLegacyUpgrade: "Desbloquear mejora de legado",
+   SkipConfirmationWhenUnlockingLegacyUpgrades: "Omitir la confirmación al desbloquear mejoras de legado",
 };
