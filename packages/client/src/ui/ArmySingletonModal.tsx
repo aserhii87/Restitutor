@@ -411,25 +411,24 @@ function TargetConscriptionSlider(): React.ReactNode {
          value={preview ?? currentValue}
          onChange={setPreview}
          onChangeEnd={(value) => {
-            const save = G.save;
-            const province = save.state.playerProvince;
-            const previousValue = getProvinceStat("targetConscription", province, save);
+            const province = G.save.state.playerProvince;
+            const previousValue = getProvinceStat("targetConscription", province, G.save);
             if (value === previousValue) {
                setPreview(undefined);
                return;
             }
             const apply = () => {
                setPreview(undefined);
-               if (G.save !== save || G.save.state.playerProvince !== province) {
+               if (G.save.state.playerProvince !== province) {
                   return;
                }
-               setProvinceTargetConscription(value, province, save);
+               setProvinceTargetConscription(value, province, G.save);
                GameStateUpdated.emit();
             };
             if (
                value < previousValue &&
-               value < getProvinceStat("actualConscription", province, save) &&
-               !hasFlag(save.options.flag, GameOptionFlag.SkipConscriptionReductionConfirmation)
+               value < getProvinceStat("actualConscription", province, G.save) &&
+               !hasFlag(G.save.options.flag, GameOptionFlag.SkipConscriptionReductionConfirmation)
             ) {
                let skipConfirmation = false;
                showPanel(ConfirmModal, {
@@ -447,7 +446,7 @@ function TargetConscriptionSlider(): React.ReactNode {
                            <div className="row mx10 my5 g5">
                               <div>{$t(L.ActualConscription)}</div>
                               <div className="f1" />
-                              <div>{formatPercent(getProvinceStat("actualConscription", province, save) / 100)}</div>
+                              <div>{formatPercent(getProvinceStat("actualConscription", province, G.save) / 100)}</div>
                               <div className="mi sm text-red">arrow_right_alt</div>
                               <div>{formatPercent(value / 100)}</div>
                            </div>
@@ -476,9 +475,9 @@ function TargetConscriptionSlider(): React.ReactNode {
                      id: "ArmyModal_LowerTargetConscriptionConfirm",
                      label: $t(L.Confirm),
                      onClick: () => {
-                        if (G.save === save && G.save.state.playerProvince === province && skipConfirmation) {
-                           save.options.flag = setFlag(
-                              save.options.flag,
+                        if (G.save.state.playerProvince === province && skipConfirmation) {
+                           G.save.options.flag = setFlag(
+                              G.save.options.flag,
                               GameOptionFlag.SkipConscriptionReductionConfirmation,
                            );
                            GameOptionUpdated.emit();
