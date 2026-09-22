@@ -3,7 +3,9 @@ import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
 import { unlockAchievement } from "./Achievement";
 import { Goods } from "./definitions/Goods";
-import { DefaultConscription, Province, ProvinceResourceNames } from "./definitions/Province";
+import { Province } from "./definitions/Province";
+import { ProvinceResourceNames } from "./definitions/ProvinceResources";
+import { DefaultConscription } from "./definitions/ProvinceStats";
 import { SocialClass } from "./definitions/SocialClass";
 import { Tech } from "./definitions/Tech";
 import { Tiles } from "./definitions/TileConstants";
@@ -200,7 +202,7 @@ export const Tutorial: ITutorial[] = [
       selectors: [
          "#LeftPanel_OngoingWar_0.animate-bounce-right",
          "#WarModal_SignPeaceTreaty",
-         "#PeaceTreatyModal_SignPeaceTreaty",
+         "#PeaceTreatyPage_SignPeaceTreaty",
       ],
    },
    {

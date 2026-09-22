@@ -363,6 +363,7 @@ export const AfricaEvents = {
       desc: () => $t(L.TheSardinianCompactDesc),
       condition: {
          province: new Set(["Africa"]),
+         onMap: { Sardinia: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireAnyTreatyBetweenChecks(["DefensePact", "Alliance"], province, "Sardinia", save);
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Sardinia", save);
@@ -384,6 +385,7 @@ export const AfricaEvents = {
       desc: () => $t(L.CorsicaUnderOurProtectionDesc),
       condition: {
          province: new Set(["Africa"]),
+         onMap: { Corsica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireAnyTreatyBetweenChecks(["DefensePact", "Alliance"], province, "Corsica", save);
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Corsica", save);

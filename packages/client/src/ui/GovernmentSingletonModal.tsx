@@ -4,7 +4,7 @@ import { Fragment } from "react/jsx-runtime";
 import { SetGovernmentFocusAction } from "../game/actions/SetGovernmentFocusAction";
 import { getAdvisorInitialCost, getAdvisorMonthlyCost } from "../game/definitions/Advisor";
 import { getPersonTraitDescription, PersonTrait } from "../game/definitions/PersonTrait";
-import { type GovernorPower, ProvinceResourceNames } from "../game/definitions/Province";
+import { type GovernorPower, ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { GameStateUpdated } from "../game/Events";
 import { showError } from "../game/logic/AlertLogic";
 import { getProvinceGovernmentPoint, getProvinceName } from "../game/logic/ProvinceLogic";

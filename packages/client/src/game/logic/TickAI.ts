@@ -37,15 +37,10 @@ import { getAdvisorInitialCost, getAdvisorMonthlyCost } from "../definitions/Adv
 import { type Building, Buildings } from "../definitions/Building";
 import type { Culture } from "../definitions/Culture";
 import type { IFamily } from "../definitions/Family";
-import {
-   type AIAction,
-   type BlackboardResource,
-   DefaultConscription,
-   type Province,
-   type ProvinceResource,
-   type ProvinceResourceCosts,
-   Provinces,
-} from "../definitions/Province";
+import { type Province, Provinces } from "../definitions/Province";
+import type { AIAction, BlackboardResource } from "../definitions/ProvinceAI";
+import type { ProvinceResource, ProvinceResourceCosts } from "../definitions/ProvinceResources";
+import { DefaultConscription } from "../definitions/ProvinceStats";
 import type { Religion } from "../definitions/Religion";
 import { SocialClass } from "../definitions/SocialClass";
 import { MaxRaidMonths, SpawnedProvinces } from "../definitions/SpawnedProvince";
@@ -88,6 +83,7 @@ import {
    getProvinceStat,
    getProvincesInRange,
    pledgeProvinceConsulVotes,
+   pledgeProvinceConsulVotesConditions,
 } from "./ProvinceLogic";
 import { getProvinceResource, hasEnoughProvinceResources, trySpendProvinceResources } from "./ResourceLogic";
 import { getCheapestLockedTech } from "./TechLogic";
@@ -321,11 +317,22 @@ export function tickAI(save: SaveGame): void {
       } else {
          doWar(province, save);
       }
-      tryDoHeadless(ConvertToChristianityAction(province, save), "ConvertToChristianity", province, save);
+      doReligion(province, save);
       tryDoHeadless(makeGameAction("AppointPontiff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointEnvoy", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointArmyStaff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
    });
+}
+
+function doReligion(province: Province, save: SaveGame) {
+   const state = save.state.provinces[province];
+   if (!state) {
+      return;
+   }
+   if (state.religion === "Islam") {
+      return;
+   }
+   tryDoHeadless(ConvertToChristianityAction(province, save), "ConvertToChristianity", province, save);
 }
 
 function doRegionalCapital(province: Province, save: SaveGame): void {
@@ -636,7 +643,9 @@ function getDesiredTreatyCount(province: Province, save: SaveGame): number {
 }
 
 function doSenateVote(province: Province, save: SaveGame): void {
-   pledgeProvinceConsulVotes(province, save);
+   if (finalizeCondition(pledgeProvinceConsulVotesConditions(province, save)).value) {
+      pledgeProvinceConsulVotes(province, save);
+   }
    if (getProvinceResource("consulPoint", province, save) > 0) {
       tryDoHeadless(makeGameAction("RequestFunding", province, save), "RequestFunding", province, save);
    }

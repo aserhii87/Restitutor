@@ -187,7 +187,6 @@ export function BarbarianRaidModal(): React.ReactNode {
                                                    ...timedActionConditions(
                                                       {
                                                          action: "BarbarianActions",
-                                                         label: $t(L.BarbarianActionsAreNotOnCooldown),
                                                       },
                                                       G.save.state.playerProvince,
                                                       G.save,
@@ -229,7 +228,6 @@ export function BarbarianRaidModal(): React.ReactNode {
                                                    ...timedActionConditions(
                                                       {
                                                          action: "BarbarianActions",
-                                                         label: $t(L.BarbarianActionsAreNotOnCooldown),
                                                       },
                                                       G.save.state.playerProvince,
                                                       G.save,
@@ -285,7 +283,6 @@ export function BarbarianRaidModal(): React.ReactNode {
                                                    ...timedActionConditions(
                                                       {
                                                          action: "BarbarianActions",
-                                                         label: $t(L.BarbarianActionsAreNotOnCooldown),
                                                       },
                                                       G.save.state.playerProvince,
                                                       G.save,
@@ -362,7 +359,6 @@ export function BarbarianRaidModal(): React.ReactNode {
                                                    ...timedActionConditions(
                                                       {
                                                          action: "BarbarianActions",
-                                                         label: $t(L.BarbarianActionsAreNotOnCooldown),
                                                       },
                                                       G.save.state.playerProvince,
                                                       G.save,

@@ -18,12 +18,9 @@ import {
 } from "../actions/GameAction";
 import { type LegacyUpgrade, LegacyUpgrades } from "../definitions/LegacyUpgrade";
 import { Modifiers, modifierValueToString } from "../definitions/Modifier";
-import {
-   type Province,
-   ProvinceResourceNames,
-   type ProvinceResources,
-   type ProvinceStats,
-} from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import { ProvinceResourceNames, type ProvinceResources } from "../definitions/ProvinceResources";
+import type { ProvinceStats } from "../definitions/ProvinceStats";
 import { initSaveGame, SaveGame } from "../GameState";
 import { getTilesAnnexedAndCored } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";

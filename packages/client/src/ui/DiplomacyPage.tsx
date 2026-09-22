@@ -38,8 +38,9 @@ import {
 } from "../game/actions/RelationsActions";
 import { CasusBelli } from "../game/definitions/CasusBelli";
 import { Culture } from "../game/definitions/Culture";
+import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Modifiers } from "../game/definitions/Modifier";
-import { type Province, TreatyNames } from "../game/definitions/Province";
+import type { Province } from "../game/definitions/Province";
 import { Religion } from "../game/definitions/Religion";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";

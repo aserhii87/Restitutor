@@ -8,9 +8,11 @@ import {
    type IValueBreakdown,
    makeValueBreakdown,
 } from "../actions/GameAction";
+import type { IRelation } from "../definitions/Diplomacy";
 import type { IFullFamily } from "../definitions/Family";
 import { type IModifier, makeModifierGetter } from "../definitions/Modifier";
-import type { IRelation, Province, ProvinceResourceCosts } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { ProvinceResourceCosts } from "../definitions/ProvinceResources";
 import type { SaveGame } from "../GameState";
 import { MapGrid } from "../MapGrid";
 import type { ConditionChecks } from "./Calculation";
@@ -27,7 +29,7 @@ export function getAttitudeTowards(fromProvince: Province, toProvince: Province,
    const breakdown: IValueBreakdown = makeValueBreakdown();
    const fromProvinceData = save.state.provinces[fromProvince];
    const toProvinceData = save.state.provinces[toProvince];
-   if (!fromProvinceData || !toProvinceData) {
+   if (!fromProvinceData || !toProvinceData || fromProvince === toProvince) {
       return breakdown;
    }
    if (fromProvinceData.culture === toProvinceData.culture) {
@@ -94,7 +96,7 @@ function getAttitudeModifier(fromProvince: Province, toProvince: Province, save:
 export function getMarriageAlliance(province1: Province, province2: Province, save: SaveGame): IFullFamily[] {
    const state1 = save.state.provinces[province1];
    const state2 = save.state.provinces[province2];
-   if (!state1 || !state2) {
+   if (!state1 || !state2 || province1 === province2) {
       return [];
    }
    return [

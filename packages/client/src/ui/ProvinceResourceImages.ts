@@ -1,6 +1,6 @@
 import { entriesOf, fromEntries } from "@project/shared/src/utils/Helper";
 import { Goods } from "../game/definitions/Goods";
-import type { ProvinceResource } from "../game/definitions/Province";
+import type { ProvinceResource } from "../game/definitions/ProvinceResources";
 import { IconCatalog } from "./IconCatalog";
 
 export const ProvinceResourceImages: Partial<Record<ProvinceResource, string>> = {

@@ -139,6 +139,7 @@ export const LugdunensisEvents = {
       desc: () => $t(L.BoundByBloodAndOathDesc),
       condition: {
          province: new Set(["Lugdunensis"]),
+         onMap: { Belgica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Belgica", save);
             yield* requirePeaceBetweenChecks(province, "Belgica", save);
@@ -531,11 +532,9 @@ export const LugdunensisEvents = {
       name: () => $t(L.TheDeclineOfLugdunum),
       image: EventImage.RomanForum1,
       desc: () => $t(L.TheDeclineOfLugdunumDesc),
-
       condition: {
          province: new Set(["Lugdunensis"]),
-         year: [260, Number.POSITIVE_INFINITY],
-         provinceUpgrades: new Set(["Tetrarchy"]),
+         year: [261, Number.POSITIVE_INFINITY],
       },
       buttons: [
          {

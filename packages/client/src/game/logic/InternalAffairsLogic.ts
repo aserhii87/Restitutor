@@ -1,10 +1,15 @@
+import { forEach } from "@project/shared/src/utils/Helper";
 import type { Culture } from "../definitions/Culture";
 import { makeModifierGetter } from "../definitions/Modifier";
 import type { Province } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
-import { isChristianReligion, type Religion } from "../definitions/Religion";
+import { isChristianReligion, Religion } from "../definitions/Religion";
+import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
+import { getAttitudeTowards } from "./DiplomacyLogic";
 import { EcumenicalCouncilChristianityPct, ongoingEcumenicalCouncilCondition } from "./EcumenicalCouncilLogic";
+import { getProvinceName } from "./ProvinceLogic";
+import { getTimedActionTimeLeft } from "./TimedActionLogic";
 
 export const getChristianityYearly = makeModifierGetter("ChristianityYearly", 1, (result, province, save) => {
    const state = save.state.provinces[province];
@@ -13,6 +18,23 @@ export const getChristianityYearly = makeModifierGetter("ChristianityYearly", 1,
    }
    if (hasProvinceUpgrade("ChristianFervor", province, save) && isChristianReligion(state.religion)) {
       result.add.push({ name: ProvinceUpgrades.ChristianFervor.name(), value: 1 });
+   }
+   if (getTimedActionTimeLeft("ChristianEmpire", province, save) > 0) {
+      forEach(save.state.provinces, (otherProvince, state) => {
+         if (
+            isChristianReligion(state.religion) &&
+            province !== otherProvince &&
+            getAttitudeTowards(otherProvince, province, save).value > 0
+         ) {
+            result.add.push({
+               name: `${TimedActions.ChristianEmpire.name()} (${getProvinceName(otherProvince, save)})`,
+               value: 1,
+            });
+         }
+      });
+   }
+   if (state.religion === "Islam") {
+      result.add.push({ name: Religion.Islam.name(), value: -1 });
    }
    const ongoingCouncil = ongoingEcumenicalCouncilCondition(province, save);
    if (ongoingCouncil.value) {

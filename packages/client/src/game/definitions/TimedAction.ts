@@ -194,15 +194,10 @@ class TimedActionDefinitions {
          return {
             cost: { administrative: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointEnvoy", label: $t(L.AppointingAnEnvoyIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointEnvoy", ignoreTech: true }, province, save),
                ...timedActionConditions(
                   {
                      action: "AppointArmyStaff",
-                     label: $t(L.AppointingArmyStaffIsNotOnCooldown),
                      ignoreTech: true,
                   },
                   province,
@@ -223,15 +218,10 @@ class TimedActionDefinitions {
          return {
             cost: { diplomatic: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointPontiff", label: $t(L.AppointingAPontiffIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointPontiff", ignoreTech: true }, province, save),
                ...timedActionConditions(
                   {
                      action: "AppointArmyStaff",
-                     label: $t(L.AppointingArmyStaffIsNotOnCooldown),
                      ignoreTech: true,
                   },
                   province,
@@ -252,16 +242,8 @@ class TimedActionDefinitions {
          return {
             cost: { military: 12 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "AppointPontiff", label: $t(L.AppointingAPontiffIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
-               ...timedActionConditions(
-                  { action: "AppointEnvoy", label: $t(L.AppointingAnEnvoyIsNotOnCooldown), ignoreTech: true },
-                  province,
-                  save,
-               ),
+               ...timedActionConditions({ action: "AppointPontiff", ignoreTech: true }, province, save),
+               ...timedActionConditions({ action: "AppointEnvoy", ignoreTech: true }, province, save),
             ]),
          };
       },
@@ -603,7 +585,7 @@ class TimedActionDefinitions {
       cooldown: 12 * 5,
    };
    GrantSocialClassBonus: ITimedAction = {
-      name: () => EmptyString,
+      name: () => $t(L.SocialClassAgenda),
       duration: SocialClassBonusDefaultDuration,
       cooldown: SocialClassBonusDefaultDuration,
    };
@@ -631,7 +613,7 @@ class TimedActionDefinitions {
       },
    };
    BarbarianActions: ITimedAction = {
-      name: () => EmptyString,
+      name: () => $t(L.BarbarianAction),
       duration: 12,
       cooldown: 12,
    };
@@ -712,7 +694,7 @@ class TimedActionDefinitions {
       },
    };
    EcumenicalCouncilAction: ITimedAction = {
-      name: () => $t(L.SponsorDelegate),
+      name: () => $t(L.EcumenicalCouncilAction),
       duration: 0,
       cooldown: 6,
    };
@@ -761,6 +743,51 @@ class TimedActionDefinitions {
       desc: () => $t(L.TimedActionPillageDesc$1$2$3$4, "1", "50%", "10", "5"),
       duration: 0,
       cooldown: 12,
+   };
+   JustinianReconquest: ITimedAction = {
+      name: () => $t(L.JustiniansReconquest),
+      duration: 12 * 38,
+      cooldown: 0,
+   };
+   JustinianReconquestHonorTheGeneral: ITimedAction = {
+      name: () => $t(L.HonorTheGeneral),
+      duration: 0,
+      cooldown: 12,
+   };
+   JustinianReconquestFundReconquest: ITimedAction = {
+      name: () => $t(L.FundReconquest),
+      duration: 12 * 2,
+      cooldown: 12 * 2,
+   };
+   JustinianReconquestAction: ITimedAction = {
+      name: () => $t(L.JustiniansReconquestAction),
+      duration: 12 * 2,
+      cooldown: 12 * 2,
+   };
+   TwentyYearsAnarchy: ITimedAction = {
+      name: () => $t(L.TwentyYearsAnarchy),
+      duration: 12 * 22,
+      cooldown: 0,
+   };
+   Tetrarchy: ITimedAction = {
+      name: () => $t(L.Tetrarchy),
+      duration: 12 * 31,
+      cooldown: 0,
+   };
+   TetrarchyAction: ITimedAction = {
+      name: () => $t(L.TimedActionTetrarchyAction),
+      duration: 12 * 2,
+      cooldown: 12 * 2,
+   };
+   ChristianEmpire: ITimedAction = {
+      name: () => $t(L.UnderTheSignOfTheCross),
+      duration: 12 * 50,
+      cooldown: 0,
+   };
+   ChristianEmpireAction: ITimedAction = {
+      name: () => $t(L.UnderTheSignOfTheCrossAction),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
    };
 }
 

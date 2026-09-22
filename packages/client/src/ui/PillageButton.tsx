@@ -1,7 +1,7 @@
 import type { Tile } from "@project/shared/src/utils/Helper";
 import { PillageAction, type PillageUpgrade, PillageUpgrades } from "../game/actions/PillageActions";
 import { durationToString } from "../game/definitions/Modifier";
-import { ProvinceResourceNames } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { hasProvinceUpgrade } from "../game/definitions/ProvinceUpgrades";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { getTilePillageRefund } from "../game/logic/TileLogic";

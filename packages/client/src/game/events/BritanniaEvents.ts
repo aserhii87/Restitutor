@@ -446,6 +446,7 @@ export const BritanniaEvents = {
       desc: () => $t(L.BritanniaBelgicaSeeksOurProtectionDesc),
       condition: {
          province: new Set(["Britannia"]),
+         onMap: { Belgica: true },
          annexAndCore: {
             Belgica: 5,
          },

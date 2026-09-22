@@ -4,6 +4,7 @@ import {
    forEach,
    formatNumber,
    fromEntries,
+   hasFlag,
    pointToTile,
    range,
    shuffle,
@@ -17,31 +18,26 @@ import { getAdvisorMonthlyCost, initAdvisors } from "../definitions/Advisor";
 import { Buildings } from "../definitions/Building";
 import { Goods } from "../definitions/Goods";
 import { type GreatWork, TileToGreatWork } from "../definitions/GreatWork";
-import {
-   type GovernorPower,
-   type IProvince,
-   Province,
-   ProvinceFlags,
-   type ProvinceNameOverride,
-   ProvinceNameOverrides,
-   ProvinceOriginalTiles,
-   ProvinceResources,
-   type ProvinceStat,
-   ProvinceStats,
-} from "../definitions/Province";
-import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
+import { Province } from "../definitions/Province";
+import { type ProvinceNameOverride, ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
+import { type GovernorPower, ProvinceResources } from "../definitions/ProvinceResources";
+import { type IProvince, ProvinceFlags } from "../definitions/ProvinceState";
+import { type ProvinceStat, ProvinceStats } from "../definitions/ProvinceStats";
+import { hasNotProvinceUpgradeCondition, hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import type { SpawnedProvince } from "../definitions/SpawnedProvince";
 import {
    BarbarianRaidNegativeEffect,
    SpawnedProvinceBoostMonths,
+   SpawnedProvinceFlags,
    SpawnedProvinces,
 } from "../definitions/SpawnedProvince";
 import { getBorderingProvinces } from "../definitions/Tile";
-import { MediterraneanTiles, StraitOfGibraltarTiles, Tiles } from "../definitions/TileConstants";
-import { GameStateUpdated } from "../Events";
+import { BlackSeaTiles, MediterraneanTiles, StraitOfGibraltarTiles, Tiles } from "../definitions/TileConstants";
+import { GameStateUpdated, RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { getSeaComponent } from "../Land";
 import { MapGrid } from "../MapGrid";
+import { ProvinceOriginalTiles } from "../ProvinceOriginalTiles";
 import { RomeMap } from "../RomeMap";
 import { getArmyMaintenanceCost, getWarPower, getWarPowerPerTile } from "./ArmyLogic";
 import { cacheProvince } from "./CacheLogic";
@@ -275,7 +271,6 @@ function _getProvinceGoverningCost(province: Province, save: SaveGame): IValueBr
 
 export function initProvince(province: Province, capital: Tile): IProvince {
    return {
-      nameOverride: undefined,
       culture: Province[province].culture,
       toleratedCultures: new Set(),
       religion: Province[province].religion,
@@ -547,6 +542,10 @@ export function pledgeProvinceConsulVotes(province: Province, save: SaveGame): v
    }
 }
 
+export function pledgeProvinceConsulVotesConditions(province: Province, save: SaveGame): ICondition[] {
+   return [hasNotProvinceUpgradeCondition("OurOwnDestiny", province, save)];
+}
+
 export function getProvinceName(province: Province, save: SaveGame): string {
    const nameOverride = save.state.provinces[province]?.nameOverride;
    if (nameOverride) {
@@ -566,6 +565,7 @@ export function setProvinceNameOverride(province: Province, nameOverride: Provin
       }
    });
    state.nameOverride = nameOverride;
+   RefreshTiles.emit({ tiles: [], options: { visual: true } });
 }
 
 export function getAnnexedTiles(toAnnex: Province, ourProvince: Province, save: SaveGame): [number, number] {
@@ -666,7 +666,9 @@ export function spawnProvince(province: Province, source: string, save: SaveGame
       });
    }
 
-   startTimedAction("BarbarianInvasions", province, save);
+   if (hasFlag(config.flags, SpawnedProvinceFlags.Raid)) {
+      startTimedAction("BarbarianInvasions", province, save);
+   }
 
    return refreshedTiles;
 }
@@ -756,6 +758,14 @@ export function isTileConnectedBySea(tile: Tile, province: Province, save: SaveG
 }
 
 export function getMediterraneanCoastalTiles(requireCore: boolean, province: Province, save: SaveGame): Tile[] {
+   return getCoastalTiles(MediterraneanTiles, requireCore, province, save);
+}
+
+export function getBlackSeaCoastalTiles(requireCore: boolean, province: Province, save: SaveGame): Tile[] {
+   return getCoastalTiles(BlackSeaTiles, requireCore, province, save);
+}
+
+function getCoastalTiles(sea: Set<Tile>, requireCore: boolean, province: Province, save: SaveGame): Tile[] {
    const result: Tile[] = [];
    for (const [tile, data] of save.state.tiles) {
       if (data.province !== province) {
@@ -765,7 +775,7 @@ export function getMediterraneanCoastalTiles(requireCore: boolean, province: Pro
          continue;
       }
       for (const neighbor of MapGrid.getNeighbors(tileToPoint(tile))) {
-         if (MediterraneanTiles.has(pointToTile(neighbor))) {
+         if (sea.has(pointToTile(neighbor))) {
             result.push(tile);
             break;
          }

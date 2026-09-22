@@ -431,6 +431,7 @@ export const PannoniaEvents = {
       desc: () => $t(L.TheNoricanPetitionDesc),
       condition: {
          province: new Set(["Pannonia"]),
+         onMap: { Noricum: true },
          conditions: function* (province, save): ConditionChecks {
             yield* minCoreTileChecks(15, province, save);
             yield* maxCoreTileChecks(5, "Noricum", save);

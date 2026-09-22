@@ -38,7 +38,6 @@ export function NamePublicEnemyModal(): React.ReactNode {
                      ...timedActionConditions(
                         {
                            action: "PublicEnemy",
-                           label: $t(L.$1IsNotAlreadyNamedAsPublicEnemy, getProvinceName(selectedProvince, G.save)),
                         },
                         selectedProvince,
                         G.save,

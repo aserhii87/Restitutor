@@ -11,6 +11,7 @@ import type { ConditionChecks } from "./Calculation";
 import { getProvinceCultures } from "./InternalAffairsLogic";
 import { attachModifiers } from "./ModifierLogic";
 import {
+   getBlackSeaCoastalTiles,
    getNeighborProvinces,
    getProvinceCoreCoastalTileCount,
    getProvinceName,
@@ -275,6 +276,12 @@ export function getWarPower(
       result.multiply.push({
          name: ProvinceUpgrades.NavalTradition.name(),
          value: Math.min(getProvinceCoreCoastalTileCount(province, save) * 0.005, 0.5),
+      });
+   }
+   if (hasProvinceUpgrade("PonticHegemony", province, save)) {
+      result.multiply.push({
+         name: ProvinceUpgrades.PonticHegemony.name(),
+         value: getBlackSeaCoastalTiles(true, province, save).length * 0.02,
       });
    }
    if (hasProvinceUpgrade("MercantileMobilization", province, save)) {

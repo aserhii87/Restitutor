@@ -291,40 +291,6 @@ export const NoricumEvents = {
          },
       ],
    },
-   Noricum9: {
-      name: () => $t(L.TheDeathOfSeverinus),
-      wikipedia: "Severinus_of_Noricum",
-      image: EventImage.AugustineDeath,
-      desc: () => $t(L.TheDeathOfSeverinusDesc),
-      condition: {
-         province: new Set(["Noricum"]),
-         year: [482, 482],
-      },
-      buttons: [
-         {
-            label: () => $t(L.EndowTheMonasteryAtFavianis),
-            resources: { gold: -500, christianity: 15 },
-            modifiers: {
-               Stability: { type: "add", value: 10, duration: 2 * 12 },
-            },
-         },
-         {
-            label: () => $t(L.StockTheFortifiedTowns),
-            resources: { gold: -500 },
-            modifiers: {
-               Defense: { type: "multiply", value: 0.1, duration: 2 * 12 },
-               TileOutput: { type: "multiply", value: 0.1, duration: 2 * 12 },
-            },
-         },
-         {
-            label: () => $t(L.SeizeTheMonasticStores),
-            resources: { administrative: 50, christianity: -10 },
-            modifiers: {
-               Stability: { type: "add", value: -10, duration: 2 * 12 },
-            },
-         },
-      ],
-   },
    Noricum10: {
       name: () => $t(L.TheEvacuationOfNoricum),
       wikipedia: "Odoacer",
@@ -357,6 +323,40 @@ export const NoricumEvents = {
             modifiers: {
                LandTax: { type: "multiply", value: 0.1, duration: 2 * 12 },
                Prestige: { type: "multiply", value: -0.15, duration: 2 * 12 },
+            },
+         },
+      ],
+   },
+   Noricum9: {
+      name: () => $t(L.TheLifeOfSeverinus),
+      wikipedia: "Eugippius",
+      image: EventImage.JeromeStudy,
+      desc: () => $t(L.TheLifeOfSeverinusDesc),
+      condition: {
+         province: new Set(["Noricum"]),
+         year: [511, 511],
+      },
+      buttons: [
+         {
+            label: () => $t(L.SponsorCopiesForOurChurches),
+            resources: { gold: -500, christianity: 15 },
+            modifiers: {
+               Prestige: { type: "multiply", value: 0.1, duration: 2 * 12 },
+            },
+         },
+         {
+            label: () => $t(L.FundReliefInSeverinussMemory),
+            resources: { gold: -500 },
+            modifiers: {
+               Stability: { type: "add", value: 10, duration: 2 * 12 },
+               TileOutput: { type: "multiply", value: 0.1, duration: 2 * 12 },
+            },
+         },
+         {
+            label: () => $t(L.PreserveOurTownsCivicRecords),
+            resources: { administrative: -50 },
+            modifiers: {
+               LandTax: { type: "multiply", value: 0.15, duration: 2 * 12 },
             },
          },
       ],

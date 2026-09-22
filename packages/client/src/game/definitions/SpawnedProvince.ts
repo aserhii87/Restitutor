@@ -1,9 +1,18 @@
-import type { Tile } from "@project/shared/src/utils/Helper";
-import type { Province, ProvinceResource, ProvinceStat } from "./Province";
+import type { Tile, ValueOf } from "@project/shared/src/utils/Helper";
+import type { Province } from "./Province";
+import type { ProvinceResource } from "./ProvinceResources";
+import type { ProvinceStat } from "./ProvinceStats";
 
 export const SpawnedProvinceBoostMonths = 12 * 20;
 export const MaxRaidMonths = 12;
 export const BarbarianRaidNegativeEffect = -10;
+
+export const SpawnedProvinceFlags = {
+   None: 0,
+   Raid: 1 << 0,
+} as const;
+
+export type SpawnedProvinceFlags = ValueOf<typeof SpawnedProvinceFlags>;
 
 const BaseSpawnedProvinceData: SpawnedProvinceData = {
    stats: {
@@ -13,6 +22,7 @@ const BaseSpawnedProvinceData: SpawnedProvinceData = {
    resources: {
       generalSkillPoint: 10,
    },
+   flags: SpawnedProvinceFlags.Raid,
 };
 
 export const _SpawnedProvinces = {
@@ -54,11 +64,33 @@ export const _SpawnedProvinces = {
          9764935, 9764934, 9830471, 9830470, 9699397, 9896008, 9896007, 9896006, 9830469, 9961542, 9961543, 9764933,
       ],
    },
+   Avars: {
+      ...BaseSpawnedProvinceData,
+      tiles: [9961543, 9961542, 10027078, 9896007, 9896008],
+   },
+   Lombards: {
+      ...BaseSpawnedProvinceData,
+      tiles: [9568328, 9502792, 9437256, 9437257, 9371721],
+   },
+   Caliphate: {
+      ...BaseSpawnedProvinceData,
+      tiles: [
+         10944609, 10879073, 10944610, 10944611, 11010148, 10879072, 10813535, 10813534, 10747997, 10879069, 10879070,
+         10879071, 10944608, 10944607, 11010144, 11075684, 11010149, 11075685, 11075686, 11075687, 11141223, 11010145,
+         11010146,
+      ],
+      flags: SpawnedProvinceFlags.None,
+   },
+   Bulgars: {
+      ...BaseSpawnedProvinceData,
+      tiles: [10223691, 10289227, 10223692, 10289226, 10289228],
+   },
 } as const satisfies Partial<Record<Province, SpawnedProvinceConfig>>;
 
 export interface SpawnedProvinceData {
    stats: Partial<Record<ProvinceStat, number>>;
    resources: Partial<Record<ProvinceResource, number>>;
+   flags: SpawnedProvinceFlags;
 }
 
 export interface SpawnedProvinceConfig extends SpawnedProvinceData {

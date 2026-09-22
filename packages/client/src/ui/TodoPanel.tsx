@@ -2,8 +2,10 @@ import { cls, entriesOf, forEach, formatNumber, hasFlag } from "@project/shared/
 import { UpgradeGeneralSkillAction } from "../game/actions/ArmyGeneralAction";
 import { canDoAction } from "../game/actions/GameAction";
 import { CanTradeCostCondition } from "../game/actions/TradeActions";
+import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Goods } from "../game/definitions/Goods";
-import { type Province, ProvinceFlags, TreatyNames } from "../game/definitions/Province";
+import type { Province } from "../game/definitions/Province";
+import { ProvinceFlags } from "../game/definitions/ProvinceState";
 import { SocialClass } from "../game/definitions/SocialClass";
 import { Tech } from "../game/definitions/Tech";
 import { getTileName } from "../game/definitions/TileName";
@@ -22,7 +24,6 @@ import { getProvinceName, getProvinceOverextension, monthsToNextConsulElection }
 import { getProvinceResource } from "../game/logic/ResourceLogic";
 import { isSocialClassDisloyal, isSocialClassDominant } from "../game/logic/SocialClassLogic";
 import { getTechsCanBeResearched, hasResearched } from "../game/logic/TechLogic";
-import { isThirdCenturyCrisisActive } from "../game/logic/ThirdCenturyCrisisLogic";
 import { PendingGameEventTimeoutMonths } from "../game/logic/TickProvince";
 import { getTileUnrest } from "../game/logic/TileLogic";
 import { getTimedActionTimeLeft, makeGameAction } from "../game/logic/TimedActionLogic";
@@ -39,6 +40,7 @@ import { $t, L } from "../utils/i18n";
 import { ArmySingletonModal } from "./ArmySingletonModal";
 import { BankruptcyEffectComp } from "./BankruptcyEffectComp";
 import { BarbarianRaidModal } from "./BarbarianRaidModal";
+import { ChristianEmpirePage } from "./ChristianEmpirePage";
 import { showPanel } from "./common/ShowPanel";
 import { FloatingTip } from "./components/FloatingTip";
 import { html } from "./components/RenderHTMLComp";
@@ -50,10 +52,12 @@ import { GameEventModal } from "./GameEventModal";
 import { GovernmentSingletonModal } from "./GovernmentSingletonModal";
 import { IconCatalog } from "./IconCatalog";
 import { InternalAffairsPage } from "./InternalAffairsPage";
+import { JustinianReconquestPage } from "./JustinianReconquestPage";
 import { LegacyUpgradeSingletonModal } from "./LegacyUpgradeSingletonModal";
 import { ProductionSingletonModal } from "./ProductionSingletonModal";
 import { SenatePage } from "./SenatePage";
 import { SocialClassSingletonModal } from "./SocialClassSingletonModal";
+import { TetrarchyPage } from "./TetrarchyPage";
 import { ThirdCenturyCrisisPage } from "./ThirdCenturyCrisisPage";
 import { TradeSingletonModal } from "./TradeSingletonModal";
 import { TreasuryPage } from "./TreasuryPage";
@@ -363,7 +367,7 @@ const ThirdCenturyCrisis: ITodo = {
    icon: () => IconCatalog.Crisis,
    className: () => "green",
    tooltip: (save) => {
-      if (!isThirdCenturyCrisisActive(save.state.playerProvince, save)) {
+      if (getTimedActionTimeLeft("ThirdCenturyCrisis", save.state.playerProvince, save) <= 0) {
          return null;
       }
       return (
@@ -378,6 +382,75 @@ const ThirdCenturyCrisis: ITodo = {
    },
    onClick: () => {
       showPanel(ThirdCenturyCrisisPage, {});
+   },
+};
+
+const Tetrarchy: ITodo = {
+   name: () => TimedActions.Tetrarchy.name(),
+   icon: () => IconCatalog.Tetrarchy,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.Tetrarchy.name(),
+               formatNumber(getTimedActionTimeLeft("Tetrarchy", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(TetrarchyPage, {});
+   },
+};
+
+const ChristianEmpire: ITodo = {
+   name: () => TimedActions.ChristianEmpire.name(),
+   icon: () => IconCatalog.ChiRho,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("ChristianEmpire", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.ChristianEmpire.name(),
+               formatNumber(getTimedActionTimeLeft("ChristianEmpire", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(ChristianEmpirePage, {});
+   },
+};
+
+const JustinianReconquest: ITodo = {
+   name: () => TimedActions.JustinianReconquest.name(),
+   icon: () => IconCatalog.Reconquest,
+   className: () => "green",
+   tooltip: (save) => {
+      if (getTimedActionTimeLeft("JustinianReconquest", save.state.playerProvince, save) <= 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {$t(
+               L.$1IsOngoing$2MonthsLeftClickToViewDetails,
+               TimedActions.JustinianReconquest.name(),
+               formatNumber(getTimedActionTimeLeft("JustinianReconquest", save.state.playerProvince, save)),
+            )}
+         </div>
+      );
+   },
+   onClick: () => {
+      showPanel(JustinianReconquestPage, {});
    },
 };
 
@@ -800,6 +873,9 @@ const _Todos = {
    BarbarianRaid,
    SocialClassDissent,
    ThirdCenturyCrisis,
+   Tetrarchy,
+   ChristianEmpire,
+   JustinianReconquest,
    EcumenicalCouncil,
    TooFewRivals,
    VacantArmyGeneral,

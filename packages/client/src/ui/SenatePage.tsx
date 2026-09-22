@@ -1,13 +1,17 @@
 import { Switch } from "@mantine/core";
 import { hasFlag, toggleFlag } from "@project/shared/src/utils/Helper";
 import { finalizeCondition } from "../game/actions/GameAction";
-import { ProvinceFlags } from "../game/definitions/Province";
-import { hasNotProvinceUpgradeCondition } from "../game/definitions/ProvinceUpgrades";
+import { ProvinceFlags } from "../game/definitions/ProvinceState";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
 import { getRevealedConsulVotes } from "../game/logic/DiplomacyLogic";
 import { monthToDate } from "../game/logic/GameDateTime";
-import { getProvinceName, getProvinceStat, monthsToNextConsulElection } from "../game/logic/ProvinceLogic";
+import {
+   getProvinceName,
+   getProvinceStat,
+   monthsToNextConsulElection,
+   pledgeProvinceConsulVotesConditions,
+} from "../game/logic/ProvinceLogic";
 import { getProvinceResource } from "../game/logic/ResourceLogic";
 import { G } from "../utils/Global";
 import { refreshOnTypedEvent } from "../utils/Hook";
@@ -158,11 +162,7 @@ export function SenatePage(): React.ReactNode {
                                        name: $t(L.WeHavePledgedSupportToLessThan2Candidates),
                                        value: votes.size < 2,
                                     },
-                                    hasNotProvinceUpgradeCondition(
-                                       "OurOwnDestiny",
-                                       G.save.state.playerProvince,
-                                       G.save,
-                                    ),
+                                    ...pledgeProvinceConsulVotesConditions(G.save.state.playerProvince, G.save),
                                  ]),
                                  execute: () => {
                                     votes.add(i);

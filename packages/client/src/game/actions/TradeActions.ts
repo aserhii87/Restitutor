@@ -1,6 +1,7 @@
 import { $t, L } from "../../utils/i18n";
-import type { Province, TradeOffer } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
 import { TimedActions } from "../definitions/TimedAction";
+import type { TradeOffer } from "../definitions/Trade";
 import type { SaveGame } from "../GameState";
 import { toConditions } from "../logic/Calculation";
 import { getRelation, isWithinDiplomaticRange } from "../logic/DiplomacyLogic";

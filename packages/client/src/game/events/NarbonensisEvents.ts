@@ -389,6 +389,7 @@ export const NarbonensisEvents = {
       desc: () => $t(L.TheCorsicanMarriageSettlementDesc),
       condition: {
          province: new Set(["Narbonensis"]),
+         onMap: { Corsica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Corsica", save);
             yield* requirePeaceBetweenChecks(province, "Corsica", save);

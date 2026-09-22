@@ -3,7 +3,9 @@ import Alps from "../../assets/images/events/Alps.webp";
 import AmbroseBarsTheodosius from "../../assets/images/events/AmbroseBarsTheodosius.webp";
 import AncientRome from "../../assets/images/events/AncientRome.webp";
 import Aqueduct from "../../assets/images/events/Aqueduct.webp";
+import ArabCouncil from "../../assets/images/events/ArabCouncil.webp";
 import Arianism from "../../assets/images/events/Arianism.webp";
+import AthleticHonours from "../../assets/images/events/AthleticHonours.webp";
 import AttilasFeast from "../../assets/images/events/AttilasFeast.webp";
 import AugustineDeath from "../../assets/images/events/AugustineDeath.webp";
 import AugustineDebate from "../../assets/images/events/AugustineDebate.webp";
@@ -37,9 +39,11 @@ import CommodusDeath from "../../assets/images/events/CommodusDeath.webp";
 import ConstantineBaptism from "../../assets/images/events/ConstantineBaptism.webp";
 import ConstantinopleBuilt from "../../assets/images/events/ConstantinopleBuilt.webp";
 import CopperMine from "../../assets/images/events/CopperMine.webp";
+import Coronation from "../../assets/images/events/Coronation.webp";
 import CouncilOfTrent from "../../assets/images/events/CouncilOfTrent.webp";
 import DeciusDeath from "../../assets/images/events/DeciusDeath.webp";
 import DelphiOracle from "../../assets/images/events/DelphiOracle.webp";
+import DesertCaravan from "../../assets/images/events/DesertCaravan.webp";
 import DiocletianStatue from "../../assets/images/events/DiocletianStatue.webp";
 import Donatism from "../../assets/images/events/Donatism.webp";
 import DruidRitual from "../../assets/images/events/DruidRitual.webp";
@@ -92,10 +96,12 @@ import Nestorianism from "../../assets/images/events/Nestorianism.webp";
 import NicaeaCouncil from "../../assets/images/events/NicaeaCouncil.webp";
 import NumantiaFalls from "../../assets/images/events/NumantiaFalls.webp";
 import OliveHarvest from "../../assets/images/events/OliveHarvest.webp";
+import PapalGrant from "../../assets/images/events/PapalGrant.webp";
 import PaulPreaching from "../../assets/images/events/PaulPreaching.webp";
 import PeasantRevolt from "../../assets/images/events/PeasantRevolt.webp";
 import Pelagianism from "../../assets/images/events/Pelagianism.webp";
 import PhilosophySchool from "../../assets/images/events/PhilosophySchool.webp";
+import PlagueBurial from "../../assets/images/events/PlagueBurial.webp";
 import PompeiiFalls from "../../assets/images/events/PompeiiFalls.webp";
 import PompeiiRefugees from "../../assets/images/events/PompeiiRefugees.webp";
 import PontDuGard from "../../assets/images/events/PontDuGard.webp";
@@ -145,6 +151,7 @@ import StephenDebate from "../../assets/images/events/StephenDebate.webp";
 import StephenStoning from "../../assets/images/events/StephenStoning.webp";
 import StoneBridge from "../../assets/images/events/StoneBridge.webp";
 import SwordfishFishing from "../../assets/images/events/SwordfishFishing.webp";
+import TaxCollectors from "../../assets/images/events/TaxCollectors.webp";
 import TeutoburgBattle from "../../assets/images/events/TeutoburgBattle.webp";
 import TolbiacBattle from "../../assets/images/events/TolbiacBattle.webp";
 import ToledoBridge from "../../assets/images/events/ToledoBridge.webp";
@@ -200,10 +207,20 @@ export const EventImage = {
       credit: "Landscape with ruins and an aqueduct, Pierre Antoine Patel the younger",
       keywords: ["Rome", "Architecture", "Water", "Ruins"],
    },
+   ArabCouncil: {
+      url: ArabCouncil,
+      credit: "Arab Chieftains in Council (The Negotiator), Horace Vernet (1834)",
+      keywords: ["Chieftains", "Negotiation", "Gathering", "Encampment", "Tent"],
+   },
    Arianism: {
       url: Arianism,
       credit: "The Baptism of Constantine, Gianfrancesco Penni (c.1520)",
       keywords: ["Christianity", "Heresy", "Constantine", "Baptism"],
+   },
+   AthleticHonours: {
+      url: AthleticHonours,
+      credit: "Pindar Praising a Victor at the Olympic Games, Giuseppe Sciuti (1872)",
+      keywords: ["Pindar", "OlympicGames", "LaurelWreath", "Stadium", "Spectators", "Ceremony"],
    },
    AttilasFeast: {
       url: AttilasFeast,
@@ -375,6 +392,11 @@ export const EventImage = {
       credit: "Copper mining, Adolf Hoeffler (1853)",
       keywords: ["Mining", "Workers", "Industry", "Ore"],
    },
+   Coronation: {
+      url: Coronation,
+      credit: "The Coronation of Charlemagne, workshop of Raphael (1516-1517)",
+      keywords: ["Charlemagne", "Pope", "Emperor", "Crown", "Clergy", "Ceremony"],
+   },
    CouncilOfTrent: {
       url: CouncilOfTrent,
       credit: "The Council of Trent, Santa Maria Fresco in Trastevere, Rome (1588)",
@@ -389,6 +411,11 @@ export const EventImage = {
       url: DelphiOracle,
       credit: "The Oracle at Delphi, Hans Werner Schmidt (1920)",
       keywords: ["Greece", "Pythia", "Prophecy", "Temple"],
+   },
+   DesertCaravan: {
+      url: DesertCaravan,
+      credit: "Pilgrims Going to Mecca, Léon Belly (1861)",
+      keywords: ["Pilgrims", "Mecca", "Camels", "Travel", "Islam"],
    },
    DiocletianStatue: {
       url: DiocletianStatue,
@@ -651,6 +678,11 @@ export const EventImage = {
       credit: "Women Picking Olives, Vincent van Gogh Dutch (1889)",
       keywords: ["Agriculture", "Women", "Trees", "Mediterranean"],
    },
+   PapalGrant: {
+      url: PapalGrant,
+      credit: "The Donation of Rome (The Donation of Constantine), school of Raphael (1520-1524)",
+      keywords: ["Constantine", "Pope", "Donation", "Authority", "Church", "Rome"],
+   },
    PaulPreaching: {
       url: PaulPreaching,
       credit: "Saint Paul Preaching in Athens, Giovanni Paolo Panini (1734)",
@@ -670,6 +702,11 @@ export const EventImage = {
       url: PhilosophySchool,
       credit: "The School of Athens, Raphael (1509-1511)",
       keywords: ["Athens", "Education", "Scholars", "Philosophy"],
+   },
+   PlagueBurial: {
+      url: PlagueBurial,
+      credit: "Saint Sebastian Interceding for the Plague Stricken, Josse Lieferinxe (1497-1499)",
+      keywords: ["SaintSebastian", "Epidemic", "Shrouds", "Clergy", "Mourning", "City"],
    },
    PompeiiFalls: {
       url: PompeiiFalls,
@@ -916,6 +953,11 @@ export const EventImage = {
       url: SwordfishFishing,
       credit: "Swordfish fishing off Capri, Christian Frederik Ferdinand Thøming (c.1830)",
       keywords: ["Sea", "Boat", "Fishing", "Capri"],
+   },
+   TaxCollectors: {
+      url: TaxCollectors,
+      credit: "The Tax Collectors, Marinus van Reymerswaele (first half of the 16th century)",
+      keywords: ["Clerks", "Ledger", "Coins", "SealedDocuments", "Writing", "Administration"],
    },
    TeutoburgBattle: {
       url: TeutoburgBattle,

@@ -26,7 +26,9 @@ function updateModifier(): void {
             forEach(def.modifiers, (modifier, data) => {
                safePush(state.dynamicModifiers, modifier, {
                   ...data,
-                  name: $t(governor ? L.GovernorsTrait$1 : L.AdvisorsTrait$1, `${def.name()}, ${personName}`),
+                  name: governor
+                     ? $t(L.GovernorsTrait$1, `${def.name()}, ${personName}`)
+                     : $t(L.AdvisorsTrait$1, `${def.name()}, ${personName}`),
                });
             });
          });

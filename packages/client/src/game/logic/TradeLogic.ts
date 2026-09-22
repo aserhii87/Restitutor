@@ -4,8 +4,9 @@ import { finalizeBreakdown, type IValueBreakdown, makeValueBreakdown } from "../
 import { Buildings } from "../definitions/Building";
 import { Goods, Price } from "../definitions/Goods";
 import { LegacyUpgrades } from "../definitions/LegacyUpgrade";
-import type { ActiveTrade, Province, TradeOffer, TradeOfferBase } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
+import type { ActiveTrade, TradeOffer, TradeOfferBase } from "../definitions/Trade";
 import type { SaveGame } from "../GameState";
 import { getAttitudeTowards, getRelations } from "./DiplomacyLogic";
 import { hasLegacyUpgrade } from "./LegacyUpgradeLogic";

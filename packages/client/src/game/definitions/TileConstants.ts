@@ -96,6 +96,23 @@ export const EasternRomanEmpireProvinces: Province[] = keysOf(Province).filter(
    (province) => !WesternRomanEmpireProvinces.includes(province) && !(province in SpawnedProvinces),
 );
 
+export const WestCaesarProvinces: Province[] = [...GallicEmpireProvinces, "Britannia"] as const;
+
+export const WestAugustusProvinces: Province[] = [
+   ...HispaniaProvinces,
+   ...ItaliaProvinces,
+   ...AfricaProvinces,
+   "Raetia",
+] as const;
+
+export const EastCaesarProvinces: Province[] = [...BalkanProvinces, "Noricum", "Dacia"] as const;
+
+export const EastAugustusProvinces: Province[] = [
+   ...AnatoliaProvinces,
+   ...LevantProvinces,
+   ...AegyptusProvinces,
+] as const;
+
 export const PalmyreneEmpireProvinces: Province[] = [
    "Aegyptus",
    "Judea",

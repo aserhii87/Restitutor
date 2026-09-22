@@ -1,8 +1,6 @@
 import { $t, L } from "../../utils/i18n";
-import { durationToString } from "../definitions/Modifier";
 import { ChristianReligions } from "../definitions/Religion";
-import { TimedActions } from "../definitions/TimedAction";
-import { startTimedAction } from "../logic/TimedActionLogic";
+import { startTimedActionEffect } from "../logic/MissionLogic";
 import { EventImage } from "./EventImages";
 import type { IGameEventConfig } from "./GameEvents";
 
@@ -147,17 +145,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.AffirmTheNiceneCreed),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil1.name(),
-                        durationToString(TimedActions.EcumenicalCouncil1.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil1", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil1")],
          },
       ],
    },
@@ -173,17 +161,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.AffirmTheDivinityOfTheHolySpirit),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil2.name(),
-                        durationToString(TimedActions.EcumenicalCouncil2.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil2", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil2")],
          },
       ],
    },
@@ -199,17 +177,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.RecognizeMaryAsTheotokos),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil3.name(),
-                        durationToString(TimedActions.EcumenicalCouncil3.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil3", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil3")],
          },
       ],
    },
@@ -225,17 +193,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.AcceptTheChalcedonianDefinition),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil4.name(),
-                        durationToString(TimedActions.EcumenicalCouncil4.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil4", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil4")],
          },
       ],
    },
@@ -251,17 +209,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.CondemnTheThreeChapters),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil5.name(),
-                        durationToString(TimedActions.EcumenicalCouncil5.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil5", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil5")],
          },
       ],
    },
@@ -277,17 +225,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.AffirmTheTwoWillsOfChrist),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil6.name(),
-                        durationToString(TimedActions.EcumenicalCouncil6.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil6", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil6")],
          },
       ],
    },
@@ -303,17 +241,7 @@ export const ReligiousEvents = {
       buttons: [
          {
             label: () => $t(L.RestoreTheVenerationOfIcons),
-            custom: [
-               {
-                  desc: () =>
-                     $t(
-                        L.$1CommencesAndLastsFor$2,
-                        TimedActions.EcumenicalCouncil7.name(),
-                        durationToString(TimedActions.EcumenicalCouncil7.duration),
-                     ),
-                  execute: (province, save) => startTimedAction("EcumenicalCouncil7", province, save),
-               },
-            ],
+            custom: [startTimedActionEffect("EcumenicalCouncil7")],
          },
       ],
    },

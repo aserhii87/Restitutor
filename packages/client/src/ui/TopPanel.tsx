@@ -1,7 +1,7 @@
 import { formatNumber, range } from "@project/shared/src/utils/Helper";
 import { useCallback } from "react";
 import { Modifiers } from "../game/definitions/Modifier";
-import { ProvinceResourceNames } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { GameStateUpdated } from "../game/Events";
 import { getWarPower } from "../game/logic/ArmyLogic";
 import { getCurrentRelations, getDiplomats } from "../game/logic/DiplomacyLogic";

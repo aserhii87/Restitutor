@@ -2,6 +2,7 @@ import Administrative from "../assets/images/Administrative.svg";
 import Army from "../assets/images/Army.svg";
 import Bankruptcy from "../assets/images/Bankruptcy.svg";
 import Barbarian from "../assets/images/Barbarian.svg";
+import ChiRho from "../assets/images/ChiRho.svg";
 import Chronicle from "../assets/images/Chronicle.svg";
 import Core from "../assets/images/Core.svg";
 import Crisis from "../assets/images/Crisis.svg";
@@ -30,6 +31,7 @@ import Prestige from "../assets/images/Prestige.svg";
 import Production from "../assets/images/Production.svg";
 import Province from "../assets/images/Province.svg";
 import Rebellion from "../assets/images/Rebellion.svg";
+import Reconquest from "../assets/images/Reconquest.svg";
 import Rivals from "../assets/images/Rivals.svg";
 import Senate from "../assets/images/Senate.svg";
 import SocialClass from "../assets/images/SocialClass.svg";
@@ -37,6 +39,7 @@ import Stability from "../assets/images/Stability.svg";
 import Steam from "../assets/images/Steam.svg";
 import Tech from "../assets/images/Tech.svg";
 import TechTree from "../assets/images/TechTree.svg";
+import Tetrarchy from "../assets/images/Tetrarchy.svg";
 import Trade from "../assets/images/Trade.svg";
 import Treaty from "../assets/images/Treaty.svg";
 import Truce from "../assets/images/Truce.svg";
@@ -96,4 +99,7 @@ export const IconCatalog = {
    Wikipedia,
    Mandate,
    Crisis,
+   Tetrarchy,
+   ChiRho,
+   Reconquest,
 } as const satisfies Record<string, string>;

@@ -11,6 +11,7 @@ import type { IModifier } from "./Modifier";
 import { Province } from "./Province";
 import type { Religion } from "./Religion";
 import type { Terrain } from "./Terrain";
+import type { TileNameOverride } from "./TileNameOverrides";
 
 export interface ITileConfig {
    province?: Province;
@@ -19,7 +20,7 @@ export interface ITileConfig {
 }
 
 export interface ITileData {
-   nameOverride?: string;
+   nameOverride?: TileNameOverride;
    province: Province;
    coreProvinces: Set<Province>;
    originalProvince: Province;

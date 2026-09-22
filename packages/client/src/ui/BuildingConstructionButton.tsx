@@ -2,7 +2,7 @@ import { cls, entriesOf, type Tile } from "@project/shared/src/utils/Helper";
 import { useCallback } from "react";
 import { ConstructBuildingAction, DemolishBuildingAction } from "../game/actions/BuildingActions";
 import { type Building, Buildings } from "../game/definitions/Building";
-import { ProvinceResourceNames } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
 import { ActionButton } from "./ActionButton";

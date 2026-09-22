@@ -1,5 +1,5 @@
 import { Slider } from "@mantine/core";
-import { MaxGoodsTaxRate, MinGoodsTaxRate } from "../game/definitions/Province";
+import { MaxGoodsTaxRate, MinGoodsTaxRate } from "../game/definitions/ProvinceStats";
 import { GameStateUpdated } from "../game/Events";
 import { getProvinceStat, setProvinceStat } from "../game/logic/ProvinceLogic";
 import { G } from "../utils/Global";

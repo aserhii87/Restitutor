@@ -1,71 +1,71 @@
-# 0.25
+# 0.26
 
-## Regional Capital
+## Historical Narrative 476 - 800 AD
 
-- Added regional capitals, which can be established on owned core tiles for 1 Mandate, with a 10-year cooldown. Regional capital status can be abolished (does not reset cooldown)
-- Governing and maintenance costs now use the distance to the nearest provincial or regional capital, reducing costs for nearby tiles.
-- Regional capitals receive -45% governing cost, +5% defense, and -25 unrest, and have distinct map markers.
+With 0.26, I’ve settled on the scope of the game’s historical narrative. The Western Empire’s narrative ends in 476 AD, but choosing an endpoint for the Eastern Empire took more thought. Extending it all the way to 1453 AD would cover too much history to offer meaningful, balanced gameplay. I originally planned to end around 700 AD, but have now decided on 800 AD.
 
-## Right of Plunder
+Why 800 AD? Besides being a nice round number, it marks the year Charlemagne was crowned "Emperor of the Romans", which laid the groundwork for what would later become the Holy Roman Empire. That feels like a fitting endpoint for our narrative centered on classical Rome. The extra century also gives the gameplay surrounding the rise of Islam and the Arab conquests more room to develop.
 
-- Eliminating a barbarian polity unlocks a mission granting Right of Plunder.
-- Pillage buttons appear below the corresponding upgrade buttons on the tile page.
-- Pillage Infrastructure, Production, or Population on an non-core tile, reducing the selected upgrade and the tile's upgrade times by 1.
-- Pillaging refunds 50% of the corresponding government-point cost, calculated using the current owner's modifiers.
-- All pillaging actions share a 1-year province-wide cooldown. Each pillage adds a +10 unrest to that tile for 5 years.
+In this patch, I have added historical events from 476 - 800 AD. Several of the events have basic mechanic at the moment, and I plan to expand them into narrative mechanic later (like *Tetrarchy* and *Under the Sign of the Cross*).
 
-## Crisis of the 3rd Century
+## Tetrarchy Rework
 
-- The Age of Soldiers event in 235 AD now begins the Crisis of the Third Century, which lasts for 50 years. To simulate the political instability and rise of soldiers, several actions are available during this period.
-- Gain the Contested Imperium casus belli against a neighboring province for 5 years, with a shared 5-year cooldown. Wars declared with it inflict -10 Stability on the attacker for 2 years after ending, regardless of the outcome.
-- Convert 1 Consul Point into 1 General Skill Point every 5 years during the crisis.
-- Enact emergency measures granting +10% Prestige, +10% War Power, +10% Land Tax and Tile Output, or +1 Military Point at the cost of -10 Stability for 5 years.
+Tetrarchy has been reworked into a historical narrative mechanic. The empire's provinces are divided under four rulers: the Eastern and Western Augusti and Caesars. Tetrarchy starts in 293 AD and lasts for 31 years.
 
-## More Client Actions
+The following actions are available for provinces under the same emperor:
 
-- Grant Land: Give a client an owned core tile bordering them, gaining +10% Land Tax for 5 years. The tile cannot be a capital or contested in a war.
-- Adopt Client's Cause: Gain a client's casus belli against another province, preserving its remaining duration.
-- Request Consul Point: Transfer 1 available Consul Point from a client to your province.
+- **Arrange Official Visit:** Spend 25 Diplomatic Points to improve a province's attitude toward you by 25 for two years.
+- **Conduct Joint Drills:** Spend 25 Military Points to give both your province and another province +10% War Power for two years.
 
-## Dalmatia
+The following actions are available for provinces under different emperors:
 
-Dalmatia is now playable, with 10 historical events and 6 missions covering expansion into Italia and the Balkans, including bringing a weakened Pannonia under your protection as a client.
+- **Expand Spy Network:** Spend 25 Diplomatic Points to gain 25 infiltration.
+- **Incite Diplomatic Friction:** Spend 50 Diplomatic Points to gain a Diplomatic Dispute casus belli for two years.
 
-### Provincial Spirits
-- Highland Recruitment: +25% Manpower on core Hill and Mountain tiles.
-- Monuments of Power: +10% Prestige for each completed Provincial Great Work.
-- Capitals of Prosperity: +50% Land Tax, Tile Output, and Manpower on core tiles that are capitals or adjacent to your capitals, including regional capitals. Bonuses from multiple capitals do not stack.
+All actions share a two-year cooldown, so you will need to choose between strengthening ties, preparing for war, and building your spy network.
 
-## Legacy Tree
+## Under the Sign of the Cross
 
-- Added a legacy upgrade granting +1 regional capital slot.
-- Added a Christian Influence branch in legacy tree.
+Under the Sign of the Cross is a new historical narrative mechanic that starts with the Edict of Milan in 313 AD and lasts for 50 years. During the time period, each Christian province with a positive attitude toward you grants +1 Christian Influence per year.
 
-## Tech Tree
+The following actions are available:
 
-- Added Local Governance: +150 Governing Capacity and +1 regional capital slot.
-- Added Imperial Prosperity: +10% Prestige, +1 Trade Capacity, +5 Production Capacity, and +1 Diplomat.
-- Added Combined Arms: +50% Cavalry Unit Power and +10% War Power.
-- Changed Cultural Policy: Governing Capacity changed from +100 to +150.
+- **Issue Christian Edict:** Spend 1 Consul Point to gain 3 Christian Influence.
+- **Expand Church Administration:** Spend 10 Administrative Points per core tile to gain 1 Christian Influence per core tile.
+- **Sponsor Missionaries:** Spend 10 Diplomatic Points per core tile to gain 1 Christian Influence per core tile.
+- **Appoint Military Chaplains:** Spend 10 Military Points per core tile to gain 1 Christian Influence per core tile.
 
-## New Events
+## Justinian's Reconquest
 
-- All frontier provinces (Africa, Britannia, Mauretania, Noricum, Pannonia, and Raetia) get a new settlement mission.
-- Alpine Confederation: Unite Raetia and Noricum as either province.
-- Illyria: Unite Dalmatia and Pannonia as either province.
-- Danubian Alliance: Unite Raetia, Noricum, Pannonia, Dalmatia, Moesia, and Dacia as any of these provinces.
+Justinian's Reconquest is a new historical narrative mechanic that starts with The Dream of Justinian in 527 AD and lasts for 38 years.
 
-## Achievements
+The following actions are available to support your campaigns:
 
-- The Blue Danube: Complete the "The Danubian Alliance" mission.
+- **Honor the General:** Spend 1 General Skill Point to gain 1 Consul Point (1-year cooldown).
+- **Fund Reconquest:** Spend Gold equal to six months of your current army maintenance to gain +10% War Power for two years (2-year cooldown).
 
-## QoL & Balance
+You can also target other provinces in the Western Mediterranean with the following actions:
 
-- Add Culture and Religion map overlay - a legend is display on the bottom right panel.
-- Each 1% autonomy now reduces Tile Maintenance by 0.5%.
-- Reduce the initial cost of annexing a client. The time-based discount now goes up to 90%.
+- **Proclaim Restoration:** Spend 50 Administrative Points to gain a Reconquista casus belli against a province for two years.
+- **Subvert Defenders:** Spend 50 Diplomatic Points to reduce a province's Defense by 10% for two years.
+- **Claim Core:** Spend 1 Consul Point to make a tile owned by another province your core (without having to conquer it first).
 
-## Bugfix
+These three actions share a two-year cooldown.
 
-- Fix a bug where Barbarian polities can have NaN war power.
-- Fix a bug where plundering tiles does not reduce the upgrade counter.
+## Thracia
+
+Thracia province is now playable, with three unique Province Spirits:
+
+- **Born Commanders:** Gain 2 General Skill Points when appointing a new general.
+- **Pontic Hegemony:** Gain +2% War Power for each core Black Sea coastal tile.
+- **Campaign Requisitions:** Gain +10% Land Tax and Tile Output for 12 months after declaring war.
+
+Thracia also comes with 10 historical events spanning 214 - 784 AD and six missions. These offer opportunities to conquer Moesia and bring its remaining lands under your patronage, secure the crossings between the seas, and expand into Bithynia, Asia, or Macedonia.
+
+Two new regional unification events are also available. Annexing and coring all of Achaia, Epirus, Macedonia, and Thracia lets you choose between forming the **Graecia Empire** or the **Hellenic League**, with different rewards. Unifying the entire Balkans lets you form the **Balkan Empire**.
+
+
+## Bugfixes
+
+- Fixed a bug where patronage missions still show up even after it is no longer available.
+- Fixed a bug where automatic pledge support still works after enacting "Our Own Destiny".

@@ -344,6 +344,7 @@ export const SiciliaEvents = {
       desc: () => $t(L.TheSardinianMarriageSettlementDesc),
       condition: {
          province: new Set(["Sicilia"]),
+         onMap: { Sardinia: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Sardinia", save);
             yield* requirePeaceBetweenChecks(province, "Sardinia", save);
@@ -366,6 +367,7 @@ export const SiciliaEvents = {
       desc: () => $t(L.CorsicaLooksSouthDesc),
       condition: {
          province: new Set(["Sicilia"]),
+         onMap: { Corsica: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Corsica", save);
             yield* requirePeaceBetweenChecks(province, "Corsica", save);
@@ -388,6 +390,7 @@ export const SiciliaEvents = {
       desc: () => $t(L.APactAcrossTheStraitDesc),
       condition: {
          province: new Set(["Sicilia"]),
+         onMap: { Africa: true },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Africa", save);
             yield* requirePeaceBetweenChecks(province, "Africa", save);

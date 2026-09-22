@@ -6,7 +6,7 @@ const LANG_PATH = "./packages/client/src/languages";
 const EN_FILE_PATH = `${LANG_PATH}/en.ts`;
 const SOURCE_PATH = "./packages/";
 
-// HTML tags that require html() wrapper at call sites (add new tags here when used in en.ts)
+// HTML tags require rendering or an explicit deferred-rendering marker at call sites.
 const HTML_TAGS = ["i", "b", "q", "br"];
 // Chronicle markup tags (excluded from html() validation)
 const CHRONICLE_TAGS = ["Province", "Tile"];
@@ -35,7 +35,7 @@ function findKeysWithHtml(translations) {
 
 function collectWrappedTCallPositions(content) {
    const wrappedTCallPositions = new Set();
-   const htmlRe = /\b(?:html|renderMarkup)\(/g;
+   const htmlRe = /\b(?:html|renderMarkup|htmlText|markupText)\(/g;
    let htmlMatch;
 
    while ((htmlMatch = htmlRe.exec(content)) !== null) {
@@ -154,14 +154,14 @@ function main() {
             }
          }
 
-         // Check HTML-aware wrappers (html from RenderHTMLComp or renderMarkup from ParseMarkup).
+         // Deferred markers preserve strings for consumers that render HTML later.
          if (filePath.endsWith(".tsx") && keysWithHtml.has(key)) {
             if (!wrappedTCallPositions.has(match.index)) {
                const lineNum = getLineNumber(lineStarts, match.index);
                console.log(`❌ ${filePath}:${lineNum}`);
                console.log(`   Key: L.${key}`);
                console.log(`   Value: "${sourceTranslations[key]}"`);
-               console.log(`   HTML tags in content require html() or renderMarkup() wrapper`);
+               console.log(`   HTML tags in content require html(), renderMarkup(), htmlText(), or markupText() wrapper`);
                const line = getLineText(content, lineStarts, lineNum).trim();
                console.log(`   Call: ${line}`);
                htmlWrapperMissing = true;

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { finalizeCondition } from "../game/actions/GameAction";
 import { CasusBelli } from "../game/definitions/CasusBelli";
 import { Modifiers, modifierToString } from "../game/definitions/Modifier";
-import { Province, ProvinceResourceNames } from "../game/definitions/Province";
+import { Province } from "../game/definitions/Province";
+import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { type ChristianHeresy, Religion } from "../game/definitions/Religion";
 import { getTileName } from "../game/definitions/TileName";
 import { TimedActions } from "../game/definitions/TimedAction";
@@ -52,7 +53,8 @@ export function EcumenicalCouncilPage(): React.ReactNode {
          <div className="row mx10 my5">
             <div className="f1">
                {$t(
-                  L.CouncilEndsIn$1Months,
+                  L.$1EndsIn$2Months,
+                  TimedActions[council].name(),
                   formatNumber(getTimedActionTimeLeft(council, G.save.state.playerProvince, G.save)),
                )}
             </div>
@@ -73,7 +75,7 @@ export function EcumenicalCouncilPage(): React.ReactNode {
                   },
                   condition: finalizeCondition([
                      ...timedActionConditions(
-                        { action: "EcumenicalCouncilAction", label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown) },
+                        { action: "EcumenicalCouncilAction" },
                         G.save.state.playerProvince,
                         G.save,
                      ),
@@ -91,7 +93,7 @@ export function EcumenicalCouncilPage(): React.ReactNode {
                   </>
                )}
             >
-               {TimedActions.EcumenicalCouncilAction.name()}
+               {$t(L.SponsorDelegate)}
             </ActionButton>
             <ActionButton
                action={() => ({
@@ -100,7 +102,7 @@ export function EcumenicalCouncilPage(): React.ReactNode {
                   },
                   condition: finalizeCondition([
                      ...timedActionConditions(
-                        { action: "EcumenicalCouncilAction", label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown) },
+                        { action: "EcumenicalCouncilAction" },
                         G.save.state.playerProvince,
                         G.save,
                      ),
@@ -127,7 +129,7 @@ export function EcumenicalCouncilPage(): React.ReactNode {
                   },
                   condition: finalizeCondition([
                      ...timedActionConditions(
-                        { action: "EcumenicalCouncilAction", label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown) },
+                        { action: "EcumenicalCouncilAction" },
                         G.save.state.playerProvince,
                         G.save,
                      ),
@@ -154,7 +156,7 @@ export function EcumenicalCouncilPage(): React.ReactNode {
                   },
                   condition: finalizeCondition([
                      ...timedActionConditions(
-                        { action: "EcumenicalCouncilAction", label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown) },
+                        { action: "EcumenicalCouncilAction" },
                         G.save.state.playerProvince,
                         G.save,
                      ),
@@ -237,7 +239,6 @@ function ReconcilePanel(): React.ReactNode {
                                     ...timedActionConditions(
                                        {
                                           action: "EcumenicalCouncilAction",
-                                          label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown),
                                        },
                                        tileData.province,
                                        G.save,
@@ -340,7 +341,6 @@ function HeresyPanel({ heresy }: { heresy: ChristianHeresy }): React.ReactNode {
                         ...timedActionConditions(
                            {
                               action: "EcumenicalCouncilAction",
-                              label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown),
                            },
                            G.save.state.playerProvince,
                            G.save,
@@ -442,11 +442,7 @@ function CouncilActionButton({ modifier }: { modifier: Omit<IAddModifier, "save"
          action={() => ({
             cost: { christianity: 1 },
             condition: finalizeCondition([
-               ...timedActionConditions(
-                  { action: "EcumenicalCouncilAction", label: $t(L.EcumenicalCouncilActionsAreNotOnCooldown) },
-                  G.save.state.playerProvince,
-                  G.save,
-               ),
+               ...timedActionConditions({ action: "EcumenicalCouncilAction" }, G.save.state.playerProvince, G.save),
                ongoingEcumenicalCouncilCondition(G.save.state.playerProvince, G.save),
             ]),
             execute: () => {

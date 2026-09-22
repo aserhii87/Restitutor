@@ -3,14 +3,15 @@ import { $t, L } from "../../utils/i18n";
 import type { ICondition } from "../actions/GameAction";
 import { OfferPatronageAction } from "../actions/TreatyActions";
 import { Culture } from "../definitions/Culture";
-import {
-   type Province,
-   type ProvinceNameOverride,
-   ProvinceNameOverrides,
-   type ProvinceResource,
-   ProvinceResourceNames,
-} from "../definitions/Province";
+import { durationToString } from "../definitions/Modifier";
+import type { Province } from "../definitions/Province";
+import { type ProvinceNameOverride, ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
+import { type ProvinceResource, ProvinceResourceNames } from "../definitions/ProvinceResources";
 import { SpawnedProvinces } from "../definitions/SpawnedProvince";
+import { getTileName } from "../definitions/TileName";
+import type { TileNameOverride } from "../definitions/TileNameOverrides";
+import { TileNameOverrides } from "../definitions/TileNameOverrides";
+import { type TimedAction, TimedActions } from "../definitions/TimedAction";
 import { RefreshTiles } from "../Events";
 import type { ICustomEffect } from "../GameEffect";
 import type { SaveGame } from "../GameState";
@@ -28,6 +29,7 @@ import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
    addProvinceStat,
    ensureProvinceCapitals,
+   getBlackSeaCoastalTiles,
    getMediterraneanCoastalTiles,
    getProvinceCoreCoastalTileCount,
    getProvinceIncome,
@@ -37,7 +39,8 @@ import {
    setProvinceNameOverride,
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
-import { isCoreTile } from "./TileLogic";
+import { isCoreTile, setTileNameOverride } from "./TileLogic";
+import { getTimedActionTimeLeft, startTimedAction } from "./TimedActionLogic";
 import { dissolveAllTreaties, getAllies } from "./TreatyLogic";
 
 export function annexTiles({
@@ -100,6 +103,20 @@ export function tileIsOurCoreCondition(tile: Tile, province: Province, save: Sav
    };
 }
 
+export function provinceOnMapCondition(province: Province, save: SaveGame): ICondition {
+   return {
+      name: $t(L.$1IsOnTheMap, getProvinceName(province, save)),
+      value: !!save.state.provinces[province],
+   };
+}
+
+export function activeTimedActionCondition(action: TimedAction, province: Province, save: SaveGame): ICondition {
+   return {
+      name: $t(L.$1IsOngoing, TimedActions[action].name()),
+      value: getTimedActionTimeLeft(action, province, save) > 0,
+   };
+}
+
 export function forcePatronageEffect(client: Province): ICustomEffect {
    return {
       execute: (province, save) => {
@@ -115,11 +132,31 @@ export function setProvinceNameOverrideEffect(nameOverride: ProvinceNameOverride
    return {
       execute: (province, save) => {
          setProvinceNameOverride(province, nameOverride, save);
-         RefreshTiles.emit({ tiles: [], options: { visual: true } });
       },
       desc: (province, save) => {
          return $t(L.OurProvinceIsNowKnownAs$1, ProvinceNameOverrides[nameOverride]());
       },
+   };
+}
+
+export function setTileNameOverrideEffect(tile: Tile, nameOverride: TileNameOverride): ICustomEffect {
+   return {
+      execute: (province, save) => {
+         setTileNameOverride(tile, nameOverride, save);
+      },
+      desc: (province, save) => {
+         return $t(L.$1IsNowKnownAs$2, getTileName(tile, save), TileNameOverrides[nameOverride]());
+      },
+   };
+}
+
+export function startTimedActionEffect(action: TimedAction): ICustomEffect {
+   return {
+      desc: (province, save) => {
+         const config = TimedActions[action];
+         return $t(L.$1StartsAndLastsFor$2, config.name(), durationToString(config.duration));
+      },
+      execute: (province, save) => startTimedAction(action, province, save),
    };
 }
 
@@ -254,6 +291,13 @@ export function* marriageChecks(province1: Province, province2: Province, save: 
 export function* mediterraneanCoastChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
    const coast = getMediterraneanCoastalTiles(true, province, save);
    (yield coast.length >= minimum)?.describe($t(L.AnnexAndCore$1MediterraneanCoastalTiles, formatNumber(minimum)), {
+      progress: [coast.length, minimum],
+   });
+}
+
+export function* blackSeaCoastChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
+   const coast = getBlackSeaCoastalTiles(true, province, save);
+   (yield coast.length >= minimum)?.describe($t(L.AnnexAndCore$1BlackSeaCoastalTiles, formatNumber(minimum)), {
       progress: [coast.length, minimum],
    });
 }

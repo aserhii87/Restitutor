@@ -373,6 +373,7 @@ export const AquitaniaEvents = {
       desc: () => $t(L.TheSubmissionOfNarbonensisDesc),
       condition: {
          province: new Set(["Aquitania"]),
+         onMap: { Narbonensis: true },
          annexAndCore: { Narbonensis: Math.ceil(getOriginalTileCount("Narbonensis") * 0.7) },
          conditions: function* (province, save): ConditionChecks {
             yield* requireNoTreatyBetweenChecks(["Patron"], province, "Narbonensis", save);

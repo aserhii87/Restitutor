@@ -29,6 +29,7 @@ const _Culture = {
    Sardinian: { name: () => $t(L.CultureSardinian), code: "SA" },
    Corsican: { name: () => $t(L.CultureCorsican), code: "CO" },
    Hunnic: { name: () => $t(L.CultureHunnic), code: "HU" },
+   Steppe: { name: () => $t(L.CultureSteppe), code: "ST" },
 } as const satisfies Record<string, ICultureConfig>;
 
 export type Culture = keyof typeof _Culture;

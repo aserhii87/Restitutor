@@ -5,12 +5,14 @@ import { finalizeBreakdown, finalizeCondition, type IValueBreakdown, makeValueBr
 import { type Building, Buildings } from "../definitions/Building";
 import type { CultureReligionStatus } from "../definitions/CultureReligionStatus";
 import { Price } from "../definitions/Goods";
-import type { GovernorPower, Province } from "../definitions/Province";
+import type { Province } from "../definitions/Province";
+import type { GovernorPower } from "../definitions/ProvinceResources";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { ChristianHeresy, isChristianReligion } from "../definitions/Religion";
 import { BarbarianRaidNegativeEffect } from "../definitions/SpawnedProvince";
 import { Tech } from "../definitions/Tech";
 import type { Terrain } from "../definitions/Terrain";
+import type { TileNameOverride } from "../definitions/TileNameOverrides";
 import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { isLand, terrainOf } from "../Land";
@@ -1031,4 +1033,12 @@ export function getProvincesByDistance(tile: Tile, save: SaveGame): Province[] {
          return MapGrid.distanceTile(d1.capital, tile) - MapGrid.distanceTile(d2.capital, tile);
       })
       .map(([p]) => p);
+}
+
+export function setTileNameOverride(tile: Tile, nameOverride: TileNameOverride, save: SaveGame): void {
+   const tileData = save.state.tiles.get(tile);
+   if (!tileData) {
+      return;
+   }
+   tileData.nameOverride = nameOverride;
 }

@@ -19,14 +19,9 @@ import {
    modifierToString,
    modifierValueToString,
 } from "./definitions/Modifier";
-import {
-   Province,
-   type ProvinceResource,
-   ProvinceResourceNames,
-   type ProvinceStat,
-   ProvinceStatNames,
-   type TradeOfferBase,
-} from "./definitions/Province";
+import { Province } from "./definitions/Province";
+import { type ProvinceResource, ProvinceResourceNames } from "./definitions/ProvinceResources";
+import { type ProvinceStat, ProvinceStatNames } from "./definitions/ProvinceStats";
 import { addProvinceUpgrade, type ProvinceUpgrade, ProvinceUpgrades } from "./definitions/ProvinceUpgrades";
 import { ChristianHeresy, isChristianReligion, Religion } from "./definitions/Religion";
 import type { SpawnedProvince } from "./definitions/SpawnedProvince";
@@ -34,6 +29,7 @@ import { SpawnedProvinces } from "./definitions/SpawnedProvince";
 import type { ITileData } from "./definitions/Tile";
 import { getTileName } from "./definitions/TileName";
 import { TimedActions } from "./definitions/TimedAction";
+import type { TradeOfferBase } from "./definitions/Trade";
 import { RefreshTiles } from "./Events";
 import { filterProvinces } from "./events/GameEventLogic";
 import type { SaveGame } from "./GameState";
