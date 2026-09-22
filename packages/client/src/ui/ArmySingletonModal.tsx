@@ -646,16 +646,14 @@ function GeneralSkillPointTooltip(): React.ReactNode {
    return (
       <>
          <div className="h2">{ProvinceResourceNames.generalSkillPoint()}</div>
-         <div className="row mx10 my5">
+         <div className="row m10">
             <div className="f1">{$t(L.AvailableEarned)}</div>
             <div>
                {skillPoints[0] - skillPoints[1]}/{skillPoints[0]}
             </div>
          </div>
-         <div className="divider" />
-         <div className="mx10 my5">{html($t(L.GeneralSkillPointsFromWar))}</div>
-         <div className="divider" />
-         <div className="mx10 my5">{$t(L.GeneralSkillPointsCarryover)}</div>
+         <div className="m10">{html($t(L.GeneralSkillPointsFromWar))}</div>
+         <div className="m10 text-primary">{$t(L.GeneralSkillPointsCarryover)}</div>
       </>
    );
 }

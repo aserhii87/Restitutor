@@ -231,28 +231,28 @@ export class LegacyUpgradeDefinitions {
       requires: ["Diplomatic1"],
       position: [2, -1],
       modifiers: {
-         Prestige: { type: "add", value: 10 },
+         Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
    Prestige2: ILegacyUpgradeModifier = {
       requires: ["Prestige1"],
       position: [3, -1],
       modifiers: {
-         Prestige: { type: "add", value: 10 },
+         Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
    Prestige3: ILegacyUpgradeModifier = {
       requires: ["Prestige2"],
       position: [4, -1],
       modifiers: {
-         Prestige: { type: "add", value: 10 },
+         Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
    Prestige4: ILegacyUpgradeModifier = {
       requires: ["Prestige3"],
       position: [5, -1],
       modifiers: {
-         Prestige: { type: "add", value: 10 },
+         Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
    DiplomaticRange1: ILegacyUpgradeModifier = {
