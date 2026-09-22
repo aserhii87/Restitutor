@@ -42,18 +42,62 @@ export async function resetGame(): Promise<void> {
 }
 
 export async function loadFromFile(): Promise<SaveGame> {
-   const [fileHandle] = await window.showOpenFilePicker();
-   const file = await fileHandle.getFile();
+   let file: File;
+   if (typeof window.showOpenFilePicker === "function") {
+      const [fileHandle] = await window.showOpenFilePicker();
+      file = await fileHandle.getFile();
+   } else {
+      file = await new Promise<File>((resolve, reject) => {
+         const input = document.createElement("input");
+         input.type = "file";
+         input.hidden = true;
+         const cancel = () => {
+            input.remove();
+            reject(new DOMException("File selection cancelled", "AbortError"));
+         };
+         input.addEventListener("cancel", cancel, { once: true });
+         input.addEventListener(
+            "change",
+            () => {
+               const selectedFile = input.files?.[0];
+               if (!selectedFile) {
+                  cancel();
+                  return;
+               }
+               input.remove();
+               resolve(selectedFile);
+            },
+            { once: true },
+         );
+         document.body.append(input);
+         input.click();
+      });
+   }
    const json = await file.arrayBuffer();
    return jsonDecode<SaveGame>(decompressFromUint8Array(new Uint8Array(json)));
 }
 
-export async function saveToFile(save: SaveGame): Promise<FileSystemFileHandle> {
-   const fileHandle = await window.showSaveFilePicker({
-      suggestedName: `${save.state.playerProvince}_${dateToYYYYMMDD(getGameDate(save.state.tick))}_V${save.options.version}.save`,
-   });
-   const writable = await fileHandle.createWritable();
-   await writable.write(compressToUint8Array(jsonEncode(save)) as Uint8Array<ArrayBuffer>);
-   await writable.close();
-   return fileHandle;
+export async function saveToFile(save: SaveGame): Promise<string | null> {
+   const name = `${save.state.playerProvince}_${dateToYYYYMMDD(getGameDate(save.state.tick))}_V${save.options.version}.save`;
+   if (typeof window.showSaveFilePicker === "function") {
+      const fileHandle = await window.showSaveFilePicker({ suggestedName: name });
+      const writable = await fileHandle.createWritable();
+      await writable.write(compressToUint8Array(jsonEncode(save)) as Uint8Array<ArrayBuffer>);
+      await writable.close();
+      return fileHandle.name;
+   }
+   const data = compressToUint8Array(jsonEncode(save)) as Uint8Array<ArrayBuffer>;
+   const url = URL.createObjectURL(new Blob([data], { type: "application/octet-stream" }));
+   const link = document.createElement("a");
+   link.href = url;
+   link.download = name;
+   document.body.append(link);
+   try {
+      link.click();
+   } finally {
+      link.remove();
+      // Give the browser time to consume the URL before releasing it.
+      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+   }
+   return null;
 }

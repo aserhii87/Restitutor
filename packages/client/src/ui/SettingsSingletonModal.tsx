@@ -16,7 +16,7 @@ import { GameOptionUpdated } from "../game/Events";
 import { GameOptionFlag } from "../game/GameOption";
 import { getWebglRenderInfo } from "../game/GetWebglRenderInfo";
 import { loadFromFile, resetGame, saveGame, saveToFile } from "../game/LoadSave";
-import { showSuccess } from "../game/logic/AlertLogic";
+import { showError, showSuccess } from "../game/logic/AlertLogic";
 import { getShortcutKey, isShortcutEqual, makeShortcut } from "../game/Shortcut";
 import { DefaultShortcuts, Shortcut, type Shortcut as ShortcutId } from "../game/ShortcutDefinition";
 import { getVersion } from "../game/Version";
@@ -230,8 +230,16 @@ function SettingsGeneralTab(): React.ReactNode {
             <button
                className="btn"
                onClick={async () => {
-                  const fileHandle = await saveToFile(G.save);
-                  showSuccess($t(L.GameSavedToFile$1, fileHandle.name));
+                  try {
+                     const fileName = await saveToFile(G.save);
+                     if (fileName) {
+                        showSuccess($t(L.GameSavedToFile$1, fileName));
+                     }
+                  } catch (error) {
+                     if (!(error instanceof DOMException && error.name === "AbortError")) {
+                        showError(String(error));
+                     }
+                  }
                }}
             >
                {$t(L.SaveToFile)}
@@ -239,9 +247,16 @@ function SettingsGeneralTab(): React.ReactNode {
             <button
                className="btn"
                onClick={async () => {
-                  G.save = await loadFromFile();
-                  saveGame(G.save);
-                  window.location.reload();
+                  try {
+                     const save = await loadFromFile();
+                     await saveGame(save);
+                     G.save = save;
+                     window.location.reload();
+                  } catch (error) {
+                     if (!(error instanceof DOMException && error.name === "AbortError")) {
+                        showError(String(error));
+                     }
+                  }
                }}
             >
                {$t(L.LoadFromFile)}
