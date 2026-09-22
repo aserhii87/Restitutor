@@ -29,24 +29,23 @@ export function ChangeLanguageComp(): React.ReactNode {
                }
             }}
          />
-         {(G.save.options.language !== "en" || isLanguageChanged()) && <div className="h5" />}
-         {G.save.options.language !== "en" && (
-            <div className="row text-sm text-dimmed my5 pointer" onClick={() => openUrl(TranslationUrl)}>
-               <div className="f1">{$t(L.HelpImproveThisTranslationOnGithub)}</div>
-               <div className="mi sm pointer">open_in_new</div>
-            </div>
-         )}
          {isLanguageChanged() && (
-            <div className="row my5 text-sm">
+            <div className="box row p10 my10 text-sm yellow">
                <div className="f1 text-yellow">{$t(L.SomeInGameTextsRequireAGameReloadToDisplayInTheNewLanguage)}</div>
                <button
-                  className="btn"
+                  className="btn primary"
                   onClick={() => {
                      saveGame(G.save).then(() => window.location.reload());
                   }}
                >
                   {$t(L.Reload)}
                </button>
+            </div>
+         )}
+         {G.save.options.language !== "en" && (
+            <div className="row text-sm text-dimmed my5 pointer" onClick={() => openUrl(TranslationUrl)}>
+               <div className="f1">{$t(L.HelpImproveThisTranslationOnGithub)}</div>
+               <div className="mi sm pointer">open_in_new</div>
             </div>
          )}
       </>
