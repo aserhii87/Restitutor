@@ -236,6 +236,12 @@ function SettingsGeneralTab(): React.ReactNode {
                         showSuccess($t(L.GameSavedToFile$1, fileName));
                      }
                   } catch (error) {
+                     if (error instanceof DOMException && error.name === "AbortError") {
+                        return;
+                     }
+                     if (error instanceof Error && error.message === "Share canceled") {
+                        return;
+                     }
                      showError(String(error));
                   }
                }}
