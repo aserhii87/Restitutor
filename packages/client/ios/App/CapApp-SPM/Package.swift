@@ -13,6 +13,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "8.5.2"),
         .package(name: "CapacitorFilesystem", path: "../../../../../node_modules/.pnpm/@capacitor+filesystem@8.1.3_@capacitor+core@8.5.2/node_modules/@capacitor/filesystem"),
+        .package(name: "CapacitorShare", path: "../../../../../node_modules/.pnpm/@capacitor+share@8.0.2_@capacitor+core@8.5.2/node_modules/@capacitor/share"),
         .package(name: "CapawesomeCapacitorLiveUpdate", path: "../../../../../node_modules/.pnpm/@capawesome+capacitor-live-_7a1ae831cad9398fc934af218960e87a/node_modules/@capawesome/capacitor-live-update"),
         .package(name: "CapacitorPluginCdvPurchase", path: "../../../../../node_modules/.pnpm/capacitor-plugin-cdv-purchase@13.18.0_@capacitor+core@8.5.2/node_modules/capacitor-plugin-cdv-purchase")
     ],
@@ -23,6 +24,7 @@ let package = Package(
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
                 .product(name: "CapacitorFilesystem", package: "CapacitorFilesystem"),
+                .product(name: "CapacitorShare", package: "CapacitorShare"),
                 .product(name: "CapawesomeCapacitorLiveUpdate", package: "CapawesomeCapacitorLiveUpdate"),
                 .product(name: "CapacitorPluginCdvPurchase", package: "CapacitorPluginCdvPurchase")
             ]

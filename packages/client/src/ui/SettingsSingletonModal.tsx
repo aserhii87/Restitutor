@@ -236,9 +236,7 @@ function SettingsGeneralTab(): React.ReactNode {
                         showSuccess($t(L.GameSavedToFile$1, fileName));
                      }
                   } catch (error) {
-                     if (!(error instanceof DOMException && error.name === "AbortError")) {
-                        showError(String(error));
-                     }
+                     showError(String(error));
                   }
                }}
             >

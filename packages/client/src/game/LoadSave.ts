@@ -1,3 +1,6 @@
+import { Capacitor } from "@capacitor/core";
+import { Directory, Filesystem } from "@capacitor/filesystem";
+import { Share } from "@capacitor/share";
 import { dateToYYYYMMDD } from "@project/shared/src/utils/Helper";
 import { jsonDecode, jsonEncode } from "@project/shared/src/utils/Serialization";
 import { compressToUint8Array, decompressFromUint8Array } from "lz-string";
@@ -79,6 +82,24 @@ export async function loadFromFile(): Promise<SaveGame> {
 
 export async function saveToFile(save: SaveGame): Promise<string | null> {
    const name = `${save.state.playerProvince}_${dateToYYYYMMDD(getGameDate(save.state.tick))}_V${save.options.version}.save`;
+   if (Capacitor.isNativePlatform()) {
+      const data = compressToUint8Array(jsonEncode(save)) as Uint8Array<ArrayBuffer>;
+      const base64 = await new Promise<string>((resolve, reject) => {
+         const reader = new FileReader();
+         reader.onload = () => resolve((reader.result as string).split(",")[1]);
+         reader.onerror = () => reject(reader.error);
+         reader.readAsDataURL(new Blob([data], { type: "application/octet-stream" }));
+      });
+      const { uri } = await Filesystem.writeFile({
+         path: `exports/${crypto.randomUUID()}/${name}`,
+         directory: Directory.Cache,
+         data: base64,
+         recursive: true,
+      });
+      // Keep the cached file available while the receiving app reads it.
+      await Share.share({ files: [uri] });
+      return null;
+   }
    if (typeof window.showSaveFilePicker === "function") {
       const fileHandle = await window.showSaveFilePicker({ suggestedName: name });
       const writable = await fileHandle.createWritable();
