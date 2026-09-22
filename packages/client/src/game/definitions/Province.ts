@@ -208,7 +208,7 @@ export const Province = {
       name: () => $t(L.ProvinceThracia),
       culture: "Thracian",
       religion: "GrecoRoman",
-      upgrades: [],
+      upgrades: ["BornCommanders", "PonticHegemony", "CampaignRequisitions"],
    },
    Suebi: { code: "SU", name: () => $t(L.ProvinceSuebi), culture: "Germanic", religion: "Germanic", upgrades: [] },
    Visigoths: {
@@ -281,6 +281,7 @@ export const EnabledProvinces: Province[] = [
    "Noricum",
    "Pannonia",
    "Dalmatia",
+   "Thracia",
 ];
 EnabledProvinces.sort();
 export const AlwaysFreeProvinces = new Set<Province>(["Lugdunensis"]);

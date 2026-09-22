@@ -5,6 +5,7 @@ import AncientRome from "../../assets/images/events/AncientRome.webp";
 import Aqueduct from "../../assets/images/events/Aqueduct.webp";
 import ArabCouncil from "../../assets/images/events/ArabCouncil.webp";
 import Arianism from "../../assets/images/events/Arianism.webp";
+import AthleticHonours from "../../assets/images/events/AthleticHonours.webp";
 import AttilasFeast from "../../assets/images/events/AttilasFeast.webp";
 import AugustineDeath from "../../assets/images/events/AugustineDeath.webp";
 import AugustineDebate from "../../assets/images/events/AugustineDebate.webp";
@@ -150,6 +151,7 @@ import StephenDebate from "../../assets/images/events/StephenDebate.webp";
 import StephenStoning from "../../assets/images/events/StephenStoning.webp";
 import StoneBridge from "../../assets/images/events/StoneBridge.webp";
 import SwordfishFishing from "../../assets/images/events/SwordfishFishing.webp";
+import TaxCollectors from "../../assets/images/events/TaxCollectors.webp";
 import TeutoburgBattle from "../../assets/images/events/TeutoburgBattle.webp";
 import TolbiacBattle from "../../assets/images/events/TolbiacBattle.webp";
 import ToledoBridge from "../../assets/images/events/ToledoBridge.webp";
@@ -214,6 +216,11 @@ export const EventImage = {
       url: Arianism,
       credit: "The Baptism of Constantine, Gianfrancesco Penni (c.1520)",
       keywords: ["Christianity", "Heresy", "Constantine", "Baptism"],
+   },
+   AthleticHonours: {
+      url: AthleticHonours,
+      credit: "Pindar Praising a Victor at the Olympic Games, Giuseppe Sciuti (1872)",
+      keywords: ["Pindar", "OlympicGames", "LaurelWreath", "Stadium", "Spectators", "Ceremony"],
    },
    AttilasFeast: {
       url: AttilasFeast,
@@ -946,6 +953,11 @@ export const EventImage = {
       url: SwordfishFishing,
       credit: "Swordfish fishing off Capri, Christian Frederik Ferdinand Thøming (c.1830)",
       keywords: ["Sea", "Boat", "Fishing", "Capri"],
+   },
+   TaxCollectors: {
+      url: TaxCollectors,
+      credit: "The Tax Collectors, Marinus van Reymerswaele (first half of the 16th century)",
+      keywords: ["Clerks", "Ledger", "Coins", "SealedDocuments", "Writing", "Administration"],
    },
    TeutoburgBattle: {
       url: TeutoburgBattle,

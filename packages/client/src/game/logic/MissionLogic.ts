@@ -29,6 +29,7 @@ import { getCulturePercentage } from "./InternalAffairsLogic";
 import {
    addProvinceStat,
    ensureProvinceCapitals,
+   getBlackSeaCoastalTiles,
    getMediterraneanCoastalTiles,
    getProvinceCoreCoastalTileCount,
    getProvinceIncome,
@@ -290,6 +291,13 @@ export function* marriageChecks(province1: Province, province2: Province, save: 
 export function* mediterraneanCoastChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
    const coast = getMediterraneanCoastalTiles(true, province, save);
    (yield coast.length >= minimum)?.describe($t(L.AnnexAndCore$1MediterraneanCoastalTiles, formatNumber(minimum)), {
+      progress: [coast.length, minimum],
+   });
+}
+
+export function* blackSeaCoastChecks(minimum: number, province: Province, save: SaveGame): ConditionChecks {
+   const coast = getBlackSeaCoastalTiles(true, province, save);
+   (yield coast.length >= minimum)?.describe($t(L.AnnexAndCore$1BlackSeaCoastalTiles, formatNumber(minimum)), {
       progress: [coast.length, minimum],
    });
 }

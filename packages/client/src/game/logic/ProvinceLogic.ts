@@ -32,7 +32,7 @@ import {
    SpawnedProvinces,
 } from "../definitions/SpawnedProvince";
 import { getBorderingProvinces } from "../definitions/Tile";
-import { MediterraneanTiles, StraitOfGibraltarTiles, Tiles } from "../definitions/TileConstants";
+import { BlackSeaTiles, MediterraneanTiles, StraitOfGibraltarTiles, Tiles } from "../definitions/TileConstants";
 import { GameStateUpdated, RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { getSeaComponent } from "../Land";
@@ -758,6 +758,14 @@ export function isTileConnectedBySea(tile: Tile, province: Province, save: SaveG
 }
 
 export function getMediterraneanCoastalTiles(requireCore: boolean, province: Province, save: SaveGame): Tile[] {
+   return getCoastalTiles(MediterraneanTiles, requireCore, province, save);
+}
+
+export function getBlackSeaCoastalTiles(requireCore: boolean, province: Province, save: SaveGame): Tile[] {
+   return getCoastalTiles(BlackSeaTiles, requireCore, province, save);
+}
+
+function getCoastalTiles(sea: Set<Tile>, requireCore: boolean, province: Province, save: SaveGame): Tile[] {
    const result: Tile[] = [];
    for (const [tile, data] of save.state.tiles) {
       if (data.province !== province) {
@@ -767,7 +775,7 @@ export function getMediterraneanCoastalTiles(requireCore: boolean, province: Pro
          continue;
       }
       for (const neighbor of MapGrid.getNeighbors(tileToPoint(tile))) {
-         if (MediterraneanTiles.has(pointToTile(neighbor))) {
+         if (sea.has(pointToTile(neighbor))) {
             result.push(tile);
             break;
          }

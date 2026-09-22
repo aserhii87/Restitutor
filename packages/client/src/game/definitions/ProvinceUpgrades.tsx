@@ -319,6 +319,18 @@ const _ProvinceUpgrades = {
       name: () => $t(L.CapitalsOfProsperity),
       desc: () => $t(L.CapitalsOfProsperityDesc$1, "+50%"),
    },
+   BornCommanders: {
+      name: () => $t(L.BornCommanders),
+      desc: () => $t(L.$1GeneralSkillPointsWhenAppointingANewGeneral, "+2"),
+   },
+   PonticHegemony: {
+      name: () => $t(L.PonticHegemony),
+      desc: () => $t(L.$1WarPowerForEachCoreBlackSeaCoastalTile, "+2%"),
+   },
+   CampaignRequisitions: {
+      name: () => $t(L.CampaignRequisitions),
+      desc: () => $t(L.CampaignRequisitionsEffect$1$2, "+10%", "12"),
+   },
 } as const satisfies Record<string, IProvinceUpgrade>;
 
 export type ProvinceUpgrade = keyof typeof _ProvinceUpgrades;

@@ -7,6 +7,7 @@ import { unlockAchievement } from "../Achievement";
 import { CasusBelli } from "../definitions/CasusBelli";
 import { addChronicleEntry } from "../definitions/Chronicle";
 import type { Province } from "../definitions/Province";
+import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { RefreshTiles } from "../Events";
 import type { SaveGame } from "../GameState";
 import { toConditions } from "../logic/Calculation";
@@ -241,6 +242,19 @@ export function doOneTimeConsequences(
          province: attacker,
          save: save,
       });
+   }
+   if (hasProvinceUpgrade("CampaignRequisitions", attacker, save)) {
+      for (const modifier of ["LandTax", "TileOutput"] as const) {
+         addModifier({
+            modifier,
+            type: "multiply",
+            name: ProvinceUpgrades.CampaignRequisitions.name(),
+            value: 0.1,
+            duration: 12,
+            province: attacker,
+            save,
+         });
+      }
    }
    if (casusBelli === "HumiliateRival") {
       addModifier({

@@ -9,6 +9,7 @@ import type { ConditionChecks } from "../logic/Calculation";
 import { AfricaEvents } from "./AfricaEvents";
 import { AquitaniaEvents } from "./AquitaniaEvents";
 import { BaeticaEvents } from "./BaeticaEvents";
+import { BalkanEvents } from "./BalkanEvents";
 import { BelgicaEvents } from "./BelgicaEvents";
 import { BritanniaEvents } from "./BritanniaEvents";
 import { DalmatiaEvents } from "./DalmatiaEvents";
@@ -32,6 +33,7 @@ import { RandomEvents } from "./RandomEvents";
 import { ReligiousEvents } from "./ReligiousEvents";
 import { SiciliaEvents } from "./SiciliaEvents";
 import { TarraconensisEvents } from "./TarraconensisEvents";
+import { ThraciaEvents } from "./ThraciaEvents";
 
 export interface IGameEventButton extends IGameEffect {
    label: () => string;
@@ -73,6 +75,7 @@ const _GameEvents = {
    ...NoricumEvents,
    ...PannoniaEvents,
    ...DalmatiaEvents,
+   ...ThraciaEvents,
    ...TarraconensisEvents,
    ...LusitaniaEvents,
    ...BaeticaEvents,
@@ -84,6 +87,7 @@ const _GameEvents = {
    ...GallicEmpireEvents,
    ...HispaniaEvents,
    ...DanubianEvents,
+   ...BalkanEvents,
    ...ReligiousEvents,
    ...MissionEvents,
    // These should not appear in `MissionPage`
