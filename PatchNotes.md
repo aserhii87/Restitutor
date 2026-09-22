@@ -52,6 +52,19 @@ You can also target other provinces in the Western Mediterranean with the follow
 
 These three actions share a two-year cooldown.
 
+## Thracia
+
+Thracia province is now playable, with three unique Province Spirits:
+
+- **Born Commanders:** Gain 2 General Skill Points when appointing a new general.
+- **Pontic Hegemony:** Gain +2% War Power for each core Black Sea coastal tile.
+- **Campaign Requisitions:** Gain +10% Land Tax and Tile Output for 12 months after declaring war.
+
+Thracia also comes with 10 historical events spanning 214 - 784 AD and six missions. These offer opportunities to conquer Moesia and bring its remaining lands under your patronage, secure the crossings between the seas, and expand into Bithynia, Asia, or Macedonia.
+
+Two new regional unification events are also available. Annexing and coring all of Achaia, Epirus, Macedonia, and Thracia lets you choose between forming the **Graecia Empire** or the **Hellenic League**, with different rewards. Unifying the entire Balkans lets you form the **Balkan Empire**.
+
+
 ## Bugfixes
 
 - Fixed a bug where patronage missions still show up even after it is no longer available.
