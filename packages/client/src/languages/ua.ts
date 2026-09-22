@@ -4063,8 +4063,8 @@ export const UA = {
    AppointMilitaryChaplains: "Appoint Military Chaplains",
    ChristianProvinceInfluenceBonus$1$2: "$1 $2 for each Christian province that has a positive attitude towards us.",
    $1Yearly: "$1 Yearly",
-   PatronageDurationMax$1: "Patronage Duration (Max. $1)",
-   SortByCount: "Sort by Count",
+   PatronageDurationMax$1: "Тривалість патронату (макс. $1)",
+   SortByCount: "Сортувати за кількістю",
    $1NotOnCooldown: "$1 is not on cooldown",
    JustiniansReconquestAction: "Justinian's Reconquest Action",
    HonorTheGeneral: "Honor the General",
@@ -4185,6 +4185,4 @@ export const UA = {
    SurveyAndRegisterOurCoastalEstates: "Survey and register our coastal estates",
    DevelopOurCoastalFarmsAndWorkshops: "Develop our coastal farms and workshops",
    SeekRecognitionOfOurCoastalMandate: "Seek recognition of our coastal mandate",
-   PatronageDurationMax$1: "Тривалість патронату (макс. $1)",
-   SortByCount: "Сортувати за кількістю",
 };
