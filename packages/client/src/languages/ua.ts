@@ -4185,4 +4185,5 @@ export const UA = {
    SurveyAndRegisterOurCoastalEstates: "Survey and register our coastal estates",
    DevelopOurCoastalFarmsAndWorkshops: "Develop our coastal farms and workshops",
    SeekRecognitionOfOurCoastalMandate: "Seek recognition of our coastal mandate",
+   SaveAndExit: "Save and Exit",
 };

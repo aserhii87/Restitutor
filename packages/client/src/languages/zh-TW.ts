@@ -4100,4 +4100,5 @@ export const ZH_TW = {
    SurveyAndRegisterOurCoastalEstates: "丈量並登記我們的沿海莊園",
    DevelopOurCoastalFarmsAndWorkshops: "發展我們的沿海農莊與作坊",
    SeekRecognitionOfOurCoastalMandate: "爭取承認我們的沿海授權令",
+   SaveAndExit: "儲存並退出",
 };

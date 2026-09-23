@@ -4242,4 +4242,5 @@ export const ES = {
    SurveyAndRegisterOurCoastalEstates: "Medir y registrar nuestras fincas costeras",
    DevelopOurCoastalFarmsAndWorkshops: "Desarrollar nuestras granjas y talleres costeros",
    SeekRecognitionOfOurCoastalMandate: "Buscar el reconocimiento de nuestro mandato costero",
+   SaveAndExit: "Guardar y salir",
 };

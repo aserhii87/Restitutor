@@ -4180,4 +4180,5 @@ export const RU = {
    SurveyAndRegisterOurCoastalEstates: "Обмерить и зарегистрировать наши прибрежные поместья",
    DevelopOurCoastalFarmsAndWorkshops: "Развивать наши прибрежные фермы и мастерские",
    SeekRecognitionOfOurCoastalMandate: "Добиться признания нашего прибрежного мандата",
+   SaveAndExit: "Сохранить и выйти",
 };

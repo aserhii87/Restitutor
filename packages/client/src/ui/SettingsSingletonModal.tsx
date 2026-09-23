@@ -247,6 +247,7 @@ function SettingsGeneralTab(): React.ReactNode {
                }}
             >
                {$t(L.SaveToFile)}
+               <div className="mi sm fixed-right">save</div>
             </button>
             <button
                className="btn"
@@ -264,7 +265,28 @@ function SettingsGeneralTab(): React.ReactNode {
                }}
             >
                {$t(L.LoadFromFile)}
+               <div className="mi sm fixed-right">folder_open</div>
             </button>
+            {isSteam() && (
+               <button
+                  className="btn"
+                  onClick={async () => {
+                     try {
+                        if (G.save) {
+                           await saveGame(G.save);
+                           SteamClient.quit();
+                        } else {
+                           SteamClient.quit();
+                        }
+                     } catch (error) {
+                        showError(String(error));
+                     }
+                  }}
+               >
+                  {$t(L.SaveAndExit)}
+                  <div className="mi sm fixed-right">exit_to_app</div>
+               </button>
+            )}
          </div>
          <div className="h1">{$t(L.Gameplay)}</div>
          <div className="row m10">
