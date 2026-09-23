@@ -255,11 +255,11 @@ export class LegacyUpgradeDefinitions {
          Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
-   DiplomaticRange1: ILegacyUpgradeModifier = {
-      requires: ["InfiltrationRate1"],
-      position: [4, 3],
+   Prestige5: ILegacyUpgradeModifier = {
+      requires: ["Prestige4"],
+      position: [6, -1],
       modifiers: {
-         DiplomaticRange: { type: "add", value: 5 },
+         Prestige: { type: "multiply", value: 0.1 },
       },
    } as const;
    AttitudeOnTrade: ILegacyUpgradeDefinition = {
@@ -310,6 +310,13 @@ export class LegacyUpgradeDefinitions {
          TileOutput: { type: "multiply", value: 0.1 },
       },
    } as const;
+   TileOutput5: ILegacyUpgradeModifier = {
+      requires: ["TileOutput4"],
+      position: [6, 1],
+      modifiers: {
+         TileOutput: { type: "multiply", value: 0.1 },
+      },
+   } as const;
    ProductionUpgrade1: ILegacyUpgradeModifier = {
       requires: ["Prestige1"],
       position: [3, -2],
@@ -344,11 +351,32 @@ export class LegacyUpgradeDefinitions {
          InfiltrationRate: { type: "multiply", value: 0.5 },
       },
    } as const;
+   CultureConversionCost1: ILegacyUpgradeModifier = {
+      requires: ["InfiltrationRate1"],
+      position: [4, 3],
+      modifiers: {
+         CultureConversionCost: { type: "multiply", value: -0.1 },
+      },
+   } as const;
+   CultureConversionCost2: ILegacyUpgradeModifier = {
+      requires: ["CultureConversionCost1"],
+      position: [5, 3],
+      modifiers: {
+         CultureConversionCost: { type: "multiply", value: -0.1 },
+      },
+   } as const;
    Diplomat1: ILegacyUpgradeModifier = {
       requires: ["ProductionUpgrade1"],
       position: [4, -3],
       modifiers: {
          Diplomat: { type: "add", value: 1 },
+      },
+   } as const;
+   DiplomaticRange1: ILegacyUpgradeModifier = {
+      requires: ["Diplomat1"],
+      position: [5, -4],
+      modifiers: {
+         DiplomaticRange: { type: "add", value: 5 },
       },
    } as const;
    TradeCapacity1: ILegacyUpgradeModifier = {

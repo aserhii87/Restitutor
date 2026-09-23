@@ -7,6 +7,7 @@ import {
    RelocateCapitalAction,
    RelocateCapitalModifier,
 } from "../game/actions/CapitalActions";
+import { ConvertCultureAction } from "../game/actions/ConvertCultureAction";
 import { finalizeCondition } from "../game/actions/GameAction";
 import { Buildings } from "../game/definitions/Building";
 import { Culture } from "../game/definitions/Culture";
@@ -27,6 +28,7 @@ import { getProvinceName, getProvinceStat } from "../game/logic/ProvinceLogic";
 import {
    getCultureStatus,
    getReligionStatus,
+   getTileConvertCultureCost,
    getTileDefense,
    getTileGoodsTax,
    getTileGoverningCost,
@@ -45,6 +47,7 @@ import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
 import { ActionButton } from "./ActionButton";
 import { AppeaseButton } from "./AppeaseButton";
+import { BreakdownComp } from "./BreakdownComp";
 import { BreakdownRow, BreakdownTooltip } from "./BreakdownRow";
 import { CrackDownButton } from "./CrackDownButton";
 import { CircleComp } from "./common/CircleComp";
@@ -193,6 +196,24 @@ export function TilePage({ tile }: { tile: Tile }): React.ReactNode {
             </div>
             <div className="row my5 g5">
                <div className="f1">{$t(L.Culture)}</div>
+               {isMyProvince && (
+                  <ActionButton
+                     className="btn text-sm"
+                     action={() => ConvertCultureAction(tile, G.save.state.playerProvince, G.save)}
+                     tooltip={(element) => (
+                        <>
+                           <TimedActionDescComp action="ConvertCulture" />
+                           {element}
+                           <div className="box m5">
+                              <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+                              <BreakdownComp breakdown={getTileConvertCultureCost(tile, G.save)} />
+                           </div>
+                        </>
+                     )}
+                  >
+                     {TimedActions.ConvertCulture.name()}
+                  </ActionButton>
+               )}
                <div>{Culture[tileData.culture].name()}</div>
                <FloatingTip label={() => cultureStatus.name()}>
                   <CircleComp color={cultureStatus.color} />

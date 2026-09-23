@@ -818,6 +818,41 @@ export function getTileMakeCoreCost(tile: Tile, save: SaveGame): IValueBreakdown
    return finalizeBreakdown(breakdown);
 }
 
+export function getTileConvertCultureCost(tile: Tile, save: SaveGame): IValueBreakdown {
+   const breakdown = makeValueBreakdown({ reverse: true });
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return breakdown;
+   }
+   const state = save.state.provinces[data.province];
+   if (!state) {
+      return breakdown;
+   }
+   breakdown.add.push({
+      name: $t(L.TileUpgrades),
+      desc: $t(L.$1DiplomaticPointsPerUpgrade, "5"),
+      value: (data.infrastructure + data.production + data.population) * 5,
+   });
+   const count = getProvinceStat("convertCultureCount", data.province, save);
+   breakdown.multiply.push({
+      name: $t(L.NumberOfCultureConversions),
+      desc: $t(L.CultureConversionCostGrowthDesc$1$2, "2%", formatNumber(count)),
+      value: 0.02 * count,
+   });
+   if (state.toleratedCultures.has(data.culture)) {
+      breakdown.multiply.push({ name: $t(L.ToleratedCulture), value: -0.1 });
+   }
+   if (data.religion === state.religion) {
+      breakdown.multiply.push({ name: $t(L.DominantReligion), value: -0.1 });
+   } else if (state.toleratedReligions.has(data.religion)) {
+      breakdown.multiply.push({ name: $t(L.ToleratedReligion), value: 0 });
+   } else {
+      breakdown.multiply.push({ name: $t(L.MinorReligion), value: 0.1 });
+   }
+   attachModifiers("CultureConversionCost", breakdown, data.province, save);
+   return finalizeBreakdown(breakdown);
+}
+
 export const UpgradeBaseCost = 50;
 export const UpgradeCostGrowthFactor = 1.2;
 

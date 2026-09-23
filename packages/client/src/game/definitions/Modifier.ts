@@ -117,6 +117,10 @@ export const Modifiers = {
       name: () => $t(L.MakeCoreCost),
       desc: () => $t(L.ModifierMakeCoreCostDesc),
    },
+   CultureConversionCost: {
+      name: () => $t(L.CultureConversionCost),
+      desc: () => $t(L.ModifierCultureConversionCostDesc),
+   },
    InfantryUnitPower: {
       name: () => $t(L.InfantryUnitPower),
       desc: () => $t(L.InfantryUnitPowerIsTheWarPowerOfEachInfantryUnit),
