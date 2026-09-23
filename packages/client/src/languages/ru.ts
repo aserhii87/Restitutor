@@ -4075,7 +4075,6 @@ export const RU = {
    $1IsNowKnownAs$2: "$1 теперь носит название $2.",
    TileConstantinople: "Константинополь",
    BornCommanders: "Прирождённые полководцы",
-   $1GeneralSkillPointsWhenAppointingANewGeneral: "$1 к очкам навыка генерала при назначении нового генерала.",
    PonticHegemony: "Понтийская гегемония",
    $1WarPowerForEachCoreBlackSeaCoastalTile: "$1 к военной мощи за каждое ядровое прибрежное владение на Чёрном море.",
    CampaignRequisitions: "Походные реквизиции",
@@ -4180,4 +4179,6 @@ export const RU = {
    SurveyAndRegisterOurCoastalEstates: "Обмерить и зарегистрировать наши прибрежные поместья",
    DevelopOurCoastalFarmsAndWorkshops: "Развивать наши прибрежные фермы и мастерские",
    SeekRecognitionOfOurCoastalMandate: "Добиться признания нашего прибрежного мандата",
+   StartingGeneralSkillPoint: "Начальное очко навыка генерала",
+   GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Очки навыка генерала, получаемые при назначении нового генерала.",
 };

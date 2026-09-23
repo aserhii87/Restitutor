@@ -321,7 +321,9 @@ const _ProvinceUpgrades = {
    },
    BornCommanders: {
       name: () => $t(L.BornCommanders),
-      desc: () => $t(L.$1GeneralSkillPointsWhenAppointingANewGeneral, "+2"),
+      modifiers: {
+         StartingGeneralSkillPoint: { type: "add", value: 2 },
+      },
    },
    PonticHegemony: {
       name: () => $t(L.PonticHegemony),

@@ -4117,7 +4117,6 @@ export const FR = {
    $1IsNowKnownAs$2: "$1 is now known as $2.",
    TileConstantinople: "Constantinople",
    BornCommanders: "Born Commanders",
-   $1GeneralSkillPointsWhenAppointingANewGeneral: "$1 General Skill Points when appointing a new general.",
    PonticHegemony: "Pontic Hegemony",
    $1WarPowerForEachCoreBlackSeaCoastalTile: "$1 War Power for each core Black Sea coastal tile.",
    CampaignRequisitions: "Campaign Requisitions",
@@ -4223,4 +4222,6 @@ export const FR = {
    SurveyAndRegisterOurCoastalEstates: "Survey and register our coastal estates",
    DevelopOurCoastalFarmsAndWorkshops: "Develop our coastal farms and workshops",
    SeekRecognitionOfOurCoastalMandate: "Seek recognition of our coastal mandate",
+   StartingGeneralSkillPoint: "Starting General Skill Point",
+   GeneralSkillPointsGrantedWhenAppointingANewGeneral: "General skill points granted when appointing a new general.",
 };

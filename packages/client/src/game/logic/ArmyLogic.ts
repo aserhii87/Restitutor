@@ -2,6 +2,7 @@ import { clamp, clearFlag, formatDelta, formatNumber, hasFlag } from "@project/s
 import { $t, L } from "../../utils/i18n";
 import { finalizeBreakdown, type ICondition, type IValueBreakdown, makeValueBreakdown } from "../actions/GameAction";
 import { PersonFlags } from "../definitions/Family";
+import { makeModifierGetter } from "../definitions/Modifier";
 import type { Province } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { getTileName } from "../definitions/TileName";
@@ -434,3 +435,5 @@ export function setProvinceTargetConscription(value: number, province: Province,
    }
    setProvinceStat("targetConscription", targetConscription, province, save);
 }
+
+export const getStartingGeneralSkillPoint = makeModifierGetter("StartingGeneralSkillPoint", 0, () => {});

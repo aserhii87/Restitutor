@@ -4012,7 +4012,6 @@ export const ZH_CN = {
    $1IsNowKnownAs$2: "$1现被称为$2。",
    TileConstantinople: "君士坦丁堡",
    BornCommanders: "天生将才",
-   $1GeneralSkillPointsWhenAppointingANewGeneral: "任命新将军时，将军技能点$1。",
    PonticHegemony: "黑海霸权",
    $1WarPowerForEachCoreBlackSeaCoastalTile: "每个黑海沿岸核心地块使军力$1。",
    CampaignRequisitions: "出征征发",
@@ -4100,4 +4099,6 @@ export const ZH_CN = {
    SurveyAndRegisterOurCoastalEstates: "丈量并登记我们的沿海庄园",
    DevelopOurCoastalFarmsAndWorkshops: "发展我们的沿海农庄与作坊",
    SeekRecognitionOfOurCoastalMandate: "争取承认我们的沿海授权令",
+   StartingGeneralSkillPoint: "初始将军技能点",
+   GeneralSkillPointsGrantedWhenAppointingANewGeneral: "任命新将军时获得的将军技能点。",
 };

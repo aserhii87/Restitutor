@@ -4142,7 +4142,6 @@ export const DE = {
    $1IsNowKnownAs$2: "$1 ist nun als $2 bekannt.",
    TileConstantinople: "Konstantinopel",
    BornCommanders: "Geborene Feldherren",
-   $1GeneralSkillPointsWhenAppointingANewGeneral: "$1 Fähigkeitspunkte des Generals bei der Ernennung eines neuen Generals.",
    PonticHegemony: "Pontische Hegemonie",
    $1WarPowerForEachCoreBlackSeaCoastalTile: "$1 Kriegsmacht für jedes Kerngebiet an der Schwarzmeerküste.",
    CampaignRequisitions: "Feldzugsrequisitionen",
@@ -4248,4 +4247,6 @@ export const DE = {
    SurveyAndRegisterOurCoastalEstates: "Unsere Küstengüter vermessen und registrieren",
    DevelopOurCoastalFarmsAndWorkshops: "Unsere Höfe und Werkstätten an der Küste ausbauen",
    SeekRecognitionOfOurCoastalMandate: "Die Anerkennung unseres Küstenmandats erwirken",
+   StartingGeneralSkillPoint: "Anfänglicher Fähigkeitspunkt des Generals",
+   GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Fähigkeitspunkte des Generals, die bei der Ernennung eines neuen Generals gewährt werden.",
 };

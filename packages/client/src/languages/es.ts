@@ -4136,7 +4136,6 @@ export const ES = {
    $1IsNowKnownAs$2: "$1 ahora se conoce como $2.",
    TileConstantinople: "Constantinopla",
    BornCommanders: "Comandantes natos",
-   $1GeneralSkillPointsWhenAppointingANewGeneral: "$1 puntos de habilidad del general al nombrar a un nuevo general.",
    PonticHegemony: "Hegemonía póntica",
    $1WarPowerForEachCoreBlackSeaCoastalTile: "$1 de poder bélico por cada territorio núcleo costero del mar Negro.",
    CampaignRequisitions: "Requisiciones de campaña",
@@ -4242,4 +4241,6 @@ export const ES = {
    SurveyAndRegisterOurCoastalEstates: "Medir y registrar nuestras fincas costeras",
    DevelopOurCoastalFarmsAndWorkshops: "Desarrollar nuestras granjas y talleres costeros",
    SeekRecognitionOfOurCoastalMandate: "Buscar el reconocimiento de nuestro mandato costero",
+   StartingGeneralSkillPoint: "Punto de habilidad inicial del general",
+   GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Puntos de habilidad del general obtenidos al nombrar a un nuevo general.",
 };

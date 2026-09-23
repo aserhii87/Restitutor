@@ -193,6 +193,10 @@ export const Modifiers = {
       name: () => $t(L.ToleratedReligion),
       desc: () => $t(L.ToleratedReligionDesc),
    },
+   StartingGeneralSkillPoint: {
+      name: () => $t(L.StartingGeneralSkillPoint),
+      desc: () => $t(L.GeneralSkillPointsGrantedWhenAppointingANewGeneral),
+   },
 } as const satisfies Record<string, IModifierDefinition>;
 
 export type Modifier = keyof typeof Modifiers;
