@@ -20,7 +20,9 @@
 
 ## Mandate of Pacification
 
-- After eliminating 2 barbarian polities, a mission will grant the Mandate of Pacification, which unlocks Invoke Barbarian Threat granting a 5-year Humiliate Rival casus belli against a neighboring province whose attitude towards us is negative. Invoking Barbarian Threat has no resource cost and has a 5-year cooldown.
+- After eliminating 2 barbarian polities, a mission will grant the Mandate of Pacification, which unlocks Invoke Barbarian Threat.
+- Invoking Barbarian Threat grants a 5-year Humiliate Rival casus belli against a neighboring province whose attitude towards us is negative.
+- Invoking Barbarian Threat has a 5-year cooldown and no other resource cost.
 
 ## Other Changes
 
