@@ -4255,4 +4255,6 @@ export const DE = {
    ModifierCultureConversionCostDesc: "Die Kosten der kulturellen Umwandlung fallen an, wenn ein Kerngebiet die vorherrschende Kultur unserer Provinz übernimmt. Jede Umwandlung erhöht die Kosten weiter.",
    TileCultureIsNotOurDominantCulture: "Die Gebietskultur ist nicht unsere vorherrschende Kultur",
    NumberOfCultureConversions: "Anzahl kultureller Umwandlungen",
+   AdjustTradeCapacity: "Handelskapazität anpassen",
+   TradeCapacitySliderDesc$1: "Unsere maximale Handelskapazität beträgt $1. Mit dem Schieberegler legen wir fest, wie viel davon für jeden Handel genutzt wird.",
 };

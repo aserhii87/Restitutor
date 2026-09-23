@@ -4249,4 +4249,6 @@ export const ES = {
    ModifierCultureConversionCostDesc: "El coste de conversión cultural es el coste de convertir un territorio núcleo a la cultura dominante de nuestra provincia. Cada conversión aumenta aún más el coste.",
    TileCultureIsNotOurDominantCulture: "La cultura del territorio no es nuestra cultura dominante",
    NumberOfCultureConversions: "Número de conversiones culturales",
+   AdjustTradeCapacity: "Ajustar la capacidad comercial",
+   TradeCapacitySliderDesc$1: "Nuestra capacidad comercial máxima es de $1. Podemos usar el control deslizante para elegir cuánta capacidad utilizar en cada comercio.",
 };

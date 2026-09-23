@@ -4196,4 +4196,6 @@ export const EN = {
    ModifierCultureConversionCostDesc: "Culture Conversion Cost is the cost of converting a core tile to our province's dominant culture. Each conversion raises the cost further.",
    TileCultureIsNotOurDominantCulture: "Tile culture is not our dominant culture",
    NumberOfCultureConversions: "Number of Culture Conversions",
+   AdjustTradeCapacity: "Adjust Trade Capacity",
+   TradeCapacitySliderDesc$1: "Our maximum Trade Capacity is $1. Use the slider to set the capacity used for each trade.",
 };

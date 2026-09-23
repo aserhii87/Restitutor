@@ -4107,4 +4107,6 @@ export const ZH_CN = {
    ModifierCultureConversionCostDesc: "文化转变花费是将核心地块的文化转变为我们行省主流文化的费用。每次转变都会进一步增加花费。",
    TileCultureIsNotOurDominantCulture: "地块文化不是我们的主流文化",
    NumberOfCultureConversions: "文化转变次数",
+   AdjustTradeCapacity: "调整贸易容量",
+   TradeCapacitySliderDesc$1: "我们的最大贸易容量为$1。使用滑块设置每笔贸易使用的容量。",
 };

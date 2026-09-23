@@ -1,5 +1,5 @@
 [ ] Form Hunic Empire
-[ ] Allow Adjusting Trade Capacity
+
 
 ## Culture Conversion
 
@@ -20,3 +20,7 @@
 - Added a +10% tile output upgrade.
 - Added 2 upgrades that each reduce culture conversion cost by 10%.
 - Moved some upgrades to balance the legacy upgrade tree.
+
+## Other Changes
+
+- Allow trading a fraction of the Trade Capacity.

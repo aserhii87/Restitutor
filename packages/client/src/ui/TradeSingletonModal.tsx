@@ -1,4 +1,4 @@
-import { Popover, ScrollArea, Switch } from "@mantine/core";
+import { Popover, ScrollArea, Slider, Switch } from "@mantine/core";
 import {
    clearFlag,
    cls,
@@ -73,18 +73,19 @@ export function TradeSingletonModal({ provinces }: { provinces: Set<Province> })
    const hasActiveFilters =
       selectedProvinces.size > 0 || selectedWeOffer.size > 0 || selectedTheyOffer.size > 0 || showAvailable;
    const state = G.save.state.provinces[G.save.state.playerProvince];
+   const maxTradeCapacity = getProvinceTradeCapacity(G.save.state.playerProvince, G.save);
+   const [tradeCapacity, setTradeCapacity] = useState(maxTradeCapacity.value);
+   const trades = getProvinceTrades(G.save.state.playerProvince, G.save);
+   const tradeProfit = getProvinceTradeProfit(G.save.state.playerProvince, G.save);
    if (!state) {
       return null;
    }
    const production = state.production;
-   const tradeCapacity = getProvinceTradeCapacity(G.save.state.playerProvince, G.save);
-   const trades = getProvinceTrades(G.save.state.playerProvince, G.save);
-   const tradeProfit = getProvinceTradeProfit(G.save.state.playerProvince, G.save);
    return (
       <ModalComp size="lg" title={<ModalTitleBar title={$t(L.Trade)} dismiss />}>
-         <div className="box row m10 text-sm">
+         <div className="box row g5 m10 text-sm">
             <BreakdownTooltip
-               breakdown={tradeCapacity}
+               breakdown={maxTradeCapacity}
                tooltip={(element) => (
                   <>
                      <div className="m10">{Modifiers.TradeCapacity.desc()}</div>
@@ -92,11 +93,37 @@ export function TradeSingletonModal({ provinces }: { provinces: Set<Province> })
                   </>
                )}
             >
-               <div className="f1 row mx10 my5">
+               <div className="f1 row g5 m10 my5">
                   <div className="f1">{Modifiers.TradeCapacity.name()}</div>
-                  <div>{formatNumber(tradeCapacity.value)}</div>
+                  <div>
+                     {tradeCapacity !== maxTradeCapacity.value && <span>{formatNumber(tradeCapacity)} / </span>}
+                     {formatNumber(maxTradeCapacity.value)}
+                  </div>
                </div>
             </BreakdownTooltip>
+            {maxTradeCapacity.value > 1 && (
+               <Popover width={300} position="bottom-start" withOverlay>
+                  <Popover.Target>
+                     <div className="mi xs text-primary pointer">tune</div>
+                  </Popover.Target>
+                  <Popover.Dropdown className="panel">
+                     <div className="text-display">{$t(L.AdjustTradeCapacity)}</div>
+                     <div className="text-sm text-dimmed">
+                        {$t(L.TradeCapacitySliderDesc$1, formatNumber(maxTradeCapacity.value))}
+                     </div>
+                     <div className="h10" />
+                     <Slider
+                        value={tradeCapacity}
+                        min={1}
+                        max={maxTradeCapacity.value}
+                        step={1}
+                        onChange={(value) => {
+                           setTradeCapacity(value);
+                        }}
+                     />
+                  </Popover.Dropdown>
+               </Popover>
+            )}
             <div className="divider vertical" />
             <BreakdownTooltip
                formatFunc={formatPercent}
@@ -239,11 +266,13 @@ export function TradeSingletonModal({ provinces }: { provinces: Set<Province> })
                         const profit = getTradeProfit(G.save.state.playerProvince, province, G.save);
                         const offer = {
                            ...offer_,
-                           weOfferAmount: offer_.weOfferAmount * tradeCapacity.value,
-                           theyOfferAmount: offer_.theyOfferAmount * tradeCapacity.value * (1 + profit.value),
+                           weOfferAmount: offer_.weOfferAmount * tradeCapacity,
+                           theyOfferAmount: offer_.theyOfferAmount * tradeCapacity * (1 + profit.value),
                         };
-                        const action = () => TradeWithAction(G.save.state.playerProvince, province, offer, G.save);
-                        if (showAvailable && !canDoAction(action(), G.save.state.playerProvince, G.save)) return null;
+                        const makeTradeAction = () =>
+                           TradeWithAction(G.save.state.playerProvince, province, offer, G.save);
+                        if (showAvailable && !canDoAction(makeTradeAction(), G.save.state.playerProvince, G.save))
+                           return null;
                         const weOffer = (
                            <>
                               {formatNumber(offer.weOfferAmount)}{" "}
@@ -275,7 +304,7 @@ export function TradeSingletonModal({ provinces }: { provinces: Set<Province> })
                               <td>{$t(L.$1Months, formatNumber(TimedActions.TradeGoods.duration))}</td>
                               <td className="text-right">
                                  <ActionButton
-                                    action={action}
+                                    action={makeTradeAction}
                                     id={`TradeModal_Trade_${province}_${idx}`}
                                     tooltip={(element) => (
                                        <>
