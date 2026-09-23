@@ -4197,4 +4197,11 @@ export const TR = {
    NumberOfCultureConversions: "Number of Culture Conversions",
    AdjustTradeCapacity: "Adjust Trade Capacity",
    TradeCapacitySliderDesc$1: "Our maximum Trade Capacity is $1. Use the slider to set the capacity used for each trade.",
+   MandateOfPacification: "Mandate of Pacification",
+   InvokeBarbarianThreat: "Invoke Barbarian Threat",
+   TheirAttitudeTowardsUsIsNegative: "Their attitude towards us is negative",
+   TimedActionInvokeBarbarianThreatDesc$1: "Invoking the barbarian threat grants us a $1 casus belli against a neighboring province whose attitude towards us is negative.",
+   MandateOfPacificationDesc:
+      "Captives from two defeated barbarian polities pass beneath our standards. Our commanders point beyond them, toward neighbors who still greet our envoys with contempt. With these victories behind us, we can portray their hostility as a barbarian threat—and another campaign as the work of pacification.",
+   ExtendOurMandate: "Extend our mandate",
 };

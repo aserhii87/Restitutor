@@ -1,6 +1,3 @@
-[ ] Form Hunic Empire
-
-
 ## Culture Conversion
 
 - Added an action to convert a core tile to its province's dominant culture using diplomatic points, with a 12-month cooldown.
@@ -21,6 +18,11 @@
 - Added 2 upgrades that each reduce culture conversion cost by 10%.
 - Moved some upgrades to balance the legacy upgrade tree.
 
+## Mandate of Pacification
+
+- After eliminating 2 barbarian polities, a mission will grant the Mandate of Pacification, which unlocks Invoke Barbarian Threat granting a 5-year Humiliate Rival casus belli against a neighboring province whose attitude towards us is negative. Invoking Barbarian Threat has no resource cost and has a 5-year cooldown.
+
 ## Other Changes
 
 - Allow trading a fraction of the Trade Capacity.
+- Proclaim Crusade now costs 1 Christianity instead of 25 diplomatic points.

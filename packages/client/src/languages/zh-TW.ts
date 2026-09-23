@@ -4109,4 +4109,10 @@ export const ZH_TW = {
    NumberOfCultureConversions: "文化轉變次數",
    AdjustTradeCapacity: "調整貿易容量",
    TradeCapacitySliderDesc$1: "我們的最大貿易容量為$1。使用滑桿設定每筆貿易使用的容量。",
+   MandateOfPacification: "平定授權",
+   InvokeBarbarianThreat: "援引蠻族威脅",
+   TheirAttitudeTowardsUsIsNegative: "他們對我們的態度為負",
+   TimedActionInvokeBarbarianThreatDesc$1: "援引蠻族威脅，使我們獲得針對相鄰行省的「$1」宣戰理由，前提是該行省對我們的態度為負。",
+   MandateOfPacificationDesc: "來自兩個戰敗蠻族政權的俘虜從我們的軍旗下走過。我們的將領越過俘虜，指向那些仍以輕蔑對待我們使節的鄰邦。有了這些勝利撐腰，我們便能將他們的敵意描繪成蠻族威脅，把下一次出征包裝成平定之舉。",
+   ExtendOurMandate: "擴大我們的授權",
 };

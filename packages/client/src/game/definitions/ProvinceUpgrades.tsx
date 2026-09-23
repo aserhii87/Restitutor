@@ -18,6 +18,10 @@ const _ProvinceUpgrades = {
       name: () => $t(L.RightOfPlunder),
       desc: () => TimedActions.Pillage.desc?.() ?? "",
    },
+   MandateOfPacification: {
+      name: () => $t(L.MandateOfPacification),
+      desc: () => TimedActions.InvokeBarbarianThreat.desc?.() ?? "",
+   },
    ExtensiveAdministration: {
       name: () => $t(L.ExtensiveAdministration),
       modifiers: {

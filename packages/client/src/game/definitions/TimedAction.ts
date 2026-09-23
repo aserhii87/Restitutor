@@ -717,6 +717,12 @@ class TimedActionDefinitions {
       duration: 24,
       cooldown: 24,
    };
+   InvokeBarbarianThreat: ITimedAction = {
+      name: () => $t(L.InvokeBarbarianThreat),
+      desc: () => $t(L.TimedActionInvokeBarbarianThreatDesc$1, CasusBelli.HumiliateRival.name()),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
+   };
    ProclaimRightOfReprisal: ITimedAction = {
       name: () => $t(L.ProclaimRightOfReprisal),
       desc: () =>

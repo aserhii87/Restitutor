@@ -26,6 +26,7 @@ import { DemandTileCostCondition } from "../game/actions/DemandTileCostCondition
 import { DemandTributeCostCondition } from "../game/actions/DemandTributeCostCondition";
 import { DenounceAction } from "../game/actions/DenounceAction";
 import { finalizeCondition, type IGameAction } from "../game/actions/GameAction";
+import { InvokeBarbarianThreatAction } from "../game/actions/InvokeBarbarianThreatAction";
 import {
    CancelImproveRelationsAction,
    CancelInfiltrationAction,
@@ -41,6 +42,7 @@ import { Culture } from "../game/definitions/Culture";
 import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Modifiers } from "../game/definitions/Modifier";
 import type { Province } from "../game/definitions/Province";
+import { hasProvinceUpgrade } from "../game/definitions/ProvinceUpgrades";
 import { Religion } from "../game/definitions/Religion";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
@@ -770,6 +772,20 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
             >
                {TimedActions.ProclaimCrusade.name()}
             </ActionButton>
+            {hasProvinceUpgrade("MandateOfPacification", G.save.state.playerProvince, G.save) && (
+               <ActionButton
+                  className="py2"
+                  action={() => InvokeBarbarianThreatAction(G.save.state.playerProvince, province, G.save)}
+                  tooltip={(element) => (
+                     <>
+                        <TimedActionDescComp action="InvokeBarbarianThreat" />
+                        {element}
+                     </>
+                  )}
+               >
+                  {TimedActions.InvokeBarbarianThreat.name()}
+               </ActionButton>
+            )}
          </div>
          <div className="h1">{$t(L.CovertActions)}</div>
          <div className="m10 col stretch g5">

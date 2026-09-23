@@ -4257,4 +4257,11 @@ export const DE = {
    NumberOfCultureConversions: "Anzahl kultureller Umwandlungen",
    AdjustTradeCapacity: "Handelskapazität anpassen",
    TradeCapacitySliderDesc$1: "Unsere maximale Handelskapazität beträgt $1. Mit dem Schieberegler legen wir fest, wie viel davon für jeden Handel genutzt wird.",
+   MandateOfPacification: "Befriedungsmandat",
+   InvokeBarbarianThreat: "Die barbarische Bedrohung anführen",
+   TheirAttitudeTowardsUsIsNegative: "Ihre Haltung uns gegenüber ist negativ",
+   TimedActionInvokeBarbarianThreatDesc$1: "Indem wir die barbarische Bedrohung anführen, erhalten wir den Casus Belli „$1“ gegen eine benachbarte Provinz, deren Haltung uns gegenüber negativ ist.",
+   MandateOfPacificationDesc:
+      "Gefangene aus zwei besiegten barbarischen Staatswesen ziehen unter unseren Feldzeichen vorbei. Unsere Feldherren weisen über sie hinaus auf Nachbarn, die unseren Gesandten noch immer mit Verachtung begegnen. Mit diesen Siegen im Rücken können wir ihre Feindseligkeit als barbarische Bedrohung darstellen – und einen weiteren Feldzug als Werk der Befriedung.",
+   ExtendOurMandate: "Unser Mandat erweitern",
 };

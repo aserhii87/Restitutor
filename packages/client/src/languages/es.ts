@@ -4251,4 +4251,11 @@ export const ES = {
    NumberOfCultureConversions: "Número de conversiones culturales",
    AdjustTradeCapacity: "Ajustar la capacidad comercial",
    TradeCapacitySliderDesc$1: "Nuestra capacidad comercial máxima es de $1. Podemos usar el control deslizante para elegir cuánta capacidad utilizar en cada comercio.",
+   MandateOfPacification: "Mandato de pacificación",
+   InvokeBarbarianThreat: "Invocar la amenaza bárbara",
+   TheirAttitudeTowardsUsIsNegative: "Su actitud hacia nosotros es negativa",
+   TimedActionInvokeBarbarianThreatDesc$1: "Invocar la amenaza bárbara nos otorga el casus belli «$1» contra una provincia vecina cuya actitud hacia nosotros sea negativa.",
+   MandateOfPacificationDesc:
+      "Los cautivos de dos entidades políticas bárbaras derrotadas desfilan bajo nuestros estandartes. Nuestros comandantes señalan más allá, hacia los vecinos que aún reciben a nuestros enviados con desprecio. Respaldados por estas victorias, podemos presentar su hostilidad como una amenaza bárbara, y otra campaña como una labor de pacificación.",
+   ExtendOurMandate: "Ampliar nuestro mandato",
 };
