@@ -4101,4 +4101,5 @@ export const ZH_TW = {
    SeekRecognitionOfOurCoastalMandate: "爭取承認我們的沿海授權令",
    StartingGeneralSkillPoint: "初始將軍技能點",
    GeneralSkillPointsGrantedWhenAppointingANewGeneral: "任命新將軍時獲得的將軍技能點。",
+   SaveAndExit: "儲存並退出",
 };

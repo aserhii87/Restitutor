@@ -4181,4 +4181,5 @@ export const RU = {
    SeekRecognitionOfOurCoastalMandate: "Добиться признания нашего прибрежного мандата",
    StartingGeneralSkillPoint: "Начальное очко навыка генерала",
    GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Очки навыка генерала, получаемые при назначении нового генерала.",
+   SaveAndExit: "Сохранить и выйти",
 };

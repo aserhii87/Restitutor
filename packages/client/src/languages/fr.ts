@@ -4224,4 +4224,5 @@ export const FR = {
    SeekRecognitionOfOurCoastalMandate: "Seek recognition of our coastal mandate",
    StartingGeneralSkillPoint: "Starting General Skill Point",
    GeneralSkillPointsGrantedWhenAppointingANewGeneral: "General skill points granted when appointing a new general.",
+   SaveAndExit: "Save and Exit",
 };

@@ -4243,4 +4243,5 @@ export const ES = {
    SeekRecognitionOfOurCoastalMandate: "Buscar el reconocimiento de nuestro mandato costero",
    StartingGeneralSkillPoint: "Punto de habilidad inicial del general",
    GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Puntos de habilidad del general obtenidos al nombrar a un nuevo general.",
+   SaveAndExit: "Guardar y salir",
 };

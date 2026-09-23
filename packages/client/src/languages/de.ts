@@ -4249,4 +4249,5 @@ export const DE = {
    SeekRecognitionOfOurCoastalMandate: "Die Anerkennung unseres Küstenmandats erwirken",
    StartingGeneralSkillPoint: "Anfänglicher Fähigkeitspunkt des Generals",
    GeneralSkillPointsGrantedWhenAppointingANewGeneral: "Fähigkeitspunkte des Generals, die bei der Ernennung eines neuen Generals gewährt werden.",
+   SaveAndExit: "Speichern und beenden",
 };
