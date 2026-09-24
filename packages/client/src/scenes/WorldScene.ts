@@ -72,7 +72,7 @@ import { adjustTextSize, getTerrainTextures, isMapMovementBlocked } from "./Worl
 const MarginX = 2000;
 const TextureHeight = 256;
 const MapLabelFontSize = 36;
-let time = 0;
+const time = 0;
 
 export class WorldScene extends Scene {
    private _ocean: TilingSprite;
@@ -153,6 +153,10 @@ export class WorldScene extends Scene {
       this._indicatorContainer = this.viewport.addChild(new MapContainer<Tile, Sprite>());
       this._indicatorContainer.position.set(MarginX, 0);
 
+      this._vfxContainer = this.viewport.addChild(new Container());
+      this._vfxContainer.position.set(MarginX, 0);
+      this._vfxContainer.eventMode = "none";
+
       this._selectors = this.viewport.addChild(new Container<Sprite>());
       this._selectors.eventMode = "none";
 
@@ -177,10 +181,6 @@ export class WorldScene extends Scene {
       this._floaterContainer = this.viewport.addChild(new Container<UnicodeText>());
       this._floaterContainer.position.set(MarginX, 0);
       this._floaterContainer.eventMode = "none";
-
-      this._vfxContainer = this.viewport.addChild(new Container());
-      this._vfxContainer.position.set(MarginX, 0);
-      this._vfxContainer.eventMode = "none";
 
       const minZoom = Math.max(
          app.screen.width / this.viewport.worldWidth,
@@ -753,10 +753,10 @@ export class WorldScene extends Scene {
    }
 
    public update(dt: number, unscaled: number): void {
-      if (this._indicatorContainer.children.length > 0) {
-         this._indicatorContainer.alpha = Math.sin(Math.PI * 2 * time) * 0.3 + 0.7;
-         time += unscaled;
-      }
+      // if (this._indicatorContainer.children.length > 0) {
+      //    this._indicatorContainer.alpha = Math.sin(Math.PI * 2 * time) * 0.3 + 0.7;
+      //    time += unscaled;
+      // }
    }
 
    public setClickTileHandler(callback: (tile: Tile, e: FederatedPointerEvent) => void): void {
