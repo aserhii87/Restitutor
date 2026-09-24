@@ -84,6 +84,7 @@ export class WorldScene extends Scene {
    private _labelContainer: MapContainer<Province, UnicodeText>;
    private _warProgressContainer: MapContainer<Tile, UnicodeText>;
    private _floaterContainer: Container<UnicodeText>;
+   private _vfxContainer: Container;
    private _selectors: Container<Sprite>;
    private _selectedTiles = new Set<Tile>();
    private _selectedProvince: Province;
@@ -176,6 +177,10 @@ export class WorldScene extends Scene {
       this._floaterContainer = this.viewport.addChild(new Container<UnicodeText>());
       this._floaterContainer.position.set(MarginX, 0);
       this._floaterContainer.eventMode = "none";
+
+      this._vfxContainer = this.viewport.addChild(new Container());
+      this._vfxContainer.position.set(MarginX, 0);
+      this._vfxContainer.eventMode = "none";
 
       const minZoom = Math.max(
          app.screen.width / this.viewport.worldWidth,
@@ -648,14 +653,8 @@ export class WorldScene extends Scene {
       if (G.speed > 30) {
          return;
       }
-      const position = MapGrid.gridToPosition(tileToPoint(tile));
-      const bounds = this.viewport.visibleWorldRect();
-      if (
-         position.x + MarginX + TileWidth / 2 < bounds.left ||
-         position.x + MarginX - TileWidth / 2 > bounds.right ||
-         position.y + TileHeight / 2 < bounds.top ||
-         position.y - TileHeight / 2 > bounds.bottom
-      ) {
+      const position = this._getVisibleTilePosition(tile);
+      if (!position) {
          return;
       }
       const floater = this._floaterContainer.addChild(
@@ -675,6 +674,73 @@ export class WorldScene extends Scene {
             }
          }),
       ).start();
+   }
+
+   public showWarEffect({
+      tile,
+      color,
+      animation,
+   }: {
+      tile: Tile;
+      color: number;
+      animation: "ScaleUp" | "ScaleDown";
+   }): void {
+      if (G.speed > 30) {
+         return;
+      }
+      const position = this._getVisibleTilePosition(tile);
+      if (!position) {
+         return;
+      }
+      const vfx = this._vfxContainer.addChild(new Sprite(G.textures.get("Tile/Background")));
+      vfx.position.set(position.x, position.y);
+      vfx.anchor.set(0.5, 0.5);
+      vfx.tint = color;
+      let alpha = 0;
+      let startScale = 0;
+      let endScale = 0;
+      let easing = Easing.Linear;
+      switch (animation) {
+         case "ScaleUp": {
+            startScale = 0;
+            endScale = TileHeight / TextureHeight;
+            easing = Easing.OutQuad;
+            alpha = 0.75;
+            break;
+         }
+         case "ScaleDown": {
+            startScale = TileHeight / TextureHeight;
+            endScale = 0;
+            easing = Easing.InQuad;
+            alpha = 0.5;
+            break;
+         }
+      }
+
+      vfx.alpha = alpha;
+      vfx.scale.set(startScale, startScale);
+      sequence(
+         to(vfx, { scale: { x: endScale, y: endScale }, alpha: 0 }, 1, easing),
+         runFunc(() => {
+            if (!vfx.destroyed) {
+               vfx.destroy({ children: true });
+            }
+         }),
+      ).start();
+   }
+
+   private _getVisibleTilePosition(tile: Tile): IHaveXY | null {
+      const position = MapGrid.gridToPosition(tileToPoint(tile));
+      const bounds = this.viewport.visibleWorldRect();
+      if (
+         position.x + MarginX + TileWidth / 2 < bounds.left ||
+         position.x + MarginX - TileWidth / 2 > bounds.right ||
+         position.y + TileHeight / 2 < bounds.top ||
+         position.y - TileHeight / 2 > bounds.bottom
+      ) {
+         return null;
+      }
+      return position;
    }
 
    override onDisable(): void {

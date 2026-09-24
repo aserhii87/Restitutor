@@ -15,6 +15,7 @@ import { randomMaleName } from "../RomanNames";
 import { fixRelations } from "./DiplomacyLogic";
 import { getGameDate, monthToDate, tickToMonth, tickToYear } from "./GameDateTime";
 import { getChristianityYearly } from "./InternalAffairsLogic";
+import { MapForegroundColors } from "./MapColor";
 import {
    ConsulCandidatesCount,
    ConsulElectionMonths,
@@ -234,6 +235,12 @@ export function tickWar(war: IWar, save: SaveGame): void {
       const text = `${result.name()} ${formatDelta(score)}${forceAttack ? "*" : ""}`;
       for (const tile of war.tiles) {
          scene.showFloaterText({ tile, text, color: result.color, font: Fonts.TitleFont });
+         if (log.result === "Success") {
+            scene.showWarEffect({ tile, color: MapForegroundColors[war.attacker], animation: "ScaleDown" });
+         }
+         if (log.result === "Repelled") {
+            scene.showWarEffect({ tile, color: MapForegroundColors[war.defender], animation: "ScaleUp" });
+         }
       }
    }
    if (war.actualWarScore >= war.requiredWarScore && war.attacker === save.state.playerProvince) {
