@@ -308,12 +308,22 @@ export function getWarScore(
       });
    }
 
-   const warCount = getProvinceStat("attackCount", attacker, save);
+   const warCount = clamp(
+      getProvinceStat("attackCount", attacker, save) + getProvinceStat("attackCountOffset", attacker, save),
+      0,
+      Number.POSITIVE_INFINITY,
+   );
    result.multiply.push({
       name: $t(L.WarmongerPenalty),
       value: 0.01 * warCount,
       desc: $t(L.EachWarStartedAdds$1OfTheBaseCost$2, "1%", formatNumber(warCount)),
    });
+   if (hasProvinceUpgrade("SanctionedConquest", attacker, save)) {
+      result.multiply.push({
+         name: ProvinceUpgrades.SanctionedConquest.name(),
+         value: -0.005 * warCount,
+      });
+   }
 
    if (!AreTilesContiguous(tiles)) {
       result.multiply.push({

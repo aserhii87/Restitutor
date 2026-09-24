@@ -20,6 +20,7 @@ export const AIActions = [
    "SignPeaceTreaty",
    "NegotiateWhitePeace",
    "MakeCore",
+   "ConvertCulture",
    "AppointPontiffEnvoyArmyStaff",
    "TradeGoods",
    "UpgradeGeneralSkill",

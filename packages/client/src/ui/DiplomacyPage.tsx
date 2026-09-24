@@ -26,6 +26,7 @@ import { DemandTileCostCondition } from "../game/actions/DemandTileCostCondition
 import { DemandTributeCostCondition } from "../game/actions/DemandTributeCostCondition";
 import { DenounceAction } from "../game/actions/DenounceAction";
 import { finalizeCondition, type IGameAction } from "../game/actions/GameAction";
+import { ProclaimConquestAction } from "../game/actions/ProclaimConquestAction";
 import {
    CancelImproveRelationsAction,
    CancelInfiltrationAction,
@@ -770,6 +771,20 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
             >
                {TimedActions.ProclaimCrusade.name()}
             </ActionButton>
+            {G.save.state.provinces[G.save.state.playerProvince]?.nameOverride === "HunnicEmpire" && (
+               <ActionButton
+                  className="py2"
+                  action={() => ProclaimConquestAction(G.save.state.playerProvince, province, G.save)}
+                  tooltip={(element) => (
+                     <>
+                        <TimedActionDescComp action="ProclaimConquest" />
+                        {element}
+                     </>
+                  )}
+               >
+                  {TimedActions.ProclaimConquest.name()}
+               </ActionButton>
+            )}
          </div>
          <div className="h1">{$t(L.CovertActions)}</div>
          <div className="m10 col stretch g5">

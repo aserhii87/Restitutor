@@ -2,6 +2,7 @@ import { clamp, clearFlag, formatDelta, formatNumber, hasFlag } from "@project/s
 import { $t, L } from "../../utils/i18n";
 import { finalizeBreakdown, type ICondition, type IValueBreakdown, makeValueBreakdown } from "../actions/GameAction";
 import { PersonFlags } from "../definitions/Family";
+import { makeModifierGetter } from "../definitions/Modifier";
 import type { Province } from "../definitions/Province";
 import { hasProvinceUpgrade, ProvinceUpgrades } from "../definitions/ProvinceUpgrades";
 import { getTileName } from "../definitions/TileName";
@@ -148,6 +149,27 @@ export function getArmyMaintenanceCost(
          value: GeneralArmyMaintenancePct,
       });
    }
+   if (hasProvinceUpgrade("MilitarySupplyNetwork", province, save)) {
+      let buildingCount = 0;
+      for (const tile of getProvinceCoreTilesCached(province)) {
+         const data = save.state.tiles.get(tile);
+         if (!data) {
+            continue;
+         }
+         if (data.buildings.has("Castra")) {
+            ++buildingCount;
+         }
+         if (data.buildings.has("Citadel")) {
+            ++buildingCount;
+         }
+      }
+      if (buildingCount > 0) {
+         breakdown.multiply.push({
+            name: ProvinceUpgrades.MilitarySupplyNetwork.name(),
+            value: -Math.min(buildingCount * 0.01, 0.25),
+         });
+      }
+   }
    attachModifiers("ArmyMaintenance", breakdown, province, save);
    return finalizeBreakdown(breakdown);
 }
@@ -238,6 +260,12 @@ export function getWarPower(
    const ranged = makeUnitPower("ranged", "infantry", "cavalry");
    const cavalry = makeUnitPower("cavalry", "ranged", "infantry");
    result.add.push({ name: $t(L.CombinedPower), value: infantry.value + ranged.value + cavalry.value });
+   if (hasProvinceUpgrade("InfantryPredominance", province, save)) {
+      result.multiply.push({
+         name: ProvinceUpgrades.InfantryPredominance.name(),
+         value: Math.min(composition.infantry * 0.01, 0.25),
+      });
+   }
    if (hasProvinceUpgrade("CavalryWarPower", province, save)) {
       result.multiply.push({
          name: ProvinceUpgrades.CavalryWarPower.name(),
@@ -434,3 +462,5 @@ export function setProvinceTargetConscription(value: number, province: Province,
    }
    setProvinceStat("targetConscription", targetConscription, province, save);
 }
+
+export const getStartingGeneralSkillPoint = makeModifierGetter("StartingGeneralSkillPoint", 0, () => {});

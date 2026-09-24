@@ -64,9 +64,10 @@ export function TechPage({ tech }: { tech: Tech }): React.ReactNode {
                      tooltip={(element) => (
                         <>
                            {element}
-                           <div className="divider" />
-                           <div className="m10">{$t(L.TheCostOfThisResearchIsCalculatedAsFollows)}</div>
-                           <BreakdownComp breakdown={breakdown} />
+                           <div className="box m5">
+                              <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+                              <BreakdownComp breakdown={breakdown} />
+                           </div>
                         </>
                      )}
                   >

@@ -2,9 +2,8 @@ import { setFlag } from "@project/shared/src/utils/Helper";
 import { $t, L } from "../../utils/i18n";
 import { PersonFlags } from "../definitions/Family";
 import type { Province } from "../definitions/Province";
-import { hasProvinceUpgrade } from "../definitions/ProvinceUpgrades";
 import type { SaveGame } from "../GameState";
-import { getCurrentGeneral, getGeneralSkillUpgradeCost } from "../logic/ArmyLogic";
+import { getCurrentGeneral, getGeneralSkillUpgradeCost, getStartingGeneralSkillPoint } from "../logic/ArmyLogic";
 import { addProvinceStat, getProvinceStat, setProvinceStat } from "../logic/ProvinceLogic";
 import { addProvinceResource } from "../logic/ResourceLogic";
 import { startTimedAction } from "../logic/TimedActionLogic";
@@ -30,9 +29,7 @@ export function MakeGovernorGeneralAction(province: Province, save: SaveGame): I
       execute: () => {
          const governor = state.governor.male;
          governor.flag = setFlag(governor.flag, PersonFlags.IsGeneral);
-         if (hasProvinceUpgrade("BornCommanders", province, save)) {
-            addProvinceResource("generalSkillPoint", 2, province, save);
-         }
+         addProvinceResource("generalSkillPoint", getStartingGeneralSkillPoint(province, save).value, province, save);
          setProvinceStat("infantrySkill", 1, province, save);
          setProvinceStat("rangedSkill", 1, province, save);
          setProvinceStat("cavalrySkill", 1, province, save);
@@ -50,9 +47,7 @@ export function RecruitGeneralAction(province: Province, save: SaveGame): IGameA
       ]),
       execute: () => {
          startTimedAction("RecruitAGeneral", province, save);
-         if (hasProvinceUpgrade("BornCommanders", province, save)) {
-            addProvinceResource("generalSkillPoint", 2, province, save);
-         }
+         addProvinceResource("generalSkillPoint", getStartingGeneralSkillPoint(province, save).value, province, save);
          setProvinceStat("infantrySkill", 1, province, save);
          setProvinceStat("rangedSkill", 1, province, save);
          setProvinceStat("cavalrySkill", 1, province, save);

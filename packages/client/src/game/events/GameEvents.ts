@@ -12,6 +12,7 @@ import { BaeticaEvents } from "./BaeticaEvents";
 import { BalkanEvents } from "./BalkanEvents";
 import { BelgicaEvents } from "./BelgicaEvents";
 import { BritanniaEvents } from "./BritanniaEvents";
+import { DaciaEvents } from "./DaciaEvents";
 import { DalmatiaEvents } from "./DalmatiaEvents";
 import { DanubianEvents } from "./DanubianEvents";
 import { GallicEmpireEvents } from "./GallicEmpireEvents";
@@ -25,6 +26,7 @@ import { LugdunensisEvents } from "./LugdunensisEvents";
 import { LusitaniaEvents } from "./LusitaniaEvents";
 import { MauretaniaEvents } from "./MauretaniaEvents";
 import { MissionEvents } from "./MissionEvents";
+import { MoesiaEvents } from "./MoesiaEvents";
 import { NarbonensisEvents } from "./NarbonensisEvents";
 import { NoricumEvents } from "./NoricumEvents";
 import { PannoniaEvents } from "./PannoniaEvents";
@@ -74,6 +76,8 @@ const _GameEvents = {
    ...RaetiaEvents,
    ...NoricumEvents,
    ...PannoniaEvents,
+   ...MoesiaEvents,
+   ...DaciaEvents,
    ...DalmatiaEvents,
    ...ThraciaEvents,
    ...TarraconensisEvents,

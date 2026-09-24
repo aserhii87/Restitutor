@@ -95,6 +95,12 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
    ) {
       breakdown.multiply.push({ name: ProvinceUpgrades.CoastalAdministration.name(), value: -0.2 });
    }
+   if (hasProvinceUpgrade("HighlandAdministration", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.HighlandAdministration.name(), value: -0.25 });
+      }
+   }
    if (hasProvinceUpgrade("FortifiedAdministration", data.province, save)) {
       let result = 0;
       if (data.buildings.has("Castra")) {
@@ -415,6 +421,12 @@ function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.LandTax, breakdown);
    attachModifiers("LandTax", breakdown, data.province, save);
+   if (hasProvinceUpgrade("MilitaryTaxation", data.province, save)) {
+      breakdown.multiply.push({
+         name: ProvinceUpgrades.MilitaryTaxation.name(),
+         value: getProvinceStat("actualConscription", data.province, save) * 0.005,
+      });
+   }
    if (
       hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
       data.coreProvinces.has(data.province) &&
@@ -546,6 +558,12 @@ function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.TileOutput, breakdown);
    attachModifiers("TileOutput", breakdown, data.province, save);
+   if (hasProvinceUpgrade("CarpathianRiches", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.CarpathianRiches.name(), value: 0.25 });
+      }
+   }
 
    if (
       hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
@@ -815,6 +833,41 @@ export function getTileMakeCoreCost(tile: Tile, save: SaveGame): IValueBreakdown
       breakdown.multiply.push({ name: $t(L.MinorReligion), value: 0.1 });
    }
    attachModifiers("MakeCoreCost", breakdown, data.province, save);
+   return finalizeBreakdown(breakdown);
+}
+
+export function getTileConvertCultureCost(tile: Tile, save: SaveGame): IValueBreakdown {
+   const breakdown = makeValueBreakdown({ reverse: true });
+   const data = save.state.tiles.get(tile);
+   if (!data) {
+      return breakdown;
+   }
+   const state = save.state.provinces[data.province];
+   if (!state) {
+      return breakdown;
+   }
+   breakdown.add.push({
+      name: $t(L.TileUpgrades),
+      desc: $t(L.$1DiplomaticPointsPerUpgrade, "5"),
+      value: (data.infrastructure + data.production + data.population) * 5,
+   });
+   const count = getProvinceStat("convertCultureCount", data.province, save);
+   breakdown.multiply.push({
+      name: $t(L.NumberOfCultureConversions),
+      desc: $t(L.CultureConversionCostGrowthDesc$1$2, "2%", formatNumber(count)),
+      value: 0.02 * count,
+   });
+   if (state.toleratedCultures.has(data.culture)) {
+      breakdown.multiply.push({ name: $t(L.ToleratedCulture), value: -0.1 });
+   }
+   if (data.religion === state.religion) {
+      breakdown.multiply.push({ name: $t(L.DominantReligion), value: -0.1 });
+   } else if (state.toleratedReligions.has(data.religion)) {
+      breakdown.multiply.push({ name: $t(L.ToleratedReligion), value: 0 });
+   } else {
+      breakdown.multiply.push({ name: $t(L.MinorReligion), value: 0.1 });
+   }
+   attachModifiers("CultureConversionCost", breakdown, data.province, save);
    return finalizeBreakdown(breakdown);
 }
 

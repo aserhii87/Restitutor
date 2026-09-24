@@ -321,7 +321,9 @@ const _ProvinceUpgrades = {
    },
    BornCommanders: {
       name: () => $t(L.BornCommanders),
-      desc: () => $t(L.$1GeneralSkillPointsWhenAppointingANewGeneral, "+2"),
+      modifiers: {
+         StartingGeneralSkillPoint: { type: "add", value: 2 },
+      },
    },
    PonticHegemony: {
       name: () => $t(L.PonticHegemony),
@@ -330,6 +332,30 @@ const _ProvinceUpgrades = {
    CampaignRequisitions: {
       name: () => $t(L.CampaignRequisitions),
       desc: () => $t(L.CampaignRequisitionsEffect$1$2, "+10%", "12"),
+   },
+   InfantryPredominance: {
+      name: () => $t(L.InfantryPredominance),
+      desc: () => $t(L.InfantryPredominanceDesc$1$2$3, "+1%", "1%", "+25%"),
+   },
+   CarpathianRiches: {
+      name: () => $t(L.CarpathianRiches),
+      desc: () => $t(L.$1TileOutputOnCoreHillAndMountainTiles, "+25%"),
+   },
+   HighlandAdministration: {
+      name: () => $t(L.HighlandAdministration),
+      desc: () => $t(L.$1GoverningCostOnCoreHillAndMountainTiles, "-25%"),
+   },
+   MilitarySupplyNetwork: {
+      name: () => $t(L.MilitarySupplyNetwork),
+      desc: () => $t(L.MilitarySupplyNetworkDesc$1$2, "-1%", "-25%"),
+   },
+   MilitaryTaxation: {
+      name: () => $t(L.MilitaryTaxation),
+      desc: () => $t(L.$1LandTaxForEach$2ActualConscription, "+0.5%", "1%"),
+   },
+   SanctionedConquest: {
+      name: () => $t(L.SanctionedConquest),
+      desc: () => $t(L.$1WarmongerPenalty, "-50%"),
    },
 } as const satisfies Record<string, IProvinceUpgrade>;
 

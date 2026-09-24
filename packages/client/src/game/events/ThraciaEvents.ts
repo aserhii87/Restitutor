@@ -361,7 +361,7 @@ export const ThraciaEvents = {
       image: EventImage.RomanExpedition,
       desc: () => $t(L.TheRoadsThroughTheInteriorDesc),
       condition: {
-         province: new Set(["Thracia"]),
+         province: new Set(["Thracia", "Dacia", "Macedonia"]),
          conditions: function* (province, save): ConditionChecks {
             yield* allCoreTileChecks([10092620, 10158156], province, save);
          },

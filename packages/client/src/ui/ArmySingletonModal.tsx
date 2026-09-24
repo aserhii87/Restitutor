@@ -14,7 +14,7 @@ import {
    UpgradeGeneralSkillAction,
 } from "../game/actions/ArmyGeneralAction";
 import { finalizeCondition } from "../game/actions/GameAction";
-import { durationToString } from "../game/definitions/Modifier";
+import { durationToString, Modifiers } from "../game/definitions/Modifier";
 import { ProvinceResourceNames } from "../game/definitions/ProvinceResources";
 import { ProvinceStatNames } from "../game/definitions/ProvinceStats";
 import { TimedActions } from "../game/definitions/TimedAction";
@@ -29,6 +29,7 @@ import {
    getArmyMaintenanceCost,
    getCurrentGeneral,
    getProvinceManpower,
+   getStartingGeneralSkillPoint,
    getUnitWarPower,
    getWarPower,
    hasGeneralCondition,
@@ -50,6 +51,7 @@ import { refreshOnTypedEvent } from "../utils/Hook";
 import { $t, L } from "../utils/i18n";
 import { hideModal, ModalComp, ModalTitleBar } from "../utils/ModalManager";
 import { ActionButton } from "./ActionButton";
+import { BreakdownComp } from "./BreakdownComp";
 import { BreakdownRow } from "./BreakdownRow";
 import { ConfirmModal } from "./ConfirmModal";
 import { showPanel } from "./common/ShowPanel";
@@ -310,16 +312,19 @@ export function ArmySingletonModal(): React.ReactNode {
             <ActionButton
                id="ArmyModal_RecruitGeneral"
                action={() => RecruitGeneralAction(G.save.state.playerProvince, G.save)}
-               tooltip={(element) => (
-                  <>
-                     <TimedActionDescComp action="RecruitAGeneral" />
-                     <div className="h2">{$t(L.MonthlyGoldCost)}</div>
-                     <div className="mx10 my5">
-                        {$t(L.$1ArmyMaintenanceCost, formatPercentDelta(GeneralArmyMaintenancePct))}
-                     </div>
-                     {element}
-                  </>
-               )}
+               tooltip={(element) => {
+                  return (
+                     <>
+                        <TimedActionDescComp action="RecruitAGeneral" />
+                        <div className="h2">{$t(L.MonthlyGoldCost)}</div>
+                        <div className="mx10 my5">
+                           {$t(L.$1ArmyMaintenanceCost, formatPercentDelta(GeneralArmyMaintenancePct))}
+                        </div>
+                        {element}
+                        <StartingGeneralSkillPointsComp />
+                     </>
+                  );
+               }}
             >
                {TimedActions.RecruitAGeneral.name()}
             </ActionButton>
@@ -332,6 +337,7 @@ export function ArmySingletonModal(): React.ReactNode {
                         {html($t(L.MakingGovernorGeneralDoesNotCostGold$1$2$3$4, "10%", "1", "1", "1"))}
                      </div>
                      {element}
+                     <StartingGeneralSkillPointsComp />
                   </>
                )}
             >
@@ -646,16 +652,15 @@ function GeneralSkillPointTooltip(): React.ReactNode {
    return (
       <>
          <div className="h2">{ProvinceResourceNames.generalSkillPoint()}</div>
-         <div className="row mx10 my5">
+         <div className="row m10">
             <div className="f1">{$t(L.AvailableEarned)}</div>
             <div>
                {skillPoints[0] - skillPoints[1]}/{skillPoints[0]}
             </div>
          </div>
          <div className="divider" />
-         <div className="mx10 my5">{html($t(L.GeneralSkillPointsFromWar))}</div>
-         <div className="divider" />
-         <div className="mx10 my5">{$t(L.GeneralSkillPointsCarryover)}</div>
+         <div className="m10">{html($t(L.GeneralSkillPointsFromWar))}</div>
+         <div className="m10 text-primary">{$t(L.GeneralSkillPointsCarryover)}</div>
       </>
    );
 }
@@ -682,6 +687,19 @@ function GeneralStatusComp(): React.ReactNode {
                </div>
             </FloatingTip>
          )}
+      </>
+   );
+}
+
+function StartingGeneralSkillPointsComp(): React.ReactNode {
+   const startingGeneralSkillPoints = getStartingGeneralSkillPoint(G.save.state.playerProvince, G.save);
+   if (startingGeneralSkillPoints.value <= 0) {
+      return null;
+   }
+   return (
+      <>
+         <div className="h2">{Modifiers.StartingGeneralSkillPoint.name()}</div>
+         <BreakdownComp breakdown={startingGeneralSkillPoints} />
       </>
    );
 }

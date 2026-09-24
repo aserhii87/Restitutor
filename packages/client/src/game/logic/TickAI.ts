@@ -15,6 +15,7 @@ import { RecruitGeneralAction, UpgradeGeneralSkillAction } from "../actions/Army
 import { ConstructBuildingAction } from "../actions/BuildingActions";
 import { EstablishRegionalCapitalAction } from "../actions/CapitalActions";
 import { ChangeRivalAction } from "../actions/ChangeRivalAction";
+import { ConvertCultureAction } from "../actions/ConvertCultureAction";
 import { ConvertToChristianityAction } from "../actions/ConvertToChristianityAction";
 import { CrackDownAction } from "../actions/CrackDownAction";
 import { DeclareWarAction } from "../actions/DeclareWarAction";
@@ -321,6 +322,15 @@ export function tickAI(save: SaveGame): void {
       tryDoHeadless(makeGameAction("AppointPontiff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointEnvoy", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
       tryDoHeadless(makeGameAction("AppointArmyStaff", province, save), "AppointPontiffEnvoyArmyStaff", province, save);
+      if (getTimedActionCooldownLeft("ConvertCulture", province, save) <= 0) {
+         for (const [tile, tileData] of tiles) {
+            if (tileData.coreProvinces.has(province) && tileData.culture !== state.culture) {
+               if (tryDoHeadless(ConvertCultureAction(tile, province, save), "ConvertCulture", province, save)) {
+                  break;
+               }
+            }
+         }
+      }
    });
 }
 

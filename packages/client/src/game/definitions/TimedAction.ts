@@ -160,6 +160,12 @@ class TimedActionDefinitions {
       duration: 0,
       cooldown: 12,
    };
+   ConvertCulture: ITimedAction = {
+      name: () => $t(L.ConvertCulture),
+      desc: () => $t(L.TimedActionConvertCultureDesc),
+      duration: 0,
+      cooldown: 12,
+   };
    AdjustAutonomy: ITimedAction = {
       name: () => $t(L.AdjustAutonomy),
       desc: () => $t(L.TimedActionAdjustAutonomyDesc$1$2$3$4, "1%", "1%", "1", "0.5%"),
@@ -710,6 +716,12 @@ class TimedActionDefinitions {
       desc: () => $t(L.TimedActionRelocateCapitalDesc),
       duration: 24,
       cooldown: 24,
+   };
+   ProclaimConquest: ITimedAction = {
+      name: () => $t(L.ProclaimConquest),
+      desc: () => $t(L.TimedActionProclaimConquestDesc$1, CasusBelli.ConquestMission.name()),
+      duration: 12 * 5,
+      cooldown: 12 * 5,
    };
    ProclaimRightOfReprisal: ITimedAction = {
       name: () => $t(L.ProclaimRightOfReprisal),

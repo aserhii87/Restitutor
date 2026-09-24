@@ -1,6 +1,7 @@
 import { forEach, fromEntries, hasFlag } from "@project/shared/src/utils/Helper";
 import { isPaused, revertSpeed } from "../../utils/Global";
 import { $t, L } from "../../utils/i18n";
+import { HunsSpawnYear } from "../definitions/Constant";
 import { GallicEmpireProvinces, PalmyreneEmpireProvinces, Tiles } from "../definitions/TileConstants";
 import { GameOptionFlag } from "../GameOption";
 import { getRelation } from "../logic/DiplomacyLogic";
@@ -833,7 +834,7 @@ export const HistoricalEvents = {
       image: EventImage.AttilasFeast,
       desc: () => $t(L.TheCourtOfAttilaDesc),
       condition: {
-         year: [445, 445],
+         year: [HunsSpawnYear, HunsSpawnYear],
       },
       buttons: [
          {

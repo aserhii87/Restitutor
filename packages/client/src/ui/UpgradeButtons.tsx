@@ -29,9 +29,10 @@ export function UpgradeInfrastructureButton({
          <>
             <TimedActionDescComp action="UpgradeInfrastructure" />
             {element}
-            <div className="divider" />
-            <div className="m10">{$t(L.TheUpgradeCostIsCalculatedAsFollows)}</div>
-            <BreakdownComp breakdown={getTileUpgradeCost(tile, "administrative", G.save)} />
+            <div className="box m5">
+               <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+               <BreakdownComp breakdown={getTileUpgradeCost(tile, "administrative", G.save)} />
+            </div>
          </>
       ),
       [tile],
@@ -66,9 +67,10 @@ export function UpgradeProductionButton({
          <>
             <TimedActionDescComp action="UpgradeProduction" />
             {element}
-            <div className="divider" />
-            <div className="m10">{$t(L.TheUpgradeCostIsCalculatedAsFollows)}</div>
-            <BreakdownComp breakdown={getTileUpgradeCost(tile, "diplomatic", G.save)} />
+            <div className="box m5">
+               <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+               <BreakdownComp breakdown={getTileUpgradeCost(tile, "diplomatic", G.save)} />
+            </div>
          </>
       ),
       [tile],
@@ -103,9 +105,10 @@ export function UpgradePopulationButton({
          <>
             <TimedActionDescComp action="UpgradePopulation" />
             {element}
-            <div className="divider" />
-            <div className="m10">{$t(L.TheUpgradeCostIsCalculatedAsFollows)}</div>
-            <BreakdownComp breakdown={getTileUpgradeCost(tile, "military", G.save)} />
+            <div className="box m5">
+               <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+               <BreakdownComp breakdown={getTileUpgradeCost(tile, "military", G.save)} />
+            </div>
          </>
       ),
       [tile],

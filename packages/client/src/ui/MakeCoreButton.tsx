@@ -1,6 +1,5 @@
 import { cls, type Tile } from "@project/shared/src/utils/Helper";
 import { MakeCoreAction } from "../game/actions/MakeCoreAction";
-import { getTileName } from "../game/definitions/TileName";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { getTileMakeCoreCost } from "../game/logic/TileLogic";
 import { TimedActionDescComp } from "../game/logic/TimedActionDescComp";
@@ -8,7 +7,6 @@ import { G } from "../utils/Global";
 import { $t, L } from "../utils/i18n";
 import { ActionButton } from "./ActionButton";
 import { BreakdownComp } from "./BreakdownComp";
-import { html } from "./components/RenderHTMLComp";
 
 export function MakeCoreButton({
    tile,
@@ -37,12 +35,12 @@ export function MakeCoreButton({
          id={id}
          tooltip={(element) => (
             <>
-               <div className="m10">{html($t(L.Make$1OurCoreTile, getTileName(tile, G.save)))}</div>
                <TimedActionDescComp action="MakeCore" />
                {element}
-               <div className="divider"></div>
-               <div className="m10">{$t(L.TheCostIsCalculatedAsFollows)}</div>
-               <BreakdownComp breakdown={cost} />
+               <div className="box m5">
+                  <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+                  <BreakdownComp breakdown={cost} />
+               </div>
             </>
          )}
          className={cls("btn", className)}

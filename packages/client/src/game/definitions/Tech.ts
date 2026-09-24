@@ -101,7 +101,7 @@ export class TechDefinitions {
    D2: ITechDefinition = {
       requires: ["C2", "C3"],
       name: () => $t(L.TechCivicAssembly),
-      timedActions: ["DemandTribute", "DemandElectionBacking", "UpgradeRations"],
+      timedActions: ["DemandTribute", "DemandElectionBacking", "UpgradeRations", "ConvertCulture"],
       buildings: ["TownSquare"],
       goods: ["cheese"],
    } as const;
@@ -120,7 +120,7 @@ export class TechDefinitions {
    E1: ITechDefinition = {
       requires: ["D1", "D2"],
       name: () => $t(L.TechCurialReform),
-      timedActions: ["AppointPontiff", "ReformCuria"],
+      timedActions: ["AppointPontiff", "ReformCuria", "RelocateCapital", "EstablishRegionalCapital"],
       modifiers: {
          ToleratedCulture: { type: "add", value: 1 },
       },

@@ -496,9 +496,10 @@ function HireMercenariesButton({ war, province }: { war: IWar; province: Provinc
             <>
                <TimedActionDescComp action="HireMercenaries" />
                {element}
-               <div className="divider" />
-               <div className="m10">{$t(L.TheCostOfHiringMercenariesIsCalculatedAsFollows)}</div>
-               <BreakdownComp breakdown={getMercenaryCost(province, G.save)} />
+               <div className="box m5">
+                  <div className="h2">{$t(L.TheCostIsCalculatedAsFollows)}</div>
+                  <BreakdownComp breakdown={getMercenaryCost(province, G.save)} />
+               </div>
             </>
          )}
       >

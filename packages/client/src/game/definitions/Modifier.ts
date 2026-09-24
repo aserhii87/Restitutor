@@ -117,6 +117,10 @@ export const Modifiers = {
       name: () => $t(L.MakeCoreCost),
       desc: () => $t(L.ModifierMakeCoreCostDesc),
    },
+   CultureConversionCost: {
+      name: () => $t(L.CultureConversionCost),
+      desc: () => $t(L.ModifierCultureConversionCostDesc),
+   },
    InfantryUnitPower: {
       name: () => $t(L.InfantryUnitPower),
       desc: () => $t(L.InfantryUnitPowerIsTheWarPowerOfEachInfantryUnit),
@@ -192,6 +196,10 @@ export const Modifiers = {
    ToleratedReligion: {
       name: () => $t(L.ToleratedReligion),
       desc: () => $t(L.ToleratedReligionDesc),
+   },
+   StartingGeneralSkillPoint: {
+      name: () => $t(L.StartingGeneralSkillPoint),
+      desc: () => $t(L.GeneralSkillPointsGrantedWhenAppointingANewGeneral),
    },
 } as const satisfies Record<string, IModifierDefinition>;
 

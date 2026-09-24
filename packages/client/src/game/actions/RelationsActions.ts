@@ -162,7 +162,7 @@ export function ProclaimCrusadeAction(ourProvince: Province, theirProvince: Prov
       return EmptyGameAction;
    }
    return {
-      cost: { diplomatic: 25 },
+      cost: { christianity: 1 },
       condition: finalizeCondition([
          ...timedActionConditions({ action: "ProclaimCrusade" }, ourProvince, save),
          {

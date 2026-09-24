@@ -37,6 +37,7 @@ import {
    getProvinceStat,
    getTileUpgradeTimes,
    setProvinceNameOverride,
+   setProvinceStat,
 } from "./ProvinceLogic";
 import { addProvinceResource, getProvinceResource, provinceResourceOf } from "./ResourceLogic";
 import { isCoreTile, setTileNameOverride } from "./TileLogic";
@@ -125,6 +126,15 @@ export function forcePatronageEffect(client: Province): ICustomEffect {
          OfferPatronageAction(province, client, save).execute({ headless: false });
       },
       desc: (province, save) => $t(L.$1BecomesOurClient, getProvinceName(client, save)),
+   };
+}
+
+export function resetWarmongerPenaltyEffect(): ICustomEffect {
+   return {
+      execute: (province, save) => {
+         setProvinceStat("attackCountOffset", -getProvinceStat("attackCount", province, save), province, save);
+      },
+      desc: () => $t(L.ResetOurWarmongerPenalty),
    };
 }
 

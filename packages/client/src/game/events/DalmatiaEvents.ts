@@ -538,7 +538,7 @@ export const DalmatiaEvents = {
          {
             label: () => $t(L.DevelopOurVeteranCommanders),
             resources: {
-               generalSkillPoint: 1,
+               generalSkillPoint: 2,
             },
             casusBelli: {
                Italia: { casusBelli: "ConquestMission", duration: 5 * 12 },
