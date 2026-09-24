@@ -24,6 +24,7 @@ import CaptiveTriumph from "../../assets/images/events/CaptiveTriumph.webp";
 import CaracallaBaths from "../../assets/images/events/CaracallaBaths.webp";
 import CarthageCaptured from "../../assets/images/events/CarthageCaptured.webp";
 import CarthageDecline from "../../assets/images/events/CarthageDecline.webp";
+import CavalryCharge from "../../assets/images/events/CavalryCharge.webp";
 import ChariotRace1 from "../../assets/images/events/ChariotRace1.webp";
 import ChariotRace2 from "../../assets/images/events/ChariotRace2.webp";
 import ChristianBurial from "../../assets/images/events/ChristianBurial.webp";
@@ -34,6 +35,7 @@ import CivicTriumph from "../../assets/images/events/CivicTriumph.webp";
 import CivilianMigration from "../../assets/images/events/CivilianMigration.webp";
 import ClaudiusEmperor from "../../assets/images/events/ClaudiusEmperor.webp";
 import ClovisBaptism from "../../assets/images/events/ClovisBaptism.webp";
+import CoinMinting from "../../assets/images/events/CoinMinting.webp";
 import Colosseum from "../../assets/images/events/Colosseum.webp";
 import CommodusDeath from "../../assets/images/events/CommodusDeath.webp";
 import ConstantineBaptism from "../../assets/images/events/ConstantineBaptism.webp";
@@ -172,6 +174,7 @@ import Weavers from "../../assets/images/events/Weavers.webp";
 import Wedding1 from "../../assets/images/events/Wedding1.webp";
 import Wedding2 from "../../assets/images/events/Wedding2.webp";
 import WinterMarch from "../../assets/images/events/WinterMarch.webp";
+import WoundedSoldier from "../../assets/images/events/WoundedSoldier.webp";
 import ZenobiaCaptured from "../../assets/images/events/ZenobiaCaptured.webp";
 import ZenobiaSpeech from "../../assets/images/events/ZenobiaSpeech.webp";
 import DiocletiansPalace from "../../assets/images/greatworks/DiocletiansPalace.webp";
@@ -312,6 +315,11 @@ export const EventImage = {
       credit: "The Decline of the Carthaginian Empire, J. M. W. Turner (1817)",
       keywords: ["Africa", "Empire", "Harbour", "Ruins"],
    },
+   CavalryCharge: {
+      url: CavalryCharge,
+      credit: "The Huns at the Battle of Chalons, Alphonse de Neuville (c.1869)",
+      keywords: ["Huns", "Battle", "Horsemen", "Weapons", "Casualties", "CatalaunianPlains"],
+   },
    ChariotRace1: {
       url: ChariotRace1,
       credit: "Horse racing at the Circus, Hans Werner Schmidt (1912)",
@@ -366,6 +374,11 @@ export const EventImage = {
       url: DiocletiansPalace,
       credit: "Reconstruction of Diocletian's Palace in Split, Ernest Hébrard (1912)",
       keywords: ["Diocletian", "Split", "Architecture", "Fortification", "Adriatic", "Ships"],
+   },
+   CoinMinting: {
+      url: CoinMinting,
+      credit: "Young Maximilian in the Mint, Leonhard Beck",
+      keywords: ["Workshop", "Metalworking", "Workers", "Hammer", "Scales", "Furnace", "Maximilian"],
    },
    Colosseum: {
       url: Colosseum,
@@ -1058,6 +1071,11 @@ export const EventImage = {
       url: WinterMarch,
       credit: "Snow Storm: Hannibal and His Army Crossing the Alps, J. M. W. Turner (1812)",
       keywords: ["Snowstorm", "Alps", "Soldiers", "Army", "Mountains", "Hannibal"],
+   },
+   WoundedSoldier: {
+      url: WoundedSoldier,
+      credit: "Dying Athlete or Wounded Roman Soldier, Jean-Germain Drouais (1785)",
+      keywords: ["Rome", "Injury", "Warrior", "Shield", "Helmet", "Sword"],
    },
    ZenobiaCaptured: {
       url: ZenobiaCaptured,

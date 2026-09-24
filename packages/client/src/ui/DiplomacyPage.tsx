@@ -26,7 +26,7 @@ import { DemandTileCostCondition } from "../game/actions/DemandTileCostCondition
 import { DemandTributeCostCondition } from "../game/actions/DemandTributeCostCondition";
 import { DenounceAction } from "../game/actions/DenounceAction";
 import { finalizeCondition, type IGameAction } from "../game/actions/GameAction";
-import { InvokeBarbarianThreatAction } from "../game/actions/InvokeBarbarianThreatAction";
+import { ProclaimConquestAction } from "../game/actions/ProclaimConquestAction";
 import {
    CancelImproveRelationsAction,
    CancelInfiltrationAction,
@@ -42,7 +42,6 @@ import { Culture } from "../game/definitions/Culture";
 import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Modifiers } from "../game/definitions/Modifier";
 import type { Province } from "../game/definitions/Province";
-import { hasProvinceUpgrade } from "../game/definitions/ProvinceUpgrades";
 import { Religion } from "../game/definitions/Religion";
 import { TimedActions } from "../game/definitions/TimedAction";
 import { GameStateUpdated } from "../game/Events";
@@ -772,18 +771,18 @@ function DiplomacyActions({ province }: { province: Province }): React.ReactNode
             >
                {TimedActions.ProclaimCrusade.name()}
             </ActionButton>
-            {hasProvinceUpgrade("MandateOfPacification", G.save.state.playerProvince, G.save) && (
+            {G.save.state.provinces[G.save.state.playerProvince]?.nameOverride === "HunnicEmpire" && (
                <ActionButton
                   className="py2"
-                  action={() => InvokeBarbarianThreatAction(G.save.state.playerProvince, province, G.save)}
+                  action={() => ProclaimConquestAction(G.save.state.playerProvince, province, G.save)}
                   tooltip={(element) => (
                      <>
-                        <TimedActionDescComp action="InvokeBarbarianThreat" />
+                        <TimedActionDescComp action="ProclaimConquest" />
                         {element}
                      </>
                   )}
                >
-                  {TimedActions.InvokeBarbarianThreat.name()}
+                  {TimedActions.ProclaimConquest.name()}
                </ActionButton>
             )}
          </div>

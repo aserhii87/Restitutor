@@ -17,3 +17,4 @@ export const BackupFrequency = 10 * 60 * 1000; // 10 minutes
 export const BackupCount = 10;
 
 export const SocialClassBonusDefaultDuration = 12 * 5;
+export const HunsSpawnYear = 445;

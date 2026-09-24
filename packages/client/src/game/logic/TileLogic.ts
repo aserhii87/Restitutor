@@ -95,6 +95,12 @@ export function getTileGoverningCost(tile: Tile, save: SaveGame): IValueBreakdow
    ) {
       breakdown.multiply.push({ name: ProvinceUpgrades.CoastalAdministration.name(), value: -0.2 });
    }
+   if (hasProvinceUpgrade("HighlandAdministration", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.HighlandAdministration.name(), value: -0.25 });
+      }
+   }
    if (hasProvinceUpgrade("FortifiedAdministration", data.province, save)) {
       let result = 0;
       if (data.buildings.has("Castra")) {
@@ -415,6 +421,12 @@ function _getTileLandTax(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.LandTax, breakdown);
    attachModifiers("LandTax", breakdown, data.province, save);
+   if (hasProvinceUpgrade("MilitaryTaxation", data.province, save)) {
+      breakdown.multiply.push({
+         name: ProvinceUpgrades.MilitaryTaxation.name(),
+         value: getProvinceStat("actualConscription", data.province, save) * 0.005,
+      });
+   }
    if (
       hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&
       data.coreProvinces.has(data.province) &&
@@ -546,6 +558,12 @@ function _getTileOutput(tile: Tile, save: SaveGame): IValueBreakdown {
    });
    attachTileModifiers(data.modifiers.TileOutput, breakdown);
    attachModifiers("TileOutput", breakdown, data.province, save);
+   if (hasProvinceUpgrade("CarpathianRiches", data.province, save) && data.coreProvinces.has(data.province)) {
+      const terrain = getTileTerrain(tile);
+      if (terrain === "Hill" || terrain === "Mountain") {
+         breakdown.multiply.push({ name: ProvinceUpgrades.CarpathianRiches.name(), value: 0.25 });
+      }
+   }
 
    if (
       hasProvinceUpgrade("CapitalsOfProsperity", data.province, save) &&

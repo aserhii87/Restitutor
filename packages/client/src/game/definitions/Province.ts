@@ -86,7 +86,13 @@ export const Province = {
       religion: "GrecoRoman",
       upgrades: [],
    },
-   Dacia: { code: "DA", name: () => $t(L.ProvinceDacia), culture: "Dacian", religion: "GrecoRoman", upgrades: [] },
+   Dacia: {
+      code: "DA",
+      name: () => $t(L.ProvinceDacia),
+      culture: "Dacian",
+      religion: "GrecoRoman",
+      upgrades: ["InfantryPredominance", "CarpathianRiches", "HighlandAdministration"],
+   },
    Dalmatia: {
       code: "DL",
       name: () => $t(L.ProvinceDalmatia),
@@ -151,7 +157,7 @@ export const Province = {
       name: () => $t(L.ProvinceMoesia),
       culture: "Thracian",
       religion: "GrecoRoman",
-      upgrades: [],
+      upgrades: ["MilitarySupplyNetwork", "MilitaryTaxation", "SanctionedConquest"],
    },
    Narbonensis: {
       code: "NB",
@@ -282,6 +288,8 @@ export const EnabledProvinces: Province[] = [
    "Pannonia",
    "Dalmatia",
    "Thracia",
+   "Moesia",
+   "Dacia",
 ];
 EnabledProvinces.sort();
 export const AlwaysFreeProvinces = new Set<Province>(["Lugdunensis"]);

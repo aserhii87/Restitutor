@@ -149,6 +149,27 @@ export function getArmyMaintenanceCost(
          value: GeneralArmyMaintenancePct,
       });
    }
+   if (hasProvinceUpgrade("MilitarySupplyNetwork", province, save)) {
+      let buildingCount = 0;
+      for (const tile of getProvinceCoreTilesCached(province)) {
+         const data = save.state.tiles.get(tile);
+         if (!data) {
+            continue;
+         }
+         if (data.buildings.has("Castra")) {
+            ++buildingCount;
+         }
+         if (data.buildings.has("Citadel")) {
+            ++buildingCount;
+         }
+      }
+      if (buildingCount > 0) {
+         breakdown.multiply.push({
+            name: ProvinceUpgrades.MilitarySupplyNetwork.name(),
+            value: -Math.min(buildingCount * 0.01, 0.25),
+         });
+      }
+   }
    attachModifiers("ArmyMaintenance", breakdown, province, save);
    return finalizeBreakdown(breakdown);
 }
@@ -239,6 +260,12 @@ export function getWarPower(
    const ranged = makeUnitPower("ranged", "infantry", "cavalry");
    const cavalry = makeUnitPower("cavalry", "ranged", "infantry");
    result.add.push({ name: $t(L.CombinedPower), value: infantry.value + ranged.value + cavalry.value });
+   if (hasProvinceUpgrade("InfantryPredominance", province, save)) {
+      result.multiply.push({
+         name: ProvinceUpgrades.InfantryPredominance.name(),
+         value: Math.min(composition.infantry * 0.01, 0.25),
+      });
+   }
    if (hasProvinceUpgrade("CavalryWarPower", province, save)) {
       result.multiply.push({
          name: ProvinceUpgrades.CavalryWarPower.name(),

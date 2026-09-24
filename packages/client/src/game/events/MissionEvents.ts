@@ -247,20 +247,4 @@ export const MissionEvents = {
          },
       ],
    },
-   Mission9: {
-      name: () => $t(L.MandateOfPacification),
-      image: EventImage.CaptiveTriumph,
-      desc: () => $t(L.MandateOfPacificationDesc),
-      condition: {
-         conditions: function* (province, save): ConditionChecks {
-            yield* eliminatedBarbariansChecks(2, province, save);
-         },
-      },
-      buttons: [
-         {
-            label: () => $t(L.ExtendOurMandate),
-            provinceUpgrades: ["MandateOfPacification"],
-         },
-      ],
-   },
 } as const satisfies Record<string, IGameEventConfig>;

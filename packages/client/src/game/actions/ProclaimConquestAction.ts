@@ -1,6 +1,6 @@
 import { $t, L } from "../../utils/i18n";
 import type { Province } from "../definitions/Province";
-import { hasProvinceUpgradeCondition } from "../definitions/ProvinceUpgrades";
+import { ProvinceNameOverrides } from "../definitions/ProvinceNameOverrides";
 import { TimedActions } from "../definitions/TimedAction";
 import type { SaveGame } from "../GameState";
 import { getAttitudeTowards, getRelation } from "../logic/DiplomacyLogic";
@@ -9,19 +9,18 @@ import { startTimedAction, timedActionConditions } from "../logic/TimedActionLog
 import { EmptyGameAction } from "./EmptyGameAction";
 import { finalizeCondition, type IGameAction } from "./GameAction";
 
-export function InvokeBarbarianThreatAction(
-   ourProvince: Province,
-   theirProvince: Province,
-   save: SaveGame,
-): IGameAction {
+export function ProclaimConquestAction(ourProvince: Province, theirProvince: Province, save: SaveGame): IGameAction {
    const relation = getRelation(ourProvince, theirProvince, save);
    if (!relation) {
       return EmptyGameAction;
    }
    return {
       condition: finalizeCondition([
-         hasProvinceUpgradeCondition("MandateOfPacification", ourProvince, save),
-         ...timedActionConditions({ action: "InvokeBarbarianThreat" }, ourProvince, save),
+         {
+            name: $t(L.WeHaveFormed$1, ProvinceNameOverrides.HunnicEmpire()),
+            value: save.state.provinces[ourProvince]?.nameOverride === "HunnicEmpire",
+         },
+         ...timedActionConditions({ action: "ProclaimConquest" }, ourProvince, save),
          {
             name: $t(L.WeShareALandBorderWithThem),
             value: getNeighborProvinces(ourProvince, save).has(theirProvince),
@@ -32,10 +31,10 @@ export function InvokeBarbarianThreatAction(
          },
       ]),
       execute: () => {
-         relation.casusBelli.set("HumiliateRival", {
-            monthsLeft: TimedActions.InvokeBarbarianThreat.duration,
+         relation.casusBelli.set("ConquestMission", {
+            monthsLeft: TimedActions.ProclaimConquest.duration,
          });
-         startTimedAction("InvokeBarbarianThreat", ourProvince, save);
+         startTimedAction("ProclaimConquest", ourProvince, save);
       },
    };
 }

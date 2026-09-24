@@ -482,7 +482,7 @@ export const TileName: Partial<Record<Tile, () => string>> = {
    10813521: () => $t(L.TileComana),
    10813522: () => $t(L.TileAdana),
    10813523: () => $t(L.TileCyrrus),
-   10813524: () => $t(L.TileRhosos),
+   10813524: () => $t(L.TileAntioch),
    10813525: () => $t(L.TilePella),
    10813526: () => $t(L.TileBerytus),
    10813528: () => $t(L.TileGerasa),
