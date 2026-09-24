@@ -106,7 +106,7 @@ export function addSocialClassLoyalty(
 }
 
 export function getAgendas(count: number, province: Province, save: SaveGame): SocialClassBonus[] {
-   const rand = srand(`agenda${Math.floor(save.state.month / 60)}`);
+   const rand = srand(`agenda-${save.state.seed}-${Math.floor(save.state.month / 60)}`);
    const socialClasses = keysOf(SocialClass);
    const candidates = shuffle(keysOf(SocialClassBonuses), rand);
 

@@ -201,6 +201,51 @@ const _SocialClassBonuses = {
       supporting: ["MiddleClass", "LowerClass"],
       opposing: ["UpperClass", "MilitaryClass"],
    },
+   ChristianityYearly: {
+      effect: {
+         modifiers: {
+            ChristianityYearly: { type: "add", value: 1, duration: DefaultDuration },
+         },
+      },
+      supporting: ["ReligiousClass", "LowerClass"],
+      opposing: ["UpperClass", "MilitaryClass"],
+   },
+   Christianity: {
+      effect: {
+         resources: {
+            christianity: 3,
+         },
+      },
+      supporting: ["ReligiousClass", "MiddleClass"],
+      opposing: ["LowerClass", "MilitaryClass"],
+   },
+   GeneralSkillPoint: {
+      effect: {
+         resources: {
+            generalSkillPoint: 1,
+         },
+      },
+      supporting: ["MilitaryClass", "LowerClass"],
+      opposing: ["ReligiousClass", "MiddleClass"],
+   },
+   ConsulPoint: {
+      effect: {
+         resources: {
+            consulPoint: 1,
+         },
+      },
+      supporting: ["ReligiousClass", "MiddleClass"],
+      opposing: ["LowerClass", "MilitaryClass"],
+   },
+   WarPower: {
+      effect: {
+         modifiers: {
+            WarPower: { type: "multiply", value: 0.1, duration: DefaultDuration },
+         },
+      },
+      supporting: ["MilitaryClass", "MiddleClass"],
+      opposing: ["LowerClass", "ReligiousClass"],
+   },
 } as const satisfies Record<string, ISocialClassBonus>;
 
 export type SocialClassBonus = keyof typeof _SocialClassBonuses;

@@ -45,6 +45,11 @@ Moesia also comes with 10 historical events spanning 196 - 599 AD and six new mi
 - Added 2 upgrades that each reduce culture conversion cost by 10%.
 - Moved some upgrades to balance the legacy upgrade tree.
 
+## Social Class Agendas
+
+- Added five new agendas: +1 yearly Christian Influence for 5 years, +3 Christian Influence, +1 General Skill Point, +1 Consul Point, and +10% War Power for 5 years.
+- Agenda selection now uses the game seed, so available agendas vary between playthroughs.
+
 ## Other Changes
 
 - Added a todo when a social class agenda is available to adopt.
