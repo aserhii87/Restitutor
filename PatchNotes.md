@@ -47,6 +47,9 @@ Moesia also comes with 10 historical events spanning 196 - 599 AD and six new mi
 
 ## Other Changes
 
+- Added a todo when a social class agenda is available to adopt.
+- Added a todo for casus belli with less than 12 months remaining.
+- Fabricated Diplomatic Dispute casus belli now last 5 years instead of 2. Fabricate Casus Belli's cooldown increased from 4 to 5 years.
 - Allow trading a fraction of the Trade Capacity.
 - Proclaim Crusade now costs 1 Christianity instead of 25 diplomatic points.
 - Renamed the Rhosos map tile to Antioch.

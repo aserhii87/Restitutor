@@ -4453,4 +4453,6 @@ export const DE = {
    ProvinceHunnicEmpire: "Hunnenreich",
    ResetOurWarmongerPenalty: "Unsere Kriegstreiberstrafe zurücksetzen",
    NumberOfAttacksOffset: "Anzahl der Angriffe (Offset)",
+   SocialClassAgendaAvailableTooltip: "Wir können eine Agenda der Gesellschaftsklassen annehmen, um verschiedene Boni zu erhalten. Klicken, um Einzelheiten anzuzeigen.",
+   ExpiringCasusBelli: "Bald verfallende Casus Belli",
 };

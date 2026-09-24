@@ -1,7 +1,9 @@
 import { cls, entriesOf, forEach, formatNumber, hasFlag } from "@project/shared/src/utils/Helper";
 import { UpgradeGeneralSkillAction } from "../game/actions/ArmyGeneralAction";
 import { canDoAction } from "../game/actions/GameAction";
+import { GrantSocialClassBonusAction } from "../game/actions/GrantSocialClassBonusAction";
 import { CanTradeCostCondition } from "../game/actions/TradeActions";
+import { CasusBelli } from "../game/definitions/CasusBelli";
 import { TreatyNames } from "../game/definitions/Diplomacy";
 import { Goods } from "../game/definitions/Goods";
 import type { Province } from "../game/definitions/Province";
@@ -22,7 +24,7 @@ import { getLegacyUpgradeCost } from "../game/logic/LegacyUpgradeLogic";
 import { getProvinceProductionCapacity, getProvinceUsedProductionCapacity } from "../game/logic/ProductionLogic";
 import { getProvinceName, getProvinceOverextension, monthsToNextConsulElection } from "../game/logic/ProvinceLogic";
 import { getProvinceResource } from "../game/logic/ResourceLogic";
-import { isSocialClassDisloyal, isSocialClassDominant } from "../game/logic/SocialClassLogic";
+import { getAgendas, isSocialClassDisloyal, isSocialClassDominant } from "../game/logic/SocialClassLogic";
 import { getTechsCanBeResearched, hasResearched } from "../game/logic/TechLogic";
 import { PendingGameEventTimeoutMonths } from "../game/logic/TickProvince";
 import { getTileUnrest } from "../game/logic/TileLogic";
@@ -343,6 +345,62 @@ const ExpiringConsulPoints: ITodo = {
    },
    onClick: (save) => {
       showPanel(SenatePage, {});
+   },
+};
+
+const SocialClassAgenda: ITodo = {
+   name: (save) => $t(L.AdoptASocialClassAgenda),
+   icon: (save) => IconCatalog.SocialClass,
+   className: () => "yellow",
+   tooltip: (save) => {
+      const agendas = getAgendas(10, G.save.state.playerProvince, G.save);
+      for (const agenda of agendas) {
+         if (
+            canDoAction(
+               GrantSocialClassBonusAction(agenda, save.state.playerProvince, save),
+               save.state.playerProvince,
+               save,
+            )
+         ) {
+            return <div className="m10">{$t(L.SocialClassAgendaAvailableTooltip)}</div>;
+         }
+      }
+      return null;
+   },
+   onClick: (save) => {
+      showPanel(SocialClassSingletonModal, {});
+   },
+};
+
+const ExpiringCasusBelli: ITodo = {
+   name: (save) => $t(L.ExpiringCasusBelli),
+   icon: (save) => IconCatalog.CasusBelli,
+   className: () => "yellow",
+   tooltip: (save) => {
+      const result: { province: Province; casusBelli: CasusBelli; monthsLeft: number }[] = [];
+      getRelations(save.state.playerProvince, save)?.forEach((relation, province) => {
+         relation.casusBelli.forEach(({ monthsLeft }, casusBelli) => {
+            if (monthsLeft < 12) {
+               result.push({ province, casusBelli, monthsLeft });
+            }
+         });
+      });
+      if (result.length === 0) {
+         return null;
+      }
+      return (
+         <div className="m10">
+            {result.map(({ province, casusBelli, monthsLeft }) => (
+               <div key={`${province}-${casusBelli}`}>
+                  {getProvinceName(province, save)}: {CasusBelli[casusBelli].name()} (
+                  {$t(L.$1MonthsLeft, formatNumber(monthsLeft))})
+               </div>
+            ))}
+         </div>
+      );
+   },
+   onClick: (save) => {
+      showPanel(DiplomacyPage, { province: save.state.playerProvince });
    },
 };
 
@@ -888,10 +946,12 @@ const _Todos = {
    EmptyAdvisorSlots,
    AvailableProductionCapacity,
    CanMakeTrade,
+   SocialClassAgenda,
    TreatiesAboutToExpire,
    EligibleForMarriage,
    PledgeSupportToConsulCandidates,
    ExpiringConsulPoints,
+   ExpiringCasusBelli,
    OutstandingLoans,
    TechCanBeResearched,
    CanAppointPontiff,

@@ -4277,4 +4277,6 @@ export const ZH_CN = {
    ProvinceHunnicEmpire: "匈人帝国",
    ResetOurWarmongerPenalty: "清除我们的好战惩罚",
    NumberOfAttacksOffset: "进攻次数（偏移量）",
+   SocialClassAgendaAvailableTooltip: "我们可以采纳一项社会阶层议程以获得不同加成。点击查看详情。",
+   ExpiringCasusBelli: "即将失效的宣战理由",
 };

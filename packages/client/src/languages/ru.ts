@@ -4366,4 +4366,6 @@ export const RU = {
    ProvinceHunnicEmpire: "Гуннская империя",
    ResetOurWarmongerPenalty: "Сбросить наш штраф за разжигание войны",
    NumberOfAttacksOffset: "Количество атак (смещение)",
+   SocialClassAgendaAvailableTooltip: "Мы можем принять повестку сословия и получить различные бонусы. Нажмите для просмотра подробностей.",
+   ExpiringCasusBelli: "Казусы белли с истекающим сроком действия",
 };

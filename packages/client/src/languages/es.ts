@@ -4450,4 +4450,6 @@ export const ES = {
    ProvinceHunnicEmpire: "Imperio huno",
    ResetOurWarmongerPenalty: "Restablecer nuestra penalización por belicismo a cero",
    NumberOfAttacksOffset: "Número de ataques (desplazamiento)",
+   SocialClassAgendaAvailableTooltip: "Podemos adoptar una agenda de clase social para obtener distintas bonificaciones. Hagamos clic para ver los detalles.",
+   ExpiringCasusBelli: "Casus belli próximos a caducar",
 };

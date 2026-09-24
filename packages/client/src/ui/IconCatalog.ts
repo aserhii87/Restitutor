@@ -2,6 +2,7 @@ import Administrative from "../assets/images/Administrative.svg";
 import Army from "../assets/images/Army.svg";
 import Bankruptcy from "../assets/images/Bankruptcy.svg";
 import Barbarian from "../assets/images/Barbarian.svg";
+import CasusBelli from "../assets/images/CasusBelli.svg";
 import ChiRho from "../assets/images/ChiRho.svg";
 import Chronicle from "../assets/images/Chronicle.svg";
 import Core from "../assets/images/Core.svg";
@@ -102,4 +103,5 @@ export const IconCatalog = {
    Tetrarchy,
    ChiRho,
    Reconquest,
+   CasusBelli,
 } as const satisfies Record<string, string>;

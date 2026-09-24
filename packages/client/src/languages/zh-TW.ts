@@ -4277,4 +4277,6 @@ export const ZH_TW = {
    ProvinceHunnicEmpire: "匈人帝國",
    ResetOurWarmongerPenalty: "清除我們的好戰懲罰",
    NumberOfAttacksOffset: "進攻次數（偏移量）",
+   SocialClassAgendaAvailableTooltip: "我們可以採納一項社會階層議程以獲得不同加成。點選檢視詳情。",
+   ExpiringCasusBelli: "即將失效的宣戰理由",
 };

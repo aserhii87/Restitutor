@@ -4386,4 +4386,6 @@ export const TR = {
    ProvinceHunnicEmpire: "Hunnic Empire",
    ResetOurWarmongerPenalty: "Reset our Warmonger Penalty",
    NumberOfAttacksOffset: "Number of Attacks (Offset)",
+   SocialClassAgendaAvailableTooltip: "We can adopt a social class agenda for different bonuses. Click to view details.",
+   ExpiringCasusBelli: "Expiring Casus Belli",
 };
