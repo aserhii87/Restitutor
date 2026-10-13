@@ -94,6 +94,7 @@ All effects last 24 months. These actions share a 12-month cooldown across all t
 
 ## Balance Changes
 
+- Make Core Cost legacy upgrades now reduce cost by 20% each, up from 10%. A fourth upgrade has been added, bringing the total legacy discount to 80%, up from 30%.
 - Imperial Prosperity's +10% Prestige bonus has moved to Elite Patronage.
 - The annexation cost discount from patronage duration now grows by 0.5 percentage points per month, down from 1. The 90% cap now takes 15 years to reach instead of 7.5 years.
 - Developed Administration (Achaia's Provincial Spirits) now reduces each tile's Governing Cost by 2% per Tile Upgrade (Infrastructure + Production + Population), up from 1%.
